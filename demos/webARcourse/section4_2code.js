@@ -1,20 +1,10 @@
 const THREE = window.MINDAR.IMAGE.THREE;
-
+import {mockWithVideo} from "./libs/camera-mock.js";
 document.addEventListener("DOMContentLoaded",()=>{
 	const start = async () => {
+		
+		mockWithVideo("./section4_Files/course-banner1.mp4");
 
-		navigator.mediaDevices.getUserMedia = () => {
-			return new Promise((resolve, reject) => {
-				const video = document.createElement("video");
-				video.setAttribute("src","./section4_Files/course-banner1.mp4");
-				video.setAttribute("loop", "");
-
-				video.oncanplay = () => {
-					video.play();
-					resolve(video.captureStream());
-				}
-			});
-		}
 		const mindarThree = new window.MINDAR.IMAGE.MindARThree({
 			container: document.body,
 			imageTargetSrc: "./section4_Files/course-banner.mind"
