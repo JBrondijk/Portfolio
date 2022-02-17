@@ -1,41 +1,35 @@
 //Colorblind Filter from http://web.archive.org/web/20081014161121/http://www.colorjack.com/labs/colormatrix/
 //Camera Access from https://www.youtube.com/watch?v=Z6fQtNpB3hU&ab_channel=RaduMariescu-Istodor
 
-let VIDEO=null;
-let CANVAS=null;
-let CONTEXT=null;
+const VIDEO = document.getElementById("VIDEO");
 let SIZE={x:0,y:0,width:0,height:0};
 
-function main(){
-	CANVAS=document.getElementById("myCanvas");
-	CONTEXT=CANVAS.getContext("2d");
-	
-	CANVAS.width=window.innerWidth;
-	CANVAS.height= window.innerWidth*(9/16);
-
-	let promise=navigator.mediaDevices.getUserMedia({audio:false, video:{facingMode:'environment'}});
-	promise.then(function(signal){
-		VIDEO=document.getElementById("videoStream");
-		VIDEO.setAttribute('autoplay', '');
-		VIDEO.setAttribute('muted', '');
-		VIDEO.setAttribute('playsinline', '');
-		VIDEO.srcObject=signal;
+navigator.mediaDevices.getUserMedia({video: true, audio: false}
+)
+	.then(function(stream) {
+		VIDEO.srcObject = stream;
 		VIDEO.play();
-		
-		VIDEO.onloadeddata=function(){
-			handleResize();
-//			window.addEventListener('resize',handleResize);
-			updateCanvas();
-		}		
-	}).catch(function(err){
-		CONTEXT.fillStyle = 'white';
-		CONTEXT.font = "35pt Calibri";
-		CONTEXT.fillText("Geef de website toestemming om de camera te gebruiken om verder te kunnen.", 20, 200,CANVAS.width - 40);
-		
-		alert("Website werkt niet zonder cameratoestemming.");
+	})
+		.catch(function(err) {
+		console.log(`error: ${err}`)
+		//alert("Website werkt niet zonder cameratoestemming.");
 	});
-}
 
+	VIDEO.addEventListener("canplay", function(e){
+			let resizer= window.innerWidth/VIDEO.videoWidth;
+
+			SIZE.width=resizer*VIDEO.videoWidth;
+			SIZE.height=resizer*VIDEO.videoHeight;
+			SIZE.x=VIDEO.width/2-SIZE.width/2;
+			SIZE.y=VIDEO.height/2-SIZE.height/2;
+
+			VIDEO.setAttribute("width", SIZE.width);
+			VIDEO.setAttribute("height",SIZE.height);
+
+			console.log("setting filter");
+	})
+	 
+/*
 function handleResize(){	
 	let resizer= window.innerWidth/VIDEO.videoWidth;
 
@@ -82,3 +76,5 @@ function updateCanvas(){
 }
 
 function fu(n){ return(n<0?0:(n<255?n:255)); }
+*/
+

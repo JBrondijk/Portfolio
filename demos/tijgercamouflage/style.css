@@ -38,8 +38,8 @@ p{
 	
 	
 }
-canvas{
-	background-color: black;
+video{
+	filter: url(#protanopia);
 }
 
 .center {
