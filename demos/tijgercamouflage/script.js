@@ -4,7 +4,7 @@
 const VIDEO = document.getElementById("VIDEO");
 let SIZE={x:0,y:0,width:0,height:0};
 
-navigator.mediaDevices.getUserMedia({video: true, audio: false}
+navigator.mediaDevices.getUserMedia({video: true, audio: false, video:{facingMode:'environment'}}
 )
 	.then(function(stream) {
 		VIDEO.srcObject = stream;
