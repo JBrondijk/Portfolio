@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 	const start = async () => {
 		const mindarThree = new window.MINDAR.IMAGE.MindARThree({
 			container: document.body,
-			imageTargetSrc: "./section4_Files/course-banner.mind"
+			imageTargetSrc: "./section4_Files/cheetah.mind"
 		})
 		const {renderer, scene, camera} = mindarThree;
 
