@@ -66,12 +66,12 @@ function handleOrientation(event) {
   renderer.render(scene,camera);
 }
 
-toggle(){
-console.log("ToggleButton");
+toggle() {
+	console.log("ToggleButton");
 	const element = document.getElementByID(button1);
 	currentangle = currentangle + 1;
-	if (currentangle > 5){
-		currentangle = 0;
-	}
+		if (currentangle > 5){
+			currentangle = 0;
+		}
 	button.textContent = angles[currentangle];
 }
