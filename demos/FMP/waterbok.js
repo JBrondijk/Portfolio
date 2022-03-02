@@ -1,5 +1,7 @@
 import * as THREE from "../libs/three.js-r132/build/three.module.js";
 
+document.getElementByID("button1").onclick = function() {toggle()};
+
 const scene = new THREE.Scene();
 	
 const geometry = new THREE.BoxGeometry(1,1,1);
