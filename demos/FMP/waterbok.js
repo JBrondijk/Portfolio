@@ -37,9 +37,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 
 function handleOrientation(event) {
-  var alpha    = event.alpha;
-  var beta     = event.beta;
-  var gamma    = event.gamma;
+  var alpha    = event.alpha*(Math.PI/180);
+  var beta     = event.beta*(Math.PI/180);
+  var gamma    = event.gamma*(Math.PI/180);
   camera.rotation.set(alpha,beta,gamma);
   renderer.render(scene,camera);
 }
