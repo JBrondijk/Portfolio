@@ -66,7 +66,7 @@ function handleOrientation(event) {
   renderer.render(scene,camera);
 }
 
-toggle() {
+function toggle() {
 	console.log("ToggleButton");
 	const element = document.getElementByID(button1);
 	currentangle = currentangle + 1;
