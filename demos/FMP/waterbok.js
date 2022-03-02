@@ -1,6 +1,6 @@
 import * as THREE from "../libs/three.js-r132/build/three.module.js";
 
-document.getElementByID("button1").onclick = function() {toggle()};
+document.getElementById("button1").addEventListener("click",toggle);
 
 const scene = new THREE.Scene();
 	
