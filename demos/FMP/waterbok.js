@@ -1,5 +1,6 @@
 import * as THREE from "../libs/three.js-r132/build/three.module.js";
 
+window.addEventListener("deviceorientation", handleOrientation, true);
 document.addEventListener("DOMContentLoaded",()=>{
 	const scene = new THREE.Scene();
 	
@@ -31,3 +32,11 @@ document.addEventListener("DOMContentLoaded",()=>{
 	document.body.appendChild(video);
 	document.body.appendChild(renderer.domElement);
 });
+
+function handleOrientation(event) {
+  var alpha    = event.alpha;
+  var beta     = event.beta;
+  var gamma    = event.gamma;
+  camera.rotation.set(alpha,beta,gamma);
+  renderer.render(scene,camera);
+}
