@@ -8,7 +8,7 @@ let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, vi
 		VIDEO.setAttribute('playsinline', '');
 		VIDEO.srcObject=signal;
 		VIDEO.play();
-		}
+		
 	}).catch(function(err) {
 		alert("Website werkt niet zonder cameratoestemming.");
 	});
