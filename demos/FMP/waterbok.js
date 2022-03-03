@@ -53,14 +53,16 @@ document.addEventListener("DOMContentLoaded",()=>{
 			VIDEO.setAttribute("height",SIZE.height);
 	})
 
-	cube.position.set(0,0,-2);
+	cube.position.set(1,0,0);
 	cube.rotation.set(0,Math.PI/4,0);
 	scene.add(cube);
 
-	camera.position.set(1,1,5);
+	camera.position.set(0,0,5);
 	
 	renderer.setSize(SIZE.width,SIZE.height);
 	renderer.render(scene,camera);
+
+	document.getElementById("videoContainer").appendChild(renderer.domElement);
 });
 
 function handleOrientation(event) {
