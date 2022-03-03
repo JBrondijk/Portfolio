@@ -1,13 +1,15 @@
 const VIDEO = document.getElementById("VIDEO");
 let SIZE={x:0,y:0,width:0,height:0};
 
-navigator.mediaDevices.getUserMedia({video: true, audio: false, video:{facingMode:"environment"}}
-)
-	.then(function(stream) {
-		VIDEO.srcObject = stream;
+let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, video:{facingMode:"environment"}});
+	promise.then(function(signal) {
+		VIDEO.setAttribute('autoplay', '');
+		VIDEO.setAttribute('muted', '');
+		VIDEO.setAttribute('playsinline', '');
+		VIDEO.srcObject=signal;
 		VIDEO.play();
-	})
-		.catch(function(err) {
+		}
+	}).catch(function(err) {
 		alert("Website werkt niet zonder cameratoestemming.");
 	});
 
