@@ -51,6 +51,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 			VIDEO.setAttribute("width", SIZE.width);
 			VIDEO.setAttribute("height",SIZE.height);
+
+			renderer.setSize(SIZE.width,SIZE.height);
+
 	})
 
 	cube.position.set(1,0,0);
@@ -59,7 +62,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 	camera.position.set(0,0,5);
 	
-	renderer.setSize(SIZE.width,SIZE.height);
 	renderer.render(scene,camera);
 
 	document.getElementById("videoContainer").appendChild(renderer.domElement);
