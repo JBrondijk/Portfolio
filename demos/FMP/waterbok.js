@@ -64,6 +64,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 	
 	renderer.render(scene,camera);
 
+	VIDEO.style.position = "absolute";
+	renderer.domElement.style.position="absolute"
+
 	document.getElementById("videoContainer").appendChild(renderer.domElement);
 });
 
