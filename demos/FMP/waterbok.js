@@ -1,6 +1,6 @@
 import * as THREE from "../libs/three.js-r132/build/three.module.js";
 
-document.getElementById("button1").addEventListener("click",toggle);
+
 
 const scene = new THREE.Scene();
 	
@@ -13,6 +13,15 @@ const renderer = new THREE.WebGLRenderer({alpha:true});
 const angles = ["alphaBetaGamma","alphaGammaBeta","betaAlphaGamma", "betaGammaAlhpa","gammaAlphaBeta","gammaBetaAlpha"];
 const currentangle = 0;
 
+const button = document.getElementById("button1");
+button.onClick = function(){
+	console.log("ToggleButton");
+	currentangle = currentangle + 1;
+		if (currentangle > 5){
+			currentangle = 0;
+		}
+	button.textContent = angles[currentangle];
+}
 
 window.addEventListener("deviceorientation", handleOrientation, true);
 document.addEventListener("DOMContentLoaded",()=>{
@@ -66,14 +75,4 @@ function handleOrientation(event) {
 	  }
 
   renderer.render(scene,camera);
-}
-
-function toggle() {
-	console.log("ToggleButton");
-	const element = document.getElementByID(button1);
-	currentangle = currentangle + 1;
-		if (currentangle > 5){
-			currentangle = 0;
-		}
-	button.textContent = angles[currentangle];
 }
