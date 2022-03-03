@@ -11,10 +11,10 @@ const camera = new THREE.PerspectiveCamera();
 const renderer = new THREE.WebGLRenderer({alpha:true});
 
 const angles = ["alphaBetaGamma","alphaGammaBeta","betaAlphaGamma", "betaGammaAlhpa","gammaAlphaBeta","gammaBetaAlpha"];
-const currentangle = 0;
+var currentangle = 0;
 
-const button = document.getElementById("button1");
-button.onClick = function(){
+var button = document.getElementById("toggle");
+button.onclick = function(){
 	console.log("ToggleButton");
 	currentangle = currentangle + 1;
 		if (currentangle > 5){
