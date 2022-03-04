@@ -97,6 +97,6 @@ function handleOrientation(event) {
 			camera.rotation.set(gamma,beta,alpha);
 		  }
 		
-	camera.rotation.set(beta,gamma,alpha);
+	//camera.rotation.set(beta,gamma,alpha);
 	renderer.render(scene,camera);
 }
