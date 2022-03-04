@@ -6,12 +6,12 @@ let SIZE = {x:0,y:0,width:0,height:0};
 const scene = new THREE.Scene();
 	
 const geometry = new THREE.BoxGeometry(1,1,1);
-const material = new THREE.MeshBasicMaterial({color: "#0000FF"});
+const material = new THREE.MeshBasicMaterial({color: "#FF00FF"});
 const cube = new THREE.Mesh(geometry, material);
 const camera = new THREE.PerspectiveCamera();
 const renderer = new THREE.WebGLRenderer({alpha:true});
 
-/*
+//testing angles
 const angles = ["alphaBetaGamma","alphaGammaBeta","betaAlphaGamma", "betaGammaAlhpa","gammaAlphaBeta","gammaBetaAlpha"];
 var currentangle = 0;
 
@@ -24,9 +24,11 @@ button.onclick = function(){
 		}
 	button.textContent = angles[currentangle];
 }
-*/
+
 
 window.addEventListener("deviceorientation", handleOrientation, true);
+
+//play video
 document.addEventListener("DOMContentLoaded",()=>{
 	const VIDEO = document.getElementById("VIDEO");
 	let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, video:{facingMode:"environment"}});
@@ -40,7 +42,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 	}).catch(function(err) {
 		alert("Website werkt niet zonder cameratoestemming.");
 	});
-
+//resize video
 	VIDEO.addEventListener("canplay", function(e){
 			let resizer= window.innerWidth/VIDEO.videoWidth;
 
@@ -54,6 +56,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 			renderer.setSize(SIZE.width,SIZE.height);
 
+			const spacerSetting = string.concat("display:block;width:",toString(SIZE.width),";height:",toString(SIZE.height);
+			console.log(spacerSetting);
+			document.getElementById("spacer").setAttribute(spacerSetting);
 	})
 
 	cube.position.set(1,0,0);
@@ -64,6 +69,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 	
 	renderer.render(scene,camera);
 
+	VIDEO.style.position = "absolute";
 	renderer.domElement.style.position="absolute"
 
 	document.getElementById("videoContainer").appendChild(renderer.domElement);
