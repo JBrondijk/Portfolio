@@ -23,7 +23,7 @@ const cube6 = new THREE.Mesh(geometry, material6);
 
 const camera = new THREE.PerspectiveCamera();
 const renderer = new THREE.WebGLRenderer({alpha:true});
-const controls = new THREE.DeviceOrientationControls(camera);
+const controls = new DeviceOrientationControls(camera);
 
 /*
 //testing angles
