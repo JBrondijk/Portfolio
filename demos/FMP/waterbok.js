@@ -2,10 +2,10 @@ import * as THREE from "../libs/three.js-r132/build/three.module.js";
 
 let SIZE = {x:0,y:0,width:0,height:0};
 
-
 const scene = new THREE.Scene();
 	
 const geometry = new THREE.BoxGeometry(1,1,1);
+
 const material1 = new THREE.MeshBasicMaterial({color: "#FF0000"});
 const material2 = new THREE.MeshBasicMaterial({color: "#00FF00"});
 const material3 = new THREE.MeshBasicMaterial({color: "#0000FF"});
@@ -23,6 +23,7 @@ const cube6 = new THREE.Mesh(geometry, material6);
 const camera = new THREE.PerspectiveCamera();
 const renderer = new THREE.WebGLRenderer({alpha:true});
 
+/*
 //testing angles
 const angles = ["alphaBetaGamma","alphaGammaBeta","betaAlphaGamma", "betaGammaAlhpa","gammaAlphaBeta","gammaBetaAlpha"];
 var currentangle = 0;
@@ -36,11 +37,11 @@ button.onclick = function(){
 		}
 	button.textContent = angles[currentangle];
 }
-
+*/
 
 window.addEventListener("deviceorientation", handleOrientation, true);
 
-//play video
+//play camera
 document.addEventListener("DOMContentLoaded",()=>{
 	const VIDEO = document.getElementById("VIDEO");
 	let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, video:{facingMode:"environment"}});
@@ -96,14 +97,14 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 
 function handleOrientation(event) {
-	  var alpha    = event.alpha*(Math.PI/180);
-	  var beta     = event.beta*(Math.PI/180);
-	  var gamma    = event.gamma*(Math.PI/90);
+	  var alpha    = THREE.Math.degToRad(event.alpha);
+	  var beta     = THREE.Math.degToRad(event.beta);
+	  var gamma    = THREE.Math.degToRad(event.gamma);
 
 	  document.getElementById("alphatext").innerHTML = "alphatext: ".concat(String(alpha));
 	  document.getElementById("betatext").innerHTML = "betatext: ".concat(String(beta));
 	  document.getElementById("gammatext").innerHTML = "gammatext: ".concat(String(gamma));
-		
+/*
 		  if (currentangle == 0){
 			camera.rotation.set(alpha,beta,gamma);
 		  }
@@ -122,7 +123,8 @@ function handleOrientation(event) {
 		  if (currentangle == 5){
 			camera.rotation.set(gamma,beta,alpha);
 		  }
-		
-	//camera.rotation.set(beta,gamma,alpha);
+	*/	
+	camera.rotation.set(beta,alpha,gamma); //these should be the correct angles
+
 	renderer.render(scene,camera);
 }
