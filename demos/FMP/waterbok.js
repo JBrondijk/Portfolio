@@ -97,9 +97,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 
 function handleOrientation(event) {
-	  var alpha    = THREE.Math.degToRad(event.alpha);
-	  var beta     = THREE.Math.degToRad(event.beta);
-	  var gamma    = THREE.Math.degToRad(event.gamma);
+	  var alpha    = THREE.Math.degToRad(event.alpha+180);
+	  var beta     = THREE.Math.degToRad(event.beta+180);
+	  var gamma    = THREE.Math.degToRad(event.gamma+90);
 
 	  document.getElementById("alphatext").innerHTML = "alphatext: ".concat(String(alpha));
 	  document.getElementById("betatext").innerHTML = "betatext: ".concat(String(beta));
