@@ -1,4 +1,5 @@
 import * as THREE from "../libs/three.js-r132/build/three.module.js";
+import {DeviceOrientationControls} from "../libs/three.js-r132/examples/jsm/controls/DeviceOrientationControls.js"; 
 
 let SIZE = {x:0,y:0,width:0,height:0};
 
