@@ -56,9 +56,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 			renderer.setSize(SIZE.width,SIZE.height);
 
-			const spacerSetting = string.concat("display:block;width:",toString(SIZE.width),";height:",toString(SIZE.height);
-			console.log(spacerSetting);
-			document.getElementById("spacer").setAttribute(spacerSetting);
+			document.getElementById("spacer").style.height = String(SIZE.height).concat("px");
 	})
 
 	cube.position.set(1,0,0);
@@ -79,7 +77,7 @@ function handleOrientation(event) {
 	  var alpha    = event.alpha*(Math.PI/180);
 	  var beta     = event.beta*(Math.PI/180);
 	  var gamma    = event.gamma*(Math.PI/180);
-		/*
+		
 		  if (currentangle == 0){
 			camera.rotation.set(alpha,beta,gamma);
 		  }
@@ -98,7 +96,7 @@ function handleOrientation(event) {
 		  if (currentangle == 5){
 			camera.rotation.set(gamma,beta,alpha);
 		  }
-		*/
+		
 	camera.rotation.set(beta,gamma,alpha);
 	renderer.render(scene,camera);
 }
