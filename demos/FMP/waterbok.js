@@ -22,6 +22,7 @@ const cube6 = new THREE.Mesh(geometry, material6);
 
 const camera = new THREE.PerspectiveCamera();
 const renderer = new THREE.WebGLRenderer({alpha:true});
+const controls = new THREE.DeviceOrientationControls(camera);
 
 /*
 //testing angles
@@ -39,7 +40,7 @@ button.onclick = function(){
 }
 */
 
-window.addEventListener("deviceorientation", handleOrientation, true);
+//window.addEventListener("deviceorientation", handleOrientation, true);
 
 //play camera
 document.addEventListener("DOMContentLoaded",()=>{
@@ -95,7 +96,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 	document.getElementById("videoContainer").appendChild(renderer.domElement);
 });
-
+/*
 function handleOrientation(event) {
 	  var alpha    = THREE.Math.degToRad(event.alpha+180);
 	  var beta     = THREE.Math.degToRad(event.beta+180);
@@ -124,7 +125,11 @@ function handleOrientation(event) {
 			camera.rotation.set(gamma,beta,alpha);
 		  }
 	*/	
-	camera.rotation.set(beta,alpha,gamma); //these should be the correct angles
+	//camera.rotation.set(beta,alpha,gamma); //these should be the correct angles
 
-	renderer.render(scene,camera);
-}
+	//renderer.render(scene,camera); }
+
+	function animate(){
+	controls.update();
+	requestAnimationFrame(animate);
+	}
