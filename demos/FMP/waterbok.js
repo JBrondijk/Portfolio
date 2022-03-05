@@ -134,5 +134,8 @@ function handleOrientation(event) {
 
 	function animate(){
 	controls.update();
+
+	renderer.render(scene,camera);
+
 	requestAnimationFrame(animate);
 	}
