@@ -8,12 +8,13 @@ const loader = new THREE.TextureLoader();
 
 const wbgeometry = new THREE.BoxGeometry(1,1,1);
 const wbtexture = loader.load("./textures/waterbok.png");
-const wbmaterial = new THREE.MeshBasicMaterial({map: wbtexture, transparent:false, side:2, color:"FF0000", opacity:0.5});
+//const wbmaterial = new THREE.MeshBasicMaterial({map: wbtexture, transparent:true});
+const wbmaterial = new THREE.MeshBasicMaterial({color: "FF0000"});
 const waterbok = new THREE.Mesh(wbgeometry, wbmaterial);
 
 const grassgeometry = new THREE.CylinderGeometry(2,2,4,20,1,true);
 const grasstexture = loader.load("./textures/grass.png");
-const grassmaterial = new THREE.MeshBasicMaterial({map: grasstexture, transparent:false, side:1, color:"00FF00", opacity:0.5});
+const grassmaterial = new THREE.MeshBasicMaterial({map: grasstexture, transparent:true, side:1});
 const grass = new THREE.Mesh(grassgeometry,grassmaterial);
 
 const rotator = new THREE.Object3D();
@@ -55,6 +56,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 			document.getElementById("spacer").style.height = String(SIZE.height).concat("px");
 	})
 	scene.add(rotator);
+	scene.add(waterbok);
 	rotator.add(waterbok);
 	waterbok.position.set(3,0,0);
 	waterbok.rotation.set (0,Math.PI/2,0);
@@ -75,12 +77,12 @@ function animate(){
 	controls.update();
 
 	//rotate waterbok (game logic will come here?)
-	currentRotation = currentRotation +0.1;
+	currentRotation = currentRotation +0.01;
 
 
 	rotator.rotation.set(0, currentRotation*(Math.PI/180), 0);
 
-	renderer.render(scene,camera);
 
+	renderer.render(scene,camera);
 	requestAnimationFrame(animate);
 	}
