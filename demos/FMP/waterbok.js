@@ -65,8 +65,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 			document.getElementById("spacer").style.height = String(SIZE.height).concat("px");
 
 			castVector = new THREE.Vector2(window.innerWidth/2,window.innerHeight/2);
-			raycaster.setFromCamera(castVector, camera);
 	})
+
 	scene.add(rotator);
 	scene.add(waterbok);
 	rotator.add(waterbok);
@@ -75,8 +75,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 	scene.add (grass)
 	camera.position.set(0,0,0);
 	
-	renderer.render(scene,camera);
-
 	VIDEO.style.position = "absolute";
 	renderer.domElement.style.position="absolute"
 
@@ -105,7 +103,8 @@ function animate(){
 	}
 
 	//cast ray from middle of screen, increase score if looking at waterbok, increase distance to waterbok otherwise.
-	const intersects = raycaster.intersectObject(object : waterbok, recursive : true);
+	raycaster.setFromCamera(castVector, camera);
+	const intersects = raycaster.intersectObjects(rotator.children);
 	if (intersects.length > 0){
 		score = score+1;
 	} else {
