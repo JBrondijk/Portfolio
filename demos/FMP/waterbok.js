@@ -21,6 +21,9 @@ const camera = new THREE.PerspectiveCamera();
 const renderer = new THREE.WebGLRenderer({alpha:true});
 const controls = new DeviceOrientationControls(camera);
 
+var castVector;
+const raycaster = new THREE.raycaster();
+
 var currentRotation = 180;
 var speed = 0.2;
 var minSpeed = 0.2
@@ -60,11 +63,14 @@ document.addEventListener("DOMContentLoaded",()=>{
 			renderer.setSize(SIZE.width,SIZE.height);
 
 			document.getElementById("spacer").style.height = String(SIZE.height).concat("px");
+
+			castVector = new THREE.Vector2(window.innerWidth/2,window.innerHeight/2);
+			raycaster.setFromCamera(castVector, camera);
 	})
 	scene.add(rotator);
 	scene.add(waterbok);
 	rotator.add(waterbok);
-	waterbok.position.set(3,0,-1);
+	waterbok.position.set(3,0,-3);
 	waterbok.rotation.set (0,Math.PI/2,0);
 	scene.add (grass)
 	camera.position.set(0,0,0);
@@ -82,7 +88,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 function animate(){
 	controls.update();
 
-
+	//move waterbok
 	if (goingLeft){
 		currentRotation = currentRotation + speed;
 	} else {
@@ -90,12 +96,27 @@ function animate(){
 	}
 	rotator.rotation.set(0, currentRotation*(Math.PI/180), 0);
 
+	//pick new direction when it's time
 	elapsedSwitchTime = elapsedSwitchTime + 1/60;
 	if (elapsedSwitchTime > switchTime){
 		pickDirection();
 		elapsedSwitchTime = 0;
 		switchTime = Math.random() * (4 - 2) + 2;
 	}
+
+	//cast ray from middle of screen, increase score if looking at waterbok, increase distance to waterbok otherwise.
+	const intersects = raycaster.intersectObjects([waterbok.scene], true);
+	if (intersects.length > 0){
+		score = score+1;
+	} else {
+		score = score -0.1;
+		if (score > 100){
+			waterbok.position.x= waterbok.position.x+0.005;
+		}
+	}
+
+	//display score
+	document.getElementById("text").innerHTML = "Score: ".concat(String(score));
 
 	renderer.render(scene,camera);
 	requestAnimationFrame(animate);
@@ -110,5 +131,4 @@ function pickDirection(){
 		waterbok.rotation.y = waterbok.rotation.y+Math.PI;
 		goingLeft = newDirection
 	}
-
 }
