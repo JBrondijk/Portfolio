@@ -74,10 +74,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 	rotator.add(waterbok);
 	waterbok.position.set(3,0,0);
 	waterbok.rotation.set (0,Math.PI/2,0);
-	/*
+	
 	scene.add (grass)
 	grass.position.set(0,0.2,0);
-	*/
+	
 	camera.position.set(0,0,0);
 	
 	VIDEO.style.position = "absolute";
@@ -111,13 +111,7 @@ function animate(){
 	camera.getWorldPosition(cameraWorldPos);
 	camera.getWorldDirection(cameraWorldDir);
 	raycaster.set(cameraWorldPos,cameraWorldDir);
-	const intersects = raycaster.intersectObjects(scene.children,true); //try with rotator/children, or change it later to not check if the object is the waterbok. 
-
-	/*
-	raycaster.setFromCamera(castVector, camera);	
-	const intersects = raycaster.intersectObjects(scene.children, true);
-	*/
-
+	const intersects = raycaster.intersectObjects(rotator.children,true); //try with rotator/children, or change it later to not check if the object is the waterbok. 
 	if (intersects.length > 0){
 		score = score+1;
 		document.getElementById("text").style.color="green";
