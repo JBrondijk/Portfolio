@@ -6,14 +6,14 @@ let SIZE = {x:0,y:0,width:0,height:0};
 const scene = new THREE.Scene();
 const loader = new THREE.TextureLoader();
 
-const wbgeometry = new THREE.PlaneGeometry(1,1);
+const wbgeometry = new THREE.BoxGeometry(1,1,1);
 const wbtexture = loader.load("./textures/waterbok.png");
-const wbmaterial = new THREE.MeshBasicMaterial({map: wbtexture, transparent:true, side:2});
+const wbmaterial = new THREE.MeshBasicMaterial({map: wbtexture, transparent:false, side:2, color:"FF0000". opacity:0.5});
 const waterbok = new THREE.Mesh(wbgeometry, wbmaterial);
 
 const grassgeometry = new THREE.CylinderGeometry(2,2,4,20,1,true);
 const grasstexture = loader.load("./textures/grass.png");
-const grassmaterial = new THREE.MeshBasicMaterial({map: grasstexture, transparent:true, side:1});
+const grassmaterial = new THREE.MeshBasicMaterial({map: grasstexture, transparent:false, side:1, color:"00FF00". opacity:0.5});
 const grass = new THREE.Mesh(grassgeometry,grassmaterial);
 
 const rotator = new THREE.Object3D();
