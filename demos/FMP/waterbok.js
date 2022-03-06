@@ -22,6 +22,13 @@ const renderer = new THREE.WebGLRenderer({alpha:true});
 const controls = new DeviceOrientationControls(camera);
 
 var currentRotation = 180;
+var speed = 0.2;
+var minSpeed = 0.2
+var maxSpeed = 0.3
+var score = 0;
+var goingLeft = true;
+var switchTime = 2;
+var elapsedSwitchTime = 0;
 
 //access camera
 document.addEventListener("DOMContentLoaded",()=>{
@@ -75,13 +82,33 @@ document.addEventListener("DOMContentLoaded",()=>{
 function animate(){
 	controls.update();
 
-	//rotate waterbok (game logic will come here?)
-	currentRotation = currentRotation +0.2;
 
-
+	if (goingLeft){
+		currentRotation = currentRotation + speed;
+	} else {
+		currentRotation = currentRotation - speed;
+	}
 	rotator.rotation.set(0, currentRotation*(Math.PI/180), 0);
 
+	elapsedSwitchTime = elapsedSwitchTime + 1/60;
+	if (elapsedSwitchTime > switchTime){
+		pickDirection();
+		elapsedSwitchTime = 0;
+		switchTime = Math.random() * (4 - 2) + 2;
+	}
 
 	renderer.render(scene,camera);
 	requestAnimationFrame(animate);
 	}
+
+function pickDirection(){
+	var newDirection = Math.random() >= 0.5;
+
+	speed = Math.random() * (maxSpeed - minSpeed) + minSpeed;
+
+	if (goingLeft != newDirection){
+		waterbok.rotation.y = waterbok.rotation.y+Math.PI;
+		goingLeft = newDirection
+	}
+
+}
