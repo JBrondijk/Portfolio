@@ -22,7 +22,7 @@ const renderer = new THREE.WebGLRenderer({alpha:true});
 const controls = new DeviceOrientationControls(camera);
 
 var castVector;
-const raycaster = new THREE.raycaster();
+const raycaster = new THREE.Raycaster();
 
 var currentRotation = 180;
 var speed = 0.2;
