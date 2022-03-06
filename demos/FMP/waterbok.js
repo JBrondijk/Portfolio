@@ -74,7 +74,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 	rotator.add(waterbok);
 	waterbok.position.set(3,0,0);
 	waterbok.rotation.set (0,Math.PI/2,0);
-	
+	waterbok.frustumCulled = false;
+
 	scene.add (grass)
 	grass.position.set(0,0.2,0);
 	
