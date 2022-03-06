@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 			document.getElementById("spacer").style.height = String(SIZE.height).concat("px");
 
-			castVector = new THREE.Vector2((SIZE.width/2)/SIZE.width,(SIZE.height/2)/SIZE.size.height);
+			castVector = new THREE.Vector2((SIZE.width/2)/SIZE.width,(SIZE.height/2)/SIZE.height);
 	})
 
 	scene.add(rotator);
