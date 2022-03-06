@@ -111,7 +111,7 @@ function animate(){
 	camera.getWorldPosition(cameraWorldPos);
 	camera.getWorldDirection(cameraWorldDir);
 	raycaster.set(cameraWorldPos,cameraWorldDir);
-	const intersects = raycaster.intersectObjects(rotator.children,true); //try with rotator/children, or change it later to not check if the object is the waterbok. 
+	const intersects = raycaster.intersectObjects(scene.children,true); //try with rotator/children, or change it later to not check if the object is the waterbok. 
 	if (intersects.length > 0){
 		score = score+1;
 		document.getElementById("text").style.color="green";
