@@ -21,7 +21,7 @@ const camera = new THREE.PerspectiveCamera();
 const renderer = new THREE.WebGLRenderer({alpha:true});
 const controls = new DeviceOrientationControls(camera);
 
-//var castVector = new THREE.Vector2(0,5 , 0.5);
+var castVector = new THREE.Vector2(0,5 , 0.5);
 const raycaster = new THREE.Raycaster();
 
 var currentRotation = 180;
@@ -85,7 +85,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 	
 function animate(){
-	controls.update();
 
 	//move waterbok
 	if (goingLeft){
@@ -105,7 +104,7 @@ function animate(){
 
 	//cast ray from middle of screen, increase score if looking at waterbok, increase distance to waterbok otherwise.
 	
-	raycaster.set(camera.getWorldPosition(), camera.getWorldDirection());	
+	raycaster.setFromCamera(castVector, camera);	
 	const intersects = raycaster.intersectObjects(scene.children, true);
 	if (intersects.length > 0){
 		score = score+1;
@@ -121,6 +120,7 @@ function animate(){
 	//display score
 	document.getElementById("text").innerHTML = "Score: ".concat(String(score));
 
+	controls.update();
 	renderer.render(scene,camera);
 	requestAnimationFrame(animate);
 	}
