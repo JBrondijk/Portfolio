@@ -76,7 +76,7 @@ function animate(){
 	controls.update();
 
 	//rotate waterbok (game logic will come here?)
-	currentRotation = currentRotation +0.01;
+	currentRotation = currentRotation +0.2;
 
 
 	rotator.rotation.set(0, currentRotation*(Math.PI/180), 0);
