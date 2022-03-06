@@ -76,10 +76,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 	waterbok.rotation.set (0,Math.PI/2,0);
 	waterbok.frustumCulled = false;
 	rotator.frustumCulled = false;
-
+	/*
 	scene.add (grass)
 	grass.position.set(0,0.2,0);
-	
+	*/
 	camera.position.set(0,0,0);
 	
 	VIDEO.style.position = "absolute";
@@ -91,27 +91,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 	
 function animate(){
-//testing culling
-	camera.updateMatrix();
-	camera.updateMatrixWorld();
-	camera.matrixWorldInverse.getInverse(camera.matrixWorld);
-
-	waterbok.updateMatrix();
-	waterbok.updateMatrixWorld();
-
-	var frustum = new THREE.Frustum();
-	frustum.setFromMatrix( new THREE.Matrix4().multiplyMatrices( camera.projectionMatrix, camera.matrixWorldInverse ) );
-
-	var wbCulled = frustum.contains(waterbok);
-
-	document.getElementById("frustumMatrix").innerHTML = "Waterbok being culled? : ".concat(String(wbCulled));
-	if (wbCulled){
-		document.getElementById("frustumMatrix").style.color="green";
-	} else {
-		document.getElementById("frustumMatrix").style.color="red";
-	}
-
-
 	//move waterbok
 	if (goingLeft){
 		currentRotation = currentRotation + speed;
