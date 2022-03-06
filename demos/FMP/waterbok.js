@@ -21,7 +21,7 @@ const camera = new THREE.PerspectiveCamera();
 const renderer = new THREE.WebGLRenderer({alpha:true});
 const controls = new DeviceOrientationControls(camera);
 
-var castVector;
+var castVector = new THREE.Vector2(0,5 , 0.5);
 const raycaster = new THREE.Raycaster();
 
 var currentRotation = 180;
@@ -63,8 +63,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 			renderer.setSize(SIZE.width,SIZE.height);
 
 			document.getElementById("spacer").style.height = String(SIZE.height).concat("px");
-
-			castVector = new THREE.Vector2((SIZE.width/2)/SIZE.width,(SIZE.height/2)/SIZE.height);
 	})
 
 	scene.add(rotator);
