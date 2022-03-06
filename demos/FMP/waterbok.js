@@ -6,7 +6,7 @@ let SIZE = {x:0,y:0,width:0,height:0};
 const scene = new THREE.Scene();
 const loader = new THREE.TextureLoader();
 
-const wbgeometry = new THREE.PlaneGeometry(1,1,1);
+const wbgeometry = new THREE.PlaneGeometry(2,2);
 const wbtexture = loader.load("./textures/waterbok.png");
 const wbmaterial = new THREE.MeshBasicMaterial({map: wbtexture, transparent:true, side:2});
 const waterbok = new THREE.Mesh(wbgeometry, wbmaterial);
@@ -105,8 +105,10 @@ function animate(){
 	const intersects = raycaster.intersectObjects(rotator.children);
 	if (intersects.length > 0){
 		score = score+1;
+		document.getElementById("text").style.color="green";
 	} else {
 		score = score -0.1;
+		document.getElementById("text").style.color="red";
 		if (score > 100){
 			waterbok.position.x= waterbok.position.x+0.005;
 		}
