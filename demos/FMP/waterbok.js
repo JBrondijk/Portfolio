@@ -21,7 +21,7 @@ const camera = new THREE.PerspectiveCamera();
 const renderer = new THREE.WebGLRenderer({alpha:true});
 const controls = new DeviceOrientationControls(camera);
 
-var currentRotation = 0;
+var currentRotation = 180;
 
 //access camera
 document.addEventListener("DOMContentLoaded",()=>{
