@@ -4,13 +4,19 @@ import {DeviceOrientationControls} from "../libs/three.js-r132/examples/jsm/cont
 let SIZE = {x:0,y:0,width:0,height:0};
 
 const scene = new THREE.Scene();
-const wbgeometry = new THREE.PlaneGeometry(1,1);
-const rotator = new THREE.Object3D();
 const loader = new THREE.TextureLoader();
-const wbtexture = loader.load("./textures/waterbok.png")
-const wbmaterial = new THREE.MeshBasicMaterial({map: wbtexture, transparent:true});
 
+const wbgeometry = new THREE.PlaneGeometry(1,1);
+const wbtexture = loader.load("./textures/waterbok.png");
+const wbmaterial = new THREE.MeshBasicMaterial({map: wbtexture, transparent:true, side:2});
 const waterbok = new THREE.Mesh(wbgeometry, wbmaterial);
+
+const grassgeometry = new THREE.CylinderGeometry(2,2,4,20,1,true);
+const grasstexture = loader.load("./textures/grass.png");
+const grassmaterial = new THREE.MeshBasicMaterial({map: grasstexture, transparent:true, side:1});
+const grass = new THREE.Mesh(grassgeometry,grassmaterial);
+
+const rotator = new THREE.Object3D();
 const camera = new THREE.PerspectiveCamera();
 const renderer = new THREE.WebGLRenderer({alpha:true});
 const controls = new DeviceOrientationControls(camera);
@@ -51,8 +57,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 	scene.add(rotator);
 	rotator.add(waterbok);
 	waterbok.position.set(3,0,0);
-	waterbok.rotation.set (0,90,0);
-
+	waterbok.rotation.set (0,Math.PI/2,0);
+	scene.add (grass)
 	camera.position.set(0,0,0);
 	
 	renderer.render(scene,camera);
