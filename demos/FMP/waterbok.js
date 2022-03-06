@@ -6,10 +6,9 @@ let SIZE = {x:0,y:0,width:0,height:0};
 const scene = new THREE.Scene();
 const loader = new THREE.TextureLoader();
 
-const wbgeometry = new THREE.BoxGeometry(1,1,1);
+const wbgeometry = new THREE.PlaneGeometry(1,1,1);
 const wbtexture = loader.load("./textures/waterbok.png");
-//const wbmaterial = new THREE.MeshBasicMaterial({map: wbtexture, transparent:true});
-const wbmaterial = new THREE.MeshBasicMaterial({color: "FF0000"});
+const wbmaterial = new THREE.MeshBasicMaterial({map: wbtexture, transparent:true, side:2});
 const waterbok = new THREE.Mesh(wbgeometry, wbmaterial);
 
 const grassgeometry = new THREE.CylinderGeometry(2,2,4,20,1,true);
@@ -58,7 +57,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 	scene.add(rotator);
 	scene.add(waterbok);
 	rotator.add(waterbok);
-	waterbok.position.set(3,0,0);
+	waterbok.position.set(3,0,-1);
 	waterbok.rotation.set (0,Math.PI/2,0);
 	scene.add (grass)
 	camera.position.set(0,0,0);
