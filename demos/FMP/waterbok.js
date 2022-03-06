@@ -68,10 +68,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 	scene.add(rotator);
 	scene.add(waterbok);
 	rotator.add(waterbok);
-	waterbok.position.set(3,0,-3);
+	waterbok.position.set(3,-3,0);
 	waterbok.rotation.set (0,Math.PI/2,0);
 	scene.add (grass)
-	grass.position.set(0,0,2);
+	grass.position.set(0,2,0);
 	camera.position.set(0,0,0);
 	
 	VIDEO.style.position = "absolute";
@@ -103,9 +103,7 @@ function animate(){
 
 	//cast ray from middle of screen, increase score if looking at waterbok, increase distance to waterbok otherwise.
 	raycaster.setFromCamera(castVector, camera);
-	
-	scene.add(new THREE.ArrowHelper(raycaster.ray.direction, raycaster.ray.origin, 300, 0xff0000) );
-	
+		
 	const intersects = raycaster.intersectObjects(rotator.children);
 	if (intersects.length > 0){
 		score = score+1;
