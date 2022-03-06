@@ -105,7 +105,7 @@ function animate(){
 	}
 
 	//cast ray from middle of screen, increase score if looking at waterbok, increase distance to waterbok otherwise.
-	const intersects = raycaster.intersectObjects([waterbok.scene], true);
+	const intersects = raycaster.intersectObject(object : waterbok, recursive : true);
 	if (intersects.length > 0){
 		score = score+1;
 	} else {
