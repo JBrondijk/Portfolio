@@ -68,10 +68,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 	scene.add(rotator);
 	scene.add(waterbok);
 	rotator.add(waterbok);
-	waterbok.position.set(3,-0.5,0);
+	waterbok.position.set(3,0,0);
 	waterbok.rotation.set (0,Math.PI/2,0);
 	scene.add (grass)
-	grass.position.set(0,0.3,0);
+	grass.position.set(0,0.2,0);
 	camera.position.set(0,0,0);
 	
 	VIDEO.style.position = "absolute";
