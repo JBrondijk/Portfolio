@@ -91,17 +91,17 @@ document.addEventListener("DOMContentLoaded",()=>{
 	grass1.renderOrder = 7;
 	scene.add (grass2)
 	grass2.userData.iswaterbok = false;
-	grass2.position.set(0,0.25,0);
+	grass2.position.set(0,0.22,0);
 	grass2.rotation.set(0,Math.PI*0.5,0);
 	grass2.renderOrder = 5;
 	scene.add (grass3)
 	grass3.userData.iswaterbok = false;
-	grass3.position.set(0,0.3,0);
+	grass3.position.set(0,0.24,0);
 	grass3.rotation.set(0,Math.PI,0);
 	grass3.renderOrder = 3;
 	scene.add (grass4)
 	grass4.userData.iswaterbok = false;
-	grass4.position.set(0,0.35,0);
+	grass4.position.set(0,0.26,0);
 	grass4.rotation.set(0,Math.PI*1.5,0);
 	grass4.renderOrder = 1;
 
