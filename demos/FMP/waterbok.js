@@ -121,11 +121,11 @@ function animate(){
 				break;
 			}
 			if (i == intersects.length-1){
-				lookAway(orange); //no waterbok found
+				lookAway("orange"); //no waterbok found
 			}
 		}
 	} else {
-		lookAway(red);
+		lookAway("red");
 	}
 
 	//display score
