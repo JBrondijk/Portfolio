@@ -71,6 +71,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 	scene.add(rotator);
 	scene.add(waterbok);
+	waterbok.userData.name = "waterbok";
 	rotator.add(waterbok);
 	waterbok.position.set(3,0,0);
 	waterbok.rotation.set (0,Math.PI/2,0);
@@ -116,7 +117,7 @@ function animate(){
 
 	if (intersects.length > 0){ 
 		for (let i = 0; i < intersects.length; i++){
-			if(intersects[i]= waterbok.scene){ //check if object is the waterbok
+			if(intersects[i].object = waterbok.scene){ //check if object is the waterbok
 				lookAt();
 				break;
 			}
