@@ -122,11 +122,11 @@ function animate(){
 				break;
 			}
 			if (i = intersects.length-1){
-				lookAway(); //no waterbok found
+				lookAway(orange); //no waterbok found
 			}
 		}
 	} else {
-		lookAway();
+		lookAway(red);
 	}
 
 	//display score
@@ -152,9 +152,9 @@ function lookAt (){
 	score = score+1;
 	document.getElementById("text").style.color="green";
 }
-function lookAway(){
+function lookAway(color){
 	score = score -0.1;
-	document.getElementById("text").style.color="red";
+	document.getElementById("text").style.color=String(color);
 	if (score > 100){
 		waterbok.position.x= waterbok.position.x+0.005; //implement something with the render order. waterbok.renderOrder = "something depending on it's distance between in relation to the cylinder(s)"
 	}
