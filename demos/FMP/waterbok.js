@@ -109,7 +109,6 @@ function animate(){
 	}
 
 	//cast ray from middle of screen, increase score if looking at waterbok, increase distance to waterbok otherwise.
-	
 	camera.getWorldPosition(cameraWorldPos);
 	camera.getWorldDirection(cameraWorldDir);
 	raycaster.set(cameraWorldPos,cameraWorldDir);
@@ -117,11 +116,11 @@ function animate(){
 
 	if (intersects.length > 0){ 
 		for (let i = 0; i < intersects.length; i++){
-			if(intersects[i].object = waterbok.scene){ //check if object is the waterbok
+			if(intersects[i].object == waterbok.scene){ //check if object is the waterbok
 				lookAt();
 				break;
 			}
-			if (i = intersects.length-1){
+			if (i == intersects.length-1){
 				lookAway(orange); //no waterbok found
 			}
 		}
