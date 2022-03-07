@@ -11,10 +11,16 @@ const wbtexture = loader.load("./textures/waterbok.png");
 const wbmaterial = new THREE.MeshBasicMaterial({map: wbtexture, transparent:true, side:2, alphaTest: 0.1});
 const waterbok = new THREE.Mesh(wbgeometry, wbmaterial);
 
-const grassgeometry = new THREE.CylinderGeometry(2,2,4,20,1,true);
 const grasstexture = loader.load("./textures/grass.png");
 const grassmaterial = new THREE.MeshBasicMaterial({map: grasstexture, transparent:true, side:1, depthWrite: false});
-const grass = new THREE.Mesh(grassgeometry,grassmaterial);
+var grassgeometry = new THREE.CylinderGeometry(2,2,4,20,1,true);
+const grass1 = new THREE.Mesh(grassgeometry,grassmaterial);
+grassgeometry = new THREE.CylinderGeometry(4,4,4,20,1,true);
+const grass2 = new THREE.Mesh(grassgeometry,grassmaterial);
+grassgeometry = new THREE.CylinderGeometry(6,6,4,20,1,true);
+const grass3 = new THREE.Mesh(grassgeometry,grassmaterial);
+grassgeometry = new THREE.CylinderGeometry(8,8,4,20,1,true);
+const grass4 = new THREE.Mesh(grassgeometry,grassmaterial);
 
 const rotator = new THREE.Object3D();
 const camera = new THREE.PerspectiveCamera();
@@ -78,10 +84,22 @@ document.addEventListener("DOMContentLoaded",()=>{
 	waterbok.frustumCulled = false;
 	rotator.frustumCulled = false;
 	
-	scene.add (grass)
-	grass.userData.iswaterbok = false;
-	grass.position.set(0,0.2,0);
-	
+	scene.add (grass1)
+	grass1.userData.iswaterbok = false;
+	grass1.position.set(0,0.2,0);
+	scene.add (grass2)
+	grass2.userData.iswaterbok = false;
+	grass2.position.set(0,0.25,0);
+	grass2.rotation.set(0,Math.PI*0.5,0);
+	scene.add (grass3)
+	grass3.userData.iswaterbok = false;
+	grass3.position.set(0,0.3,0);
+	grass3.rotation.set(0,Math.PI,0);
+	scene.add (grass4)
+	grass4.userData.iswaterbok = false;
+	grass4.position.set(0,0.35,0);
+	grass4.rotation.set(0,Math.PI*1.5,0);
+
 	camera.position.set(0,0,0);
 	
 	VIDEO.style.position = "absolute";
