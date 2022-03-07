@@ -82,23 +82,28 @@ document.addEventListener("DOMContentLoaded",()=>{
 	waterbok.position.set(3,0,0);
 	waterbok.rotation.set (0,Math.PI/2,0);
 	waterbok.frustumCulled = false;
+	waterbok.renderOrder = 6;
 	rotator.frustumCulled = false;
 	
 	scene.add (grass1)
 	grass1.userData.iswaterbok = false;
 	grass1.position.set(0,0.2,0);
+	grass1.renderOrder = 7;
 	scene.add (grass2)
 	grass2.userData.iswaterbok = false;
 	grass2.position.set(0,0.25,0);
 	grass2.rotation.set(0,Math.PI*0.5,0);
+	grass2.renderOrder = 5;
 	scene.add (grass3)
 	grass3.userData.iswaterbok = false;
 	grass3.position.set(0,0.3,0);
 	grass3.rotation.set(0,Math.PI,0);
+	grass3.renderOrder = 3;
 	scene.add (grass4)
 	grass4.userData.iswaterbok = false;
 	grass4.position.set(0,0.35,0);
 	grass4.rotation.set(0,Math.PI*1.5,0);
+	grass4.renderOrder = 1;
 
 	camera.position.set(0,0,0);
 	
@@ -175,5 +180,14 @@ function lookAway(color){
 	document.getElementById("text").style.color=String(color);
 	if (score > 100){
 		waterbok.position.x= waterbok.position.x+0.005; //implement something with the render order. waterbok.renderOrder = "something depending on it's distance between in relation to the cylinder(s)"
+		if (waterbok.position.x > 4 && waterbok.renderOrder > 4 ){
+			waterbok.renderOrder = 4;
+		}
+		if (waterbok.position.x > 6 && waterbok.renderOrder > 2 ){
+			waterbok.renderOrder = 2;
+		}
+		if (waterbok.position.x > 8 && waterbok.renderOrder > 0 ){
+				waterbok.renderOrder = 0;
+		}
 	}
 }
