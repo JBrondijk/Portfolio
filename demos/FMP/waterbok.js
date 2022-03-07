@@ -113,15 +113,21 @@ function animate(){
 	camera.getWorldDirection(cameraWorldDir);
 	raycaster.set(cameraWorldPos,cameraWorldDir);
 	const intersects = raycaster.intersectObjects(scene.children,true);
-	if (intersects.length > 0){ //check if object is the waterbok
-		score = score+1;
-		document.getElementById("text").style.color="green";
-	} else {
-		score = score -0.1;
-		document.getElementById("text").style.color="red";
-		if (score > 100){
-			waterbok.position.x= waterbok.position.x+0.005;
+
+	if (intersects.length > 0){ 
+		for (let i = 0; i < intersects.length; i++){
+			if(intersects[i]= waterbok.scene){ //check if object is the waterbok
+				lookAt();
+				break;
+			}
+			if (i = intersects.length-1){
+				lookAway(); //no waterbok found
+			}
 		}
+
+		lookAt();
+	} else {
+		lookAway();
 	}
 
 	//display score
@@ -140,5 +146,17 @@ function pickDirection(){
 	if (goingLeft != newDirection){
 		waterbok.rotation.y = waterbok.rotation.y+Math.PI;
 		goingLeft = newDirection
+	}
+}
+
+function lookAt (){
+	score = score+1;
+	document.getElementById("text").style.color="green";
+}
+function lookAway(){
+	score = score -0.1;
+	document.getElementById("text").style.color="red";
+	if (score > 100){
+		waterbok.position.x= waterbok.position.x+0.005; //implement something with the render order. waterbok.renderOrder = "something depending on it's distance between in relation to the cylinder(s)"
 	}
 }
