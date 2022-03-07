@@ -124,8 +124,6 @@ function animate(){
 				lookAway(); //no waterbok found
 			}
 		}
-
-		lookAt();
 	} else {
 		lookAway();
 	}
