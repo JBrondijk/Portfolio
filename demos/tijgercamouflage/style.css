@@ -1,6 +1,7 @@
 body{
 	margin:0;
-	background-color: #596831
+	background-color: #596831;
+	font-size: 0;
 }
 h1{
 	color: white;
@@ -21,6 +22,10 @@ div{
 	background-color: white;
 }
 
+.pageBottom{
+	background-color: #596831;
+}
+
 p{
 	color:black;
 	background-color: white;
@@ -31,12 +36,21 @@ p{
 	line-height: 1.5!important;
     font-weight: 300;
 	
+	margin-top: 0;
 	padding-top: 0px;
 	padding-bottom: 25px;
 	padding-left: 30px;
 	padding-right: 30px;
 	
 	
+}
+video{
+	-webkit-filter: url(#protanopia);
+	filter: url(#protanopia);
+}
+
+svg{
+	display: none;
 }
 
 .center {
