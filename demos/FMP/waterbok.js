@@ -85,7 +85,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 	waterbok.renderOrder = 6;
 	rotator.frustumCulled = false;
 	
-	/*
 	scene.add (grass1)
 	grass1.userData.iswaterbok = false;
 	grass1.position.set(0,0.2,0);
@@ -105,7 +104,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 	grass4.position.set(0,0.26,0);
 	grass4.rotation.set(0,Math.PI*1.5,0);
 	grass4.renderOrder = 1;
-	*/
 
 	camera.position.set(0,0,0);
 	
