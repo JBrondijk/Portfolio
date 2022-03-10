@@ -38,13 +38,6 @@ p{
 	
 	
 }
-video{
-	-webkit-filter: url(#protanopia);
-}
-
-svg{
-	display: none;
-}
 
 .center {
 	padding-top: 50px;

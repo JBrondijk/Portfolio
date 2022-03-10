@@ -6,21 +6,22 @@
 		<link href="style.css" rel="stylesheet"/>
 	</head>
 
-	<svg>
-		<filter id="protanopia">
-		  <feColorMatrix type="matrix"
-			values="0.567, 0.433, 0,     0, 0
-					0.558, 0.442, 0,     0, 0
-					0,     0.242, 0.758, 0, 0
-					0,     0,     0,     1, 0"/>
-		</filter>
-	</svg>
-	
 	<body>
 		<h1> Hoe effectief is de camouflage van een tijger?</h1>
 		
 		<div>
-			<video id="VIDEO">Geef de website toestemming om de camera te gebruiken om verder te kunnen.</video> 
+			<svg>
+				<defs>
+					<filter id="protanopia">
+					  <feColorMatrix type="matrix"
+						values="0.567, 0.433, 0,     0, 0
+								0.558, 0.442, 0,     0, 0
+								0,     0.242, 0.758, 0, 0
+								0,     0,     0,     1, 0"/>
+					</filter>
+				</defs>
+				<video id="VIDEO" filter="url(#protanopia)" >Geef de website toestemming om de camera te gebruiken om verder te kunnen.</video> 
+			</svg>
 			<p>
 				Voor ons is het misschien niet zo moeilijk een tijger te spotten, ze hebben immers een vrij opvallende kleur.
 				Toch hebben sommige dieren hier iets meer moeite mee. Herten zoals edelherten en sikaherten zien de wereld net een stukje anders als wij, ze zijn namelijk kleurenblind! 
