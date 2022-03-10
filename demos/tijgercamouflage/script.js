@@ -67,8 +67,8 @@ function loop(){
 	debugcounter=debugcounter+1;
 	document.getElementById("debugText").innerHTML = String(debugcounter);
 	
-	window.requestAnimationFrame(loop);
-	//setTimeout(updateCanvas, 33);
+	//window.requestAnimationFrame(loop);
+	setTimeout(loop, 33);
 }
 
 
