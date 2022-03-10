@@ -36,6 +36,29 @@ VIDEO.addEventListener("canplay", function(e){
 })
 
 function loop(){
+	debugcounter=debugcounter+1;
+	document.getElementById("debugText").innerHTML = String(debugcounter);
+	
+	window.requestAnimationFrame(loop);
+}
+
+
+function iOS() {
+  return [
+    'iPad Simulator',
+    'iPhone Simulator',
+    'iPod Simulator',
+    'iPad',
+    'iPhone',
+    'iPod'
+  ].includes(navigator.platform)
+  // iPad on iOS 13 detection
+  || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+}
+
+function fu(n){ return(n<0?0:(n<255?n:255)); }
+
+function refreshCanvas(){
 	CONTEXT.drawImage(VIDEO,SIZE.x,SIZE.y,VIDEO.width,VIDEO.height);
 	
 	var imageData = CONTEXT.getImageData(0,0,CANVAS.width,CANVAS.height);
@@ -63,26 +86,4 @@ function loop(){
 			data[id + 2] = db >> 0;
 	}	
 	CONTEXT.putImageData(imageData,0,0);
-	
-	debugcounter=debugcounter+1;
-	document.getElementById("debugText").innerHTML = String(debugcounter);
-	
-	//window.requestAnimationFrame(loop);
-	setTimeout(loop, 1000);
 }
-
-
-function iOS() {
-  return [
-    'iPad Simulator',
-    'iPhone Simulator',
-    'iPod Simulator',
-    'iPad',
-    'iPhone',
-    'iPod'
-  ].includes(navigator.platform)
-  // iPad on iOS 13 detection
-  || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
-}
-
-function fu(n){ return(n<0?0:(n<255?n:255)); }
