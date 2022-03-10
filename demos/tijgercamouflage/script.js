@@ -2,6 +2,7 @@ const VIDEO = document.getElementById("VIDEO");
 let SIZE={x:0,y:0,width:0,height:0};
 let CANVAS = null;
 let CONTEXT = null;
+let debugcounter=0;
 
 let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, video:{facingMode:"environment"}});
 	promise.then(function(signal) {
@@ -28,7 +29,7 @@ VIDEO.addEventListener("canplay", function(e){
 			CANVAS.width=VIDEO.width
 			CANVAS.height=VIDEO.height
 			CONTEXT=CANVAS.getContext("2d");
-			//VIDEO.style.display = "none";
+			VIDEO.style.display = "none";
 			
 			loop();
 		}
@@ -63,8 +64,11 @@ function loop(){
 	}	
 	CONTEXT.putImageData(imageData,0,0);
 	
-	//window.requestAnimationFrame(loop);
-	setTimeout(updateCanvas, 33);
+	debugcounter=debugcounter+1;
+	document.getElementById("debugText").innerHTML = String(debugcounter);
+	
+	window.requestAnimationFrame(loop);
+	//setTimeout(updateCanvas, 33);
 }
 
 
