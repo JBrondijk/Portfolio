@@ -28,7 +28,7 @@ VIDEO.addEventListener("canplay", function(e){
 			CANVAS.width=VIDEO.width
 			CANVAS.height=VIDEO.height
 			CONTEXT=CANVAS.getContext("2d");
-			VIDEO.style.display = "none";
+			//VIDEO.style.display = "none";
 			
 			loop();
 		}
