@@ -57,7 +57,7 @@ function loop(){
 			dr = fu(dr);
 			dg = fu(dg);
 			db = fu(db);
-				
+			
 			data[id] = dr >> 0;
 			data[id + 1] = dg >> 0;
 			data[id + 2] = db >> 0;
@@ -68,7 +68,7 @@ function loop(){
 	document.getElementById("debugText").innerHTML = String(debugcounter);
 	
 	//window.requestAnimationFrame(loop);
-	setTimeout(loop, 33);
+	setTimeout(loop, 100);
 }
 
 
