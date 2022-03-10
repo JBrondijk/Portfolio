@@ -11,6 +11,7 @@ const wbtexture = loader.load("./textures/waterbok.png");
 const wbmaterial = new THREE.MeshBasicMaterial({map: wbtexture, transparent:true, side:2, alphaTest: 0.1});
 const waterbok = new THREE.Mesh(wbgeometry, wbmaterial);
 
+/*
 const grasstexture = loader.load("./textures/grass.png");
 const grassmaterial = new THREE.MeshBasicMaterial({map: grasstexture, transparent:true, side:1, depthWrite: false});
 var grassgeometry = new THREE.CylinderGeometry(2,2,4,20,1,true);
@@ -21,6 +22,7 @@ grassgeometry = new THREE.CylinderGeometry(6,6,4,20,1,true);
 const grass3 = new THREE.Mesh(grassgeometry,grassmaterial);
 grassgeometry = new THREE.CylinderGeometry(8,8,4,20,1,true);
 const grass4 = new THREE.Mesh(grassgeometry,grassmaterial);
+*/
 
 const rotator = new THREE.Object3D();
 const camera = new THREE.PerspectiveCamera();
@@ -85,7 +87,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 	waterbok.renderOrder = 6;
 	rotator.frustumCulled = false;
 	
-	addGrass();
+	//addGrass();
 
 	camera.position.set(0,0,0);
 	
