@@ -63,7 +63,8 @@ function loop(){
 	}	
 	CONTEXT.putImageData(imageData,0,0);
 	
-	window.requestAnimationFrame(loop);
+	//window.requestAnimationFrame(loop);
+	setTimeout(updateCanvas, 33);
 }
 
 
