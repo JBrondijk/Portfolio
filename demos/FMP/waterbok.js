@@ -88,6 +88,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 			document.getElementById("spacer").style.height = String(SIZE.height).concat("px");
 	})
 
+	//add Three.JS elements
 	scene.add(rotator);
 	scene.add(waterbok);
 	waterbok.userData.iswaterbok = true;
@@ -97,7 +98,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 	waterbok.frustumCulled = false;
 	waterbok.renderOrder = 6;
 	rotator.frustumCulled = false;
-	
 	addGrass();
 
 	camera.position.set(0,0,0);
@@ -181,7 +181,7 @@ function updateProgress (){
 }
 
 function getIconPosition (iconPosition){
-	return ((iconPosition/100)*90-5);
+	return ((iconPosition/100)*95-5);
 }
 function lookAt (){
 	score = score+0.3;

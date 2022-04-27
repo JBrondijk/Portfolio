@@ -63,9 +63,8 @@ video{
 }
 
 .progress-container {
-  margin: auto;
   height: 3vw;
-  width: 90vw;
+  width: 95vw;
 
   background: #D2D2D2;
 }
@@ -105,5 +104,5 @@ video{
 	position:relative;
 	width:5vw;
 	height: 3vw;
-	left: 90vw;
+	left: 95vw;
 }
