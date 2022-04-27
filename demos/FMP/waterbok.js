@@ -1,3 +1,7 @@
+/*
+Progress bar code from https://codepen.io/theprogrammingexpert/pen/jOqGBLL
+*/
+
 import * as THREE from "../libs/three.js-r132/build/three.module.js";
 import {DeviceOrientationControls} from "../libs/three.js-r132/examples/jsm/controls/DeviceOrientationControls.js"; 
 
@@ -41,7 +45,16 @@ var goingLeft = true;
 var switchTime = 2;
 var elapsedSwitchTime = 0;
 
+const playerProgressBar = document.querySelector(.progress);
+const lionProgressBar = document.querySelector(.progressLion);
+const playerIcon = document.querySelector(.playerIcon);
+const lionIcon = document.querySelector(.lionIcon);
+var PlayerProgress = 0;
+var LionProgress = -10;
 
+const totalDistance = 900;
+var playerDistance = 0;
+var lionDistance = -90;
 
 //access camera
 document.addEventListener("DOMContentLoaded",()=>{
@@ -134,8 +147,12 @@ function animate(){
 		lookAway("red");
 	}
 
+	//update lion distance
+	lionDistance = lionDistance+0.5;
+
 	//display score
 	document.getElementById("text").innerHTML = "Score: ".concat(String(score));
+	updateProgress();
 
 	controls.update();
 	renderer.render(scene,camera);
@@ -153,8 +170,22 @@ function pickDirection(){
 	}
 }
 
+function updateProgress (){
+	PlayerProgress = (playerDistance/totalDistance)*100;
+	LionProgress = (lionDistance/totalDistance)*100;
+
+	playerProgressBar.style.width = `${PlayerProgress}%`;
+	playerIcon.style.position = `${getIconPosition(PlayerProgress)}vw`;
+	lionProgressBar.style.width = `${LionProgress}%`;
+	lionIcon.style.position = `${getIconPosition(LionProgress)}vw`;
+}
+
+function getIconPosition (iconPosition){
+	return ((iconPosition/100)*90-5);
+}
 function lookAt (){
 	score = score+1;
+	playerDistance = playerDistance + 1;
 	document.getElementById("text").style.color="green";
 }
 function lookAway(color){
