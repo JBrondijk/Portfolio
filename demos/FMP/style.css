@@ -60,3 +60,48 @@ video{
   position: absolute;
   top: 0;
 }
+
+.progress-container {
+  margin: auto;
+  height: 1.5vh;
+  width: 90vw;
+
+  background: #D2D2D2;
+}
+
+.progress-container .progress {
+  height: 100%;
+  width: 0;
+  border-radius: 0.4rem;
+
+  background: #EA5B19;
+}
+.progress-container .progressLion {
+  margin-top: -1.5vh;
+  height: 100%;
+  width: 0;
+  border-radius: 0.4rem;
+
+  background: #FCCF4D;
+}
+
+.lionIcon {
+	position:relative;
+	width: 6vh;
+	height: 6vh;
+	top: -2vh;
+	left: -10vw;
+}
+.playerIcon {
+	position:relative;
+	width: 4vh;
+	height: 4vh;
+	top: -1.5vh;
+}
+.finish{
+	position:relative;
+	width:5vw;
+	height: 1.5vh;
+	left: 90vw;
+	top:-1.5vh;
+}
