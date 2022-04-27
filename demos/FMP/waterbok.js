@@ -140,18 +140,18 @@ function animate(){
 				break;
 			}
 			if (i == intersects.length-1){
-				lookAway("orange"); //no waterbok found
+				lookAway(); //no waterbok found
 			}
 		}
 	} else {
-		lookAway("red");
+		lookAway();
 	}
 
 	//update lion distance
 	lionDistance = lionDistance+0.1;
 
 	//display score
-	document.getElementById("text").innerHTML = "Score: ".concat(String(score));
+	
 	updateProgress();
 
 	controls.update();
@@ -186,13 +186,13 @@ function getIconPosition (iconPosition){
 function lookAt (){
 	score = score+0.3;
 	playerDistance = playerDistance + 1;
-	document.getElementById("text").style.color="green";
 }
-function lookAway(color){
+function lookAway(){
 	score = score -0.1;
-	document.getElementById("text").style.color=String(color);
-	if (score > 100){
-		waterbok.position.x= waterbok.position.x+0.005; //implement something with the render order. waterbok.renderOrder = "something depending on it's distance between in relation to the cylinder(s)"
+}
+
+function setWaterbokDistance(distance){
+	waterbok.position.x= distance; 
 		if (waterbok.position.x > 4 && waterbok.renderOrder > 4 ){
 			waterbok.renderOrder = 4;
 		}
@@ -202,7 +202,6 @@ function lookAway(color){
 		if (waterbok.position.x > 8 && waterbok.renderOrder > 0 ){
 				waterbok.renderOrder = 0;
 		}
-	}
 }
 
 function addGrass(){
