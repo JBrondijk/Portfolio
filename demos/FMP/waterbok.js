@@ -148,7 +148,7 @@ function animate(){
 	}
 
 	//update lion distance
-	lionDistance = lionDistance+0.5;
+	lionDistance = lionDistance+0.1;
 
 	//display score
 	document.getElementById("text").innerHTML = "Score: ".concat(String(score));
@@ -184,7 +184,7 @@ function getIconPosition (iconPosition){
 	return ((iconPosition/100)*90-5);
 }
 function lookAt (){
-	score = score+1;
+	score = score+0.3;
 	playerDistance = playerDistance + 1;
 	document.getElementById("text").style.color="green";
 }
