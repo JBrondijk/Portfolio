@@ -45,10 +45,10 @@ var goingLeft = true;
 var switchTime = 2;
 var elapsedSwitchTime = 0;
 
-const playerProgressBar = document.querySelector(.progress);
-const lionProgressBar = document.querySelector(.progressLion);
-const playerIcon = document.querySelector(.playerIcon);
-const lionIcon = document.querySelector(.lionIcon);
+const playerProgressBar = document.querySelector(".progress");
+const lionProgressBar = document.querySelector(".progressLion");
+const playerIcon = document.querySelector(".playerIcon");
+const lionIcon = document.querySelector(".lionIcon");
 var PlayerProgress = 0;
 var LionProgress = -10;
 
