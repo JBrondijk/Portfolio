@@ -175,9 +175,9 @@ function updateProgress (){
 	LionProgress = (lionDistance/totalDistance)*100;
 
 	playerProgressBar.style.width = `${PlayerProgress}%`;
-	playerIcon.style.position = `${getIconPosition(PlayerProgress)}vw`;
+	playerIcon.style.left = `${getIconPosition(PlayerProgress)}vw`;
 	lionProgressBar.style.width = `${LionProgress}%`;
-	lionIcon.style.position = `${getIconPosition(LionProgress)}vw`;
+	lionIcon.style.left = `${getIconPosition(LionProgress)}vw`;
 }
 
 function getIconPosition (iconPosition){
