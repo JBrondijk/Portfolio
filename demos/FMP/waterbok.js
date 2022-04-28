@@ -41,9 +41,10 @@ var PlayerProgress = 0,
 	lionDistance = -6,
 	currentRotation = 180,
 	speed = 12,
-	minSpeed = 18,
-	maxSpeed = 24,
 	score = 0,
+	highScore1 = 0,
+	highScore2 = 0,
+	streak = 0,
 	goingLeft = true,
 	switchTime = 2,
 	elapsedSwitchTime = 0,
@@ -51,11 +52,24 @@ var PlayerProgress = 0,
 	currentTime = 0,
 	delta = 0;
 
-const totalDistance = 40;
-const playerProgressBar = document.querySelector(".progress");
-const lionProgressBar = document.querySelector(".progressLion");
-const playerIcon = document.querySelector(".playerIcon");
-const lionIcon = document.querySelector(".lionIcon");
+const	totalDistance = 40,
+		streakGainTime = 5,
+		streakLoseTime = 2.5,
+		scoreModifier = 1,
+		playerSpeed = 1,
+		lionSpeed = 0.8,
+		minSpeed = 18,
+		maxSpeed = 24;
+
+//html elements
+const	playerProgressBar = document.querySelector(".progress"),
+		lionProgressBar = document.querySelector(".progressLion"),
+		playerIcon = document.querySelector(".playerIcon"),
+		lionIcon = document.querySelector(".lionIcon"),
+		score0 = document.getElementById("score0");
+		score1 = document.getElementById("score1");
+		score2 = document.getElementById("score2");
+
 
 
 //access camera
@@ -119,6 +133,7 @@ function animate(){
 	lastTime = currentTime;
 
 	moveWaterbok();
+	
 	//cast ray from middle of screen, increase score if looking at waterbok, increase distance to waterbok otherwise.
 	camera.getWorldPosition(cameraWorldPos);
 	camera.getWorldDirection(cameraWorldDir);
@@ -149,7 +164,8 @@ function animate(){
 	controls.update();
 	renderer.render(scene,camera);
 	requestAnimationFrame(animate);
-	}
+}
+//end of animate function
 
 function moveWaterbok(){
 	//move waterbok
@@ -190,21 +206,32 @@ function updateProgress (){
 	playerIcon.style.left = `${getIconPosition(PlayerProgress)}vw`;
 	lionProgressBar.style.width = `${LionProgress}%`;
 	lionIcon.style.left = `${getIconPosition(LionProgress)}vw`;
+
+	score0.innerHTML = Math.round(score).toString()
+
+	if (score > highScore1){
+		score1.innerHTML = Math.round(score).toString();
+	}
 }
 
 function getIconPosition (iconPosition){
 	return ((iconPosition/100)*95-5);
 }
 function lookAt (){
-	score = score+0.3*delta;
-	playerDistance = playerDistance + delta;
+	if (streak<1){
+		streak = streak + delta/streakGainTime;
+	} else {
+		streak = 1;
+	}
+	score = score+(scoreModifier+streak)*delta;
+	playerDistance = playerDistance + playerSpeed*delta;
 }
 function lookAway(){
-	score = score -0.1*delta;
+	streak = streak - delta/streakLoseTime;
 }
 
 function setWaterbokDistance(distance){
-	waterbok.position.x= distance; 
+	waterbok.position.x = distance; 
 		if (waterbok.position.x > 4 && waterbok.renderOrder > 4 ){
 			waterbok.renderOrder = 4;
 		}
