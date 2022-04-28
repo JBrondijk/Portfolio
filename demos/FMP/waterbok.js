@@ -74,7 +74,9 @@ const	playerProgressBar = document.querySelector(".progress"),
 		score2 = document.getElementById("score2"),
 		startMenu = document.getElementById("startMenu"),
 		warningMessage = document.getElementById("warningMessage"),
-		gameOverMenu = document.getElementById("gameOverMenu");
+		gameOverMenu = document.getElementById("gameOverMenu")
+		win1Menu = document.getElementById("win1Menu"),
+		win2Menu = document.getElementById("win2Menu");
 
 //access camera
 document.addEventListener("DOMContentLoaded",()=>{
@@ -220,6 +222,17 @@ function updateProgress (){
 	lionProgressBar.style.width = `${LionProgress}%`;
 	lionIcon.style.left = `${getIconPosition(LionProgress)}vw`;
 
+	if (PlayerProgress > 100){
+		if (gameState == "play1"){
+			gameState = "win";
+			win1Menu.style.display = "block";
+		}
+		if (gameState == "play2"){
+			gameState = "finished";
+			win2Menu.style.display = "block";
+		}		
+	}
+
 	score0.innerHTML = Math.round(score).toString()
 
 	if (gameState == "play1" && score > highScore1){
@@ -291,10 +304,14 @@ document.getElementById("btnStart").onclick = function(){
 }
 document.getElementById("btnWarn").onclick = function(){
 	warningMessage.style.display = "none";
-	if (gameState == "start" || gameState == "gameOver1"){gamestate = "play1"}
-	if (gameState == "win" || gameState == "gameOver2"){gamestate = "play2"}
+	if (gameState == "start" || gameState == "gameOver1"){gameState = "play1"}
+	if (gameState == "win" || gameState == "gameOver2"){gameState = "play2"}
 }
 document.getElementById("btnGameOver").onclick = function(){
 	gameOverMenu.style.display = "none";
+	warningMessage.style.display = "block";
+}
+document.getElementById("btnWin1").onclick = function(){
+	win1Menu.style.display = "none";
 	warningMessage.style.display = "block";
 }
