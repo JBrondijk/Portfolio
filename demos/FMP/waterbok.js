@@ -50,7 +50,8 @@ var PlayerProgress = 0,
 	elapsedSwitchTime = 0,
 	lastTime = (new Date()).getTime(),
 	currentTime = 0,
-	delta = 0;
+	delta = 0,
+	gamestate = "start";
 
 const	totalDistance = 40,
 		streakGainTime = 5,
@@ -59,7 +60,9 @@ const	totalDistance = 40,
 		playerSpeed = 1,
 		lionSpeed = 0.8,
 		minSpeed = 18,
-		maxSpeed = 24;
+		maxSpeed = 24,
+		switchTimeC = 2;
+
 
 //html elements
 const	playerProgressBar = document.querySelector(".progress"),
@@ -71,6 +74,7 @@ const	playerProgressBar = document.querySelector(".progress"),
 		score2 = document.getElementById("score2"),
 		startMenu = document.getElementById("startMenu"),
 		warningMessage = document.getElementById("warningMessage");
+
 //access camera
 document.addEventListener("DOMContentLoaded",()=>{
 	const VIDEO = document.getElementById("VIDEO");
@@ -86,7 +90,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 		alert("Website werkt niet zonder cameratoestemming.");
 	});
 
-//resize video
+//ready scene.
 	VIDEO.addEventListener("canplay", function(e){
 			let resizer= window.innerWidth/VIDEO.videoWidth;
 
@@ -104,18 +108,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 	})
 
 	//add Three.JS elements
-	scene.add(rotator);
-	scene.add(waterbok);
-	waterbok.userData.iswaterbok = true;
-	rotator.add(waterbok);
-	waterbok.position.set(2.5,0,0);
-	waterbok.rotation.set (0,Math.PI/2,0);
-	waterbok.frustumCulled = false;
-	waterbok.renderOrder = 6;
-	rotator.frustumCulled = false;
-	addGrass();
-
-	camera.position.set(0,0,0);
+	populateThreeJS();
 	
 	VIDEO.style.position = "absolute";
 	renderer.domElement.style.position="absolute"
@@ -131,34 +124,12 @@ function animate(){
 	delta = (currentTime - lastTime) / 1000;
 	lastTime = currentTime;
 
-	moveWaterbok();
 	
-	//cast ray from middle of screen, increase score if looking at waterbok, increase distance to waterbok otherwise.
-	camera.getWorldPosition(cameraWorldPos);
-	camera.getWorldDirection(cameraWorldDir);
-	raycaster.set(cameraWorldPos,cameraWorldDir);
-	const intersects = raycaster.intersectObjects(scene.children,true);
 
-	if (intersects.length > 0){ 
-		for (let i = 0; i < intersects.length; i++){
-			if(intersects[i].object.userData.iswaterbok){ //check if object is the waterbok
-				lookAt();
-				break;
-			}
-			if (i == intersects.length-1){
-				lookAway(); //no waterbok found
-			}
-		}
-	} else {
-		lookAway();
-	}
-
-	//update lion distance
-	lionDistance = lionDistance+0.7*delta;
-
-	//display score
-	
+	detectLookDirection();
+	moveWaterbok();	
 	updateProgress();
+	moveLion();
 
 	controls.update();
 	renderer.render(scene,camera);
@@ -182,10 +153,9 @@ function moveWaterbok(){
 	if (elapsedSwitchTime > switchTime){
 		pickDirection();
 		elapsedSwitchTime = 0;
-		switchTime = Math.random() * (4 - 2) + 2;
+		switchTime = Math.random() * (switchTimeC) + switchTimeC;
 	}
 }
-
 function pickDirection(){
 	var newDirection = Math.random() >= 0.3+(PlayerProgress/200);
 
@@ -196,7 +166,52 @@ function pickDirection(){
 		goingLeft = !goingLeft;
 	}
 }
+function setWaterbokDistance(distance){
+	waterbok.position.x = distance; 
+		if (waterbok.position.x > 4 && waterbok.renderOrder > 4 ){
+			waterbok.renderOrder = 4;
+		}
+		if (waterbok.position.x > 6 && waterbok.renderOrder > 2 ){
+			waterbok.renderOrder = 2;
+		}
+		if (waterbok.position.x > 8 && waterbok.renderOrder > 0 ){
+				waterbok.renderOrder = 0;
+		}
+}
 
+function detectLookDirection(){
+	//cast ray from middle of screen, increase score if looking at waterbok, increase distance to waterbok otherwise.
+	camera.getWorldPosition(cameraWorldPos);
+	camera.getWorldDirection(cameraWorldDir);
+	raycaster.set(cameraWorldPos,cameraWorldDir);
+	const intersects = raycaster.intersectObjects(scene.children,true);
+
+	if (intersects.length > 0){ 
+		for (let i = 0; i < intersects.length; i++){
+			if(intersects[i].object.userData.iswaterbok){ //check if object is the waterbok
+				lookAt();
+				break;
+			}
+			if (i == intersects.length-1){
+				lookAway(); //no waterbok found
+			}
+		}
+	} else {
+		lookAway();
+	}
+}
+function lookAt (){
+	if (streak<1){
+		streak = streak + delta/streakGainTime;
+	} else {
+		streak = 1;
+	}
+	score = score+(scoreModifier+streak)*delta;
+	playerDistance = playerDistance + playerSpeed*delta;
+}
+function lookAway(){
+	streak = streak - delta/streakLoseTime;
+}
 function updateProgress (){
 	PlayerProgress = (playerDistance/totalDistance)*100;
 	LionProgress = (lionDistance/totalDistance)*100;
@@ -212,36 +227,27 @@ function updateProgress (){
 		score1.innerHTML = Math.round(score).toString();
 	}
 }
-
 function getIconPosition (iconPosition){
 	return ((iconPosition/100)*95-5);
 }
-function lookAt (){
-	if (streak<1){
-		streak = streak + delta/streakGainTime;
-	} else {
-		streak = 1;
-	}
-	score = score+(scoreModifier+streak)*delta;
-	playerDistance = playerDistance + playerSpeed*delta;
-}
-function lookAway(){
-	streak = streak - delta/streakLoseTime;
+function moveLion(){
+	lionDistance = lionDistance+0.7*delta;
 }
 
-function setWaterbokDistance(distance){
-	waterbok.position.x = distance; 
-		if (waterbok.position.x > 4 && waterbok.renderOrder > 4 ){
-			waterbok.renderOrder = 4;
-		}
-		if (waterbok.position.x > 6 && waterbok.renderOrder > 2 ){
-			waterbok.renderOrder = 2;
-		}
-		if (waterbok.position.x > 8 && waterbok.renderOrder > 0 ){
-				waterbok.renderOrder = 0;
-		}
-}
+populateThreeJS(){
+	scene.add(rotator);
+	scene.add(waterbok);
+	waterbok.userData.iswaterbok = true;
+	rotator.add(waterbok);
+	waterbok.position.set(2.5,0,0);
+	waterbok.rotation.set (0,Math.PI/2,0);
+	waterbok.frustumCulled = false;
+	waterbok.renderOrder = 6;
+	rotator.frustumCulled = false;
+	addGrass();
 
+	camera.position.set(0,0,0);
+}
 function addGrass(){
 	scene.add (grass1)
 	grass1.userData.iswaterbok = false;
@@ -262,6 +268,13 @@ function addGrass(){
 	grass4.position.set(0,-0.22,0);
 	grass4.rotation.set(0,Math.PI*1.5,0);
 	grass4.renderOrder = 1;
+}
+function resetVariables (){
+	playerDistance = 0;
+	lionDistance = -6;
+	score = 0;
+	streak = 0;
+	elapsedSwitchTime= 0;
 }
 
 document.getElementById("btnStart").onclick = function(){
