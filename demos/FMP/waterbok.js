@@ -235,7 +235,8 @@ function getIconPosition (iconPosition){
 function moveLion(){
 	lionDistance = lionDistance+0.7*delta;
 	if (lionDistance>playerDistance){
-		gameState == "gameOver";
+		if (gameState == "play1"){ gameState = "gameOver1"}
+		if (gameState == "play2"){ gameState = "gameOver2"}
 		gameOverMenu.style.display = "block";
 	}
 }
@@ -290,7 +291,8 @@ document.getElementById("btnStart").onclick = function(){
 }
 document.getElementById("btnWarn").onclick = function(){
 	warningMessage.style.display = "none";
-	gameState = "play1";
+	if (gameState == "start" || gameState == "gameOver1"){gamestate = "play1"}
+	if (gameState == "win" || gameState == "gameOver2"){gamestate = "play2"}
 }
 document.getElementById("btnGameOver").onclick = function(){
 	gameOverMenu.style.display = "none";
