@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 	scene.add(waterbok);
 	waterbok.userData.iswaterbok = true;
 	rotator.add(waterbok);
-	waterbok.position.set(3,0,0);
+	waterbok.position.set(2.5,0,0);
 	waterbok.rotation.set (0,Math.PI/2,0);
 	waterbok.frustumCulled = false;
 	waterbok.renderOrder = 6;
@@ -160,6 +160,8 @@ function moveWaterbok(){
 	}
 	rotator.rotation.set(0, currentRotation*(Math.PI/180), 0);
 
+	setWaterbokDistance(2.5+5*(PlayerProgress/100));
+
 	//pick new direction when it's time
 	elapsedSwitchTime = elapsedSwitchTime + delta;
 	if (elapsedSwitchTime > switchTime){
@@ -188,8 +190,6 @@ function updateProgress (){
 	playerIcon.style.left = `${getIconPosition(PlayerProgress)}vw`;
 	lionProgressBar.style.width = `${LionProgress}%`;
 	lionIcon.style.left = `${getIconPosition(LionProgress)}vw`;
-
-
 }
 
 function getIconPosition (iconPosition){
