@@ -264,7 +264,7 @@ function addGrass(){
 	grass4.renderOrder = 1;
 }
 
-document.getElementById("btnStart") = function(){
+document.getElementById("btnStart").onclick = function(){
 	startMenu.style.display = "none";
 	console.log("button pressed");
 }
