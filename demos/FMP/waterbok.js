@@ -291,6 +291,8 @@ function resetGame (){
 	streak = 0;
 	elapsedSwitchTime= 0;
 
+	updateProgress();
+	setWaterbokDistance (2.5);
 }
 
 document.getElementById("btnStart").onclick = function(){
@@ -298,6 +300,7 @@ document.getElementById("btnStart").onclick = function(){
 	warningMessage.style.display = "block";
 }
 document.getElementById("btnWarn").onclick = function(){
+	resetGame();
 	warningMessage.style.display = "none";
 	if (gameState == "start" || gameState == "gameOver1"){gameState = "play1"}
 	if (gameState == "win" || gameState == "gameOver2"){gameState = "play2"}
