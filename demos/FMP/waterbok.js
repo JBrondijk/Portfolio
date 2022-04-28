@@ -38,7 +38,7 @@ let SIZE = {x:0,y:0,width:0,height:0};
 var PlayerProgress = 0,
 	LionProgress = -10,
 	playerDistance = 0,
-	lionDistance = -90,
+	lionDistance = -6,
 	currentRotation = 180,
 	speed = 12,
 	minSpeed = 12,
@@ -140,7 +140,7 @@ function animate(){
 	}
 
 	//update lion distance
-	lionDistance = lionDistance+0.5*delta;
+	lionDistance = lionDistance+0.7*delta;
 
 	//display score
 	
