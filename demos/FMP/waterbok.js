@@ -51,7 +51,7 @@ var PlayerProgress = 0,
 	lastTime = (new Date()).getTime(),
 	currentTime = 0,
 	delta = 0,
-	gamestate = "start";
+	gameState = "start";
 
 const	totalDistance = 40,
 		streakGainTime = 5,
@@ -73,7 +73,8 @@ const	playerProgressBar = document.querySelector(".progress"),
 		score1 = document.getElementById("score1"),
 		score2 = document.getElementById("score2"),
 		startMenu = document.getElementById("startMenu"),
-		warningMessage = document.getElementById("warningMessage");
+		warningMessage = document.getElementById("warningMessage"),
+		gameOverMenu = document.getElementById("gameOverMenu");
 
 //access camera
 document.addEventListener("DOMContentLoaded",()=>{
@@ -125,12 +126,12 @@ function animate(){
 	lastTime = currentTime;
 
 	
-
-	detectLookDirection();
-	moveWaterbok();	
-	updateProgress();
-	moveLion();
-
+	if (gameState == "play1" || gameState == "play2"){
+		detectLookDirection();
+		moveWaterbok();	
+		updateProgress();
+		moveLion();
+	}
 	controls.update();
 	renderer.render(scene,camera);
 	requestAnimationFrame(animate);
@@ -146,21 +147,19 @@ function moveWaterbok(){
 	}
 	rotator.rotation.set(0, currentRotation*(Math.PI/180), 0);
 
-	setWaterbokDistance(2.5+5*(PlayerProgress/100));
+	setWaterbokDistance(2.5+4*(PlayerProgress/100));
 
-	//pick new direction when it's time
+	//pick new direction & speed when it's time
 	elapsedSwitchTime = elapsedSwitchTime + delta;
 	if (elapsedSwitchTime > switchTime){
 		pickDirection();
+		speed = Math.random() * (maxSpeed - minSpeed) + minSpeed;
 		elapsedSwitchTime = 0;
 		switchTime = Math.random() * (switchTimeC) + switchTimeC;
 	}
 }
 function pickDirection(){
 	var newDirection = Math.random() >= 0.3+(PlayerProgress/200);
-
-	speed = Math.random() * (maxSpeed - minSpeed) + minSpeed;
-
 	if (newDirection){
 		waterbok.rotation.y = waterbok.rotation.y+Math.PI;
 		goingLeft = !goingLeft;
@@ -223,8 +222,11 @@ function updateProgress (){
 
 	score0.innerHTML = Math.round(score).toString()
 
-	if (score > highScore1){
+	if (gameState == "play1" && score > highScore1){
 		score1.innerHTML = Math.round(score).toString();
+	}
+	if (gameState == "play2" && score > highScore2){
+		score2.innerHTML = Math.round(score).toString();
 	}
 }
 function getIconPosition (iconPosition){
@@ -232,6 +234,10 @@ function getIconPosition (iconPosition){
 }
 function moveLion(){
 	lionDistance = lionDistance+0.7*delta;
+	if (lionDistance>playerDistance){
+		gameState == "gameOver";
+		gameOverMenu.style.display = "block";
+	}
 }
 
 populateThreeJS(){
@@ -269,12 +275,13 @@ function addGrass(){
 	grass4.rotation.set(0,Math.PI*1.5,0);
 	grass4.renderOrder = 1;
 }
-function resetVariables (){
+function resetGame (){
 	playerDistance = 0;
 	lionDistance = -6;
 	score = 0;
 	streak = 0;
 	elapsedSwitchTime= 0;
+
 }
 
 document.getElementById("btnStart").onclick = function(){
@@ -283,4 +290,9 @@ document.getElementById("btnStart").onclick = function(){
 }
 document.getElementById("btnWarn").onclick = function(){
 	warningMessage.style.display = "none";
+	gameState = "play1";
+}
+document.getElementById("btnGameOver").onclick = function(){
+	gameOverMenu.style.display = "none";
+	warningMessage.style.display = "block";
 }
