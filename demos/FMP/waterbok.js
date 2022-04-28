@@ -69,8 +69,8 @@ const	playerProgressBar = document.querySelector(".progress"),
 		score0 = document.getElementById("score0"),
 		score1 = document.getElementById("score1"),
 		score2 = document.getElementById("score2"),
-		startMenu = document.getElementById("startMenu");
-
+		startMenu = document.getElementById("startMenu"),
+		warningMessage = document.getElementById("warningMessage");
 //access camera
 document.addEventListener("DOMContentLoaded",()=>{
 	const VIDEO = document.getElementById("VIDEO");
@@ -266,5 +266,8 @@ function addGrass(){
 
 document.getElementById("btnStart").onclick = function(){
 	startMenu.style.display = "none";
-	console.log("button pressed");
+	warningMessage.style.display = "block";
+}
+document.getElementById("btnWarn").onclick = function(){
+	warningMessage.style.display = "none";
 }
