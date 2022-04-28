@@ -66,11 +66,10 @@ const	playerProgressBar = document.querySelector(".progress"),
 		lionProgressBar = document.querySelector(".progressLion"),
 		playerIcon = document.querySelector(".playerIcon"),
 		lionIcon = document.querySelector(".lionIcon"),
-		score0 = document.getElementById("score0");
-		score1 = document.getElementById("score1");
-		score2 = document.getElementById("score2");
-
-
+		score0 = document.getElementById("score0"),
+		score1 = document.getElementById("score1"),
+		score2 = document.getElementById("score2"),
+		startMenu = document.getElementById("startMenu");
 
 //access camera
 document.addEventListener("DOMContentLoaded",()=>{
@@ -263,4 +262,8 @@ function addGrass(){
 	grass4.position.set(0,-0.22,0);
 	grass4.rotation.set(0,Math.PI*1.5,0);
 	grass4.renderOrder = 1;
+}
+
+document.getElementById("btnStart") = function(){
+	startMenu.style.display = "none";
 }
