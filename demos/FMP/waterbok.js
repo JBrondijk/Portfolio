@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 			renderer.setSize(SIZE.width,SIZE.height);
 
 			document.getElementById("spacer").style.height = String(SIZE.height).concat("px");
-	})
+	});
 
 	//add Three.JS elements
 	populateThreeJS();
