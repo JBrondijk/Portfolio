@@ -266,4 +266,5 @@ function addGrass(){
 
 document.getElementById("btnStart") = function(){
 	startMenu.style.display = "none";
+	console.log("button pressed");
 }

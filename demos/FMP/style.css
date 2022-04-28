@@ -28,7 +28,7 @@ h2{
 	font-size: 30pt;
     font-weight: 700;
     line-height: 1.3;
-	text-align: center;
+	text-align: left;
 	background-color: #596831;
 	
 	padding-top: 15px;
@@ -148,7 +148,7 @@ video{
 	left:10vw;
 
 	width : 80%;
-	margin-bottom: 30px;
+	padding-bottom: 60px;
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
@@ -165,7 +165,7 @@ video{
 
 .btn-orange {
     background-color: #EA5B19;
-    border-color: #EA5B19;
+    border: 0;
     color: white;
     font-family: sofia-pro,Century Gothic,sans-serif;
 	font-size: 35pt;
@@ -173,10 +173,10 @@ video{
     line-height: 1.3;
 	text-align: center;
 	width: 90%;
+	padding-top: 5pt;
+	padding-bottom: 5pt;
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
-    }
 }
 .btn-orange:active {
-    background-color: #F19263;
+    background-color: #EF8357;
 }
