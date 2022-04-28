@@ -108,10 +108,20 @@ document.addEventListener("DOMContentLoaded",()=>{
 			renderer.setSize(SIZE.width,SIZE.height);
 
 			document.getElementById("spacer").style.height = String(SIZE.height).concat("px");
-	});
+	})
+	
+	scene.add(rotator);
+	scene.add(waterbok);
+	waterbok.userData.iswaterbok = true;
+	rotator.add(waterbok);
+	waterbok.position.set(2.5,0,0);
+	waterbok.rotation.set (0,Math.PI/2,0);
+	waterbok.frustumCulled = false;
+	waterbok.renderOrder = 6;
+	rotator.frustumCulled = false;
+	addGrass();
 
-	//add Three.JS elements
-	populateThreeJS();
+	camera.position.set(0,0,0);
 	
 	VIDEO.style.position = "absolute";
 	renderer.domElement.style.position="absolute"
@@ -252,21 +262,6 @@ function moveLion(){
 		if (gameState == "play2"){ gameState = "gameOver2"}
 		gameOverMenu.style.display = "block";
 	}
-}
-
-populateThreeJS(){
-	scene.add(rotator);
-	scene.add(waterbok);
-	waterbok.userData.iswaterbok = true;
-	rotator.add(waterbok);
-	waterbok.position.set(2.5,0,0);
-	waterbok.rotation.set (0,Math.PI/2,0);
-	waterbok.frustumCulled = false;
-	waterbok.renderOrder = 6;
-	rotator.frustumCulled = false;
-	addGrass();
-
-	camera.position.set(0,0,0);
 }
 function addGrass(){
 	scene.add (grass1)
