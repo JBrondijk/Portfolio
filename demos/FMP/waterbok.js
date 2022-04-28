@@ -6,55 +6,57 @@ import * as THREE from "../libs/three.js-r132/build/three.module.js";
 import {DeviceOrientationControls} from "../libs/three.js-r132/examples/jsm/controls/DeviceOrientationControls.js"; 
 
 let SIZE = {x:0,y:0,width:0,height:0};
+//3D stuff. 
+	const scene = new THREE.Scene();
+	const loader = new THREE.TextureLoader();
+	const wbgeometry = new THREE.PlaneGeometry(2,2,1);
+	const wbtexture = loader.load("./textures/waterbok.png");
+	const wbmaterial = new THREE.MeshBasicMaterial({map: wbtexture, transparent:true, side:2, alphaTest: 0.1});
+	const waterbok = new THREE.Mesh(wbgeometry, wbmaterial);
 
-const scene = new THREE.Scene();
-const loader = new THREE.TextureLoader();
+	const grasstexture = loader.load("./textures/grass.png");
+	const grassmaterial = new THREE.MeshBasicMaterial({map: grasstexture, transparent:true, side:1, depthWrite: false});
+	var grassgeometry = new THREE.CylinderGeometry(2,2,1.5,20,1,true);
+	const grass1 = new THREE.Mesh(grassgeometry,grassmaterial);
+		grassgeometry = new THREE.CylinderGeometry(4,4,1.5,20,1,true);
+	const grass2 = new THREE.Mesh(grassgeometry,grassmaterial);
+		grassgeometry = new THREE.CylinderGeometry(6,6,1.5,20,1,true);
+	const grass3 = new THREE.Mesh(grassgeometry,grassmaterial);
+		grassgeometry = new THREE.CylinderGeometry(8,8,1.5,20,1,true);
+	const grass4 = new THREE.Mesh(grassgeometry,grassmaterial);
 
-const wbgeometry = new THREE.PlaneGeometry(2,2,1);
-const wbtexture = loader.load("./textures/waterbok.png");
-const wbmaterial = new THREE.MeshBasicMaterial({map: wbtexture, transparent:true, side:2, alphaTest: 0.1});
-const waterbok = new THREE.Mesh(wbgeometry, wbmaterial);
+	const rotator = new THREE.Object3D();
+	const camera = new THREE.PerspectiveCamera();
+	const renderer = new THREE.WebGLRenderer({alpha:true});
+	const controls = new DeviceOrientationControls(camera);
 
-const grasstexture = loader.load("./textures/grass.png");
-const grassmaterial = new THREE.MeshBasicMaterial({map: grasstexture, transparent:true, side:1, depthWrite: false});
-var grassgeometry = new THREE.CylinderGeometry(2,2,1.5,20,1,true);
-const grass1 = new THREE.Mesh(grassgeometry,grassmaterial);
-grassgeometry = new THREE.CylinderGeometry(4,4,1.5,20,1,true);
-const grass2 = new THREE.Mesh(grassgeometry,grassmaterial);
-grassgeometry = new THREE.CylinderGeometry(6,6,1.5,20,1,true);
-const grass3 = new THREE.Mesh(grassgeometry,grassmaterial);
-grassgeometry = new THREE.CylinderGeometry(8,8,1.5,20,1,true);
-const grass4 = new THREE.Mesh(grassgeometry,grassmaterial);
+	let cameraWorldPos = new THREE.Vector3();
+	let cameraWorldDir = new THREE.Vector3();
+	const raycaster = new THREE.Raycaster();
 
-const rotator = new THREE.Object3D();
-const camera = new THREE.PerspectiveCamera();
-const renderer = new THREE.WebGLRenderer({alpha:true});
-const controls = new DeviceOrientationControls(camera);
+//Game logic
+var PlayerProgress = 0,
+	LionProgress = -10,
+	playerDistance = 0,
+	lionDistance = -90,
+	currentRotation = 180,
+	speed = 12,
+	minSpeed = 12,
+	maxSpeed = 18,
+	score = 0,
+	goingLeft = true,
+	switchTime = 2,
+	elapsedSwitchTime = 0,
+	lastTime = (new Date()).getTime(),
+	currentTime = 0,
+	delta = 0;
 
-let cameraWorldPos = new THREE.Vector3();
-let cameraWorldDir = new THREE.Vector3();
-//var castVector = new THREE.Vector2(0,5 , 0.5);
-const raycaster = new THREE.Raycaster();
-
-var currentRotation = 180;
-var speed = 0.2;
-var minSpeed = 0.2
-var maxSpeed = 0.3
-var score = 0;
-var goingLeft = true;
-var switchTime = 2;
-var elapsedSwitchTime = 0;
-
+const totalDistance = 60;
 const playerProgressBar = document.querySelector(".progress");
 const lionProgressBar = document.querySelector(".progressLion");
 const playerIcon = document.querySelector(".playerIcon");
 const lionIcon = document.querySelector(".lionIcon");
-var PlayerProgress = 0;
-var LionProgress = -10;
 
-const totalDistance = 900;
-var playerDistance = 0;
-var lionDistance = -90;
 
 //access camera
 document.addEventListener("DOMContentLoaded",()=>{
@@ -111,22 +113,12 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 	
 function animate(){
-	//move waterbok
-	if (goingLeft){
-		currentRotation = currentRotation + speed;
-	} else {
-		currentRotation = currentRotation - speed;
-	}
-	rotator.rotation.set(0, currentRotation*(Math.PI/180), 0);
+	//calculate deltatime
+	currentTime = (new Date()).getTime();
+	delta = (currentTime - lastTime) / 1000;
+	lastTime = currentTime;
 
-	//pick new direction when it's time
-	elapsedSwitchTime = elapsedSwitchTime + 1/60;
-	if (elapsedSwitchTime > switchTime){
-		pickDirection();
-		elapsedSwitchTime = 0;
-		switchTime = Math.random() * (4 - 2) + 2;
-	}
-
+	moveWaterbok();
 	//cast ray from middle of screen, increase score if looking at waterbok, increase distance to waterbok otherwise.
 	camera.getWorldPosition(cameraWorldPos);
 	camera.getWorldDirection(cameraWorldDir);
@@ -148,7 +140,7 @@ function animate(){
 	}
 
 	//update lion distance
-	lionDistance = lionDistance+0.1;
+	lionDistance = lionDistance+0.5*delta;
 
 	//display score
 	
@@ -159,14 +151,32 @@ function animate(){
 	requestAnimationFrame(animate);
 	}
 
+function moveWaterbok(){
+	//move waterbok
+	if (goingLeft){
+		currentRotation = currentRotation + speed*delta;
+	} else {
+		currentRotation = currentRotation - speed*delta;
+	}
+	rotator.rotation.set(0, currentRotation*(Math.PI/180), 0);
+
+	//pick new direction when it's time
+	elapsedSwitchTime = elapsedSwitchTime + delta;
+	if (elapsedSwitchTime > switchTime){
+		pickDirection();
+		elapsedSwitchTime = 0;
+		switchTime = Math.random() * (4 - 2) + 2;
+	}
+}
+
 function pickDirection(){
-	var newDirection = Math.random() >= 0.5;
+	var newDirection = Math.random() >= 0.3+(PlayerProgress/200);
 
 	speed = Math.random() * (maxSpeed - minSpeed) + minSpeed;
 
-	if (goingLeft != newDirection){
+	if (newDirection){
 		waterbok.rotation.y = waterbok.rotation.y+Math.PI;
-		goingLeft = newDirection
+		goingLeft = !goingLeft;
 	}
 }
 
@@ -178,17 +188,19 @@ function updateProgress (){
 	playerIcon.style.left = `${getIconPosition(PlayerProgress)}vw`;
 	lionProgressBar.style.width = `${LionProgress}%`;
 	lionIcon.style.left = `${getIconPosition(LionProgress)}vw`;
+
+
 }
 
 function getIconPosition (iconPosition){
 	return ((iconPosition/100)*95-5);
 }
 function lookAt (){
-	score = score+0.3;
-	playerDistance = playerDistance + 1;
+	score = score+0.3*delta;
+	playerDistance = playerDistance + delta;
 }
 function lookAway(){
-	score = score -0.1;
+	score = score -0.1*delta;
 }
 
 function setWaterbokDistance(distance){
@@ -221,7 +233,7 @@ function addGrass(){
 	grass3.renderOrder = 3;
 	scene.add (grass4)
 	grass4.userData.iswaterbok = false;
-	grass4.position.set(0,0.22,0);
+	grass4.position.set(0,-0.22,0);
 	grass4.rotation.set(0,Math.PI*1.5,0);
 	grass4.renderOrder = 1;
 }
