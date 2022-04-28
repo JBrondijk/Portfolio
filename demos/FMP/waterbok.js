@@ -74,7 +74,7 @@ const	playerProgressBar = document.querySelector(".progress"),
 		score2 = document.getElementById("score2"),
 		startMenu = document.getElementById("startMenu"),
 		warningMessage = document.getElementById("warningMessage"),
-		gameOverMenu = document.getElementById("gameOverMenu")
+		gameOverMenu = document.getElementById("gameOverMenu"),
 		win1Menu = document.getElementById("win1Menu"),
 		win2Menu = document.getElementById("win2Menu");
 
