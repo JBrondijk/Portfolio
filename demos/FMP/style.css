@@ -148,7 +148,7 @@ video{
 	left:10vw;
 
 	width : 80%;
-	padding-bottom: 60px;
+	padding-bottom: 30px;
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
@@ -177,6 +177,8 @@ video{
 	padding-top: 5pt;
 	padding-bottom: 5pt;
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+	margin-bottom: 30px;
 }
 .btn-orange:active {
     background-color: #EF8357;

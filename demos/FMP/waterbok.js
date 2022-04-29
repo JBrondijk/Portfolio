@@ -11,6 +11,7 @@ let SIZE = {x:0,y:0,width:0,height:0};
 	const loader = new THREE.TextureLoader();
 	const wbgeometry = new THREE.PlaneGeometry(2,2,1);
 	const wbtexture = loader.load("./textures/waterbok.png");
+	const wbNEtexture = loader.load("./textures/waterbokNE.png");
 	const wbmaterial = new THREE.MeshBasicMaterial({map: wbtexture, transparent:true, side:2, alphaTest: 0.1});
 	const waterbok = new THREE.Mesh(wbgeometry, wbmaterial);
 
@@ -221,15 +222,19 @@ function lookAt (){
 	playerDistance = playerDistance + playerSpeed*delta;
 }
 function lookAway(){
+	if (streak>0){
 	streak = streak - delta/streakLoseTime;
+	} else {
+		streak = 0;
+	}
 }
 function updateProgress (){
 	PlayerProgress = (playerDistance/totalDistance)*100;
 	LionProgress = (lionDistance/totalDistance)*100;
 
-	playerProgressBar.style.width = `${PlayerProgress}%`;
+	playerProgressBar.style.width = `${Math.max(PlayerProgress,0)}%`;
 	playerIcon.style.left = `${getIconPosition(PlayerProgress)}vw`;
-	lionProgressBar.style.width = `${LionProgress}%`;
+	lionProgressBar.style.width = `${Math.max(LionProgress,0)}%`;
 	lionIcon.style.left = `${getIconPosition(LionProgress)}vw`;
 
 	if (PlayerProgress > 100){
