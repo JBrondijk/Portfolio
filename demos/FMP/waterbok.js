@@ -304,7 +304,7 @@ function addGrass(){
 	grass4.renderOrder = 2;
 	grass4.scale.set(8,1,8);
 
-	cene.add (grassBG)
+	scene.add (grassBG)
 	grassBG.userData.iswaterbok = false;
 	grassBG.position.set(0,-0.22,0);
 	grassBG.rotation.set(0,Math.PI*1.5,0);
