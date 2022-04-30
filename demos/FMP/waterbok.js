@@ -17,14 +17,13 @@ let SIZE = {x:0,y:0,width:0,height:0};
 
 	const grasstexture = loader.load("./textures/grass.png");
 	const grassmaterial = new THREE.MeshBasicMaterial({map: grasstexture, transparent:true, side:1, depthWrite: false});
-	var grassgeometry = new THREE.CylinderGeometry(2,2,1.5,20,1,true);
+	var grassgeometry = new THREE.CylinderGeometry(1,1,1.5,20,1,true);
 	const grass1 = new THREE.Mesh(grassgeometry,grassmaterial);
-		grassgeometry = new THREE.CylinderGeometry(4,4,1.5,20,1,true);
 	const grass2 = new THREE.Mesh(grassgeometry,grassmaterial);
-		grassgeometry = new THREE.CylinderGeometry(6,6,1.5,20,1,true);
 	const grass3 = new THREE.Mesh(grassgeometry,grassmaterial);
-		grassgeometry = new THREE.CylinderGeometry(8,8,1.5,20,1,true);
 	const grass4 = new THREE.Mesh(grassgeometry,grassmaterial);
+		grassgeometry = new THREE.CylinderGeometry(8,8,1.5,20,1,true);
+	const grassBG = new THREE.Mesh(grassgeometry,grassmaterial);
 
 	const backgroundmaterial = new THREE.MeshBasicMaterial({color:0x4F453F,side:1});
 		grassgeometry = new THREE.CylinderGeometry(8.1,8.1,100,20,1,true);
@@ -66,7 +65,8 @@ const	totalDistance = 40,
 		lionSpeed = 0.8,
 		minSpeed = 18,
 		maxSpeed = 24,
-		switchTimeC = 2;
+		switchTimeC = 2,
+		grassSpeed = 0.05;
 
 
 //html elements
@@ -184,15 +184,7 @@ function pickDirection(){
 }
 function setWaterbokDistance(distance){
 	waterbok.position.x = distance; 
-		if (waterbok.position.x > 4 && waterbok.renderOrder > 4 ){
-			waterbok.renderOrder = 4;
-		}
-		if (waterbok.position.x > 6 && waterbok.renderOrder > 2 ){
-			waterbok.renderOrder = 2;
-		}
-		if (waterbok.position.x > 8 && waterbok.renderOrder > 0 ){
-				waterbok.renderOrder = 0;
-		}
+	waterbok.renderOrder = 10-distance;
 }
 
 function detectLookDirection(){
@@ -224,6 +216,10 @@ function lookAt (){
 	}
 	score = score+(scoreModifier+streak)*delta;
 	playerDistance = playerDistance + playerSpeed*delta;
+	moveGrass(grass1);
+    moveGrass(grass2);
+    moveGrass(grass3);
+    moveGrass(grass4); 
 }
 function lookAway(){
 	if (streak>0){
@@ -272,31 +268,53 @@ function moveLion(){
 		gameOverMenu.style.display = "block";
 	}
 }
+
+function moveGrass(){
+	scale = grass.scale.x;
+	if(scale < 0.5){
+  		grass.scale.set(8.5,1,8.5)
+	} else {
+  		grass.scale.set(scale-grassSpeed,1,scale-grassSpeed)
+	}
+	//update renderOrder...
+	grass.renderOrder = 10-scale;
+}
 function addGrass(){
 	scene.add (grass1)
 	grass1.userData.iswaterbok = false;
 	grass1.position.set(0,-0.25,0);
-	grass1.renderOrder = 7;
+	grass1.renderOrder = 8;
+	grass1.scale.set(2,1,2);
 	scene.add (grass2)
 	grass2.userData.iswaterbok = false;
 	grass2.position.set(0,-0.24,0);
 	grass2.rotation.set(0,Math.PI*0.5,0);
-	grass2.renderOrder = 5;
+	grass2.renderOrder = 6;
+	grass2.scale.set(4,1,4);
 	scene.add (grass3)
 	grass3.userData.iswaterbok = false;
 	grass3.position.set(0,-0.23,0);
 	grass3.rotation.set(0,Math.PI,0);
-	grass3.renderOrder = 3;
+	grass3.renderOrder = 4;
+	grass3.scale.set(6,1,6);
 	scene.add (grass4)
 	grass4.userData.iswaterbok = false;
 	grass4.position.set(0,-0.22,0);
-	grass4.rotation.set(0,Math.PI*1.5,0);
-	grass4.renderOrder = 1;
+	grass4.rotation.set(0,Math.PI*0.75,0);
+	grass4.renderOrder = 2;
+	grass4.scale.set(8,1,8);
+
+	cene.add (grassBG)
+	grassBG.userData.iswaterbok = false;
+	grassBG.position.set(0,-0.22,0);
+	grassBG.rotation.set(0,Math.PI*1.5,0);
+	grassBG.renderOrder = 2;
+
 	scene.add(backgroundCylinder);
 	backgroundCylinder.userData.iswaterbok = false;
-	backgroundCylinder.position.set(0,-50.67.22,0);
+	backgroundCylinder.position.set(0,-50.67,0);
 	backgroundCylinder.rotation.set(0,Math.PI*1.5,0);
-	backgroundCylinder.renderOrder = 1;
+	backgroundCylinder.renderOrder = 2;
 }
 function resetGame (){
 	playerDistance = 0;
