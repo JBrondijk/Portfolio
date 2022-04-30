@@ -9,7 +9,7 @@ let SIZE = {x:0,y:0,width:0,height:0};
 //3D stuff. 
 	const scene = new THREE.Scene();
 	const loader = new THREE.TextureLoader();
-	const wbgeometry = new THREE.PlaneGeometry(2,2);
+	const wbgeometry = new THREE.PlaneGeometry(3,3);
 	const wbtexture = loader.load("./textures/waterbok.png");
 	const wbNEtexture = loader.load("./textures/waterbokNE.png");
 	const wbmaterial = new THREE.MeshBasicMaterial({map: wbtexture, transparent:true, side:2, alphaTest: 0.1});
@@ -17,16 +17,16 @@ let SIZE = {x:0,y:0,width:0,height:0};
 
 	const grasstexture = loader.load("./textures/grass.png");
 	const grassmaterial = new THREE.MeshBasicMaterial({map: grasstexture, transparent:true, side:1, depthWrite: false});
-	var grassgeometry = new THREE.CylinderGeometry(1,1,1.5,10,1,true);
+	var grassgeometry = new THREE.CylinderGeometry(1,1,1.5,20,1,true);
 	const grass1 = new THREE.Mesh(grassgeometry,grassmaterial);
 	const grass2 = new THREE.Mesh(grassgeometry,grassmaterial);
 	const grass3 = new THREE.Mesh(grassgeometry,grassmaterial);
 	const grass4 = new THREE.Mesh(grassgeometry,grassmaterial);
-		grassgeometry = new THREE.CylinderGeometry(8,8,1.5,20,1,true);
+		grassgeometry = new THREE.CylinderGeometry(10,10,1.5,20,1,true);
 	const grassBG = new THREE.Mesh(grassgeometry,grassmaterial);
 
 	const backgroundmaterial = new THREE.MeshBasicMaterial({color:0x4F453F,side:1});
-		grassgeometry = new THREE.CylinderGeometry(8.1,8.1,20,20,1,true);
+		grassgeometry = new THREE.CylinderGeometry(10.1,10.1,20,20,1,true);
 	const backgroundCylinder = new THREE.Mesh(grassgeometry, backgroundmaterial);
 
 	const rotator = new THREE.Object3D();
@@ -66,7 +66,7 @@ const	totalDistance = 40,
 		minSpeed = 18,
 		maxSpeed = 24,
 		switchTimeC = 2,
-		grassSpeed = 0.09;
+		grassSpeed = 0.06;
 
 
 //html elements
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 	scene.add(waterbok);
 	waterbok.userData.iswaterbok = true;
 	rotator.add(waterbok);
-	waterbok.position.set(2.5,-0.25,0);
+	waterbok.position.set(3.6,-0.25,0);
 	waterbok.rotation.set (0,Math.PI/2,0);
 	waterbok.frustumCulled = false;
 	waterbok.renderOrder = 6;
@@ -164,7 +164,7 @@ function moveWaterbok(){
 	}
 	rotator.rotation.set(0, currentRotation*(Math.PI/180), 0);
 
-	setWaterbokDistance(2.5+4*(PlayerProgress/100));
+	setWaterbokDistance(3.6+4*(PlayerProgress/100));
 
 	//pick new direction & speed when it's time
 	elapsedSwitchTime = elapsedSwitchTime + delta;
@@ -270,13 +270,15 @@ function moveLion(){
 }
 
 function moveGrass(grass){
-	var scale = grass.scale.x;
+	let scale = grass.scale.x;
 	if(scale < 1.5){
   		grass.scale.set(9.5,1,9.5)
 	} else {
   		grass.scale.set(scale-grassSpeed,1,scale-grassSpeed)
 	}
 	//update renderOrder...
+	scale = grass.scale.x;
+	grass.position.set(0,((scale*0.006)-0.27),0)
 	grass.renderOrder = 10-scale;
 }
 function addGrass(){
@@ -306,15 +308,15 @@ function addGrass(){
 
 	scene.add (grassBG)
 	grassBG.userData.iswaterbok = false;
-	grassBG.position.set(0,-0.22,0);
+	grassBG.position.set(0,-0.21,0);
 	grassBG.rotation.set(0,Math.PI*1.5,0);
-	grassBG.renderOrder = 2;
+	grassBG.renderOrder = 0;
 
 	scene.add(backgroundCylinder);
 	backgroundCylinder.userData.iswaterbok = false;
-	backgroundCylinder.position.set(0,-10.67,0);
+	backgroundCylinder.position.set(0,-10.66,0);
 	backgroundCylinder.rotation.set(0,Math.PI*1.5,0);
-	backgroundCylinder.renderOrder = 2;
+	backgroundCylinder.renderOrder = 0;
 }
 function resetGame (){
 	playerDistance = 0;
@@ -324,7 +326,7 @@ function resetGame (){
 	elapsedSwitchTime= 0;
 
 	updateProgress();
-	setWaterbokDistance (2.5);
+	setWaterbokDistance (3.6);
 }
 
 document.getElementById("btnStart").onclick = function(){
