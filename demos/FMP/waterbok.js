@@ -26,6 +26,10 @@ let SIZE = {x:0,y:0,width:0,height:0};
 		grassgeometry = new THREE.CylinderGeometry(8,8,1.5,20,1,true);
 	const grass4 = new THREE.Mesh(grassgeometry,grassmaterial);
 
+	const backgroundmaterial = new THREE.MeshBasicMaterial(color:4F453F);
+		grassgeometry = THREE.CylinderGeometry(8.1,8.1,100,20,1,true);
+	const backgroundCylinder = new THREE.Mesh(grassgeometry, backgroundmaterial);
+
 	const rotator = new THREE.Object3D();
 	const camera = new THREE.PerspectiveCamera();
 	const renderer = new THREE.WebGLRenderer({alpha:true});
@@ -115,7 +119,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 	scene.add(waterbok);
 	waterbok.userData.iswaterbok = true;
 	rotator.add(waterbok);
-	waterbok.position.set(2.5,0,0);
+	waterbok.position.set(2.5,-0.25,0);
 	waterbok.rotation.set (0,Math.PI/2,0);
 	waterbok.frustumCulled = false;
 	waterbok.renderOrder = 6;
@@ -288,6 +292,11 @@ function addGrass(){
 	grass4.position.set(0,-0.22,0);
 	grass4.rotation.set(0,Math.PI*1.5,0);
 	grass4.renderOrder = 1;
+	scene.add(backgroundCylinder);
+	backgroundCylinder.userData.iswaterbok = false;
+	backgroundCylinder.position.set(0,-100.22,0);
+	backgroundCylinder.rotation.set(0,Math.PI*1.5,0);
+	backgroundCylinder.renderOrder = 1;
 }
 function resetGame (){
 	playerDistance = 0;
