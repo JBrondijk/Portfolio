@@ -276,7 +276,7 @@ function moveGrass(grass){
 	} else {
   		grass.scale.set(scale-grassSpeed,1,scale-grassSpeed)
 	}
-	update renderOrder...
+	//update renderOrder...
 	grass.renderOrder = 10-scale;
 }
 function addGrass(){
