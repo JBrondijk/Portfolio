@@ -184,7 +184,7 @@ function pickDirection(){
 }
 function setWaterbokDistance(distance){
 	waterbok.position.x = distance; 
-	//waterbok.renderOrder = 10-distance;
+	waterbok.renderOrder = 10-distance;
 }
 
 function detectLookDirection(){
@@ -276,8 +276,8 @@ function moveGrass(grass){
 	} else {
   		grass.scale.set(scale-grassSpeed,1,scale-grassSpeed)
 	}
-	//update renderOrder...
-	//grass.renderOrder = 10-scale;
+	update renderOrder...
+	grass.renderOrder = 10-scale;
 }
 function addGrass(){
 	scene.add (grass1)
