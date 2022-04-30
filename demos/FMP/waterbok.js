@@ -294,7 +294,7 @@ function addGrass(){
 	grass4.renderOrder = 1;
 	scene.add(backgroundCylinder);
 	backgroundCylinder.userData.iswaterbok = false;
-	backgroundCylinder.position.set(0,-100.22,0);
+	backgroundCylinder.position.set(0,-50.67.22,0);
 	backgroundCylinder.rotation.set(0,Math.PI*1.5,0);
 	backgroundCylinder.renderOrder = 1;
 }
