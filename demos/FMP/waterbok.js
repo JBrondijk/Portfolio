@@ -26,8 +26,8 @@ let SIZE = {x:0,y:0,width:0,height:0};
 		grassgeometry = new THREE.CylinderGeometry(8,8,1.5,20,1,true);
 	const grass4 = new THREE.Mesh(grassgeometry,grassmaterial);
 
-	const backgroundmaterial = new THREE.MeshBasicMaterial({color:0x4F453F});
-		grassgeometry = THREE.CylinderGeometry(8.1,8.1,100,20,1,true);
+	const backgroundmaterial = new THREE.MeshBasicMaterial({color:0x4F453F,side:1});
+		grassgeometry = new THREE.CylinderGeometry(8.1,8.1,100,20,1,true);
 	const backgroundCylinder = new THREE.Mesh(grassgeometry, backgroundmaterial);
 
 	const rotator = new THREE.Object3D();
