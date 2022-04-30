@@ -26,7 +26,7 @@ let SIZE = {x:0,y:0,width:0,height:0};
 	const grassBG = new THREE.Mesh(grassgeometry,grassmaterial);
 
 	const backgroundmaterial = new THREE.MeshBasicMaterial({color:0x4F453F,side:1});
-		grassgeometry = new THREE.CylinderGeometry(8.1,8.1,100,20,1,true);
+		grassgeometry = new THREE.CylinderGeometry(8.1,8.1,20,20,1,true);
 	const backgroundCylinder = new THREE.Mesh(grassgeometry, backgroundmaterial);
 
 	const rotator = new THREE.Object3D();
@@ -184,7 +184,7 @@ function pickDirection(){
 }
 function setWaterbokDistance(distance){
 	waterbok.position.x = distance; 
-	waterbok.renderOrder = 10-distance;
+	//waterbok.renderOrder = 10-distance;
 }
 
 function detectLookDirection(){
@@ -277,7 +277,7 @@ function moveGrass(){
   		grass.scale.set(scale-grassSpeed,1,scale-grassSpeed)
 	}
 	//update renderOrder...
-	grass.renderOrder = 10-scale;
+	//grass.renderOrder = 10-scale;
 }
 function addGrass(){
 	scene.add (grass1)
@@ -312,7 +312,7 @@ function addGrass(){
 
 	scene.add(backgroundCylinder);
 	backgroundCylinder.userData.iswaterbok = false;
-	backgroundCylinder.position.set(0,-50.67,0);
+	backgroundCylinder.position.set(0,-10.67,0);
 	backgroundCylinder.rotation.set(0,Math.PI*1.5,0);
 	backgroundCylinder.renderOrder = 2;
 }
