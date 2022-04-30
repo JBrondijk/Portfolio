@@ -9,7 +9,7 @@ let SIZE = {x:0,y:0,width:0,height:0};
 //3D stuff. 
 	const scene = new THREE.Scene();
 	const loader = new THREE.TextureLoader();
-	const wbgeometry = new THREE.PlaneGeometry(2,2);
+	const wbgeometry = new THREE.PlaneGeometry(1,2);
 	const wbtexture = loader.load("./textures/waterbok.png");
 	const wbNEtexture = loader.load("./textures/waterbokNE.png");
 	const wbmaterial = new THREE.MeshBasicMaterial({map: wbtexture, transparent:true, side:2, alphaTest: 0.1});
