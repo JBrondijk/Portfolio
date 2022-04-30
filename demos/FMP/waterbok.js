@@ -270,7 +270,7 @@ function moveLion(){
 }
 
 function moveGrass(grass){
-	scale = grass.scale.x;
+	var scale = grass.scale.x;
 	if(scale < 0.5){
   		grass.scale.set(8.5,1,8.5)
 	} else {
