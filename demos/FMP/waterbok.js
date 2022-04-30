@@ -17,7 +17,7 @@ let SIZE = {x:0,y:0,width:0,height:0};
 
 	const grasstexture = loader.load("./textures/grass.png");
 	const grassmaterial = new THREE.MeshBasicMaterial({map: grasstexture, transparent:true, side:1, depthWrite: false});
-	var grassgeometry = new THREE.CylinderGeometry(1,1,1.5,20,1,true);
+	var grassgeometry = new THREE.CylinderGeometry(1,1,1.5,10,1,true);
 	const grass1 = new THREE.Mesh(grassgeometry,grassmaterial);
 	const grass2 = new THREE.Mesh(grassgeometry,grassmaterial);
 	const grass3 = new THREE.Mesh(grassgeometry,grassmaterial);
@@ -269,7 +269,7 @@ function moveLion(){
 	}
 }
 
-function moveGrass(){
+function moveGrass(grass){
 	scale = grass.scale.x;
 	if(scale < 0.5){
   		grass.scale.set(8.5,1,8.5)
