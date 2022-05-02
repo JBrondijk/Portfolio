@@ -3,7 +3,7 @@ const THREE = window.MINDAR.IMAGE.THREE;
 document.addEventListener("DOMContentLoaded",()=>{
 	const start = async () => {
 		const mindarThree = new window.MINDAR.IMAGE.MindARThree({
-			container: document.getElementById("myARcontainer");
+			container: document.getElementById("myARcontainer"),
 			imageTargetSrc: "./section4_Files/cheetah.mind"
 		})
 		const {renderer, scene, camera} = mindarThree;
