@@ -278,43 +278,43 @@ function moveGrass(grass){
 	}
 	//update renderOrder...
 	scale = grass.scale.x;
-	grass.position.set(0,((scale*0.006)-1.27),0)
+	grass.position.set(0,((scale*0.006)-0.77),0)
 	grass.renderOrder = 10-scale;
 }
 function addGrass(){
 	scene.add (grass1)
 	grass1.userData.iswaterbok = false;
-	grass1.position.set(0,-1.25,0);
+	grass1.position.set(0,-0.75,0);
 	grass1.renderOrder = 8;
 	grass1.scale.set(2,1,2);
 	scene.add (grass2)
 	grass2.userData.iswaterbok = false;
-	grass2.position.set(0,-1.24,0);
+	grass2.position.set(0,-0.74,0);
 	grass2.rotation.set(0,Math.PI*0.5,0);
 	grass2.renderOrder = 6;
 	grass2.scale.set(4,1,4);
 	scene.add (grass3)
 	grass3.userData.iswaterbok = false;
-	grass3.position.set(0,-1.23,0);
+	grass3.position.set(0,-0.73,0);
 	grass3.rotation.set(0,Math.PI,0);
 	grass3.renderOrder = 4;
 	grass3.scale.set(6,1,6);
 	scene.add (grass4)
 	grass4.userData.iswaterbok = false;
-	grass4.position.set(0,-1.22,0);
+	grass4.position.set(0,-0.72,0);
 	grass4.rotation.set(0,Math.PI*0.75,0);
 	grass4.renderOrder = 2;
 	grass4.scale.set(8,1,8);
 
 	scene.add (grassBG)
 	grassBG.userData.iswaterbok = false;
-	grassBG.position.set(0,-1.21,0);
+	grassBG.position.set(0,-0.71,0);
 	grassBG.rotation.set(0,Math.PI*1.5,0);
 	grassBG.renderOrder = 0;
 
 	scene.add(backgroundCylinder);
 	backgroundCylinder.userData.iswaterbok = false;
-	backgroundCylinder.position.set(0,-11.66,0);
+	backgroundCylinder.position.set(0,-11.16,0);
 	backgroundCylinder.rotation.set(0,Math.PI*1.5,0);
 	backgroundCylinder.renderOrder = 0;
 }
