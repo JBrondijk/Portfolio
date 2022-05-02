@@ -282,6 +282,7 @@ function moveGrass(grass){
 	grass.renderOrder = 10-scale;
 }
 function setGrassHeight(grass){
+	let scale = grass.scale.x;
 	grass.position.set(0,((scale*0.03)-0.51),0);
 }
 
