@@ -6,7 +6,7 @@ var started = false,
 //html elements:
 const	scanner = document.getElementById("scanning"),
 		startMenu = document.getElementById("startMenu"),
-		xrayMenu = document.getElementById("xrayMenu")
+		xrayMenu = document.getElementById("xrayMenu"),
 		selectbtn = document.getElementById("btnSelect");
 
 document.addEventListener("DOMContentLoaded",()=>{
