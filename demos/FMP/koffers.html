@@ -24,15 +24,23 @@
 		<img src="https://d33b12c77av9bg.cloudfront.net/img/logo.svg" alt=Logo class="center">
 		</div>
 
-		<div id = "scanning" class= "menu hidden">
-			<h2> Zoek de foute souvenirs! </h2>
-			<div class="inner" 
-				<div class = "scanline"
+		<div class = "menu" id="startMenu">
+			<h2> Vind de foute souvenris! </h2>
+			<p class= "menuText"> Text voor startmenu. <br> Uitleg spel. </p>
+			<div style = "margin:0; padding-left: 10%;">
+				<button class = "btn-orange" id="btnStart"> Start </button>
+			</div>
+		</div>
+
+		<div id = "scanning" class= "menu" style = "display:none">
+			<h2> Richt je telefoon naar het bord: </h2>
+			<div class="inner">
+				<div class ="scanline"></div>
 			</div>
 		</div>
 
 		<div class = "menu" id="xrayMenu" style = "display:none">
-			<h2> Richt je telefoon naar het bord: </h2>
+			<h2> Zoek de foute souvenirs!</h2>
 			<div id="xrayBox">
 			</div>
 		</div>

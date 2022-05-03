@@ -203,6 +203,7 @@ padding-bottom: 0;
 	width : 100vw;
 	position : relative;
 	overflow : hidden;
+	background: pink;
 }
 
 #scanning{
@@ -211,24 +212,28 @@ padding-bottom: 0;
 	padding-bottom: 0;
 }
 
-#scanning.hidden{
+#scanning .hidden{
 	display:none;
 }
 
-#scanning.inner{
+#scanning .inner{
 	height: 80vw;
 	border: 1.5vw solid white;
 	border-top: none;
 	background-color: rgba(255,255,255,0);
 }
-#scanning.inner.scanline{
+#scanning .inner .scanline{
 	position:absolute;
-	width:100%;
+	width:77vw;
 	height:3vw;
 	background: white;
-	animation: move 2s linear infinite;
+	animation: MoveUpDown 3s linear infinite;
 }
-@keyframes move {
-	0%, 100%{top: 0%}
-	50% {top: calc(100%-3vw)}
+@keyframes MoveUpDown {
+  0%, 100% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 78.5vw;
+  }
 }

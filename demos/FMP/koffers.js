@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 			container: document.querySelector("#myARcontainer"),
 			imageTargetSrc: "./files/cheetah.mind",
 			uiLoading: "no",
-			uiScanning: "scanning"
+			uiScanning: "no"
 		})
 		const {renderer, scene, camera} = mindarThree;
 
@@ -15,7 +15,17 @@ document.addEventListener("DOMContentLoaded",()=>{
 		const plane = new THREE.Mesh(geomerty, material);
 
 		const anchor = mindarThree.addAnchor(0);
-		anchor.group.add(plane); //THREE.Group
+		anchor.group.add(plane); //Build scene here.
+
+		//on target found
+		anchor.onTargetFound = () => {
+			
+		}
+		
+		//on target lost
+		anchor.onTargetLost = () => {
+			
+		}
 
 		await mindarThree.start();
 
@@ -25,3 +35,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 	}
 	start();
 });
+
+
+
+document.getElementById("btnStart").onclick = function(){
+	startMenu.style.display = "none";
+	warningMessage.style.display = "block";
