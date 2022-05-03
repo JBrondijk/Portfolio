@@ -204,3 +204,31 @@ padding-bottom: 0;
 	position : relative;
 	overflow : hidden;
 }
+
+#scanning{
+	background-color: rgba(255,255,255,0);
+	top: 25vh;
+	padding-bottom: 0;
+}
+
+#scanning.hidden{
+	display:none;
+}
+
+#scanning.inner{
+	height: 80vw;
+	border: 1.5vw solid white;
+	border-top: none;
+	background-color: rgba(255,255,255,0);
+}
+#scanning.inner.scanline{
+	position:absolute;
+	width:100%;
+	height:3vw;
+	background: white;
+	animation: move 2s linear infinite;
+}
+@keyframes move {
+	0%, 100%{top: 0%}
+	50% {top: calc(100%-3vw)}
+}

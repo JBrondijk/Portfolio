@@ -4,7 +4,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 	const start = async () => {
 		const mindarThree = new window.MINDAR.IMAGE.MindARThree({
 			container: document.querySelector("#myARcontainer"),
-			imageTargetSrc: "./files/cheetah.mind"
+			imageTargetSrc: "./files/cheetah.mind",
+			uiLoading: "no",
+			uiScanning: "scanning"
 		})
 		const {renderer, scene, camera} = mindarThree;
 
