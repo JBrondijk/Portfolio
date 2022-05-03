@@ -40,6 +40,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 		anchor.onTargetLost = () => {
 			scanning = true;
 			shouldScan();
+
+			selectbtn.style.display = "none";
+			xrayMenu.style.display = "none";
 		}
 
 		await mindarThree.start();
@@ -68,4 +71,5 @@ selectbtn.onclick = function(){
 document.getElementById("btnStart").onclick = function(){
 	startMenu.style.display = "none";
 	started = true;
+	shouldScan();
 }
