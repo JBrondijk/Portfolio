@@ -1,5 +1,14 @@
 const THREE = window.MINDAR.IMAGE.THREE;
 
+var started = false,
+	scanning = true;
+
+//html elements:
+const	scanner = document.getElementById("scanning"),
+		startMenu = document.getElementById("startMenu"),
+		xrayMenu = document.getElementById("xrayMenu")
+		selectbtn = document.getElementById("btnSelect");
+
 document.addEventListener("DOMContentLoaded",()=>{
 	const start = async () => {
 		const mindarThree = new window.MINDAR.IMAGE.MindARThree({
@@ -19,12 +28,18 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 		//on target found
 		anchor.onTargetFound = () => {
-			
+			scanning = false;
+			shouldScan();
+			if (started){
+				selectbtn.style.display = "block";
+				xrayMenu.style.display = "block";
+			}
 		}
 		
 		//on target lost
 		anchor.onTargetLost = () => {
-			
+			scanning = true;
+			shouldScan();
 		}
 
 		await mindarThree.start();
@@ -36,8 +51,21 @@ document.addEventListener("DOMContentLoaded",()=>{
 	start();
 });
 
+function shouldScan(){
+	if (started&&scanning){
+		scanner.style.display = "block";
+	} else {
+		scanner.style.display = "none";
+	}
+}
+
+//select button
+selectbtn.onclick = function(){
+	
+}
 
 
 document.getElementById("btnStart").onclick = function(){
 	startMenu.style.display = "none";
-	warningMessage.style.display = "block";
+	started = true;
+}
