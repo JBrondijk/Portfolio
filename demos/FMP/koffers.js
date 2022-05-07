@@ -14,7 +14,7 @@ const selectableOjects = []; //add selectable objects to this array
 //html elements:
 const	scanner = document.getElementById("scanning"),
 		startMenu = document.getElementById("startMenu"),
-		xrayMenu = document.getElementById("xrayMenu"),
+		selectMenu = document.getElementById("selectMenu"),
 		selectbtn = document.getElementById("btnSelect");
 
 document.addEventListener("DOMContentLoaded",()=>{
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 			shouldScan();
 			if (started){
 				selectbtn.style.display = "block";
-				xrayMenu.style.display = "block";
+				selectMenu.style.display = "block";
 			}
 		}
 		
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 			shouldScan();
 
 			selectbtn.style.display = "none";
-			xrayMenu.style.display = "none";
+			selectMenu.style.display = "none";
 		}
 
 		await mindarThree.start();
