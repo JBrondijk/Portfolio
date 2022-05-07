@@ -16,10 +16,10 @@ var started = false,
 		currentTime = 0,
 		delta = 0;
 
-const selectableOjects = []; //add selectable objects to this array
+const selectableObjects = []; //add selectable objects to this array
 /*
 	//add objects like this:
-	selectableObjects[0] = new THREE.Mesh(geometry, material);
+	selectableOjects[0] = new THREE.Mesh(geometry, material);
 	plane.add(selectableObjects[0]); //do this later where geometry, materials and plane are defined. 
 */
 
