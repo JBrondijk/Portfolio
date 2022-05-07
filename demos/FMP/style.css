@@ -60,7 +60,7 @@ p{
 	
 }
 video{
-	filter: url(#protanopia);
+	-webkit-filter: url(#protanopia);
 }
 
 .center {
