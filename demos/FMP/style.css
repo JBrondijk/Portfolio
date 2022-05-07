@@ -162,11 +162,18 @@ video{
 	margin-top:10px;
 }
 
-#xrayMenu{
+#selectMenu{
 background-color: rgba(255,255,255,0);
 top: 25vh;
 padding-bottom: 0;
 
+}
+
+#selectBox{
+	height: 80vw;
+	border: 1.5vw solid white;
+	border-top: none;
+	background-color: rgba(255,255,255,0);
 }
 
 #xrayBox{
@@ -175,7 +182,6 @@ padding-bottom: 0;
 	border-top: none;
 	background-color: rgba(255,255,255,0);
 	backdrop-filter: grayscale(1) invert(1);
-
 }
 
 .btn-orange {

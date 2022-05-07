@@ -142,7 +142,6 @@ function animate(){
 	delta = (currentTime - lastTime) / 1000;
 	lastTime = currentTime;
 
-	
 	if (gameState == "play1" || gameState == "play2"){
 		detectLookDirection();
 		moveWaterbok();	

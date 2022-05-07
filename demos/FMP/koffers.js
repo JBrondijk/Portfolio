@@ -1,7 +1,15 @@
 const THREE = window.MINDAR.IMAGE.THREE;
 
+//imagetracking template:
 var started = false,
 	scanning = true;
+
+const selectableOjects = []; //add selectable objects to this array
+/*
+	//add objects like this:
+	selectableobjects[0] = new THREE.Mesh(geometry, material);
+	plane.add(selectableObjects[0]); //do this later where geometry, materials and plane are defined. 
+*/
 
 //html elements:
 const	scanner = document.getElementById("scanning"),
