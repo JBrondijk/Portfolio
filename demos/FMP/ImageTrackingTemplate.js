@@ -29,6 +29,9 @@ const	scanner = document.getElementById("scanning"),
 		selectMenu = document.getElementById("selectMenu"),
 		selectbtn = document.getElementById("btnSelect");
 
+var ARCamera;
+
+
 document.addEventListener("DOMContentLoaded",()=>{
 	const start = async () => {
 		const mindarThree = new window.MINDAR.IMAGE.MindARThree({
@@ -38,6 +41,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 			uiScanning: "no"
 		})
 		const {renderer, scene, camera} = mindarThree;
+
+		ARCamera = camera;
 
 		const geomerty = new THREE.PlaneGeometry(1,1);
 		const material = new THREE.MeshBasicMaterial({color:0xff0000, transparent:true, opacity:0.5});
@@ -110,7 +115,7 @@ function findSelectedObject(){
 	if (selectableObjects.length > 0){ //check which object is closest to the center.
 		for (var p = 0; p < selectableObjects.length; p++) {
 			ObjectPos = ObjectPos.setFromMatrixPosition(selectableObjects[p].matrixWorld);
-            ObjectPos.project(camera);
+            ObjectPos.project(ARCamera);
             ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
             ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
 			ObjectPos.z = 0;
@@ -125,7 +130,7 @@ function findSelectedObject(){
             } 
 		}	
         ObjectPos = ObjectPos.setFromMatrixPosition(closestObject.matrixWorld);
-        ObjectPos.project(camera);
+        ObjectPos.project(ARCamera);
         ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
         ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
 		ObjectPos.z = 0;
