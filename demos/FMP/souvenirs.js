@@ -40,6 +40,7 @@ const	scanner = document.getElementById("scanning"),
 var ARCamera;
 
 //ThreeJS stuff:
+const loader = new THREE.TextureLoader();
 	//geometries
 	const geometry = new THREE.PlaneGeometry(1,1);
 	const suitcaseGeometry = new THREE.PlaneGeometry(0.3,0.3)
