@@ -205,9 +205,9 @@ function moveObjects(arrayToMove){
 }
 
 function spawn(){
-	souvenircount = souvenircount -1;
-    if (souvenircount <= 0){
-		souvenircount = getRandomInt(3,6)
+	souvenirCount = souvenirCount -1;
+    if (souvenirCount <= 0){
+		souvenirCount = getRandomInt(3,6)
 		spawnSouvenir();
     } else {
 		suitcases.push(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[getRandomInt(0,suitcaseMaterials.length-1)]));
