@@ -66,9 +66,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 		anchor.onTargetLost = () => {
 			scanning = true;
 			updateUI();
-
-			selectbtn.style.display = "none";
-			selectMenu.style.display = "none";
 		}
 
 		await mindarThree.start();
