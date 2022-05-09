@@ -89,16 +89,18 @@ function loop (){
 function updateUI(){
 	if (gameState == "play" && scanning){
 		scanner.style.display = "block";
-	} else {
-		scanner.style.display = "none";
-	}
-	if (gameState == "start"){
+		startMenu.style.display = "none";	
+		selectbtn.style.display = "none";
+		selectMenu.style.display = "none";
+	} else if (gameState == "start"){
 		startMenu.style.display = "block";	
+		scanner.style.display = "none";
 		selectbtn.style.display = "none";
 		selectMenu.style.display = "none";
 	} else if (gameState == "play") {
 		selectbtn.style.display = "block";
 		selectMenu.style.display = "block";
+		scanner.style.display = "none";
 		startMenu.style.display = "none";
 	} /* else if (gamestate == "menu") {
 		//add additional gamestates like this
