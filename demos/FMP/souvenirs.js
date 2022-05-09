@@ -16,6 +16,14 @@ var gameState = "start",
 		currentTime = 0,
 		delta = 0;
 
+	//game variables:
+	var conveyorOffset = 0.5,
+		conveyorSpeed = 0.005,
+		spawnTimer = 0,
+		spawnTime = 1.6,
+		souvenirCount = getRandomInt(3,6); //after spawning this many items a souvenir is spawned.
+		
+
 const selectableObjects = []; //add selectable objects to this array
 /*
 	//add objects like this:
@@ -32,10 +40,89 @@ const	scanner = document.getElementById("scanning"),
 var ARCamera;
 
 //ThreeJS stuff:
-const geomerty = new THREE.PlaneGeometry(1,1);
-const material = new THREE.MeshBasicMaterial({color:0xff0000, transparent:true, opacity:0.5});
-const plane = new THREE.Mesh(geomerty, material);
+	//geometries
+	const geometry = new THREE.PlaneGeometry(1,1);
+	const suitcaseGeometry = new THREE.PlaneGeometry(0.3,0.3)
+	const souvenirGeometry = new THREE.PlaneGeometry(0.1,0.1)
 
+	//textures
+	const conveyorTexture = loader.load("./textures/souvenirs/conveyor.png");
+		conveyorTexture.wrapS=THREE.RepeatWrapping;
+		conveyorTexture.wrapT = THREE.RepeatWrapping;
+	const souvenirTextures = [];
+		souvenirTextures[0] = loader.load("./textures/souvenirs/souvenir1_bracelet_xray.png");
+		souvenirTextures[1] = loader.load("./textures/souvenirs/souvenir2_feather_xray.png");
+		souvenirTextures[2] = loader.load("./textures/souvenirs/souvenir3_ivory_xray.png");
+		souvenirTextures[3] = loader.load("./textures/souvenirs/souvenir4_turtles_xray.png");
+		souvenirTextures[4] = loader.load("./textures/souvenirs/souvenir5_turtles_xray.png");
+	const suitcaseOpenTextures = [];
+		suitcaseOpenTextures[0] = loader.load("./textures/souvenirs/suitcase1.1_open.png");
+		suitcaseOpenTextures[1] = loader.load("./textures/souvenirs/suitcase1.2_open.png");
+		suitcaseOpenTextures[2] = loader.load("./textures/souvenirs/suitcase2.1_open.png");
+		suitcaseOpenTextures[3] = loader.load("./textures/souvenirs/suitcase2.2_open.png");
+		suitcaseOpenTextures[4] = loader.load("./textures/souvenirs/suitcase3.1_open.png");
+		suitcaseOpenTextures[5] = loader.load("./textures/souvenirs/suitcase3.2_open.png");
+		suitcaseOpenTextures[6] = loader.load("./textures/souvenirs/suitcase4.1_open.png");
+		suitcaseOpenTextures[7] = loader.load("./textures/souvenirs/suitcase4.2_open.png");
+		suitcaseOpenTextures[8] = loader.load("./textures/souvenirs/suitcase4.3_open.png");
+		suitcaseOpenTextures[9] = loader.load("./textures/souvenirs/suitcase4.4_open.png");
+	const suitcaseClosedTextures = [];
+		suitcaseClosedTextures[0] = loader.load("./textures/souvenirs/suitcase1.1_closed.png");
+		suitcaseClosedTextures[1] = loader.load("./textures/souvenirs/suitcase1.2_closed.png");
+		suitcaseClosedTextures[2] = loader.load("./textures/souvenirs/suitcase2.1_closed.png");
+		suitcaseClosedTextures[3] = loader.load("./textures/souvenirs/suitcase2.2_closed.png");
+		suitcaseClosedTextures[4] = loader.load("./textures/souvenirs/suitcase3.1_closed.png");
+		suitcaseClosedTextures[5] = loader.load("./textures/souvenirs/suitcase3.2_closed.png");
+		suitcaseClosedTextures[6] = loader.load("./textures/souvenirs/suitcase4.1_closed.png");
+		suitcaseClosedTextures[7] = loader.load("./textures/souvenirs/suitcase4.2_closed.png");
+		suitcaseClosedTextures[8] = loader.load("./textures/souvenirs/suitcase4.3_closed.png");
+		suitcaseClosedTextures[9] = loader.load("./textures/souvenirs/suitcase4.4_closed.png");
+	//materials
+	const conveyorMaterial = new THREE.MeshBasicMaterial({map:conveyortexture,side:3});
+	const xrayMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, transparent : !0, opacity : 0 } );
+	const hidePlaneMaterial = new THREE.MeshBasicMaterial({color: 0x0000ff, colorWrite: false});
+	const souvenirMaterials = [];
+		souvenirMaterials[0] = new THREE.MeshBasicMaterial({map: souvenirTextures[0], transparent:true, side:3, alphaTest: 0.1});
+		souvenirMaterials[1] = new THREE.MeshBasicMaterial({map: souvenirTextures[1], transparent:true, side:3, alphaTest: 0.1});
+		souvenirMaterials[2] = new THREE.MeshBasicMaterial({map: souvenirTextures[2], transparent:true, side:3, alphaTest: 0.1});
+		souvenirMaterials[3] = new THREE.MeshBasicMaterial({map: souvenirTextures[3], transparent:true, side:3, alphaTest: 0.1});
+		souvenirMaterials[4] = new THREE.MeshBasicMaterial({map: souvenirTextures[4], transparent:true, side:3, alphaTest: 0.1});
+	const suitcaseMaterials = [];
+		suitcaseMaterials[0] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[0], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseMaterials[1] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[1], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseMaterials[2] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[2], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseMaterials[3] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[3], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseMaterials[4] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[4], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseMaterials[5] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[5], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseMaterials[6] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[6], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseMaterials[7] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[7], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseMaterials[8] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[8], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseMaterials[9] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[9], transparent:true, side:3, alphaTest: 0.1});
+	const souvenircaseMaterials = [];
+		souvenircaseMaterials[0] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[0], transparent : !0, side:3, alphaTest: 0.1});
+		souvenircaseMaterials[1] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[1], transparent : !0, side:3, alphaTest: 0.1});
+		souvenircaseMaterials[2] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[2], transparent : !0, side:3, alphaTest: 0.1});
+		souvenircaseMaterials[3] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[3], transparent : !0, side:3, alphaTest: 0.1});
+		souvenircaseMaterials[4] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[4], transparent : !0, side:3, alphaTest: 0.1});
+		souvenircaseMaterials[5] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[5], transparent : !0, side:3, alphaTest: 0.1});
+		souvenircaseMaterials[6] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[6], transparent : !0, side:3, alphaTest: 0.1});
+		souvenircaseMaterials[7] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[7], transparent : !0, side:3, alphaTest: 0.1});
+		souvenircaseMaterials[8] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[8], transparent : !0, side:3, alphaTest: 0.1});
+		souvenircaseMaterials[9] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[9], transparent : !0, side:3, alphaTest: 0.1});
+
+	const suitcases[];
+	const souvenircases[];
+
+const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
+const xrayPlane = new THREE.Mesh(geometry, xraymaterial);
+    xrayPlane.renderOrder = -1;
+    xrayPlane.position.z = 0.5;
+const hidePlaneTop = new THREE.Mesh(geometry, hidePlaneMaterial);
+	hidePlaneTop.position.set(0,1,0.02);
+	conveyor.add(hidePlaneTop);
+const hidePlaneBottom = new THREE.Mesh(geometry, hidePlaneMaterial);
+	hidePlaneBottom.position.set(0,-1,0.02);
+	conveyor.add(hidePlaneBottom);
 
 document.addEventListener("DOMContentLoaded",()=>{
 	const start = async () => {
@@ -52,9 +139,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 		ARCamera = camera;
 
 		const anchor = mindarThree.addAnchor(0);
-		anchor.group.add(plane); //Build scene here.
-
-		selectableObjects[0]=plane; //for testing purpose, be sure to remove in other apps. 
+		anchor.group.add(conveyor); //Build scene here.
+	    scene.add(xrayPlane);
 
 		//on target found
 		anchor.onTargetFound = () => {
@@ -66,9 +152,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 		anchor.onTargetLost = () => {
 			scanning = true;
 			updateUI();
-
-			selectbtn.style.display = "none";
-			selectMenu.style.display = "none";
 		}
 
 		await mindarThree.start();
@@ -86,29 +169,64 @@ function loop (){
 	delta = (currentTime - lastTime) / 1000;
 	lastTime = currentTime;
 
+	//animate the conveyor belt
+	conveyorOffset = conveyorOffset+conveyorSpeed;
+    if (conveyorOffset > 1){
+    	conveyorOffset = 0;
+    }
+    conveyor.material.map.offset.set(0,conveyorOffset);
+
+	moveObjects(suitcases);
+	moveObjects(souvenircases);
+
+	//check if need to spawn new suitcase
+	spawnTimer = spawnTimer+delta;
+    if (spawnTimer > spawnTime){
+    	spawn();
+      spawnTimer = 0;
+    }
+
 	requestAnimationFrame(loop);
 }
 
-function updateUI(){
-	if (gameState == "play" && scanning){
-		scanner.style.display = "block";
-		startMenu.style.display = "none";	
-		selectbtn.style.display = "none";
-		selectMenu.style.display = "none";
-	} else if (gameState == "start"){
-		startMenu.style.display = "block";	
-		scanner.style.display = "none";
-		selectbtn.style.display = "none";
-		selectMenu.style.display = "none";
-	} else if (gameState == "play") {
-		selectbtn.style.display = "block";
-		selectMenu.style.display = "block";
-		scanner.style.display = "none";
-		startMenu.style.display = "none";
-	} /* else if (gamestate == "menu") {
-		//add additional gamestates like this
-		//make sure to set new gameStates to "block" in other gamestates. 
-	} */
+function moveObjects(arrayToMove){
+	if (arrayToMove.length > 0)
+		for(var i = arrayToMove.length-1; i >= 0; i--){
+			arrayToMove[i].position.y=arrayToMove[i].position.y-conveyorSpeed;
+       
+			if (arrayToMove[i].position.y < -0.65){
+        			conveyor.remove(arrayToMove[i]);
+				arrayToMove.splice(i,1);
+			}
+		}
+	}
+}
+
+function spawn(){
+	souvenircount = souvenircount -1;
+    if (souvenircount <= 0){
+		souvenircount = getRandomInt(3,6)
+		spawnSouvenir();
+    } else {
+		suitcases.push(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[getRandomInt(0,suitcaseMaterials.length-1)]));
+		suitcases[suitcases.length-1].position.set(0.35-(0.7*Math.random()),0.65,0.01);
+		conveyor.add(suitcases[suitcases.length-1]);
+    }
+}
+
+function spawnSouvenir(){
+	var suitcaseNumber = getRandomInt(0,suitcaseMaterials.length-1);
+	var souvenirNumber = getRandomInt(0,souvenirMaterials.length-1);
+
+	souvenircases.push(new THREE.Mesh(suitcaseGeometry,suitcasematerials[suitcaseNumber]));
+    souvenircases[souvenircases.length-1].position.set(0.35-(0.7*Math.random()),0.65,0.01);
+	souvenircases[souvenircases.length-1].add(new THREE.Mesh(suitcaseGeometry,souvenircaseMaterials[suitcaseNumber]));
+	souvenircases[souvenircases.length-1].children[0].position.z=0.002;
+	souvenircases[souvenircases.length-1].add(new THREE.Mesh(souvenirGeometry,souvenirMaterials[souvenirNumber]));
+	souvenircases[souvenircases.length-1].children[1].position.z=0.001;
+
+    conveyor.add(souvenircases[souvenircases.length-1]);
+    //console.log("spawn souvenir");
 }
 
 //select button
@@ -176,6 +294,34 @@ function createSelectionBox(x,y,w,h){
         return this.x <= x && x <= this.x + this.width &&
                this.y <= y && y <= this.y + this.height;
     }
+}
+
+//generate random integer (for array selections)
+function getRandomInt(min, max) {
+	var output = Math.floor(Math.random() * (max - min + 1) + min)
+	return Math.floor(output);
+}
+
+function updateUI(){
+	if (gameState == "play" && scanning){
+		scanner.style.display = "block";
+		startMenu.style.display = "none";	
+		selectbtn.style.display = "none";
+		selectMenu.style.display = "none";
+	} else if (gameState == "start"){
+		startMenu.style.display = "block";	
+		scanner.style.display = "none";
+		selectbtn.style.display = "none";
+		selectMenu.style.display = "none";
+	} else if (gameState == "play") {
+		selectbtn.style.display = "block";
+		selectMenu.style.display = "block";
+		scanner.style.display = "none";
+		startMenu.style.display = "none";
+	} /* else if (gamestate == "menu") {
+		//add additional gamestates like this
+		//make sure to set new gameStates to "block" in other gamestates. 
+	} */
 }
 
 document.getElementById("btnStart").onclick = function(){
