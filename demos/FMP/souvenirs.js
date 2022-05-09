@@ -79,7 +79,7 @@ const loader = new THREE.TextureLoader();
 		suitcaseClosedTextures[8] = loader.load("./textures/souvenirs/suitcase4.3_closed.png");
 		suitcaseClosedTextures[9] = loader.load("./textures/souvenirs/suitcase4.4_closed.png");
 	//materials
-	const conveyorMaterial = new THREE.MeshBasicMaterial({map:conveyortexture,side:3});
+	const conveyorMaterial = new THREE.MeshBasicMaterial({map:conveyorTexture,side:3});
 	const xrayMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, transparent : !0, opacity : 0 } );
 	const hidePlaneMaterial = new THREE.MeshBasicMaterial({color: 0x0000ff, colorWrite: false});
 	const souvenirMaterials = [];
