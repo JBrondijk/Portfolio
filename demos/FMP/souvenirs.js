@@ -110,8 +110,8 @@ var ARCamera;
 		souvenircaseMaterials[8] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[8], transparent : !0, side:3, alphaTest: 0.1});
 		souvenircaseMaterials[9] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[9], transparent : !0, side:3, alphaTest: 0.1});
 
-	const suitcases[];
-	const souvenircases[];
+	const suitcases = [];
+	const souvenircases = [];
 
 const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
 const xrayPlane = new THREE.Mesh(geometry, xraymaterial);
