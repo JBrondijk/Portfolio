@@ -117,7 +117,7 @@ const loader = new THREE.TextureLoader();
 const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
 const xrayPlane = new THREE.Mesh(geometry, xrayMaterial);
     xrayPlane.renderOrder = -1;
-    xrayPlane.position.z = 0.5;
+    xrayPlane.position.z = -1.5;
 const hidePlaneTop = new THREE.Mesh(geometry, hidePlaneMaterial);
 	hidePlaneTop.position.set(0,1,0.02);
 	conveyor.add(hidePlaneTop);
