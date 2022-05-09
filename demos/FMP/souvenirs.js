@@ -160,8 +160,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 		renderer.setAnimationLoop(()=>{
 			renderer.render(scene,camera);
 		});
+		loop();
 	}
 	start();
+
 });
 
 function loop (){
