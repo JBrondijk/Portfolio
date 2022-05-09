@@ -31,6 +31,11 @@ const	scanner = document.getElementById("scanning"),
 
 var ARCamera;
 
+//ThreeJS stuff:
+const geomerty = new THREE.PlaneGeometry(1,1);
+const material = new THREE.MeshBasicMaterial({color:0xff0000, transparent:true, opacity:0.5});
+const plane = new THREE.Mesh(geomerty, material);
+
 
 document.addEventListener("DOMContentLoaded",()=>{
 	const start = async () => {
@@ -43,10 +48,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 		const {renderer, scene, camera} = mindarThree;
 
 		ARCamera = camera;
-
-		const geomerty = new THREE.PlaneGeometry(1,1);
-		const material = new THREE.MeshBasicMaterial({color:0xff0000, transparent:true, opacity:0.5});
-		const plane = new THREE.Mesh(geomerty, material);
 
 		const anchor = mindarThree.addAnchor(0);
 		anchor.group.add(plane); //Build scene here.
