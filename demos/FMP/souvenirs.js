@@ -190,10 +190,9 @@ function loop (){
 }
 
 function moveObjects(arrayToMove){
-	if (arrayToMove.length > 0)
+	if (arrayToMove.length > 0) {
 		for(var i = arrayToMove.length-1; i >= 0; i--){
 			arrayToMove[i].position.y=arrayToMove[i].position.y-conveyorSpeed;
-       
 			if (arrayToMove[i].position.y < -0.65){
         			conveyor.remove(arrayToMove[i]);
 				arrayToMove.splice(i,1);
