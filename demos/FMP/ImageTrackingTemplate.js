@@ -57,10 +57,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 		anchor.onTargetFound = () => {
 			scanning = false;
 			updateUI();
-			if (started){
-				selectbtn.style.display = "block";
-				selectMenu.style.display = "block";
-			}
 		}
 		
 		//on target lost
