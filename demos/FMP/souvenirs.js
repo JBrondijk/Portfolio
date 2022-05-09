@@ -220,7 +220,7 @@ function spawnSouvenir(){
 	var suitcaseNumber = getRandomInt(0,suitcaseMaterials.length-1);
 	var souvenirNumber = getRandomInt(0,souvenirMaterials.length-1);
 
-	souvenircases.push(new THREE.Mesh(suitcaseGeometry,suitcasematerials[suitcaseNumber]));
+	souvenircases.push(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
     souvenircases[souvenircases.length-1].position.set(0.35-(0.7*Math.random()),0.65,0.01);
 	souvenircases[souvenircases.length-1].add(new THREE.Mesh(suitcaseGeometry,souvenircaseMaterials[suitcaseNumber]));
 	souvenircases[souvenircases.length-1].children[0].position.z=0.002;
