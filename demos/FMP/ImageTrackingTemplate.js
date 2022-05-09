@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 			imageTargetSrc: "./files/cheetah.mind", //change to correct imagetarget.
 			uiLoading: "no",
 			uiScanning: "no",
+			filterMinCF:0.1,
 			filterBeta: 2000
 		})
 		const {renderer, scene, camera} = mindarThree;
