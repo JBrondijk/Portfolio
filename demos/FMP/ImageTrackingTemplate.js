@@ -1,7 +1,7 @@
 const THREE = window.MINDAR.IMAGE.THREE;
 
 //imagetracking template:
-var gameState = start,
+var gameState = "start",
 	scanning = true,
 	widthHalf = window.innerWidth/2,
     heightHalf = window.innerHeight/2,
@@ -91,20 +91,20 @@ function loop (){
 }
 
 function updateUI(){
-	if (gameState == play && scanning){
+	if (gameState == "play" && scanning){
 		scanner.style.display = "block";
 	} else {
 		scanner.style.display = "none";
 	}
-	if (gameState == start){
+	if (gameState == "start"){
 		startMenu.style.display = "block";	
 		selectbtn.style.display = "none";
 		selectMenu.style.display = "none";
-	} else if (gameState == play) {
+	} else if (gameState == "play") {
 		selectbtn.style.display = "block";
 		selectMenu.style.display = "block";
 		startMenu.style.display = "none";
-	} /* else if (gamestate == menu) {
+	} /* else if (gamestate == "menu") {
 		//add additional gamestates like this
 		//make sure to set new gameStates to "block" in other gamestates. 
 	} */
@@ -179,7 +179,7 @@ function createSelectionBox(x,y,w,h){
 
 document.getElementById("btnStart").onclick = function(){
 	startMenu.style.display = "none";
-	gameState = play;
+	gameState = "play";
 	updateUI();
 
 }
