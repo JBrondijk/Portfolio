@@ -115,7 +115,7 @@ const loader = new THREE.TextureLoader();
 	const souvenircases = [];
 
 const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
-const xrayPlane = new THREE.Mesh(geometry, xraymaterial);
+const xrayPlane = new THREE.Mesh(geometry, xrayMaterial);
     xrayPlane.renderOrder = -1;
     xrayPlane.position.z = 0.5;
 const hidePlaneTop = new THREE.Mesh(geometry, hidePlaneMaterial);
