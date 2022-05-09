@@ -43,9 +43,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 			container: document.querySelector("#myARcontainer"),
 			imageTargetSrc: "./files/cheetah.mind", //change to correct imagetarget.
 			uiLoading: "no",
-			uiScanning: "no",
-			filterMinCF: 0.001,
-			filterBeta: 4000
+			uiScanning: "no"//,
+			//filterMinCF: 0.001,
+			//filterBeta: 4000
 		})
 		const {renderer, scene, camera} = mindarThree;
 
