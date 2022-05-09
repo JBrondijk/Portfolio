@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title> Foute Souvenirs! </title>
+		<link href="style.css" rel="stylesheet"/> 
+	</head>
+
+	<body style = "overflow:hidden;">
+		<h1> Foute Souvenirs</h1>
+		<div> 
+		
+		<div id="myARcontainer"></div>
+		<button class = "btn-orange" id="btnSelect" style= "position: absolute; top: 85vh; width:80%; margin-left: 10vw; font-size: 45pt; display: none"> Selecteer </button>
+		</div>
+
+		<div id = "spacer"> </div>
+
+		
+		</div>
+		
+		<div class = "menu" id="startMenu">
+			<h2> Vind de foute souvenirs! </h2>
+			<p class= "menuText"> 
+			Hier bij de douane komen we allerlei "foute souvenirs" tegen. <br> 
+			Souvenirs die op het eerste oog heel leuk lijken, maar eigenlijk heel schadelijk zijn voor dier en natuur. <br>
+			<br>
+			Kan jij alle foute souvenirs uit de bagage onderscheppen?
+			</p>
+			<div style = "margin:0; padding-left: 10%;">
+				<button class = "btn-orange" id="btnStart"> Start </button>
+			</div>
+		</div>
+
+		<div id = "scanning" class= "menu" style = "display:none">
+			<h2> Richt je telefoon naar het bord: </h2>
+			<div class="inner">
+				<div class ="scanline"></div>
+			</div>
+		</div>
+
+		<div class = "menu" id="selectMenu" style = "display:none">
+			<h2> Zoek de foute souvenirs!</h2>
+			<div id="xrayBox">
+			</div>
+		</div>
+
+	<script src="../libs/mindar/mindar-image-three.prod.js"></script>
+	<script src="./souvenirs.js" type ="module"></script> <!-- change name to proper JS file. -->
+
+	</body>
+</html>

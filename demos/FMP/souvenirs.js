@@ -32,9 +32,9 @@ const	scanner = document.getElementById("scanning"),
 var ARCamera;
 
 //ThreeJS stuff:
-const geometry = new THREE.PlaneGeometry(1,1);
+const geomerty = new THREE.PlaneGeometry(1,1);
 const material = new THREE.MeshBasicMaterial({color:0xff0000, transparent:true, opacity:0.5});
-const plane = new THREE.Mesh(geometry, material);
+const plane = new THREE.Mesh(geomerty, material);
 
 
 document.addEventListener("DOMContentLoaded",()=>{
