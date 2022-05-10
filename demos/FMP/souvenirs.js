@@ -144,8 +144,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 		
 		const anchor = mindarThree.addAnchor(0);
 		anchor.group.add(conveyor); //Build scene here.
-		anchor.group.add(xrayPlane);
-		console.log("added xrayPlane");
+		scene.add(xrayPlane);
+		console.log(xrayPlane);
 
 		ARAnchor = anchor;
 
@@ -182,11 +182,11 @@ function loop (){
 	lastTime = currentTime;
 
 	//move xrayPlane because it "has" to be attached to the anchor for some reason
-	ARScene.attach(xrayPlane);
+	/*ARScene.attach(xrayPlane);
 	xrayPlane.position.set(0,-1,0);
 	xrayPlane.rotation.set(0,0,0); 
 	xrayPlane.scale.set(1,1,1);
-	ARAnchor.group.attach(xrayPlane);
+	ARAnchor.group.attach(xrayPlane); */
 	
 	//animate the conveyor belt
 	conveyorOffset = conveyorOffset+conveyorSpeed;
