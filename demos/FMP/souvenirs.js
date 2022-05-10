@@ -183,7 +183,7 @@ function loop (){
 
 	//move xrayPlane because it "has" to be attached to the anchor for some reason
 	ARScene.attach(xrayPlane);
-	xrayPlane.position.set(0,-5,0);
+	xrayPlane.position.set(0,-1,0);
 	xrayPlane.rotation.set(0,0,0); 
 	xrayPlane.scale.set(1,1,1);
 	ARAnchor.group.attach(xrayPlane);
