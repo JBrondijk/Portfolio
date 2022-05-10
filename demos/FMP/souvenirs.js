@@ -47,7 +47,7 @@ const loader = new THREE.TextureLoader();
 	const geometry = new THREE.PlaneGeometry(1,1);
 	const suitcaseGeometry = new THREE.PlaneGeometry(0.3,0.3);
 	const souvenirGeometry = new THREE.PlaneGeometry(0.1,0.1);
-	const xrayGeometry = new THREE.BoxGeometry(2,2,2);
+	const xrayGeometry = new THREE.PlaneGeometry(0.3,0.3);
 
 	//textures
 	const conveyorTexture = loader.load("./textures/souvenirs/conveyor.png");
@@ -182,7 +182,7 @@ function loop (){
 
 	//move xrayPlane because it "has" to be attached to the anchor for some reason
 	ARScene.attach(xrayPlane);
-	xrayPlane.position.set (0,0,0);
+	xrayPlane.position.set (0,-0.101,0);
 	ARAnchor.group.attach(xrayPlane);
 	
 	//animate the conveyor belt
