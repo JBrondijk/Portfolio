@@ -139,10 +139,11 @@ document.addEventListener("DOMContentLoaded",()=>{
 		})
 		const {renderer, scene, camera} = mindarThree;
 		ARCamera = camera;
-		scene.add(xrayPlane);
-		console.log("added xrayPlane");
+		
 		const anchor = mindarThree.addAnchor(0);
 		anchor.group.add(conveyor); //Build scene here.
+		anchor.group.add(xrayPlane);
+		console.log("added xrayPlane");
 
 		//on target found
 		anchor.onTargetFound = () => {
