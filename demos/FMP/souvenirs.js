@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 		const anchor = mindarThree.addAnchor(0);
 		anchor.group.add(conveyor); //Build scene here.
 		scene.add(xrayPlane);
-		xrayPlane.position.set(0,-2,0;)
+		xrayPlane.position.set(0,-2,0);
 		console.log(xrayPlane);
 
 		ARAnchor = anchor;
