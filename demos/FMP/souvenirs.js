@@ -18,10 +18,10 @@ var gameState = "start",
 
 	//game variables:
 	var conveyorOffset = 0.5,
-		conveyorSpeed = 0.005,
+		conveyorSpeed = 0.004,
 		spawnTimer = 0,
 		spawnTime = 1.6,
-		souvenirCount = getRandomInt(3,6); //after spawning this many items a souvenir is spawned.
+		souvenirCount = getRandomInt(3,6); //after spawning this many items a souvenir is spawned instead.
 		
 
 const selectableObjects = []; //add selectable objects to this array
@@ -118,7 +118,7 @@ const loader = new THREE.TextureLoader();
 const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
 const xrayPlane = new THREE.Mesh(geometry, xrayMaterial);
     xrayPlane.renderOrder = -1;
-    xrayPlane.position.z = -3.5;
+    xrayPlane.position.y = -1.5;
 const hidePlaneTop = new THREE.Mesh(geometry, hidePlaneMaterial);
 	hidePlaneTop.position.set(0,1,0.02);
 	conveyor.add(hidePlaneTop);
