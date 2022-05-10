@@ -165,6 +165,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 		await mindarThree.start();
 
 		renderer.setAnimationLoop(()=>{
+			//move xrayPlane because it "has" to be attached to the anchor for some reason
+			ARScene.attach(xrayPlane);
+			xrayPlane.position.set (0,-0.25,0);
+			ARAnchor.group.attach(xrayPlane);
 			renderer.render(scene,camera);
 		});
 		
@@ -180,10 +184,7 @@ function loop (){
 	delta = (currentTime - lastTime) / 1000;
 	lastTime = currentTime;
 
-	//move xrayPlane because it "has" to be attached to the anchor for some reason
-	ARScene.attach(xrayPlane);
-	xrayPlane.position.set (0,-0.25,0);
-	ARAnchor.group.attach(xrayPlane);
+	
 	
 	//animate the conveyor belt
 	conveyorOffset = conveyorOffset+conveyorSpeed;
