@@ -181,7 +181,7 @@ function loop (){
 	lastTime = currentTime;
 
 	//move xrayPlane because it "has" to be attached to the anchor for some reason
-	ARscene.attach(xrayPlane);
+	ARScene.attach(xrayPlane);
 	xrayPlane.position.set (0,0,0);
 	ARAnchor.attach(xrayPlane);
 	
