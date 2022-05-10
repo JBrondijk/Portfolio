@@ -143,6 +143,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 		const anchor = mindarThree.addAnchor(0);
 		anchor.group.add(conveyor); //Build scene here.
 		anchor.group.add(xrayPlane);
+		anchor.group.removeChild(xrayPlane);
 		console.log("added xrayPlane");
 
 		//on target found
