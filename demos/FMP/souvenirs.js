@@ -38,6 +38,7 @@ const	scanner = document.getElementById("scanning"),
 		selectbtn = document.getElementById("btnSelect");
 
 var ARCamera;
+var ARScene;
 
 //ThreeJS stuff:
 const loader = new THREE.TextureLoader();
@@ -118,7 +119,7 @@ const loader = new THREE.TextureLoader();
 const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
 const xrayPlane = new THREE.Mesh(geometry, xrayMaterial);
     xrayPlane.renderOrder = -1;
-    xrayPlane.position.y = 1.5;
+    xrayPlane.position.z = -1.5;
 const hidePlaneTop = new THREE.Mesh(geometry, hidePlaneMaterial);
 	hidePlaneTop.position.set(0,1,0.02);
 	conveyor.add(hidePlaneTop);
@@ -139,10 +140,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 		const {renderer, scene, camera} = mindarThree;
 
 		ARCamera = camera;
+		ARScene = scene;
 
 		const anchor = mindarThree.addAnchor(0);
 		anchor.group.add(conveyor); //Build scene here.
-	    scene.add(xrayPlane);
 
 		//on target found
 		anchor.onTargetFound = () => {
@@ -161,6 +162,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 		renderer.setAnimationLoop(()=>{
 			renderer.render(scene,camera);
 		});
+		ARScene.add(xrayPlane)
 		loop();
 	}
 	start();
