@@ -47,7 +47,7 @@ const loader = new THREE.TextureLoader();
 	const geometry = new THREE.PlaneGeometry(1,1);
 	const suitcaseGeometry = new THREE.PlaneGeometry(0.3,0.3);
 	const souvenirGeometry = new THREE.PlaneGeometry(0.1,0.1);
-	const xrayGeometry = new THREE.PlaneGeometry(0.3,0.3);
+	const xrayGeometry = new THREE.PlaneGeometry(0.03,0.03);
 
 	//textures
 	const conveyorTexture = loader.load("./textures/souvenirs/conveyor.png");
