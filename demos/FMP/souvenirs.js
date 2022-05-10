@@ -119,7 +119,6 @@ const loader = new THREE.TextureLoader();
 const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
 const xrayPlane = new THREE.Mesh(geometry, xrayMaterial);
     xrayPlane.renderOrder = -1;
-    xrayPlane.position.z = -1.5;
 const hidePlaneTop = new THREE.Mesh(geometry, hidePlaneMaterial);
 	hidePlaneTop.position.set(0,1,0.02);
 	conveyor.add(hidePlaneTop);
@@ -138,9 +137,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 			//filterBeta: 4000
 		})
 		const {renderer, scene, camera} = mindarThree;
-
+		camera.add(xrayPlane);
+		xrayPlane.position.set(0,0,-2);
 		ARCamera = camera;
-		ARScene = scene;
 
 		const anchor = mindarThree.addAnchor(0);
 		anchor.group.add(conveyor); //Build scene here.
@@ -162,9 +161,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 		renderer.setAnimationLoop(()=>{
 			renderer.render(scene,camera);
 		});
-		ARScene.add(xrayPlane)
-		xrayPlane.name = "xrayPlane";
-		console.log(scene.getObjectByName("xRayPlane"));
+		
 		loop();
 	}
 	start();
