@@ -39,6 +39,7 @@ const	scanner = document.getElementById("scanning"),
 
 var ARCamera;
 var ARScene;
+var ARAnchor;
 
 //ThreeJS stuff:
 const loader = new THREE.TextureLoader();
@@ -139,12 +140,15 @@ document.addEventListener("DOMContentLoaded",()=>{
 		})
 		const {renderer, scene, camera} = mindarThree;
 		ARCamera = camera;
+		ARScene = scene;
 		
 		const anchor = mindarThree.addAnchor(0);
 		anchor.group.add(conveyor); //Build scene here.
 		anchor.group.add(xrayPlane);
-		anchor.group.remove(xrayPlane);
 		console.log("added xrayPlane");
+
+		ARAnchor = anchor;
+
 
 		//on target found
 		anchor.onTargetFound = () => {
@@ -176,6 +180,11 @@ function loop (){
 	delta = (currentTime - lastTime) / 1000;
 	lastTime = currentTime;
 
+	//move xrayPlane because it "has" to be attached to the anchor for some reason
+	ARscene.attach(xrayPlane);
+	xrayPlane.position.set (0,0,0);
+	ARAnchor.attach(xrayPlane);
+	
 	//animate the conveyor belt
 	conveyorOffset = conveyorOffset+conveyorSpeed;
     if (conveyorOffset > 1){
