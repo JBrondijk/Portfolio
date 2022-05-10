@@ -183,7 +183,7 @@ function loop (){
 	//move xrayPlane because it "has" to be attached to the anchor for some reason
 	ARScene.attach(xrayPlane);
 	xrayPlane.position.set (0,0,0);
-	ARAnchor.attach(xrayPlane);
+	//ARAnchor.group.attach(xrayPlane);
 	
 	//animate the conveyor belt
 	conveyorOffset = conveyorOffset+conveyorSpeed;
