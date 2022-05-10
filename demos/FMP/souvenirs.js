@@ -44,8 +44,9 @@ var ARScene;
 const loader = new THREE.TextureLoader();
 	//geometries
 	const geometry = new THREE.PlaneGeometry(1,1);
-	const suitcaseGeometry = new THREE.PlaneGeometry(0.3,0.3)
-	const souvenirGeometry = new THREE.PlaneGeometry(0.1,0.1)
+	const suitcaseGeometry = new THREE.PlaneGeometry(0.3,0.3);
+	const souvenirGeometry = new THREE.PlaneGeometry(0.1,0.1);
+	const xrayGeometry = new THREE.BoxGeometry(2,2,2);
 
 	//textures
 	const conveyorTexture = loader.load("./textures/souvenirs/conveyor.png");
@@ -82,7 +83,7 @@ const loader = new THREE.TextureLoader();
 	//materials
 	const conveyorMaterial = new THREE.MeshBasicMaterial({map:conveyorTexture,side:3});
 	//const xrayMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, transparent : !0, opacity : 0 } );
-	const xrayMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, transparent : !0, opacity : 0.5 } );
+	const xrayMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, transparent : !0, opacity : 0.5, side:3 } );
 	const hidePlaneMaterial = new THREE.MeshBasicMaterial({color: 0x0000ff, colorWrite: false});
 	const souvenirMaterials = [];
 		souvenirMaterials[0] = new THREE.MeshBasicMaterial({map: souvenirTextures[0], transparent:true, side:3, alphaTest: 0.1});
@@ -117,7 +118,7 @@ const loader = new THREE.TextureLoader();
 	const souvenircases = [];
 
 const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
-const xrayPlane = new THREE.Mesh(geometry, xrayMaterial);
+const xrayPlane = new THREE.Mesh(xrayGeometry, xrayMaterial);
     xrayPlane.renderOrder = -1;
 const hidePlaneTop = new THREE.Mesh(geometry, hidePlaneMaterial);
 	hidePlaneTop.position.set(0,1,0.02);
@@ -139,7 +140,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 		const {renderer, scene, camera} = mindarThree;
 		ARCamera = camera;
 		ARCamera.add(xrayPlane);
-		xrayPlane.position.set(0,0,-4);
 		console.log("added xrayPlane");
 		const anchor = mindarThree.addAnchor(0);
 		anchor.group.add(conveyor); //Build scene here.
