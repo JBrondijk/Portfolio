@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 		})
 		const {renderer, scene, camera} = mindarThree;
 		ARCamera = camera;
-		ARCamera.add(xrayPlane);
+		scene.add(xrayPlane);
 		console.log("added xrayPlane");
 		const anchor = mindarThree.addAnchor(0);
 		anchor.group.add(conveyor); //Build scene here.
