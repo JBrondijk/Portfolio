@@ -163,6 +163,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 			renderer.render(scene,camera);
 		});
 		ARScene.add(xrayPlane)
+		xrayPlane.name = "xrayPlane";
+		console.log(scene.getObjectByName("xRayPlane"));
 		loop();
 	}
 	start();
