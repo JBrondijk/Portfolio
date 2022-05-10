@@ -146,6 +146,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 		anchor.group.add(conveyor); //Build scene here.
 		scene.add(xrayPlane);
 		xrayPlane.position.set(0,-2,0);
+		xrayPlane.frustrumCulled = false;
 		console.log(xrayPlane);
 
 		ARAnchor = anchor;
