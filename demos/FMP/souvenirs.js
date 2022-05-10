@@ -137,10 +137,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 			//filterBeta: 4000
 		})
 		const {renderer, scene, camera} = mindarThree;
-		camera.add(xrayPlane);
-		xrayPlane.position.set(0,0,-2);
 		ARCamera = camera;
-
+		ARCamera.add(xrayPlane);
+		xrayPlane.position.set(0,0,-4);
+		console.log("added xrayPlane");
 		const anchor = mindarThree.addAnchor(0);
 		anchor.group.add(conveyor); //Build scene here.
 
@@ -309,6 +309,7 @@ function getRandomInt(min, max) {
 function updateUI(){
 	if (gameState == "play" && scanning){
 		scanner.style.display = "block";
+		//set xrayPlane to visible here, and invisible everywhere else. 
 		startMenu.style.display = "none";	
 		selectbtn.style.display = "none";
 		selectMenu.style.display = "none";
