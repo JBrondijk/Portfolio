@@ -84,7 +84,7 @@ const loader = new THREE.TextureLoader();
 	//materials
 	const conveyorMaterial = new THREE.MeshBasicMaterial({map:conveyorTexture,side:3});
 	//const xrayMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, transparent : !0, opacity : 0 } );
-	const xrayMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, transparent : !0, opacity : 0.5, side:3 } );
+	const xrayMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, transparent : !0, opacity : 0.5, side:2 } );
 	const hidePlaneMaterial = new THREE.MeshBasicMaterial({color: 0x0000ff, colorWrite: false});
 	const souvenirMaterials = [];
 		souvenirMaterials[0] = new THREE.MeshBasicMaterial({map: souvenirTextures[0], transparent:true, side:3, alphaTest: 0.1});
