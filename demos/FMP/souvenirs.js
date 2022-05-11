@@ -323,17 +323,21 @@ function findSelectedObject(arrayToSearch){
 				}
 			}
 		}	
-		//check if closest object is in the selectionbox.
-        ObjectPos = ObjectPos.setFromMatrixPosition(closestObject.matrixWorld);
-        ObjectPos.project(ARCamera);
-        ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
-        ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
-        if (selectionBox.contains(ObjectPos.x, ObjectPos.y)){
-			//object is in box and is selected.
-			return(closestObject);
-        } else {
-			return (null); //no object in box, nothing selected. 
-	    }
+		if (closestObject != null){
+			//check if closest object is in the selectionbox.
+			ObjectPos = ObjectPos.setFromMatrixPosition(closestObject.matrixWorld);
+			ObjectPos.project(ARCamera);
+			ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
+			ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
+			if (selectionBox.contains(ObjectPos.x, ObjectPos.y)){
+				//object is in box and is selected.
+				return(closestObject);
+			} else {
+				return (null); //no object in box, nothing selected. 
+			}
+		} else {
+			return (null); //all objects found are open, nothing selected. 
+		}
   	} else {
 		return (null); //no objects to select, nothing selected.
 	}
