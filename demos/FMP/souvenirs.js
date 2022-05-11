@@ -122,14 +122,14 @@ const loader = new THREE.TextureLoader();
 	const suitcases = [];
 	const souvenircases = [];
 
-	/*
+	
 	const souvenirFound = [];
 	//set all of souvenirFound's values to false. 
 	for (var i = 0; i = souvenirTextures.length-1; i++){
 		souvenirFound [i] = false;
 	}
 	var souvenirsFound = 0;
-	*/
+	
 
 const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
 //const xrayPlane = new THREE.Mesh(xrayGeometry, xrayMaterial);
@@ -157,8 +157,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 		
 		const anchor = mindarThree.addAnchor(0);
 		anchor.group.add(conveyor); //Build scene here.
-		//anchor.group.add(xrayPlane);
-		//console.log("added xrayPlane");
 
 		ARAnchor = anchor;
 
@@ -194,13 +192,6 @@ function loop (){
 	delta = (currentTime - lastTime) / 1000;
 	lastTime = currentTime;
 
-	//move xrayPlane because it "has" to be attached to the anchor for some reason
-	//ARScene.attach(xrayPlane);
-	//xrayPlane.position.set(0,-2,0);
-	//xrayPlane.rotation.set(0,0,0); 
-	//xrayPlane.scale.set(1,1,1);
-	//ARAnchor.group.attach(xrayPlane);
-	
 	//animate the conveyor belt
 	conveyorOffset = conveyorOffset+conveyorSpeed*delta;
     if (conveyorOffset > 1){
