@@ -8,7 +8,7 @@ var gameState = "start",
 	boxOffset = (((document.getElementById("myARcontainer").clientHeight)/95)*100)-documentHeight,
 	widthHalf = documentWidth/2, 
     heightHalf = documentHeight/2, 
-	selectionBox = new createSelectionBox(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8),
+	selectionBox = new createSelectionBox(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset),
     boxMiddle = new THREE.Vector2();
 
 	var debugtext = "documentHeight: " + documentHeight + ", 100vw: " + ((document.getElementById("myARcontainer").clientHeight)/95)*100 + "boxOffset: " + boxOffset;
