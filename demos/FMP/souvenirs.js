@@ -3,8 +3,8 @@ const THREE = window.MINDAR.IMAGE.THREE;
 //imagetracking template:
 var gameState = "start",
 	scanning = true,
-	widthHalf = document.body.clientWidth/2,
-    heightHalf = document.body.clientHeight/2,
+	widthHalf = window.outerWidth/2,
+    heightHalf = window.outerHeight/2,
 	selectionBox = new createSelectionBox(window.innerWidth*0.1, window.innerHeight*0.25, window.innerWidth*0.8, window.innerWidth*0.8),
     boxMiddle = new THREE.Vector2();
 
