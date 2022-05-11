@@ -272,7 +272,7 @@ function spawnSouvenir(){
 	souvenirToSpawn = getRandomInt(0,souvenirMaterials.length-1);
 
 	if (souvenirsFound != souvenirMaterials.length){
-		checkSouvenirToSpawn();
+		//checkSouvenirToSpawn();
 	}
 
 	souvenircases.push(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
