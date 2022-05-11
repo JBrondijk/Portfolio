@@ -3,8 +3,8 @@ const THREE = window.MINDAR.IMAGE.THREE;
 //imagetracking template:
 var gameState = "start",
 	scanning = true,
-	documentWidth = window.innerWidth/2,
-	documentHeight = window.innerHeight/2,
+	documentWidth = window.innerWidth,
+	documentHeight = window.innerHeight,
 	boxOffset = (((document.getElementById("myARcontainer").clientHeight)/95)*100)-documentHeight,
 	widthHalf = documentWidth/2, 
     heightHalf = documentHeight/2, 
