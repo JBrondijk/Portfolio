@@ -122,12 +122,14 @@ const loader = new THREE.TextureLoader();
 	const suitcases = [];
 	const souvenircases = [];
 
+	/*
 	const souvenirFound = [];
 	//set all of souvenirFound's values to false. 
 	for (var i = 0; i = souvenirTextures.length-1; i++){
 		souvenirFound [i] = false;
 	}
 	var souvenirsFound = 0;
+	*/
 
 const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
 //const xrayPlane = new THREE.Mesh(xrayGeometry, xrayMaterial);
@@ -271,17 +273,19 @@ function spawnSouvenir(){
 	var suitcaseNumber = getRandomInt(0,suitcaseMaterials.length-1);
 	souvenirToSpawn = getRandomInt(0,souvenirMaterials.length-1);
 
+	/*
 	if (souvenirsFound != souvenirMaterials.length){
 		//checkSouvenirToSpawn();
 	}
+	*/
 
 	souvenircases.push(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
     souvenircases[souvenircases.length-1].position.set(0.35-(0.7*Math.random()),0.65,0.01);
 	souvenircases[souvenircases.length-1].add(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
 	souvenircases[souvenircases.length-1].children[0].position.z=0.002;
-	souvenircases[souvenircases.length-1].add(new THREE.Mesh(souvenirGeometry,souvenirMaterials[souvenirNumber]));
+	souvenircases[souvenircases.length-1].add(new THREE.Mesh(souvenirGeometry,souvenirMaterials[souvenirToSpawn]));
 	souvenircases[souvenircases.length-1].children[1].position.z=0.001;
-	souvenircases[souvenircases.length-1].userData.souvenirNumber = souvenirNumber;
+	souvenircases[souvenircases.length-1].userData.souvenirNumber = souvenirToSpawn;
 	souvenircases[souvenircases.length-1].userData.suitcaseNumber = suitcaseNumber;
 	souvenircases[souvenircases.length-1].userData.isOpen = false; 
 
@@ -310,10 +314,12 @@ selectbtn.onclick = function(){
 		selectedObject.remove(selectedObject.children[1]);
 		selectedObject.material = suitcaseOpenMaterials[selectedObject.userData.suitcaseNumber]
 		selectedObject.userData.isOpen = true;
+		/*
 		if (!souvenirFound[selectedObject.userData.souvenirNumber]){
 			souvenirFound[selectedObject.userData.souvenirNumber] = true;
 			souvenirsFound = souvenirsFound++;
 		}
+		*/
     } else {
 		selectedObject = findSelectedObject(suitcases);
 		if (selectedObject != null){
