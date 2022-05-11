@@ -285,12 +285,13 @@ function spawnSouvenir(){
 //check if value of souvenirToSpawn is an unfound souvenir
 function checkSouvenirToSpawn (){
 	if (souvenirFound[souvenirToSpawn]){
-		souvenirToSpawn = souvenirToSpawn++;
-		if (souvenirToSpawn > souvenirMaterials.length-1){
+		souvenirToSpawn = souvenirToSpawn +1;
+		if (souvenirToSpawn > souvenirFound.length-1){
 			number = 0;
-			return;
 		}
 		checkSouvenirToSpawn();
+	} else {
+		return;
 	}
 }
 
