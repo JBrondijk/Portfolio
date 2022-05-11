@@ -214,7 +214,7 @@ function checkXray (){
 	if (souvenircases.length > 0) {
 		for(var i = souvenircases.length-1; i >= 0; i--){
 			var objectPos = new THREE.Vector3;
-			objectPos = objectPos.setFromMatrixPosition(closestObject.matrixWorld);
+			objectPos = objectPos.setFromMatrixPosition(souvenircases[i].matrixWorld);
 			objectPos.project(ARCamera);
 			objectPos.x = (objectPos.x * widthHalf) + widthHalf;
 			objectPos.y = - (objectPos.y * heightHalf) + heightHalf;
@@ -250,7 +250,8 @@ function spawnSouvenir(){
 	souvenircases[souvenircases.length-1].children[0].position.z=0.002;
 	souvenircases[souvenircases.length-1].add(new THREE.Mesh(souvenirGeometry,souvenirMaterials[souvenirNumber]));
 	souvenircases[souvenircases.length-1].children[1].position.z=0.001;
-
+	souvenircases[souvenircases.length-1].userData.souvenirNumber = souvenirNumber;
+	souvenircases[souvenircases.length-1].userData.suitcaseNumber = suitcaseNumber;
 
     conveyor.add(souvenircases[souvenircases.length-1]);
     //console.log("spawn souvenir");
@@ -261,6 +262,7 @@ selectbtn.onclick = function(){
 	let selectedObject = findSelectedObject();
     if (selectedObject != null){
     	console.log("object selected");
+
     } else {
     	console.log("no object selected");
     }	
