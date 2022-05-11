@@ -3,11 +3,12 @@ const THREE = window.MINDAR.IMAGE.THREE;
 //imagetracking template:
 var gameState = "start",
 	scanning = true,
-	documentWidth = document.documentElement.clientWidth, //window.innerWidth/2,
-	documentHeight = document.documentElement.clientHeight, //window.innerHeight/2,
+	documentWidth = window.innerWidth/2,
+	documentHeight = window.innerHeight/2,
+	boxOffset = (((document.getElementById("myARcontainer").clientHeight)/95)*100)-documentHeight;
 	widthHalf = documentWidth/2, 
     heightHalf = documentHeight/2, 
-	selectionBox = new createSelectionBox(documentWidth*0.1, documentHeight*0.25, documentWidth*0.8, documentWidth*0.8),
+	selectionBox = new createSelectionBox(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8),
     boxMiddle = new THREE.Vector2();
 
     boxMiddle.x = selectionBox.x+(selectionBox.w/2);
