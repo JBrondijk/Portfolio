@@ -125,15 +125,13 @@ const loader = new THREE.TextureLoader();
 	
 	const souvenirFound = [];
 	//set all of souvenirFound's values to false. 
-	for (var i = 0; i = souvenirTextures.length-1; i++){
+	for (var i = 0; i < souvenirTextures.length-1; i++){
 		souvenirFound [i] = false;
 	}
 	var souvenirsFound = 0;
 	
 
 const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
-//const xrayPlane = new THREE.Mesh(xrayGeometry, xrayMaterial);
-//    xrayPlane.renderOrder = -1;
 const hidePlaneTop = new THREE.Mesh(geometry, hidePlaneMaterial);
 	hidePlaneTop.position.set(0,1,0.02);
 	conveyor.add(hidePlaneTop);
@@ -264,11 +262,11 @@ function spawnSouvenir(){
 	var suitcaseNumber = getRandomInt(0,suitcaseMaterials.length-1);
 	souvenirToSpawn = getRandomInt(0,souvenirMaterials.length-1);
 
-	/*
+	
 	if (souvenirsFound != souvenirMaterials.length){
-		//checkSouvenirToSpawn();
+		checkSouvenirToSpawn();
 	}
-	*/
+	
 
 	souvenircases.push(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
     souvenircases[souvenircases.length-1].position.set(0.35-(0.7*Math.random()),0.65,0.01);
@@ -305,12 +303,10 @@ selectbtn.onclick = function(){
 		selectedObject.remove(selectedObject.children[1]);
 		selectedObject.material = suitcaseOpenMaterials[selectedObject.userData.suitcaseNumber]
 		selectedObject.userData.isOpen = true;
-		/*
 		if (!souvenirFound[selectedObject.userData.souvenirNumber]){
 			souvenirFound[selectedObject.userData.souvenirNumber] = true;
 			souvenirsFound = souvenirsFound++;
 		}
-		*/
     } else {
 		selectedObject = findSelectedObject(suitcases);
 		if (selectedObject != null){
