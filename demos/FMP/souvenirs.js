@@ -263,7 +263,7 @@ function spawnSouvenir(){
 	souvenirToSpawn = getRandomInt(0,souvenirMaterials.length-1);
 
 	
-	if (souvenirsFound != souvenirMaterials.length){
+	if (souvenirsFound < souvenirMaterials.length){
 		checkSouvenirToSpawn();
 	}
 	
