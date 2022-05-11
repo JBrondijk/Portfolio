@@ -214,12 +214,12 @@ function checkXray (){
 	if (souvenircases.length > 0) {
 		for(var i = souvenircases.length-1; i >= 0; i--){
 			var objectPos = new THREE.Vector3;
-			ObjectPos = ObjectPos.setFromMatrixPosition(closestObject.matrixWorld);
-			ObjectPos.project(ARCamera);
-			ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
-			ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
-			ObjectPos.z = 0;
-			if (selectionBox.contains(ObjectPos.x, ObjectPos.y) && selectMenu.style.display == "block"){
+			objectPos = objectPos.setFromMatrixPosition(closestObject.matrixWorld);
+			objectPos.project(ARCamera);
+			objectPos.x = (objectPos.x * widthHalf) + widthHalf;
+			objectPos.y = - (objectPos.y * heightHalf) + heightHalf;
+			objectPos.z = 0;
+			if (selectionBox.contains(objectPos.x, objectPos.y) && selectMenu.style.display == "block"){
 				souvenircases[i].children[0].visible = false;
 			} else {
 				souvenircases[i].children[0].visible = true;
@@ -250,6 +250,7 @@ function spawnSouvenir(){
 	souvenircases[souvenircases.length-1].children[0].position.z=0.002;
 	souvenircases[souvenircases.length-1].add(new THREE.Mesh(souvenirGeometry,souvenirMaterials[souvenirNumber]));
 	souvenircases[souvenircases.length-1].children[1].position.z=0.001;
+
 
     conveyor.add(souvenircases[souvenircases.length-1]);
     //console.log("spawn souvenir");
