@@ -18,9 +18,9 @@ var gameState = "start",
 
 	//game variables:
 	var conveyorOffset = 0.5,
-		conveyorSpeed = 0.004,
+		conveyorSpeed = 0.4,
 		spawnTimer = 0,
-		spawnTime = 1.6,
+		spawnTime = 1.1,
 		souvenirCount = getRandomInt(3,6); //after spawning this many items a souvenir is spawned instead.
 		
 
@@ -83,7 +83,7 @@ const loader = new THREE.TextureLoader();
 		suitcaseClosedTextures[9] = loader.load("./textures/souvenirs/suitcase4.4_closed.png");
 	//materials
 	const conveyorMaterial = new THREE.MeshBasicMaterial({map:conveyorTexture,side:3});
-	const xrayMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, transparent : !0, opacity : 0, side:2 } );
+	//const xrayMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, transparent : !0, opacity : 0, side:2 } );
 	//const xrayMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, transparent : !0, opacity : 0.5, side:2 } );
 	const hidePlaneMaterial = new THREE.MeshBasicMaterial({color: 0x0000ff, colorWrite: false});
 	const souvenirMaterials = [];
@@ -103,24 +103,13 @@ const loader = new THREE.TextureLoader();
 		suitcaseMaterials[7] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[7], transparent:true, side:3, alphaTest: 0.1});
 		suitcaseMaterials[8] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[8], transparent:true, side:3, alphaTest: 0.1});
 		suitcaseMaterials[9] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[9], transparent:true, side:3, alphaTest: 0.1});
-	const souvenircaseMaterials = [];
-		souvenircaseMaterials[0] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[0], transparent : !0, side:3, alphaTest: 0.1});
-		souvenircaseMaterials[1] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[1], transparent : !0, side:3, alphaTest: 0.1});
-		souvenircaseMaterials[2] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[2], transparent : !0, side:3, alphaTest: 0.1});
-		souvenircaseMaterials[3] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[3], transparent : !0, side:3, alphaTest: 0.1});
-		souvenircaseMaterials[4] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[4], transparent : !0, side:3, alphaTest: 0.1});
-		souvenircaseMaterials[5] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[5], transparent : !0, side:3, alphaTest: 0.1});
-		souvenircaseMaterials[6] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[6], transparent : !0, side:3, alphaTest: 0.1});
-		souvenircaseMaterials[7] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[7], transparent : !0, side:3, alphaTest: 0.1});
-		souvenircaseMaterials[8] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[8], transparent : !0, side:3, alphaTest: 0.1});
-		souvenircaseMaterials[9] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[9], transparent : !0, side:3, alphaTest: 0.1});
 
 	const suitcases = [];
 	const souvenircases = [];
 
 const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
-const xrayPlane = new THREE.Mesh(xrayGeometry, xrayMaterial);
-    xrayPlane.renderOrder = -1;
+//const xrayPlane = new THREE.Mesh(xrayGeometry, xrayMaterial);
+//    xrayPlane.renderOrder = -1;
 const hidePlaneTop = new THREE.Mesh(geometry, hidePlaneMaterial);
 	hidePlaneTop.position.set(0,1,0.02);
 	conveyor.add(hidePlaneTop);
@@ -144,8 +133,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 		
 		const anchor = mindarThree.addAnchor(0);
 		anchor.group.add(conveyor); //Build scene here.
-		anchor.group.add(xrayPlane);
-		console.log("added xrayPlane");
+		//anchor.group.add(xrayPlane);
+		//console.log("added xrayPlane");
 
 		ARAnchor = anchor;
 
@@ -182,14 +171,14 @@ function loop (){
 	lastTime = currentTime;
 
 	//move xrayPlane because it "has" to be attached to the anchor for some reason
-	ARScene.attach(xrayPlane);
-	xrayPlane.position.set(0,-2,0);
-	xrayPlane.rotation.set(0,0,0); 
+	//ARScene.attach(xrayPlane);
+	//xrayPlane.position.set(0,-2,0);
+	//xrayPlane.rotation.set(0,0,0); 
 	//xrayPlane.scale.set(1,1,1);
-	ARAnchor.group.attach(xrayPlane);
+	//ARAnchor.group.attach(xrayPlane);
 	
 	//animate the conveyor belt
-	conveyorOffset = conveyorOffset+conveyorSpeed;
+	conveyorOffset = conveyorOffset+conveyorSpeed*delta;
     if (conveyorOffset > 1){
     	conveyorOffset = 0;
     }
@@ -197,6 +186,7 @@ function loop (){
 
 	moveObjects(suitcases);
 	moveObjects(souvenircases);
+	checkXray();
 
 	//check if need to spawn new suitcase
 	spawnTimer = spawnTimer+delta;
@@ -211,10 +201,28 @@ function loop (){
 function moveObjects(arrayToMove){
 	if (arrayToMove.length > 0) {
 		for(var i = arrayToMove.length-1; i >= 0; i--){
-			arrayToMove[i].position.y=arrayToMove[i].position.y-conveyorSpeed;
+			arrayToMove[i].position.y=arrayToMove[i].position.y-conveyorSpeed*delta;
 			if (arrayToMove[i].position.y < -0.65){
         			conveyor.remove(arrayToMove[i]);
 				arrayToMove.splice(i,1);
+			}
+		}
+	}
+}
+
+function checkXray (){
+	if (souvenircases.length > 0) {
+		for(var i = souvenircases.length-1; i >= 0; i--){
+			var objectPos = new THREE.Vector3;
+			ObjectPos = ObjectPos.setFromMatrixPosition(closestObject.matrixWorld);
+			ObjectPos.project(ARCamera);
+			ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
+			ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
+			ObjectPos.z = 0;
+			if (selectionBox.contains(ObjectPos.x, ObjectPos.y) && selectMenu.style.display == "block"){
+				souvenircases[i].children[0].visible = false;
+			} else {
+				souvenircases[i].children[0].visible = true;
 			}
 		}
 	}
@@ -238,7 +246,7 @@ function spawnSouvenir(){
 
 	souvenircases.push(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
     souvenircases[souvenircases.length-1].position.set(0.35-(0.7*Math.random()),0.65,0.01);
-	souvenircases[souvenircases.length-1].add(new THREE.Mesh(suitcaseGeometry,souvenircaseMaterials[suitcaseNumber]));
+	souvenircases[souvenircases.length-1].add(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
 	souvenircases[souvenircases.length-1].children[0].position.z=0.002;
 	souvenircases[souvenircases.length-1].add(new THREE.Mesh(souvenirGeometry,souvenirMaterials[souvenirNumber]));
 	souvenircases[souvenircases.length-1].children[1].position.z=0.001;
