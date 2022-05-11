@@ -287,7 +287,7 @@ function checkSouvenirToSpawn (){
 	if (souvenirFound[souvenirToSpawn]){
 		souvenirToSpawn = souvenirToSpawn +1;
 		if (souvenirToSpawn > souvenirFound.length-1){
-			number = 0;
+			souvenirToSpawn = 0;
 		}
 		checkSouvenirToSpawn();
 	} else {
