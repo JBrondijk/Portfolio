@@ -3,8 +3,8 @@ const THREE = window.MINDAR.IMAGE.THREE;
 //imagetracking template:
 var gameState = "start",
 	scanning = true,
-	widthHalf = window.innerWidth/2,
-    heightHalf = window.innerHeight/2,
+	widthHalf = document.body.clientWidth/2,
+    heightHalf = document.body.clientHeight/2,
 	selectionBox = new createSelectionBox(window.innerWidth*0.1, window.innerHeight*0.25, window.innerWidth*0.8, window.innerWidth*0.8),
     boxMiddle = new THREE.Vector2();
 
@@ -18,9 +18,9 @@ var gameState = "start",
 
 	//game variables:
 	var conveyorOffset = 0.5,
-		conveyorSpeed = 0.4,
+		conveyorSpeed = 0.2,
 		spawnTimer = 0,
-		spawnTime = 1.1,
+		spawnTime = 2,
 		souvenirCount = getRandomInt(3,6); //after spawning this many items a souvenir is spawned instead.
 		
 
@@ -103,6 +103,17 @@ const loader = new THREE.TextureLoader();
 		suitcaseMaterials[7] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[7], transparent:true, side:3, alphaTest: 0.1});
 		suitcaseMaterials[8] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[8], transparent:true, side:3, alphaTest: 0.1});
 		suitcaseMaterials[9] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[9], transparent:true, side:3, alphaTest: 0.1});
+	const suitcaseOpenMaterials = [];
+		suitcaseOpenMaterials[0] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[0], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseOpenMaterials[1] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[1], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseOpenMaterials[2] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[2], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseOpenMaterials[3] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[3], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseOpenMaterials[4] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[4], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseOpenMaterials[5] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[5], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseOpenMaterials[6] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[6], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseOpenMaterials[7] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[7], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseOpenMaterials[8] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[8], transparent:true, side:3, alphaTest: 0.1});
+		suitcaseOpenMaterials[9] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[9], transparent:true, side:3, alphaTest: 0.1});
 
 	const suitcases = [];
 	const souvenircases = [];
@@ -230,12 +241,17 @@ function checkXray (){
 
 function spawn(){
 	souvenirCount = souvenirCount -1;
+
     if (souvenirCount <= 0){
 		souvenirCount = getRandomInt(3,6)
 		spawnSouvenir();
     } else {
-		suitcases.push(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[getRandomInt(0,suitcaseMaterials.length-1)]));
+		var suitcaseNumber = getRandomInt(0,suitcaseMaterials.length-1);
+		suitcases.push(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
 		suitcases[suitcases.length-1].position.set(0.35-(0.7*Math.random()),0.65,0.01);
+		suitcases[suitcases.length-1].userData.suitcaseNumber = suitcaseNumber;
+		suitcases[suitcases.length-1].userData.isOpen = false;
+
 		conveyor.add(suitcases[suitcases.length-1]);
     }
 }
@@ -252,6 +268,7 @@ function spawnSouvenir(){
 	souvenircases[souvenircases.length-1].children[1].position.z=0.001;
 	souvenircases[souvenircases.length-1].userData.souvenirNumber = souvenirNumber;
 	souvenircases[souvenircases.length-1].userData.suitcaseNumber = suitcaseNumber;
+	souvenircases[souvenircases.length-1].userData.isOpen = false; 
 
     conveyor.add(souvenircases[souvenircases.length-1]);
     //console.log("spawn souvenir");
@@ -262,7 +279,17 @@ selectbtn.onclick = function(){
 	let selectedObject = findSelectedObject();
     if (selectedObject != null){
     	console.log("object selected");
-
+		if (souvenircases.includes(selectedObject)){
+			//selection is a souvenir
+			selectedObject.remove(selectedObject.children[0]);
+			selectedObject.remove(selectedObject.children[1]);
+			selectedObject.material = suitcaseOpenMaterials[selectedObject.userData.suitcaseNumber]
+			selectedObject.userData.isOpen = true;
+		} else {
+			//selection is not a souvenir
+			selectedObject.material = suitcaseOpenMaterials[selectedObject.userData.suitcaseNumber]
+			selectedObject.userData.isOpen = true;
+		}
     } else {
     	console.log("no object selected");
     }	
