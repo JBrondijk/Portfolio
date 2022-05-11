@@ -285,7 +285,7 @@ function spawnSouvenir(){
 //check if value of souvenirToSpawn is an unfound souvenir
 function checkSouvenirToSpawn (){
 	if (souvenirFound[souvenirToSpawn]){
-		souvenirToSpawn = souvenirToSpawn +1;
+		souvenirToSpawn = souvenirToSpawn ++;
 		if (souvenirToSpawn > souvenirFound.length-1){
 			souvenirToSpawn = 0;
 		}
@@ -307,7 +307,9 @@ selectbtn.onclick = function(){
 		selectedObject.userData.isOpen = true;
 		if (!souvenirFound[selectedObject.userData.souvenirNumber]){
 			souvenirFound[selectedObject.userData.souvenirNumber] = true;
-			souvenirsFound = souvenirsFound++;
+			if (souvenirsFound != souvenirMaterials.length){
+				souvenirsFound = souvenirsFound++;
+			}
 		}
     } else {
 		selectedObject = findSelectedObject(suitcases);
