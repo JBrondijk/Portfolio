@@ -11,7 +11,9 @@ var gameState = "start",
 	selectionBox = new createSelectionBox(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8),
     boxMiddle = new THREE.Vector2();
 
-	document.getElementById("startMenuText").innerHTML = boxOffset;
+	var debugtext = "documentHeight: " + documentHeight + ", 100vw: " + ((document.getElementById("myARcontainer").clientHeight)/95)*100 + "boxOffset: " + boxOffset;
+
+	document.getElementById("startMenuText").innerHTML = debugtext;
 
     boxMiddle.x = selectionBox.x+(selectionBox.w/2);
     boxMiddle.y = selectionBox.y+(selectionBox.h/2);
