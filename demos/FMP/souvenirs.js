@@ -271,7 +271,7 @@ function spawnSouvenir(){
 	var suitcaseNumber = getRandomInt(0,suitcaseMaterials.length-1);
 	souvenirToSpawn = getRandomInt(0,souvenirMaterials.length-1);
 
-	if (souvenirsFound != souvenirMaterials.length-1){
+	if (souvenirsFound != souvenirMaterials.length){
 		checkSouvenirToSpawn();
 	}
 
