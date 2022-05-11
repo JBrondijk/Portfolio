@@ -288,6 +288,7 @@ function checkSouvenirToSpawn (){
 		souvenirToSpawn = souvenirToSpawn++;
 		if (souvenirToSpawn > souvenirMaterials.length-1){
 			number = 0;
+			return;
 		}
 		checkSouvenirToSpawn();
 	}
