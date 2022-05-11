@@ -5,15 +5,11 @@ var gameState = "start",
 	scanning = true,
 	documentWidth = window.innerWidth,
 	documentHeight = window.innerHeight,
-	boxOffset = (((document.getElementById("myARcontainer").clientHeight)/95)*100)-documentHeight,
+	boxOffset = (((document.getElementById("myARcontainer").clientHeight)/95)*100)-documentHeight, //offset the selectionbox using this variable to make its location the same on every browser. 
 	widthHalf = documentWidth/2, 
     heightHalf = documentHeight/2, 
 	selectionBox = new createSelectionBox(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset),
     boxMiddle = new THREE.Vector2();
-
-	var debugtext = "documentHeight: " + documentHeight + ", 100vw: " + ((document.getElementById("myARcontainer").clientHeight)/95)*100 + "boxOffset: " + boxOffset;
-
-	document.getElementById("startMenuText").innerHTML = debugtext;
 
     boxMiddle.x = selectionBox.x+(selectionBox.w/2);
     boxMiddle.y = selectionBox.y+(selectionBox.h/2);
@@ -283,53 +279,57 @@ function spawnSouvenir(){
 
 //select button
 selectbtn.onclick = function(){
-	let selectedObject = findSelectedObject();
+	let selectedObject = findSelectedObject(souvenircases);
     if (selectedObject != null){
-    	console.log("object selected");
-		if (souvenircases.includes(selectedObject)){
-			//selection is a souvenir
-			selectedObject.remove(selectedObject.children[0]);
-			selectedObject.remove(selectedObject.children[1]);
-			selectedObject.material = suitcaseOpenMaterials[selectedObject.userData.suitcaseNumber]
-			selectedObject.userData.isOpen = true;
-		} else {
+    	console.log("souvenir selected");
+		//selection is a souvenir
+		selectedObject.remove(selectedObject.children[0]);
+		selectedObject.remove(selectedObject.children[1]);
+		selectedObject.material = suitcaseOpenMaterials[selectedObject.userData.suitcaseNumber]
+		selectedObject.userData.isOpen = true;
+    } else {
+		selectedObject = findSelectedObject(suitcases);
+		if (selectedObject != null){
+			console.log("suitcase selected")
 			//selection is not a souvenir
 			selectedObject.material = suitcaseOpenMaterials[selectedObject.userData.suitcaseNumber]
 			selectedObject.userData.isOpen = true;
+		} else {
+    		console.log("no object selected");
 		}
-    } else {
-    	console.log("no object selected");
     }	
 }
 
-function findSelectedObject(){
+function findSelectedObject(arrayToSearch){
 	var closestObject;
     var ObjectPos = new THREE.Vector3();
-    var shortestdistance;         
-	if (selectableObjects.length > 0){ //check which object is closest to the center.
-		for (var p = 0; p < selectableObjects.length; p++) {
-			ObjectPos = ObjectPos.setFromMatrixPosition(selectableObjects[p].matrixWorld);
+    var shortestdistance;    
+	if (arrayToSearch.length > 0){ //check which object is closest to the center.
+		for (var p = 0; p < arrayToSearch.length; p++) {
+			ObjectPos = ObjectPos.setFromMatrixPosition(arrayToSearch[p].matrixWorld);
             ObjectPos.project(ARCamera);
             ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
             ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
 			ObjectPos.z = 0;
-            if (p==0){
-				closestObject = selectableObjects[p];
-                shortestdistance = distance2D(ObjectPos,boxMiddle);
-			}  else {
-				if (distance2D(ObjectPos,boxMiddle) < shortestdistance){
-					closestObject = selectableObjects[p];
-                    shortestdistance = distance2D(ObjectPos,boxMiddle);
-				}  
-            } 
+			if (!arrayToSearch[p].userData.isOpen){
+				if (closestObject == null){
+					closestObject = arrayToSearch[p];
+					shortestdistance = distance2D(ObjectPos,boxMiddle);
+				} else {
+					if (distance2D(ObjectPos,boxMiddle) < shortestdistance){
+						closestObject = arrayToSearch[p];
+                		shortestdistance = distance2D(ObjectPos,boxMiddle);
+					}
+				}
+			}
 		}	
+		//check if closest object is in the selectionbox.
         ObjectPos = ObjectPos.setFromMatrixPosition(closestObject.matrixWorld);
         ObjectPos.project(ARCamera);
         ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
         ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
-		ObjectPos.z = 0;
         if (selectionBox.contains(ObjectPos.x, ObjectPos.y)){
-			//object is in box and is selected
+			//object is in box and is selected.
 			return(closestObject);
         } else {
 			return (null); //no object in box, nothing selected. 
