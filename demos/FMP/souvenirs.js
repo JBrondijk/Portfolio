@@ -22,8 +22,8 @@ var gameState = "start",
 	console.log(documentWidth*0.8);
 	console.log(documentWidth*0.8-boxOffset);
 
-    boxMiddle.x = selectionBox.x+(selectionBox.w/2);
-    boxMiddle.y = selectionBox.y+(selectionBox.h/2);
+    boxMiddle.x = selectionBox.x+((selectionBox.w)/2);
+    boxMiddle.y = selectionBox.y+((selectionBox.h)/2);
 
 	//deltatime variables
 	var lastTime = (new Date()).getTime(),
