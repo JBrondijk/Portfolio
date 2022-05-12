@@ -23,9 +23,10 @@ var gameState = "start",
 	var conveyorOffset = 0.5,
 		conveyorSpeed = 0.2,
 		spawnTimer = 0,
-		spawnTime = 2,
-		souvenirCount = getRandomInt(3,6), //after spawning this many items a souvenir is spawned instead.
-		souvenirToSpawn;
+		spawnTime = 1,
+		souvenirCount = getRandomInt(9,15), //after spawning this many items a souvenir is spawned instead.
+		souvenirToSpawn,
+		lastSpawnX = 0;
 		
 
 const selectableObjects = []; //add selectable objects to this array
@@ -242,15 +243,24 @@ function checkXray (){
 }
 
 function spawn(){
+	let spawnX = 0.35-(0.7*Math.random());
+	if (spawnX-lastSpawnX < 0.3+Math.random()*0.1){
+    	spawnX = lastSpawnX + 0.3;
+		if (spawnX > 0.35){
+       		spawnX = spawnX-0.7;
+		}
+	}
+	lastSpawnX = spawnX;
+
 	souvenirCount = souvenirCount -1;
 
     if (souvenirCount <= 0){
 		souvenirCount = getRandomInt(3,6)
-		spawnSouvenir();
+		spawnSouvenir(spawnX);
     } else {
 		var suitcaseNumber = getRandomInt(0,suitcaseMaterials.length-1);
 		suitcases.push(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
-		suitcases[suitcases.length-1].position.set(0.35-(0.7*Math.random()),0.65,0.01);
+		suitcases[suitcases.length-1].position.set(spawnX,0.65,0.01);
 		suitcases[suitcases.length-1].userData.suitcaseNumber = suitcaseNumber;
 		suitcases[suitcases.length-1].userData.isOpen = false;
 
@@ -258,18 +268,14 @@ function spawn(){
     }
 }
 
-function spawnSouvenir(){
+function spawnSouvenir(x){
 	var suitcaseNumber = getRandomInt(0,suitcaseMaterials.length-1);
 	souvenirToSpawn = getRandomInt(0,souvenirMaterials.length-1);
-
-	
 	if (souvenirsFound < souvenirMaterials.length){
 		checkSouvenirToSpawn();
 	}
-	
-
 	souvenircases.push(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
-    souvenircases[souvenircases.length-1].position.set(0.35-(0.7*Math.random()),0.65,0.01);
+    souvenircases[souvenircases.length-1].position.set(x,0.65,0.01);
 	souvenircases[souvenircases.length-1].add(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
 	souvenircases[souvenircases.length-1].children[0].position.z=0.002;
 	souvenircases[souvenircases.length-1].add(new THREE.Mesh(souvenirGeometry,souvenirMaterials[souvenirToSpawn]));
