@@ -311,6 +311,7 @@ function checkSouvenirToSpawn (){
 //select button
 selectbtn.onclick = function(){
 	let selectedObject = findSelectedObject(suitcases);
+	console.log (selectedObject.userData);
     if (selectedObject.userData.isSouvenircase){
 		//selection is a souvenir
 		selectedObject.remove(selectedObject.children[0]);
