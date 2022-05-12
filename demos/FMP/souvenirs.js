@@ -305,7 +305,7 @@ function checkSouvenirToSpawn (){
 selectbtn.onclick = function(){
 	let allSuitcases = souvenircases.concat(suitcases)
 	let selectedObject = findSelectedObject(allSuitcases);
-    if (souvenircases.includes(selectedObject){
+    if (souvenircases.includes(selectedObject)){
 		//selection is a souvenir
 		selectedObject.remove(selectedObject.children[0]);
 		selectedObject.remove(selectedObject.children[1]);
