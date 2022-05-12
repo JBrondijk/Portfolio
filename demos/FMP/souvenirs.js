@@ -63,7 +63,7 @@ const loader = new THREE.TextureLoader();
 		souvenirTextures[1] = loader.load("./textures/souvenirs/souvenir2_feather_xray.png");
 		souvenirTextures[2] = loader.load("./textures/souvenirs/souvenir3_ivory_xray.png");
 		souvenirTextures[3] = loader.load("./textures/souvenirs/souvenir4_turtles_xray.png");
-		souvenirTextures[4] = loader.load("./textures/souvenirs/souvenir5_turtles_xray.png");
+		souvenirTextures[4] = loader.load("./textures/souvenirs/souvenir5_medicine_xray.png");
 	const suitcaseOpenTextures = [];
 		suitcaseOpenTextures[0] = loader.load("./textures/souvenirs/suitcase1.1_open.png");
 		suitcaseOpenTextures[1] = loader.load("./textures/souvenirs/suitcase1.2_open.png");
@@ -423,9 +423,9 @@ document.getElementById("btnStart").onclick = function(){
 
 }
 
-btns = document.getElementsByClassName("btnContinue");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function () {
-			//Add continue button function here;
-        });
-    }
+document.getElementById("btnContinue").onclick = function(){
+
+	gameState = "play";
+	updateUI();
+
+}
