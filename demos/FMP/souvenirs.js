@@ -308,6 +308,7 @@ function checkSouvenirToSpawn (){
 //select button
 selectbtn.onclick = function(){
 	let allSuitcases = souvenircases.concat(suitcases);
+		console.log(allSuitcases.length);
 	let selectedObject = findSelectedObject(allSuitcases);
     if (souvenircases.includes(selectedObject)){
 		//selection is a souvenir
