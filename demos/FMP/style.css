@@ -178,6 +178,18 @@ padding-bottom: 0;
 	background-color: rgba(255,255,255,0);
 }
 
+.dot {
+	height: 2vw;
+	width: 2vw;
+	border: 1.5vw solid white;
+	border-radius: 50%;
+	position:absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -1vw;
+	margin-left: -1vw;
+}
+
 #xrayBox{
 	height: 80vw;
 	border: 1.5vw solid white;
