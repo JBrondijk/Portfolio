@@ -365,6 +365,8 @@ function findSelectedObject(arrayToSearch){
 		}	
 		if (closestObject != null){
 			//check if closest object is in the selectionbox.
+			console.log("found an object");
+
 			ObjectPos = ObjectPos.setFromMatrixPosition(closestObject.matrixWorld);
 			ObjectPos.project(ARCamera);
 			ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
