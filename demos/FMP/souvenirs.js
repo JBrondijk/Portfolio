@@ -133,6 +133,7 @@ const loader = new THREE.TextureLoader();
 	//set all of souvenirFound's values to false. 
 	for (var i = 0; i < souvenirTextures.length-1; i++){
 		souvenirFound [i] = false;
+		console.log("souvenirfound" + i + ": " souvenirFound[i])
 	}	
 
 const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
@@ -411,7 +412,7 @@ function updateUI(){
 		displayNone();
 		selectbtn.style.display = "block";
 		selectMenu.style.display = "block";
-	}  else if (gamestate == "menu") {
+	}  else if (gameState == "menu") {
 		displayNone();
 		foundMenu.style.display = "block";
 	} 
