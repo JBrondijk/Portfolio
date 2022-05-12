@@ -269,8 +269,8 @@ function spawn(){
 
 function spawnSouvenir(x){
 	var suitcaseNumber = getRandomInt(0,suitcaseMaterials.length-1);
-	souvenirToSpawn = getRandomInt(0,souvenirMaterials.length-1);
-	if (souvenirsFound < souvenirMaterials.length){
+	souvenirToSpawn = getRandomInt(0,souvenirPages.length-1);
+	if (souvenirsFound < souvenirPages.length){
 		checkSouvenirToSpawn();
 	}
 	souvenircases.push(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
@@ -426,7 +426,7 @@ function displayNone(){
 }
 
 function updateSouvenirsFoundTxt(){
-	souvenirsFoundTxt.innerHTML = souvenirsFound + " /" + souvenirMaterials.length;
+	souvenirsFoundTxt.innerHTML = souvenirsFound + " /" + souvenirPages.length;
 }
 
 document.getElementById("btnStart").onclick = function(){
@@ -442,7 +442,7 @@ document.getElementById("btnContinue").onclick = function(){
 	for (var p = 0; p < souvenirPages.length; p++) {
 		souvenirPages[p].style.display = "none";
 	}
-	if (souvenirsFound >= souvenirMaterials.length && !postGame){ //if the game is completed for the first time
+	if (souvenirsFound >= souvenirPages.length && !postGame){ //if the game is completed for the first time
 		postGame = true; //set the game to be completed before
 		allFound.style.display = "block" //open the completion menu.
 	} else {
