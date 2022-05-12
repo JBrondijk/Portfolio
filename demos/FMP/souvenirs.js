@@ -126,8 +126,6 @@ const loader = new THREE.TextureLoader();
 		suitcaseOpenMaterials[9] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[9], transparent:true, side:3, alphaTest: 0.1});
 
 	const suitcases = [];
-	const souvenircases = [];
-
 	
 	const souvenirFound = [];
 	//set all of souvenirFound's values to false. 
@@ -200,7 +198,6 @@ function loop (){
 		}
 		conveyor.material.map.offset.set(0,conveyorOffset);
 		moveObjects(suitcases);
-		moveObjects(souvenircases);
 
 			//check if need to spawn new suitcase
 		spawnTimer = spawnTimer+delta;
@@ -230,18 +227,20 @@ function moveObjects(arrayToMove){
 }
 
 function checkXray (){
-	if (souvenircases.length > 0) {
-		for(var i = souvenircases.length-1; i >= 0; i--){
-			var objectPos = new THREE.Vector3;
-			objectPos = objectPos.setFromMatrixPosition(souvenircases[i].matrixWorld);
-			objectPos.project(ARCamera);
-			objectPos.x = (objectPos.x * widthHalf) + widthHalf;
-			objectPos.y = - (objectPos.y * heightHalf) + heightHalf;
-			objectPos.z = 0;
-			if (selectionBox.contains(objectPos.x, objectPos.y) && selectMenu.style.display == "block"){
-				souvenircases[i].children[0].visible = false;
-			} else {
-				souvenircases[i].children[0].visible = true;
+	if (suitcases.length > 0) {
+		for(var i = suitcases.length-1; i >= 0; i--){
+			if (suitcases[i].userData.isSouvenircase){
+				var objectPos = new THREE.Vector3;
+				objectPos = objectPos.setFromMatrixPosition(suitcases[i].matrixWorld);
+				objectPos.project(ARCamera);
+				objectPos.x = (objectPos.x * widthHalf) + widthHalf;
+				objectPos.y = - (objectPos.y * heightHalf) + heightHalf;
+				objectPos.z = 0;
+				if (selectionBox.contains(objectPos.x, objectPos.y) && selectMenu.style.display == "block"){
+					suitcases[i].children[0].visible = false;
+				} else {
+					suitcases[i].children[0].visible = true;
+				}
 			}
 		}
 	}
@@ -264,12 +263,15 @@ function spawn(){
 		spawnSouvenir(spawnX);
     } else {
 		var suitcaseNumber = getRandomInt(0,suitcaseMaterials.length-1);
-		suitcases.push(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
-		suitcases[suitcases.length-1].position.set(spawnX,0.65,0.01);
-		suitcases[suitcases.length-1].userData.suitcaseNumber = suitcaseNumber;
-		suitcases[suitcases.length-1].userData.isOpen = false;
+		let newSuitcase = new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber])
+		
+		newSuitcase.position.set(spawnX,0.65,0.01);
+		newSuitcase.userData.suitcaseNumber = suitcaseNumber;
+		newSuitcase.userData.isOpen = false;
+		newSuitcase.userData.isSouvenircase = false;
 
-		conveyor.add(suitcases[suitcases.length-1]);
+		conveyor.add(newSuitcase);
+		suitcases.push(newSuitcase);
     }
 }
 
@@ -279,17 +281,18 @@ function spawnSouvenir(x){
 	if (souvenirsFound < souvenirPages.length){
 		checkSouvenirToSpawn();
 	}
-	souvenircases.push(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
-    souvenircases[souvenircases.length-1].position.set(x,0.65,0.01);
-	souvenircases[souvenircases.length-1].add(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
-	souvenircases[souvenircases.length-1].children[0].position.z=0.002;
-	souvenircases[souvenircases.length-1].add(new THREE.Mesh(souvenirGeometry,souvenirMaterials[souvenirToSpawn]));
-	souvenircases[souvenircases.length-1].children[1].position.z=0.001;
-	souvenircases[souvenircases.length-1].userData.souvenirNumber = souvenirToSpawn;
-	souvenircases[souvenircases.length-1].userData.suitcaseNumber = suitcaseNumber;
-	souvenircases[souvenircases.length-1].userData.isOpen = false; 
-
-    conveyor.add(souvenircases[souvenircases.length-1]);
+	let newSuitcase = new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]);
+	
+    newSuitcase.position.set(x,0.65,0.01);
+	newSuitcase.add(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
+	newSuitcase.children[0].position.z=0.002;
+	newSuitcase.add(new THREE.Mesh(souvenirGeometry,souvenirMaterials[souvenirToSpawn]));
+	newSuitcase.userData.souvenirNumber = souvenirToSpawn;
+	newSuitcase.userData.suitcaseNumber = suitcaseNumber;
+	newSuitcase.userData.isOpen = false; 
+	newSuitcase.userData.isSouvenircase = true;
+    conveyor.add(newSuitcase);
+	suitcases.push(newSuitcase);
 }
 
 //check if value of souvenirToSpawn is an unfound souvenir
@@ -307,10 +310,8 @@ function checkSouvenirToSpawn (){
 
 //select button
 selectbtn.onclick = function(){
-	let allSuitcases = souvenircases.concat(suitcases);
-		console.log(allSuitcases.length);
-	let selectedObject = findSelectedObject(allSuitcases);
-    if (souvenircases.includes(selectedObject)){
+	let selectedObject = findSelectedObject(suitcases);
+    if (selectedObject.userData.isSouvenircase){
 		//selection is a souvenir
 		selectedObject.remove(selectedObject.children[0]);
 		selectedObject.remove(selectedObject.children[1]);
