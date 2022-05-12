@@ -263,7 +263,8 @@ function spawn(){
 		spawnSouvenir(spawnX);
     } else {
 		var suitcaseNumber = getRandomInt(0,suitcaseMaterials.length-1);
-		let newSuitcase = new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber])
+
+		let newSuitcase = new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]);
 		
 		newSuitcase.position.set(spawnX,0.65,0.01);
 		newSuitcase.userData.suitcaseNumber = suitcaseNumber;
@@ -271,7 +272,6 @@ function spawn(){
 		newSuitcase.userData.isSouvenircase = false;
 
 		conveyor.add(newSuitcase);
-		suitcases.push(newSuitcase);
     }
 }
 
