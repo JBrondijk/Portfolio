@@ -340,6 +340,7 @@ selectbtn.onclick = function(){
 
 
 function findSelectedObject(arrayToSearch){
+	console.log("findSelectedObject");
 	var closestObject;
     var ObjectPos = new THREE.Vector3();
     var shortestdistance;    
