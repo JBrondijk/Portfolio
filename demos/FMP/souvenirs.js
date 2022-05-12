@@ -479,6 +479,5 @@ function onDocumentMouseMove(event) {
 }
 
 function onMouseDown(event){
-	let logger = "Boxmiddle | X: " boxMiddle.x + " Y: " + boxMiddle.y + ", Mouse | X: " + mouse.x + " Y: " +mouse.y;
-	console.log(logger);
+	console.log("Boxmiddle | X: " boxMiddle.x + " Y: " + boxMiddle.y + ", Mouse | X: " + mouse.x + " Y: " +mouse.y);
 }
