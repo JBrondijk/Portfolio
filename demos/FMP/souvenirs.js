@@ -297,9 +297,9 @@ function checkSouvenirToSpawn (){
 
 //select button
 selectbtn.onclick = function(){
-	let selectedObject = findSelectedObject(souvenircases);
-    if (selectedObject != null){
-    	console.log("souvenir selected");
+	let allSuitcases = souvenircases.concat(suitcases)
+	let selectedObject = findSelectedObject(allSuitcases);
+    if (souvenircases.includes(selectedObject){
 		//selection is a souvenir
 		selectedObject.remove(selectedObject.children[0]);
 		selectedObject.remove(selectedObject.children[1]);
@@ -307,21 +307,15 @@ selectbtn.onclick = function(){
 		selectedObject.userData.isOpen = true;
 		if (!souvenirFound[selectedObject.userData.souvenirNumber]){
 			souvenirFound[selectedObject.userData.souvenirNumber] = true;
-			if (souvenirsFound != souvenirMaterials.length){
-				souvenirsFound = souvenirsFound++;
-			}
+			souvenirsFound = souvenirsFound++;
 		}
     } else {
-		selectedObject = findSelectedObject(suitcases);
 		if (selectedObject != null){
-			console.log("suitcase selected")
 			//selection is not a souvenir
 			selectedObject.material = suitcaseOpenMaterials[selectedObject.userData.suitcaseNumber]
 			selectedObject.userData.isOpen = true;
-		} else {
-    		console.log("no object selected");
 		}
-    }	
+    }
 }
 
 function findSelectedObject(arrayToSearch){
