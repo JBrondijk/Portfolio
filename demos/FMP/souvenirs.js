@@ -131,9 +131,8 @@ const loader = new THREE.TextureLoader();
 	
 	const souvenirFound = [];
 	//set all of souvenirFound's values to false. 
-	for (var i = 0; i < souvenirTextures.length-1; i++){
+	for (var i = 0; i < souvenirTextures.length; i++){
 		souvenirFound [i] = false;
-		console.log("souvenirfound" + i + ": " + souvenirFound[i]);
 	}	
 
 const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
