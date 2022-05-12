@@ -219,7 +219,6 @@ function moveObjects(arrayToMove){
 		for(var i = arrayToMove.length-1; i >= 0; i--){
 			arrayToMove[i].position.y=arrayToMove[i].position.y-conveyorSpeed*delta;
 			if (arrayToMove[i].userData.isSouvenircase){
-				console.log ("hi")
 			}
 			if (arrayToMove[i].position.y < -0.65){
         			conveyor.remove(arrayToMove[i]);
@@ -273,8 +272,6 @@ function spawn(){
 		suitcases[suitcases.length-1].userData.isOpen = false;
 		suitcases[suitcases.length-1].userData.isSouvenircase = false;
 
-		console.log(suitcases[suitcases.length-1].userData.isSouvenircase);
-
 		conveyor.add(suitcases[suitcases.length-1]);
     }
 }
@@ -297,8 +294,6 @@ function spawnSouvenir(x){
 	suitcases[suitcases.length-1].userData.isOpen = false; 
 	suitcases[suitcases.length-1].userData.isSouvenircase = true;
 
-	console.log(suitcases[suitcases.length-1].userData.isSouvenircase);
-
     conveyor.add(suitcases[suitcases.length-1]);
 }
 
@@ -315,27 +310,24 @@ function checkSouvenirToSpawn (){
 	}
 }
 
-//select button
 selectbtn.onclick = function(){
 	let selectedObject = findSelectedObject(suitcases);
-	console.log (selectedObject.userData);
-    if (selectedObject.userData.isSouvenircase){
-		//selection is a souvenir
-		selectedObject.remove(selectedObject.children[0]);
-		selectedObject.remove(selectedObject.children[1]);
-		selectedObject.material = suitcaseOpenMaterials[selectedObject.userData.suitcaseNumber]
-		selectedObject.userData.isOpen = true;
-		if (!souvenirFound[selectedObject.userData.souvenirNumber]){
-			souvenirFound[selectedObject.userData.souvenirNumber] = true;
-			souvenirsFound = souvenirsFound +1;
-			updateSouvenirsFoundTxt();
-		}
-		gameState = "menu";
-		souvenirPages[selectedObject.userData.souvenirNumber].style.display = "block"; //open correct menu
-		updateUI();
-
-    } else {
-		if (selectedObject != null){
+	if (selectedObject != null){
+		if (selectedObject.userData.isSouvenircase){
+			//selection is a souvenir
+			selectedObject.remove(selectedObject.children[0]);
+			selectedObject.remove(selectedObject.children[1]);
+			selectedObject.material = suitcaseOpenMaterials[selectedObject.userData.suitcaseNumber]
+			selectedObject.userData.isOpen = true;
+			if (!souvenirFound[selectedObject.userData.souvenirNumber]){
+				souvenirFound[selectedObject.userData.souvenirNumber] = true;
+				souvenirsFound = souvenirsFound +1;
+				updateSouvenirsFoundTxt();
+			}
+			gameState = "menu";
+			souvenirPages[selectedObject.userData.souvenirNumber].style.display = "block"; //open correct menu
+			updateUI();
+		} else {
 			//selection is not a souvenir
 			selectedObject.material = suitcaseOpenMaterials[selectedObject.userData.suitcaseNumber]
 			selectedObject.userData.isOpen = true;
@@ -343,8 +335,8 @@ selectbtn.onclick = function(){
 			nothingFound.style.display = "block";
 			updateUI();
 		}
-    }
-}
+	}
+
 
 function findSelectedObject(arrayToSearch){
 	var closestObject;
@@ -376,7 +368,7 @@ function findSelectedObject(arrayToSearch){
 			ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
 			ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
 			if (selectionBox.contains(ObjectPos.x, ObjectPos.y)){
-				console.log("bject is in box and is selected.");
+				console.log("Object is in box and is selected.");
 				return(closestObject);
 			} else {
 				return (null); 
