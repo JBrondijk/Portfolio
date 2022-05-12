@@ -28,7 +28,7 @@
 			<br>
 			Kan jij alle foute souvenirs uit de bagage onderscheppen?
 			</p>
-			<div style = "margin:0; padding-left: 10%;">
+			<div style = "margin:0; padding-left: 5%;">
 				<button class = "btn-orange" id="btnStart"> Start </button>
 			</div>
 		</div>
@@ -40,12 +40,33 @@
 			</div>
 		</div>
 
-		<div class = "menu" id="selectMenu" style = "display:block">
+		<div class = "menu" id="selectMenu" style = "display:none">
 			<h2> Zoek de foute souvenirs!</h2>
 			<div id="xrayBox">
 				<div class="dot"></div>
 			</div>
 		</div>
+
+		<div class = "menu" id="nothingFound" style = "display:block">
+			<h2> Niks gevonden... </h2>
+			<p class= "menuText"> Hier zaten geen foute souvenirs in... <br><br> Let goed op of je in andere tassen of koffers iets verdachts ziet!</p>
+			<p class="souvenirText">
+			<span>Souvenirs gevonden:</span> <span id="souvenirsFound"> 0 /5 </span>
+			</p>
+			<div style = "margin:0; padding-left: 5%;">
+				<button class = "btn-orange" id="btnStart"> Ga Veder </button>
+			</div>
+		</div>
+
+		<div class = "menu" id="souvenir1" style = "display:none">
+			<h2> Niks gevonden... </h2>
+			<p class= "menuText"> Hier zaten geen foute souvenirs in... <br><br> Let goed op of je in andere tassen of koffers iets verdachts ziet!</p>
+
+			<div style = "margin:0; padding-left: 5%;">
+				<button class = "btn-orange" id="btnStart"> Ga Veder </button>
+			</div>
+		</div>
+
 
 	<script src="../libs/mindar/mindar-image-three.prod.js"></script>
 	<script src="./souvenirs.js" type ="module"></script> <!-- change name to proper JS file. -->

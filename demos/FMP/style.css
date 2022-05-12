@@ -140,6 +140,47 @@ video{
 
 }
 
+.souvenirText{
+	margin-left: 5%;
+	width: 80%;
+	font-size: 21pt;
+	font-weight: 600;
+	background: #FCCF4D;
+
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+
+	margin-bottom: 3vh;
+}
+
+#souvenirsFound{
+	float : right;
+	background: white;
+	border: 0.5vw solid black;
+	border-radius: 50%;
+	display:inline-block;
+
+	margin-top: -3vw;
+	margin-right: -5vw;
+	width: 10vw;
+	height: 10vw;
+
+	text-align: center;
+	line-height:10vw;
+
+	font-family: 'Anton';
+	color: #757575;
+	word-spacing: -5pt;
+}
+
+#souvenirsFound::first-letter {
+  font-size: 150%;
+  color: #EA5B19;
+}
+
+
 .menu{
 	position:absolute;
 	top: 10vh;
