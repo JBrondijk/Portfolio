@@ -26,25 +26,30 @@ var gameState = "start",
 		spawnTime = 1,
 		souvenirCount = getRandomInt(9,15), //after spawning this many items a souvenir is spawned instead.
 		souvenirToSpawn,
-		lastSpawnX = 0;
-		
+		lastSpawnX = 0,
+		ARCamera,
+		souvenirsFound = 0,
+		postGame = false;
 
-const selectableObjects = []; //add selectable objects to this array
-/*
-	//add objects like this:
-	selectableOjects[0] = new THREE.Mesh(geometry, material);
-	plane.add(selectableObjects[0]); //do this later where geometry, materials and plane are defined. 
-*/
+	//html elements:
+	const	scanner = document.getElementById("scanning"),
+			startMenu = document.getElementById("startMenu"),
+			selectMenu = document.getElementById("selectMenu"),
+			selectbtn = document.getElementById("btnSelect"),
+			foundMenu = document.getElementById("foundMenu"),
+			nothingFound = document.getElementById("nothingFound"),
+			allFound = document.getElementById("allFound"),
+			souvenirPages = [],
+			souvenirsFoundTxt = document.getElementById("souvenirsFound");
 
-//html elements:
-const	scanner = document.getElementById("scanning"),
-		startMenu = document.getElementById("startMenu"),
-		selectMenu = document.getElementById("selectMenu"),
-		selectbtn = document.getElementById("btnSelect");
+	souvenirPages[0] = document.getElementById("souvenir0");
+	souvenirPages[1] = document.getElementById("souvenir1");
+	souvenirPages[2] = document.getElementById("souvenir2");
+	souvenirPages[3] = document.getElementById("souvenir3");
+	souvenirPages[4] = document.getElementById("souvenir4");
 
-var ARCamera;
-var ARScene;
-var ARAnchor;
+
+	updateSouvenirsFoundTxt ();
 
 //ThreeJS stuff:
 const loader = new THREE.TextureLoader();
@@ -128,9 +133,7 @@ const loader = new THREE.TextureLoader();
 	//set all of souvenirFound's values to false. 
 	for (var i = 0; i < souvenirTextures.length-1; i++){
 		souvenirFound [i] = false;
-	}
-	var souvenirsFound = 0;
-	
+	}	
 
 const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
 const hidePlaneTop = new THREE.Mesh(geometry, hidePlaneMaterial);
@@ -152,13 +155,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 		})
 		const {renderer, scene, camera} = mindarThree;
 		ARCamera = camera;
-		ARScene = scene;
 		
 		const anchor = mindarThree.addAnchor(0);
 		anchor.group.add(conveyor); //Build scene here.
-
-		ARAnchor = anchor;
-
 
 		//on target found
 		anchor.onTargetFound = () => {
@@ -314,12 +313,20 @@ selectbtn.onclick = function(){
 		if (!souvenirFound[selectedObject.userData.souvenirNumber]){
 			souvenirFound[selectedObject.userData.souvenirNumber] = true;
 			souvenirsFound = souvenirsFound++;
+			updateSouvenirsFoundTxt();
 		}
+		gameState = "menu";
+		souvenirPages[selectedObject.userData.souvenirNumber].style.display = "block"; //open correct menu
+		updateUI();
+
     } else {
 		if (selectedObject != null){
 			//selection is not a souvenir
 			selectedObject.material = suitcaseOpenMaterials[selectedObject.userData.suitcaseNumber]
 			selectedObject.userData.isOpen = true;
+			gameState = "menu";
+			nothingFound.style.display = "block";
+			updateUI();
 		}
     }
 }
@@ -395,25 +402,31 @@ function getRandomInt(min, max) {
 
 function updateUI(){
 	if (gameState == "play" && scanning){
+		displayNone();
 		scanner.style.display = "block";
-		//set xrayPlane to visible here, and invisible everywhere else. 
+	} else if (gameState == "start"){
+		displayNone();	
+		startMenu.style.display = "block";	
+	} else if (gameState == "play") {
+		displayNone();
+		selectbtn.style.display = "block";
+		selectMenu.style.display = "block";
+	}  else if (gamestate == "menu") {
+		displayNone();
+		foundMenu.style.display = "block";
+	} 
+}
+
+function displayNone(){
+		scanner.style.display = "none";
 		startMenu.style.display = "none";	
 		selectbtn.style.display = "none";
 		selectMenu.style.display = "none";
-	} else if (gameState == "start"){
-		startMenu.style.display = "block";	
-		scanner.style.display = "none";
-		selectbtn.style.display = "none";
-		selectMenu.style.display = "none";
-	} else if (gameState == "play") {
-		selectbtn.style.display = "block";
-		selectMenu.style.display = "block";
-		scanner.style.display = "none";
-		startMenu.style.display = "none";
-	} /* else if (gamestate == "menu") {
-		//add additional gamestates like this
-		//make sure to set new gameStates to "block" in other gamestates. 
-	} */
+		foundMenu.style.display = "none";
+}
+
+function updateSouvenirsFoundTxt(){
+	souvenirsFoundTxt.innerHTML = souvenirsFound + " /" + souvenirMaterials.length;
 }
 
 document.getElementById("btnStart").onclick = function(){
@@ -424,8 +437,16 @@ document.getElementById("btnStart").onclick = function(){
 }
 
 document.getElementById("btnContinue").onclick = function(){
-
-	gameState = "play";
-	updateUI();
-
+	nothingFound.style.display = "none";
+	allFound.style.display = "none";
+	for (var p = 0; p < souvenirPages.length; p++) {
+		souvenirPages[p].style.display = "none";
+	}
+	if (souvenirsFound >= souvenirMaterials.length && !postGame){ //if the game is completed for the first time
+		postGame = true; //set the game to be completed before
+		allFound.style.display = "block" //open the completion menu.
+	} else {
+		gameState = "play";
+		updateUI();
+	}
 }
