@@ -336,6 +336,7 @@ selectbtn.onclick = function(){
 			updateUI();
 		}
 	}
+}
 
 
 function findSelectedObject(arrayToSearch){
