@@ -368,16 +368,19 @@ function findSelectedObject(arrayToSearch){
 			ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
 			ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
 			if (selectionBox.contains(ObjectPos.x, ObjectPos.y)){
-				//object is in box and is selected.
+				console.log("bject is in box and is selected.");
 				return(closestObject);
 			} else {
-				return (null); //no object in box, nothing selected. 
+				return (null); 
+				console.log("no object in box, nothing selected.");
 			}
 		} else {
-			return (null); //all objects found are open, nothing selected. 
+			return (null); 
+			console.log("all objects found are open, nothing selected. ");
 		}
   	} else {
-		return (null); //no objects to select, nothing selected.
+		return (null);
+		console.log("no objects to select, nothing selected.");
 	}
 }
 
