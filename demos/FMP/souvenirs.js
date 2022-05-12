@@ -270,6 +270,8 @@ function spawn(){
 		suitcases[suitcases.length-1].userData.isOpen = false;
 		suitcases[suitcases.length-1].userData.isSouvenircase = false;
 
+		console.log(suitcases[suitcases.length-1].userData.isSouvenircase);
+
 		conveyor.add(suitcases[suitcases.length-1]);
     }
 }
@@ -291,6 +293,8 @@ function spawnSouvenir(x){
 	suitcases[suitcases.length-1].userData.suitcaseNumber = suitcaseNumber;
 	suitcases[suitcases.length-1].userData.isOpen = false; 
 	suitcases[suitcases.length-1].userData.isSouvenircase = true;
+
+	console.log(suitcases[suitcases.length-1].userData.isSouvenircase);
 
     conveyor.add(suitcases[suitcases.length-1]);
 }
