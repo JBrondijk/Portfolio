@@ -218,6 +218,9 @@ function moveObjects(arrayToMove){
 	if (arrayToMove.length > 0) {
 		for(var i = arrayToMove.length-1; i >= 0; i--){
 			arrayToMove[i].position.y=arrayToMove[i].position.y-conveyorSpeed*delta;
+			if (arrayToMove[i].userData.isSouvenircase){
+				console.log ("hi")
+			}
 			if (arrayToMove[i].position.y < -0.65){
         			conveyor.remove(arrayToMove[i]);
 				arrayToMove.splice(i,1);
