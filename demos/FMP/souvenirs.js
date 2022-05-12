@@ -190,23 +190,29 @@ function loop (){
 	delta = (currentTime - lastTime) / 1000;
 	lastTime = currentTime;
 
-	//animate the conveyor belt
-	conveyorOffset = conveyorOffset+conveyorSpeed*delta;
-    if (conveyorOffset > 1){
-    	conveyorOffset = 0;
-    }
-    conveyor.material.map.offset.set(0,conveyorOffset);
+	
 
-	moveObjects(suitcases);
-	moveObjects(souvenircases);
+	if (gameState != "menu"){
+		//animate the conveyor belt
+		conveyorOffset = conveyorOffset+conveyorSpeed*delta;
+		if (conveyorOffset > 1){
+    		conveyorOffset = 0;
+		}
+		conveyor.material.map.offset.set(0,conveyorOffset);
+		moveObjects(suitcases);
+		moveObjects(souvenircases);
+
+			//check if need to spawn new suitcase
+		spawnTimer = spawnTimer+delta;
+		if (spawnTimer > spawnTime){
+    		spawn();
+			spawnTimer = 0;
+		}
+	}
+	
 	checkXray();
 
-	//check if need to spawn new suitcase
-	spawnTimer = spawnTimer+delta;
-    if (spawnTimer > spawnTime){
-    	spawn();
-      spawnTimer = 0;
-    }
+
 
 	requestAnimationFrame(loop);
 }
@@ -294,6 +300,7 @@ function checkSouvenirToSpawn (){
 		if (souvenirToSpawn > souvenirFound.length-1){
 			souvenirToSpawn = 0;
 		}
+		console.log(souvenirToSpawn);
 		checkSouvenirToSpawn();
 	} else {
 		return;
