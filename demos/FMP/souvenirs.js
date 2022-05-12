@@ -1,5 +1,11 @@
 const THREE = window.MINDAR.IMAGE.THREE;
 
+//debugging
+var mouse = new THREE.Vector2()
+document.addEventListener('mousemove', onDocumentMouseMove, false);
+document.addEventListener('mousedown', onMouseDown, false);
+
+
 //imagetracking template:
 var gameState = "start",
 	scanning = true,
@@ -464,4 +470,15 @@ document.getElementById("btnContinue").onclick = function(){
 		gameState = "play";
 		updateUI();
 	}
+}
+
+function onDocumentMouseMove(event) {
+    event.preventDefault();
+    mouse.x = event.clientX;
+    mouse.y = event.clientY;
+}
+
+function onMouseDown(event){
+	let logger = "Boxmiddle | X: " boxMiddle.x + " Y: " + boxMiddle.y + ", Mouse | X: " + mouse.x + " Y: " +mouse.y;
+	console.log(logger);
 }
