@@ -422,3 +422,10 @@ document.getElementById("btnStart").onclick = function(){
 	updateUI();
 
 }
+
+btns = document.getElementsByClassName("btnContinue");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+			//Add continue button function here;
+        });
+    }

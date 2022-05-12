@@ -62,7 +62,8 @@ p{
 	
 }
 video{
-	filter: url(#protanopia);
+	-webkit-filter: url(#protanopia);
+	filter: url(#protanopia)
 }
 
 .center {
@@ -155,7 +156,7 @@ video{
 	margin-bottom: 3vh;
 }
 
-#souvenirsFound{
+.souvenirsFound{
 	float : right;
 	background: white;
 	border: 0.5vw solid black;
@@ -175,11 +176,18 @@ video{
 	word-spacing: -5pt;
 }
 
-#souvenirsFound::first-letter {
+.souvenirsFound::first-letter {
   font-size: 150%;
   color: #EA5B19;
 }
 
+.souvenirImg{
+	height: 20vh;
+	display:block;
+	margin: 0 auto;
+	-webkit-filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
+	filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
+}
 
 .menu{
 	position:absolute;
@@ -236,7 +244,9 @@ padding-bottom: 0;
 	border: 1.5vw solid white;
 	border-top: none;
 	background-color: rgba(255,255,255,0);
+	-webkit-backdrop-filter: grayscale(1) invert(1);
 	backdrop-filter: grayscale(1) invert(1);
+
 }
 
 .btn-orange {
