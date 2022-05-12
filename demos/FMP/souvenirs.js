@@ -17,6 +17,11 @@ var gameState = "start",
 	selectionBox = new createSelectionBox(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset),
     boxMiddle = new THREE.Vector2();
 
+	console.log(selectionBox.x);
+	console.log(selectionBox.y);
+	console.log(selectionBox.w);
+	console.log(selectionBox.h);
+
     boxMiddle.x = selectionBox.x+(selectionBox.w/2);
     boxMiddle.y = selectionBox.y+(selectionBox.h/2);
 
