@@ -19,8 +19,8 @@ var gameState = "start",
 
 	console.log(selectionBox.x);
 	console.log(selectionBox.y);
-	console.log(selectionBox.w);
-	console.log(selectionBox.h);
+	console.log(selectionBox.documentWidth*0.8);
+	console.log(selectionBox.documentWidth*0.8-boxOffset);
 
     boxMiddle.x = selectionBox.x+(selectionBox.w/2);
     boxMiddle.y = selectionBox.y+(selectionBox.h/2);
