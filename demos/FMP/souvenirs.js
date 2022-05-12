@@ -317,9 +317,11 @@ selectbtn.onclick = function(){
 		selectedObject.remove(selectedObject.children[1]);
 		selectedObject.material = suitcaseOpenMaterials[selectedObject.userData.suitcaseNumber]
 		selectedObject.userData.isOpen = true;
+		console.log(!souvenirFound[selectedObject.userData.souvenirNumber]);
+		console.log(selectedObject.userData.souvenirNumber);
 		if (!souvenirFound[selectedObject.userData.souvenirNumber]){
 			souvenirFound[selectedObject.userData.souvenirNumber] = true;
-			souvenirsFound = souvenirsFound++;
+			souvenirsFound = souvenirsFound +1;
 			updateSouvenirsFoundTxt();
 		}
 		gameState = "menu";
