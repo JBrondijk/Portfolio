@@ -375,16 +375,16 @@ function findSelectedObject(arrayToSearch){
 				console.log("Object is in box and is selected.");
 				return(closestObject);
 			} else {
-				return (null); 
 				console.log("no object in box, nothing selected.");
+				return (null); 
 			}
 		} else {
+			console.log("all objects found are open, nothing selected. ")
 			return (null); 
-			console.log("all objects found are open, nothing selected. ");
 		}
   	} else {
-		return (null);
 		console.log("no objects to select, nothing selected.");
+		return (null);
 	}
 }
 
