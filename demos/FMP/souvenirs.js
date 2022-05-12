@@ -446,6 +446,7 @@ document.getElementById("btnStart").onclick = function(){
 }
 
 document.getElementById("btnContinue").onclick = function(){
+	foundMenu.scrollTop = 0;	
 	nothingFound.style.display = "none";
 	allFound.style.display = "none";
 	for (var p = 0; p < souvenirPages.length; p++) {
