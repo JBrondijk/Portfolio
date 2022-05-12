@@ -286,6 +286,7 @@ function spawnSouvenir(x){
 	suitcases[suitcases.length-1].add(new THREE.Mesh(suitcaseGeometry,suitcaseMaterials[suitcaseNumber]));
 	suitcases[suitcases.length-1].children[0].position.z=0.002;
 	suitcases[suitcases.length-1].add(new THREE.Mesh(souvenirGeometry,souvenirMaterials[souvenirToSpawn]));
+	suitcases[suitcases.length-1].children[1].position.z=0.001;
 	suitcases[suitcases.length-1].userData.souvenirNumber = souvenirToSpawn;
 	suitcases[suitcases.length-1].userData.suitcaseNumber = suitcaseNumber;
 	suitcases[suitcases.length-1].userData.isOpen = false; 
