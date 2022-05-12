@@ -260,7 +260,7 @@ function spawn(){
 	souvenirCount = souvenirCount -1;
 
     if (souvenirCount <= 0){
-		souvenirCount = getRandomInt(3,6)
+		souvenirCount = getRandomInt(9,15)
 		spawnSouvenir(spawnX);
     } else {
 		var suitcaseNumber = getRandomInt(0,suitcaseMaterials.length-1);
@@ -290,7 +290,6 @@ function spawnSouvenir(x){
 	souvenircases[souvenircases.length-1].userData.isOpen = false; 
 
     conveyor.add(souvenircases[souvenircases.length-1]);
-    //console.log("spawn souvenir");
 }
 
 //check if value of souvenirToSpawn is an unfound souvenir
@@ -300,7 +299,6 @@ function checkSouvenirToSpawn (){
 		if (souvenirToSpawn > souvenirPages.length-1){
 			souvenirToSpawn = 0;
 		}
-		console.log(souvenirToSpawn);
 		checkSouvenirToSpawn();
 	} else {
 		return;
@@ -309,7 +307,7 @@ function checkSouvenirToSpawn (){
 
 //select button
 selectbtn.onclick = function(){
-	let allSuitcases = souvenircases.concat(suitcases)
+	let allSuitcases = souvenircases.concat(suitcases);
 	let selectedObject = findSelectedObject(allSuitcases);
     if (souvenircases.includes(selectedObject)){
 		//selection is a souvenir
@@ -317,8 +315,6 @@ selectbtn.onclick = function(){
 		selectedObject.remove(selectedObject.children[1]);
 		selectedObject.material = suitcaseOpenMaterials[selectedObject.userData.suitcaseNumber]
 		selectedObject.userData.isOpen = true;
-		console.log(!souvenirFound[selectedObject.userData.souvenirNumber]);
-		console.log(selectedObject.userData.souvenirNumber);
 		if (!souvenirFound[selectedObject.userData.souvenirNumber]){
 			souvenirFound[selectedObject.userData.souvenirNumber] = true;
 			souvenirsFound = souvenirsFound +1;
