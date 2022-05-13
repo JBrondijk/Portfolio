@@ -1,39 +1,48 @@
 //Colorblind Filter from http://web.archive.org/web/20081014161121/http://www.colorjack.com/labs/colormatrix/
 //Camera Access from https://www.youtube.com/watch?v=Z6fQtNpB3hU&ab_channel=RaduMariescu-Istodor
 
-let VIDEO=null;
-let CANVAS=null;
-let CONTEXT=null;
+const VIDEO = document.getElementById("VIDEO");
 let SIZE={x:0,y:0,width:0,height:0};
+let CANVAS = document.getElementById("myCanvas");
+let CONTEXT = CANVAS.getContext("2d");
 
-function main(){
-	CANVAS=document.getElementById("myCanvas");
-	CONTEXT=CANVAS.getContext("2d");
-	
-	CANVAS.width=CANVAS.clientWidth;
-	CANVAS.height= CANVAS.clientHeight;
+CANVAS.width=CANVAS.clientWidth;
+CANVAS.height= CANVAS.clientHeight;
 
-	let promise=navigator.mediaDevices.getUserMedia({audio:false, video:{facingMode:'environment'}});
-	promise.then(function(signal){
-		VIDEO=document.getElementById("videoStream");
+let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, video:{facingMode:"environment"}});
+	promise.then(function(signal) {
 		VIDEO.setAttribute('autoplay', '');
 		VIDEO.setAttribute('muted', '');
 		VIDEO.setAttribute('playsinline', '');
 		VIDEO.srcObject=signal;
 		VIDEO.play();
-		
+
 		VIDEO.onloadeddata=function(){
-			handleResize();
-//			window.addEventListener('resize',handleResize);
-			updateCanvas();
-		}		
-	}).catch(function(err){
-		CONTEXT.fillStyle = 'white';
-		CONTEXT.font = "35pt Calibri";
-		CONTEXT.fillText("Geef de website toestemming om de camera te gebruiken om verder te kunnen.", 20, 200,CANVAS.width - 40);
-		
+			if(iOS()){
+				VIDEO.style.width = "0.0001px";	
+				VIDEO.style.height = "0.0001px";	
+				document.getElementById("videoContainer").appendChild(VIDEO);
+				handleResize();
+				updateCanvas();
+			} else {
+				CANVAS.style.display = "none";
+			}
+		}	
+	}).catch(function(err) {
 		alert("Website werkt niet zonder cameratoestemming.");
 	});
+
+function iOS() {
+  return [
+    'iPad Simulator',
+    'iPhone Simulator',
+    'iPod Simulator',
+    'iPad',
+    'iPhone',
+    'iPod'
+  ].includes(navigator.platform)
+  // iPad on iOS 13 detection
+  || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 }
 
 function handleResize(){	
