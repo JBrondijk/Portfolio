@@ -18,27 +18,26 @@ let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, vi
 
 VIDEO.addEventListener("canplay", function(e){
 		let resizer= window.innerWidth/VIDEO.videoWidth;
-			SIZE.width=resizer*VIDEO.videoWidth;
+		SIZE.width=resizer*VIDEO.videoWidth;
 		SIZE.height=resizer*VIDEO.videoHeight;
 		VIDEO.setAttribute("width", SIZE.width);
 		VIDEO.setAttribute("height",SIZE.height);
-		
+		/*
 		if (iOS()){
 			CANVAS = document.createElement('canvas');
 			document.getElementById("videoContainer").appendChild(CANVAS);
-			CANVAS.width=VIDEO.width
-			CANVAS.height=VIDEO.height
+			CANVAS.width=VIDEO.width;
+			CANVAS.height=VIDEO.height;
 			CONTEXT=CANVAS.getContext("2d");
 			VIDEO.style.display = "none";
 			
 			loop();
 		}
+		*/
 })
 
-function loop(){
-	debugcounter=debugcounter+1;
-	document.getElementById("debugText").innerHTML = String(debugcounter);
-	
+function loop(){	
+	refreshCanvas();
 	window.requestAnimationFrame(loop);
 }
 
