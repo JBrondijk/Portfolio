@@ -23,7 +23,6 @@ let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, vi
 	}).catch(function(err) {
 		alert("Website werkt niet zonder cameratoestemming.");
 	});
-}
 
 function iOS() {
   return [
