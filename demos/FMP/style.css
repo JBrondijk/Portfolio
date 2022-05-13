@@ -61,10 +61,6 @@ p{
 	
 	
 }
-video{
-	-webkit-filter: url(#protanopia);
-	filter: url(#protanopia)
-}
 
 .center {
 	padding-top: 50px;
@@ -217,6 +213,17 @@ video{
 	margin-top:10px;
 }
 
+#infoMenu{
+	width : 100vw; 
+	left:0; 
+	top: 94vh;
+	transition: 0.3s;
+}
+
+#infoMenu.active{
+	top: 45vh;
+}
+
 #selectMenu{
 background-color: rgba(255,255,255,0);
 top: 25vh;
@@ -251,6 +258,11 @@ padding-bottom: 0;
 	-webkit-backdrop-filter: grayscale(1) invert(1);
 	backdrop-filter: grayscale(1) invert(1);
 
+}
+
+.menuButtonContainer{
+	margin:0; 
+	padding-left: 5%;
 }
 
 .btn-orange {
@@ -316,7 +328,21 @@ svg{
 	display: none;
 }
 
-#VIDEO{
-	-webkit-filter: url(#protanopia);
-	filter: url(#protanopia);
+#arrow {
+  border: solid white;
+  border-width: 0 6pt 6pt 0;
+  padding: 10pt;
+
+  float : right;
+  margin-top: 1.5vh;
+  margin-right: 5vw;
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+
+  transition: 0.5s;
+}
+
+#arrow.active {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }
