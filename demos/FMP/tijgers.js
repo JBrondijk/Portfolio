@@ -10,8 +10,8 @@ function main(){
 	CANVAS=document.getElementById("myCanvas");
 	CONTEXT=CANVAS.getContext("2d");
 	
-	CANVAS.width=window.innerWidth;
-	CANVAS.height= window.innerWidth*(9/16);
+	CANVAS.width=CANVAS.clientWidth;
+	CANVAS.height= CANVAS.clientHeight;
 
 	let promise=navigator.mediaDevices.getUserMedia({audio:false, video:{facingMode:'environment'}});
 	promise.then(function(signal){
@@ -37,14 +37,11 @@ function main(){
 }
 
 function handleResize(){	
-	let resizer= window.innerWidth/VIDEO.videoWidth;
+	let resizer= CANVAS.clientHeight/VIDEO.videoHeight;
 
 	SIZE.width=resizer*VIDEO.videoWidth;
 	SIZE.height=resizer*VIDEO.videoHeight;
 	SIZE.x=CANVAS.width/2-SIZE.width/2;
-
-
-	
 	SIZE.y=CANVAS.height/2-SIZE.height/2;
 }
 

@@ -311,3 +311,12 @@ padding-bottom: 0;
     bottom: 78.5vw;
   }
 }
+
+svg{
+	display: none;
+}
+
+#VIDEO{
+	-webkit-filter: url(#protanopia);
+	filter: url(#protanopia);
+}
