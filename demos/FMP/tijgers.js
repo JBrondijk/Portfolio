@@ -19,9 +19,9 @@ let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, vi
 
 		VIDEO.onloadeddata=function(){
 			if(iOS()){
-				VIDEO.style.width = "0.0001px";	
-				VIDEO.style.height = "0.0001px";	
-				document.getElementById("videoContainer").appendChild(VIDEO);
+				//VIDEO.style.width = "0.0001px";	
+				//VIDEO.style.height = "0.0001px";	
+				//document.getElementById("videoContainer").appendChild(VIDEO);
 				handleResize();
 				updateCanvas();
 			} else {
