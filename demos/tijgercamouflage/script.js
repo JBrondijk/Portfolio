@@ -1,7 +1,7 @@
 const VIDEO = document.getElementById("VIDEO");
 let SIZE={x:0,y:0,width:0,height:0};
-let CANVAS = null;
-let CONTEXT = null;
+let CANVAS = document.getElementById("myCanvas");
+let CONTEXT = CANVAS.getContext("2d");
 
 let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, video:{facingMode:"environment"}});
 	promise.then(function(signal) {
@@ -10,29 +10,20 @@ let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, vi
 		VIDEO.setAttribute('playsinline', '');
 		VIDEO.srcObject=signal;
 		VIDEO.play();
-		
-}).catch(function(err) {
-		alert("Website werkt niet zonder cameratoestemming.");
-});
 
-VIDEO.addEventListener("canplay", function(e){
 		if (iOS()){
-			CANVAS = document.createElement('canvas');
-			document.getElementById("videoContainer").appendChild(CANVAS);
-			CANVAS.width=VIDEO.clientWidth;
-			CANVAS.height=VIDEO.clientHeight;
-			CONTEXT=CANVAS.getContext("2d");
-			VIDEO.style.display = "none";
-			
-			let resizer= CANVAS.clientHeight/VIDEO.videoHeight;
-			SIZE.width=resizer*VIDEO.videoWidth;
-			SIZE.height=resizer*VIDEO.videoHeight;
-			SIZE.x=CANVAS.width/2-SIZE.width/2;
-			SIZE.y=CANVAS.height/2-SIZE.height/2;
-
-			updateCanvas();
+			VIDEO.onloadeddata=function(){
+				handleResize();
+				updateCanvas();
+				VIDEO.style.display = "none";
+			}	
+		} else {
+			CANVAS.style.display = "none";
 		}
-})
+	}).catch(function(err) {
+		alert("Website werkt niet zonder cameratoestemming.");
+	});
+}
 
 function iOS() {
   return [
@@ -45,6 +36,15 @@ function iOS() {
   ].includes(navigator.platform)
   // iPad on iOS 13 detection
   || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+}
+
+function handleResize(){	
+	let resizer= CANVAS.clientHeight/VIDEO.videoHeight;
+
+	SIZE.width=resizer*VIDEO.videoWidth;
+	SIZE.height=resizer*VIDEO.videoHeight;
+	SIZE.x=CANVAS.width/2-SIZE.width/2;
+	SIZE.y=CANVAS.height/2-SIZE.height/2;
 }
 
 function updateCanvas(){
