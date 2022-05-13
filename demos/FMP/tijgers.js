@@ -75,7 +75,6 @@ function updateCanvas(){
 	CONTEXT.putImageData(imageData,0,0);
 	
 	window.requestAnimationFrame(updateCanvas);
-	//setTimeout(updateCanvas, 33);
 }
 
 function fu(n){ return(n<0?0:(n<255?n:255)); }

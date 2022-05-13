@@ -2,7 +2,6 @@ const VIDEO = document.getElementById("VIDEO");
 let SIZE={x:0,y:0,width:0,height:0};
 let CANVAS = null;
 let CONTEXT = null;
-let debugcounter=0;
 
 let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, video:{facingMode:"environment"}});
 	promise.then(function(signal) {
@@ -17,30 +16,23 @@ let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, vi
 });
 
 VIDEO.addEventListener("canplay", function(e){
-		let resizer= window.innerWidth/VIDEO.videoWidth;
-		SIZE.width=resizer*VIDEO.videoWidth;
-		SIZE.height=resizer*VIDEO.videoHeight;
-		VIDEO.setAttribute("width", SIZE.width);
-		VIDEO.setAttribute("height",SIZE.height);
-		/*
 		if (iOS()){
 			CANVAS = document.createElement('canvas');
 			document.getElementById("videoContainer").appendChild(CANVAS);
-			CANVAS.width=VIDEO.width;
-			CANVAS.height=VIDEO.height;
+			CANVAS.width=VIDEO.clientWidth;
+			CANVAS.height=VIDEO.clientHeight;
 			CONTEXT=CANVAS.getContext("2d");
 			VIDEO.style.display = "none";
 			
-			loop();
+			let resizer= CANVAS.clientHeight/VIDEO.videoHeight;
+			SIZE.width=resizer*VIDEO.videoWidth;
+			SIZE.height=resizer*VIDEO.videoHeight;
+			SIZE.x=CANVAS.width/2-SIZE.width/2;
+			SIZE.y=CANVAS.height/2-SIZE.height/2;
+
+			updateCanvas();
 		}
-		*/
 })
-
-function loop(){	
-	refreshCanvas();
-	window.requestAnimationFrame(loop);
-}
-
 
 function iOS() {
   return [
@@ -55,10 +47,8 @@ function iOS() {
   || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 }
 
-function fu(n){ return(n<0?0:(n<255?n:255)); }
-
-function refreshCanvas(){
-	CONTEXT.drawImage(VIDEO,SIZE.x,SIZE.y,VIDEO.width,VIDEO.height);
+function updateCanvas(){
+	CONTEXT.drawImage(VIDEO,SIZE.x,SIZE.y,SIZE.width,SIZE.height);
 	
 	var imageData = CONTEXT.getImageData(0,0,CANVAS.width,CANVAS.height);
 	var data = imageData.data;
@@ -79,10 +69,14 @@ function refreshCanvas(){
 			dr = fu(dr);
 			dg = fu(dg);
 			db = fu(db);
-			
+				
 			data[id] = dr >> 0;
 			data[id + 1] = dg >> 0;
 			data[id + 2] = db >> 0;
 	}	
 	CONTEXT.putImageData(imageData,0,0);
+	
+	window.requestAnimationFrame(updateCanvas);
 }
+
+function fu(n){ return(n<0?0:(n<255?n:255)); }
