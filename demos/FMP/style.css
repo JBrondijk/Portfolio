@@ -214,14 +214,19 @@ p{
 }
 
 #infoMenu{
-	width : 100vw; 
-	left:0; 
-	top: 94vh;
+	height:55vh;
+	overflow: auto;
+	position:absolute;
+	width : 100vw;
+	background-color: white;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+	bottom: -49vh;
 	transition: 0.3s;
 }
 
 #infoMenu.active{
-	top: 45vh;
+	bottom: -0.5vh;
 }
 
 #selectMenu{
