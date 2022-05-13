@@ -3,6 +3,9 @@ let SIZE={x:0,y:0,width:0,height:0};
 let CANVAS = document.getElementById("myCanvas");
 let CONTEXT = CANVAS.getContext("2d");
 
+CANVAS.width=CANVAS.clientWidth;
+CANVAS.height= CANVAS.clientHeight;
+
 let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, video:{facingMode:"environment"}});
 	promise.then(function(signal) {
 		VIDEO.setAttribute('autoplay', '');
@@ -11,15 +14,15 @@ let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, vi
 		VIDEO.srcObject=signal;
 		VIDEO.play();
 
-		if (iOS()){
-			VIDEO.onloadeddata=function(){
+		VIDEO.onloadeddata=function(){
+			if(iOS()){
+				VIDEO.style.display = "none";	
 				handleResize();
 				updateCanvas();
-				VIDEO.style.display = "none";
-			}	
-		} else {
-			CANVAS.style.display = "none";
-		}
+			} else {
+				CANVAS.style.display = "none";
+			}
+		}	
 	}).catch(function(err) {
 		alert("Website werkt niet zonder cameratoestemming.");
 	});
