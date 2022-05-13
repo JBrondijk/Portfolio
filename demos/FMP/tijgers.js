@@ -91,8 +91,6 @@ function fu(n){ return(n<0?0:(n<255?n:255)); }
 document.getElementById("btnStart").onclick = function(){
 	startMenu.style.display = "none";
 	document.getElementById("infoMenu").style.display = "block";
-	VIDEO.style.filter = "url(#protanopia)";
-	VIDEO.style.webkitFilter = "url(#protanopia)";
 }
 
 document.getElementById("infoMenuHead").onclick = function(){
