@@ -84,7 +84,7 @@ function updateCanvas(){
 }
 
 function fu(n){ return(n<0?0:(n<255?n:255)); }
-/*
+
 document.getElementById("btnStart").onclick = function(){
 	startMenu.style.display = "none";
 	document.getElementById("infoMenu").style.display = "block";
@@ -94,4 +94,3 @@ document.getElementById("infoMenuHead").onclick = function(){
 	document.getElementById("infoMenu").classList.toggle("active");
 	document.getElementById("arrow").classList.toggle("active");
 }
-*/
