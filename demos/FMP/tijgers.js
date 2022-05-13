@@ -9,8 +9,6 @@ let CONTEXT = CANVAS.getContext("2d");
 CANVAS.width=CANVAS.clientWidth;
 CANVAS.height= CANVAS.clientHeight;
 
-var applyFilter = false;
-
 let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, video:{facingMode:"environment"}});
 	promise.then(function(signal) {
 		VIDEO.setAttribute('autoplay', '');
@@ -59,10 +57,7 @@ function handleResize(){
 function updateCanvas(){
 	CONTEXT.drawImage(VIDEO,SIZE.x,SIZE.y,SIZE.width,SIZE.height);
 	
-	
-	
 	//apply colorblindness filter
-	if (applyFilter){
 		var imageData = CONTEXT.getImageData(0,0,CANVAS.width,CANVAS.height);
 		var data = imageData.data;
 
@@ -88,7 +83,6 @@ function updateCanvas(){
 		}	
 
 		CONTEXT.putImageData(imageData,0,0);
-	}
 	window.requestAnimationFrame(updateCanvas);
 }
 
@@ -99,7 +93,6 @@ document.getElementById("btnStart").onclick = function(){
 	document.getElementById("infoMenu").style.display = "block";
 	VIDEO.style.filter = "url(#protanopia)";
 	VIDEO.style.webkitFilter = "url(#protanopia)";
-	applyFilter = true;
 }
 
 document.getElementById("infoMenuHead").onclick = function(){
