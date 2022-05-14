@@ -3,7 +3,8 @@ Progress bar code from https://codepen.io/theprogrammingexpert/pen/jOqGBLL
 */
 
 import * as THREE from "../libs/three.js-r132/build/three.module.js";
-import {DeviceOrientationControls} from "../libs/three.js-r132/examples/jsm/controls/DeviceOrientationControls.js"; 
+import {DeviceOrientationControls} from "../libs/three.js-r132/examples/jsm/controls/DeviceOrientationControls.js";
+
 
 let SIZE = {x:0,y:0,width:0,height:0};
 //3D stuff. 
@@ -33,6 +34,7 @@ let SIZE = {x:0,y:0,width:0,height:0};
 	const camera = new THREE.PerspectiveCamera();
 	const renderer = new THREE.WebGLRenderer({alpha:true});
 	const controls = new DeviceOrientationControls(camera);
+	controls.disconnect();
 
 	let cameraWorldPos = new THREE.Vector3();
 	let cameraWorldDir = new THREE.Vector3();
@@ -57,14 +59,14 @@ var PlayerProgress = 0,
 	delta = 0,
 	gameState = "start";
 
-const	totalDistance = 40,
+const	totalDistance = 30,
 		streakGainTime = 5,
 		streakLoseTime = 2.5,
 		scoreModifier = 1,
 		playerSpeed = 1,
 		lionSpeed = 0.8,
-		minSpeed = 18,
-		maxSpeed = 24,
+		minSpeed = 24,
+		maxSpeed = 34,
 		switchTimeC = 2,
 		grassSpeed = 0.06;
 
@@ -85,6 +87,7 @@ const	playerProgressBar = document.querySelector(".progress"),
 
 //access camera
 document.addEventListener("DOMContentLoaded",()=>{
+	controls.connect();
 	const VIDEO = document.getElementById("VIDEO");
 	let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, video:{facingMode:"environment"}});
 	promise.then(function(signal) {
