@@ -59,17 +59,21 @@ if (iOS()) {
 	startMenu.style.display = "none";
 	iOSMenu.style.display = "block";
 	btniOS.addEventListener( "click", () => {
-		DeviceOrientationEvent.requestPermission()
-		.then(response => {
-			if (response == "granted") {
-				document.body.removeChild( iOSMenu );
-				controls = new DeviceOrientationControls(camera);
-				startment.style.display = "block";
-			} else {
-				alert("Sta toe om te kunnen spelen.");
-			}
-		})
-		.catch(console.error)
+		if ( typeof( DeviceOrientationEvent ) !== "undefined" && typeof( DeviceOrientationEvent.requestPermission ) === "function" ) {
+			// (optional) Do something before API request prompt.
+			DeviceOrientationEvent.requestPermission()
+				.then( response => {
+				// (optional) Do something after API prompt dismissed.
+				if ( response == "granted" ) {
+					controls = new DeviceOrientationControls(camera);
+					document.body.removeChild( iOSMenu );
+					startMenu.style.display = "block";
+				}
+			})
+				.catch( console.error )
+		} else {
+			alert( "Sta toe om spel te kunnen spelen" );
+		}
 	} );
 } else {
 	document.body.removeChild( iOSMenu );
