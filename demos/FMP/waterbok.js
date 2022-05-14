@@ -140,9 +140,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 	camera.position.set(0,0,0);
 	
 	VIDEO.style.position = "absolute";
-	renderer.domElement.style.position="absolute"
 
 	document.getElementById("videoContainer").appendChild(renderer.domElement);
+
+	renderer.domElement.style.position="absolute"
 
 	animate();
 });
