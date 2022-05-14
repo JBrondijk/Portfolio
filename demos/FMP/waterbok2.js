@@ -100,8 +100,8 @@ if (iOS()){
 	startMenu.style.display = "none";
 	iOSMenu.style.display = "block";
 	btniOS.addEventListener( "click", () => {
-		if ( typeof(DeviceOrientationEvent) !== undefined && typeof (DeviceOrientationEvent.requestPermission) === 'function' ) {
-			window.DeviceOrientationEvent.requestPermission().then( function ( response ) {
+		if ( typeof(DeviceMotionEvent) !== undefined && typeof (DeviceMotionEvent.requestPermission) === 'function' ) {
+			window.DeviceMotionEvent.requestPermission().then( function ( response ) {
 				if ( response == 'granted' ) {
 					window.addEventListener( 'orientationchange', onScreenOrientationChangeEvent );
 					window.addEventListener( 'deviceorientation', onDeviceOrientationChangeEvent );
