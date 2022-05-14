@@ -5,6 +5,21 @@ Progress bar code from https://codepen.io/theprogrammingexpert/pen/jOqGBLL
 import * as THREE from "../libs/three.js-r132/build/three.module.js";
 import {DeviceOrientationControls} from "../libs/three.js-r132/examples/jsm/controls/DeviceOrientationControls.js";
 
+//html elements
+const	playerProgressBar = document.querySelector(".progress"),
+		lionProgressBar = document.querySelector(".progressLion"),
+		playerIcon = document.querySelector(".playerIcon"),
+		lionIcon = document.querySelector(".lionIcon"),
+		score0 = document.getElementById("score0"),
+		score1 = document.getElementById("score1"),
+		score2 = document.getElementById("score2"),
+		startMenu = document.getElementById("startMenu"),
+		warningMessage = document.getElementById("warningMessage"),
+		gameOverMenu = document.getElementById("gameOverMenu"),
+		win1Menu = document.getElementById("win1Menu"),
+		win2Menu = document.getElementById("win2Menu"),
+		iOSMenu = document.getElementById("iOSMenu"),
+		btniOS = document.getElementById("btniOS");
 
 let SIZE = {x:0,y:0,width:0,height:0};
 //3D stuff. 
@@ -40,6 +55,27 @@ let SIZE = {x:0,y:0,width:0,height:0};
 	let cameraWorldDir = new THREE.Vector3();
 	const raycaster = new THREE.Raycaster();
 
+//getting orientationcontrols to work on iOS.
+if ( window.DeviceOrientationEvent === undefined || typeof window.DeviceOrientationEvent.requestPermission !== 'function' ) {
+	document.body.removeChild( iOSMenu );
+	const controls = new DeviceOrientationControls(camera);
+} else {
+	startMenu.style.display = "none";
+	btniOS.addEventListener( "click", () => {
+		DeviceOrientationEvent.requestPermission()
+		.then(response => {
+			if (response == "granted") {
+				document.body.removeChild( iOSMenu );
+				const controls = new DeviceOrientationControls(camera);
+				startment.style.display = "block";
+			} else {
+				alert("Sta toe om te kunnen spelen.");
+			}
+		})
+		.catch(console.error)
+	} );
+}
+
 //Game logic
 var PlayerProgress = 0,
 	LionProgress = -10,
@@ -69,21 +105,6 @@ const	totalDistance = 30,
 		maxSpeed = 34,
 		switchTimeC = 2,
 		grassSpeed = 0.06;
-
-
-//html elements
-const	playerProgressBar = document.querySelector(".progress"),
-		lionProgressBar = document.querySelector(".progressLion"),
-		playerIcon = document.querySelector(".playerIcon"),
-		lionIcon = document.querySelector(".lionIcon"),
-		score0 = document.getElementById("score0"),
-		score1 = document.getElementById("score1"),
-		score2 = document.getElementById("score2"),
-		startMenu = document.getElementById("startMenu"),
-		warningMessage = document.getElementById("warningMessage"),
-		gameOverMenu = document.getElementById("gameOverMenu"),
-		win1Menu = document.getElementById("win1Menu"),
-		win2Menu = document.getElementById("win2Menu");
 
 //access camera
 document.addEventListener("DOMContentLoaded",()=>{
@@ -338,8 +359,8 @@ function resetGame (){
 document.getElementById("btnStart").onclick = function(){
 	startMenu.style.display = "none";
 	warningMessage.style.display = "block";
-	controls.connect();
 }
+
 document.getElementById("btnWarn").onclick = function(){
 	resetGame();
 	warningMessage.style.display = "none";
