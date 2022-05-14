@@ -55,11 +55,9 @@ let SIZE = {x:0,y:0,width:0,height:0};
 	const raycaster = new THREE.Raycaster();
 
 //getting orientationcontrols to work on iOS.
-if ( window.DeviceOrientationEvent === undefined || typeof window.DeviceOrientationEvent.requestPermission !== 'function' ) {
-	document.body.removeChild( iOSMenu );
-	controls = new DeviceOrientationControls(camera);
-} else {
+if (iOS()) {
 	startMenu.style.display = "none";
+	iOSMenu.style.display = "block";
 	btniOS.addEventListener( "click", () => {
 		DeviceOrientationEvent.requestPermission()
 		.then(response => {
@@ -73,6 +71,9 @@ if ( window.DeviceOrientationEvent === undefined || typeof window.DeviceOrientat
 		})
 		.catch(console.error)
 	} );
+} else {
+	document.body.removeChild( iOSMenu );
+	controls = new DeviceOrientationControls(camera);
 }
 
 //Game logic
