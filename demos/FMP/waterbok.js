@@ -48,8 +48,6 @@ let SIZE = {x:0,y:0,width:0,height:0};
 	const rotator = new THREE.Object3D();
 	const camera = new THREE.PerspectiveCamera();
 	const renderer = new THREE.WebGLRenderer({alpha:true});
-	const controls = new DeviceOrientationControls(camera);
-	controls.disconnect();
 
 	let cameraWorldPos = new THREE.Vector3();
 	let cameraWorldDir = new THREE.Vector3();
