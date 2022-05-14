@@ -123,9 +123,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 			VIDEO.setAttribute("width", SIZE.width);
 			VIDEO.setAttribute("height",SIZE.height);
 
-			renderer.setSize(SIZE.width,SIZE.height);
-
-			document.getElementById("spacer").style.height = String(SIZE.height).concat("px");
+			renderer.setSize(VIDEO.width,VIDEO.height);
 	})
 	
 	scene.add(rotator);
