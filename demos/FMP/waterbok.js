@@ -48,6 +48,7 @@ let SIZE = {x:0,y:0,width:0,height:0};
 	const rotator = new THREE.Object3D();
 	const camera = new THREE.PerspectiveCamera();
 	const renderer = new THREE.WebGLRenderer({alpha:true});
+	const controls;
 
 	let cameraWorldPos = new THREE.Vector3();
 	let cameraWorldDir = new THREE.Vector3();
@@ -56,7 +57,7 @@ let SIZE = {x:0,y:0,width:0,height:0};
 //getting orientationcontrols to work on iOS.
 if ( window.DeviceOrientationEvent === undefined || typeof window.DeviceOrientationEvent.requestPermission !== 'function' ) {
 	document.body.removeChild( iOSMenu );
-	const controls = new DeviceOrientationControls(camera);
+	controls = new DeviceOrientationControls(camera);
 } else {
 	startMenu.style.display = "none";
 	btniOS.addEventListener( "click", () => {
@@ -64,7 +65,7 @@ if ( window.DeviceOrientationEvent === undefined || typeof window.DeviceOrientat
 		.then(response => {
 			if (response == "granted") {
 				document.body.removeChild( iOSMenu );
-				const controls = new DeviceOrientationControls(camera);
+				controls = new DeviceOrientationControls(camera);
 				startment.style.display = "block";
 			} else {
 				alert("Sta toe om te kunnen spelen.");
@@ -169,9 +170,12 @@ function animate(){
 		updateProgress();
 		moveLion();
 	}
-	controls.update();
-	renderer.render(scene,camera);
-	requestAnimationFrame(animate);
+	if (controls!=null){
+		controls.update();
+		renderer.render(scene,camera);
+		requestAnimationFrame(animate);
+	}
+	
 }
 //end of animate function
 
@@ -352,6 +356,19 @@ function resetGame (){
 
 	updateProgress();
 	setWaterbokDistance (3.6);
+}
+
+function iOS() {
+  return [
+    'iPad Simulator',
+    'iPhone Simulator',
+    'iPod Simulator',
+    'iPad',
+    'iPhone',
+    'iPod'
+  ].includes(navigator.platform)
+  // iPad on iOS 13 detection
+  || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 }
 
 document.getElementById("btnStart").onclick = function(){
