@@ -113,17 +113,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 //ready scene.
 	VIDEO.addEventListener("canplay", function(e){
-			let resizer= window.innerWidth/VIDEO.videoWidth;
-
-			SIZE.width=resizer*VIDEO.videoWidth;
-			SIZE.height=resizer*VIDEO.videoHeight;
-			SIZE.x=VIDEO.width/2-SIZE.width/2;
-			SIZE.y=VIDEO.height/2-SIZE.height/2;
-
-			VIDEO.setAttribute("width", SIZE.width);
-			VIDEO.setAttribute("height",SIZE.height);
-
-			renderer.setSize(VIDEO.width,VIDEO.height);
+		renderer.setSize(VIDEO.width,VIDEO.clientHeight);
 	})
 	
 	scene.add(rotator);
