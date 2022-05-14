@@ -84,13 +84,13 @@ class DeviceOrientationControls extends EventDispatcher {
 					}
 
 				} ).catch( function ( error ) {
-
+					alert( "no permission granted?" );
 					console.error( 'THREE.DeviceOrientationControls: Unable to use DeviceOrientation API:', error );
 
 				} );
 
 			} else {
-
+				alert( "DeviceMotionEvent is not defined" );
 				window.addEventListener( 'orientationchange', onScreenOrientationChangeEvent );
 				window.addEventListener( 'deviceorientation', onDeviceOrientationChangeEvent );
 
