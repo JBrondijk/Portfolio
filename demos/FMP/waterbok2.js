@@ -424,13 +424,14 @@ function updateOrientation(){
 		const orient = screenOrientation ? MathUtils.degToRad( screenOrientation ) : 0; // O
 
 		setObjectQuaternion( camera.quaternion, alpha, beta, gamma, orient );
-
+		/*
 		if ( 8 * ( 1 - lastQuaternion.dot( camera.quaternion ) ) > EPS ) {
 
 			lastQuaternion.copy( camera.quaternion );
 			dispatchEvent( _changeEvent );
 
 		}
+		*/
 	}
 }
 
