@@ -21,8 +21,8 @@ const _q1 = new Quaternion( - Math.sqrt( 0.5 ), 0, 0, Math.sqrt( 0.5 ) ); // - P
 const _changeEvent = { type: 'change' };
 const lastQuaternion = new Quaternion();
 
-var.deviceOrientation = {};
-var.screenOrientation = 0;
+var deviceOrientation = {};
+var screenOrientation = 0;
 
 var alphaOffset = 0; // radians
 
