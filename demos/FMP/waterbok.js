@@ -63,7 +63,7 @@ if (iOS()) {
 		controls.connect();
 		document.body.removeChild( iOSMenu );
 		startMenu.style.display = "block";
-	}
+	});
 }
 
 //Game logic
