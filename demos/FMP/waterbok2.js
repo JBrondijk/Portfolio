@@ -229,8 +229,6 @@ function animate(){
 		moveLion();
 	}
 	updateOrientation();
-	}
-	
 }
 //end of animate function
 
