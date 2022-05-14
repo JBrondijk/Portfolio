@@ -87,7 +87,6 @@ const	playerProgressBar = document.querySelector(".progress"),
 
 //access camera
 document.addEventListener("DOMContentLoaded",()=>{
-	controls.connect();
 	const VIDEO = document.getElementById("VIDEO");
 	let promise = navigator.mediaDevices.getUserMedia({video: true, audio: false, video:{facingMode:"environment"}});
 	promise.then(function(signal) {
@@ -339,6 +338,7 @@ function resetGame (){
 document.getElementById("btnStart").onclick = function(){
 	startMenu.style.display = "none";
 	warningMessage.style.display = "block";
+	controls.connect();
 }
 document.getElementById("btnWarn").onclick = function(){
 	resetGame();
