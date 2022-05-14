@@ -121,18 +121,6 @@ if (iOS()){
 	window.addEventListener( 'deviceorientation', onDeviceOrientationChangeEvent );
 }
 
-//getting orientationcontrols to work on iOS.
-if (iOS()) {
-	controls.disconnect();
-	startMenu.style.display = "none";
-	iOSMenu.style.display = "block";
-	btniOS.addEventListener( "click", () => {
-		controls.connect();
-		document.body.removeChild( iOSMenu );
-		startMenu.style.display = "block";
-	});
-}
-
 //Game logic
 var PlayerProgress = 0,
 	LionProgress = -10,
