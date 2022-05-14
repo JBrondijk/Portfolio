@@ -100,18 +100,17 @@ if (iOS()){
 	startMenu.style.display = "none";
 	iOSMenu.style.display = "block";
 	btniOS.addEventListener( "click", () => {
-		if ( typeof(DeviceMotionEvent) !== undefined && typeof (DeviceMotionEvent.requestPermission) === 'function' ) {
-			window.DeviceMotionEvent.requestPermission().then( function ( response ) {
-				if ( response == 'granted' ) {
-					window.addEventListener( 'orientationchange', onScreenOrientationChangeEvent );
-					window.addEventListener( 'deviceorientation', onDeviceOrientationChangeEvent );
+		if (typeof DeviceMotionEvent.requestPermission === 'function') {
+			// Handle iOS 13+ devices.
+			DeviceMotionEvent.requestPermission()
+				.then((state) => {
+				if (state === 'granted') {
+					window.addEventListener('devicemotion', handleOrientation);
+				} else {
+					console.error('Request to access the orientation was rejected');
 				}
-			} ).catch( function ( error ) {
-				console.error( 'THREE.DeviceOrientationControls: Unable to use DeviceOrientation API:', error );
-			} );
-		} else {
-			window.addEventListener( 'orientationchange', onScreenOrientationChangeEvent );
-			window.addEventListener( 'deviceorientation', onDeviceOrientationChangeEvent );
+			})
+			.catch(console.error);
 		}
 		document.body.removeChild( iOSMenu );
 		startMenu.style.display = "block";
@@ -119,6 +118,29 @@ if (iOS()){
 } else {
 	window.addEventListener( 'orientationchange', onScreenOrientationChangeEvent );
 	window.addEventListener( 'deviceorientation', onDeviceOrientationChangeEvent );
+}
+
+function handleOrientation(event) {
+	const device = deviceOrientation;
+	if (device){
+		const alpha = event.alpha ? MathUtils.degToRad( device.alpha ) + alphaOffset : 0; // Z
+
+		const beta = event.beta ? MathUtils.degToRad( device.beta ) : 0; // X'
+
+		const gamma = event.gamma ? MathUtils.degToRad( device.gamma ) : 0; // Y''
+
+		const orient = screenOrientation ? MathUtils.degToRad( screenOrientation ) : 0; // O
+
+		setObjectQuaternion( camera.quaternion, alpha, beta, gamma, orient );
+		/*
+		if ( 8 * ( 1 - lastQuaternion.dot( camera.quaternion ) ) > EPS ) {
+
+			lastQuaternion.copy( camera.quaternion );
+			dispatchEvent( _changeEvent );
+
+		}
+		*/
+	}
 }
 
 //Game logic
