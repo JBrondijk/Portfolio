@@ -48,7 +48,7 @@ let SIZE = {x:0,y:0,width:0,height:0};
 	const rotator = new THREE.Object3D();
 	const camera = new THREE.PerspectiveCamera();
 	const renderer = new THREE.WebGLRenderer({alpha:true});
-	var controls;
+	const controls = new DeviceOrientationControls(camera);
 
 	let cameraWorldPos = new THREE.Vector3();
 	let cameraWorldDir = new THREE.Vector3();
@@ -56,28 +56,14 @@ let SIZE = {x:0,y:0,width:0,height:0};
 
 //getting orientationcontrols to work on iOS.
 if (iOS()) {
+	controls.disconnect();
 	startMenu.style.display = "none";
 	iOSMenu.style.display = "block";
 	btniOS.addEventListener( "click", () => {
-		if ( typeof( DeviceOrientationEvent ) !== "undefined" && typeof( DeviceOrientationEvent.requestPermission ) === "function" ) {
-			// (optional) Do something before API request prompt.
-			DeviceOrientationEvent.requestPermission()
-				.then( response => {
-				// (optional) Do something after API prompt dismissed.
-				if ( response == "granted" ) {
-					controls = new DeviceOrientationControls(camera);
-					document.body.removeChild( iOSMenu );
-					startMenu.style.display = "block";
-				}
-			})
-				.catch( console.error )
-		} else {
-			alert( "Sta toe om spel te kunnen spelen" );
-		}
-	} );
-} else {
-	document.body.removeChild( iOSMenu );
-	controls = new DeviceOrientationControls(camera);
+		controls.connect();
+		document.body.removeChild( iOSMenu );
+		startMenu.style.display = "block";
+	}
 }
 
 //Game logic
