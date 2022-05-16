@@ -207,7 +207,7 @@ function findSelectedObject(){
         ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
         ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
 		ObjectPos.z = 0;
-        if (selectionBox.contains(ObjectPos.x, ObjectPos.y)){
+        if (selectionBoxContains(ObjectPos.x, ObjectPos.y)){
 			//object is in box and is selected
 			return(closestObject);
         } else {
@@ -235,17 +235,8 @@ function distance2D(pointA, pointB){
 	return(Math.sqrt(distanceX*distanceX + distanceY*distanceY));
 }
 
-//create the selectionbox. 
-function createSelectionBox(x,y,w,h){
-	this.x = x;
-    this.y = y;
-    this.width = w;
-    this.height = h;
-
-    this.contains = function (x, y) {
-        return this.x <= x && x <= this.x + this.width &&
-               this.y <= y && y <= this.y + this.height;
-    }
+selectionBoxContains(x,y){
+	return (selectionBox.x <= x && x <= selectionBox.x+selectionBox.width && selectionBox.y <= y && y <= selectionBox.y + selectionBox.height);
 }
 
 document.getElementById("btnStart").onclick = function(){
