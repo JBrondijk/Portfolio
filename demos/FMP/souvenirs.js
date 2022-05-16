@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 	const start = async () => {
 		const mindarThree = new window.MINDAR.IMAGE.MindARThree({
 			container: document.querySelector("#myARcontainer"),
-			imageTargetSrc: "./files/souvenirs.mind", //change to correct imagetarget.
+			imageTargetSrc: "./files/souvenirs.mind",
 			uiLoading: "no",
 			uiScanning: "no"//,
 			//filterMinCF: 0.001,
