@@ -1,11 +1,5 @@
 const THREE = window.MINDAR.IMAGE.THREE;
 
-//debugging
-var mouse = new THREE.Vector2()
-document.addEventListener('mousemove', onDocumentMouseMove, false);
-document.addEventListener('mousedown', onMouseDown, false);
-
-
 //imagetracking template:
 var gameState = "start",
 	scanning = true,
@@ -16,11 +10,6 @@ var gameState = "start",
     heightHalf = documentHeight/2, 
 	selectionBox = new createSelectionBox(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset),
     boxMiddle = new THREE.Vector2();
-
-	console.log(selectionBox.x);
-	console.log(selectionBox.y);
-	console.log(documentWidth*0.8);
-	console.log(documentWidth*0.8-boxOffset);
 
     boxMiddle.x = selectionBox.x+(documentWidth*0.8)/2;
     boxMiddle.y = selectionBox.y+(documentWidth*0.8-boxOffset)/2;
@@ -351,7 +340,6 @@ selectbtn.onclick = function(){
 
 
 function findSelectedObject(arrayToSearch){
-	console.log("findSelectedObject");
 	var closestObject;
     var ObjectPos = new THREE.Vector3();
     var shortestdistance;    
@@ -376,25 +364,19 @@ function findSelectedObject(arrayToSearch){
 		}	
 		if (closestObject != null){
 			//check if closest object is in the selectionbox.
-			console.log("found an object");
-
 			ObjectPos = ObjectPos.setFromMatrixPosition(closestObject.matrixWorld);
 			ObjectPos.project(ARCamera);
 			ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
 			ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
 			if (selectionBox.contains(ObjectPos.x, ObjectPos.y)){
-				console.log("Object is in box and is selected.");
 				return(closestObject);
 			} else {
-				console.log("no object in box, nothing selected.");
 				return (null); 
 			}
 		} else {
-			console.log("all objects found are open, nothing selected. ")
 			return (null); 
 		}
   	} else {
-		console.log("no objects to select, nothing selected.");
 		return (null);
 	}
 }
@@ -475,14 +457,4 @@ document.getElementById("btnContinue").onclick = function(){
 		gameState = "play";
 		updateUI();
 	}
-}
-
-function onDocumentMouseMove(event) {
-    event.preventDefault();
-    mouse.x = event.clientX;
-    mouse.y = event.clientY;
-}
-
-function onMouseDown(event){
-	console.log("Boxmiddle | X: " + boxMiddle.x + " Y: " + boxMiddle.y + ", Mouse | X: " + mouse.x + " Y: " +mouse.y);
 }

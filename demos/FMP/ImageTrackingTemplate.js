@@ -3,13 +3,16 @@ const THREE = window.MINDAR.IMAGE.THREE;
 //imagetracking template:
 var gameState = "start",
 	scanning = true,
-	widthHalf = window.innerWidth/2,
-    heightHalf = window.innerHeight/2,
-	selectionBox = new createSelectionBox(window.innerWidth*0.1, window.innerHeight*0.25, window.innerWidth*0.8, window.innerWidth*0.8),
+	documentWidth = window.innerWidth,
+	documentHeight = window.innerHeight,
+	boxOffset = (((document.getElementById("myARcontainer").clientHeight)/95)*100)-documentHeight, //offset the selectionbox using this variable to make its location the same on every browser. 
+	widthHalf = documentWidth/2, 
+    heightHalf = documentHeight/2, 
+	selectionBox = new createSelectionBox(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset),
     boxMiddle = new THREE.Vector2();
 
-    boxMiddle.x = selectionBox.x+(selectionBox.w/2);
-    boxMiddle.y = selectionBox.y+(selectionBox.h/2);
+    boxMiddle.x = selectionBox.x+(documentWidth*0.8)/2;
+    boxMiddle.y = selectionBox.y+(documentWidth*0.8-boxOffset)/2;
 
 	//deltatime variables
 	var lastTime = (new Date()).getTime(),
