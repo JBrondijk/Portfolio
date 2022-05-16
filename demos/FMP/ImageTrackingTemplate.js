@@ -175,7 +175,7 @@ function distance2D(pointA, pointB){
 }
 
 function updateSelectionBox(){
-	selectionBox = document.getElementById("xrayBox").getBoundingClientRect();
+	selectionBox = document.getElementById("selectBox").getBoundingClientRect();
 	boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
 	boxMiddle.y = selectionBox.y+(selectionBox.height)/2; 
 }

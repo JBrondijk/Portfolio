@@ -253,9 +253,11 @@ function distance2D(pointA, pointB){
 }
 
 function updateSelectionBox(){
-	selectionBox = document.getElementById("xrayBox").getBoundingClientRect();
-	boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
-	boxMiddle.y = selectionBox.y+(selectionBox.height)/2; 
+	if (document.getElementById("xrayBox").getBoundingClientRect()!=null){
+		selectionBox = document.getElementById("xrayBox").getBoundingClientRect();
+		boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
+		boxMiddle.y = selectionBox.y+(selectionBox.height)/2; 
+	}
 }
 function selectionBoxContains(x,y){
 	return (selectionBox.x <= x && x <= selectionBox.x+selectionBox.width && selectionBox.y <= y && y <= selectionBox.y + selectionBox.height);
