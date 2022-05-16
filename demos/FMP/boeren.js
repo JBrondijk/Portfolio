@@ -31,7 +31,8 @@ const	scanner = document.getElementById("scanning"),
 		startMenu = document.getElementById("startMenu"),
 		selectMenu = document.getElementById("selectMenu"),
 		selectbtn = document.getElementById("btnSelect"),
-		speechbubble = document.getElementById("speechBubble"),
+		speechBubble = document.getElementById("speechBubble"),
+		speechBubbleText = document.getElementById("speechBubbleText")
 		speechBubbleArrowTop = document.getElementById("speechBubbleArrowTop");
 		//speechBubbleArrowBottom = document.getElementById("speechBubbleArrowBottom");
 
@@ -39,6 +40,7 @@ const	scanner = document.getElementById("scanning"),
 var mouthLocation;
 var hoveredObject;
 var previousHoveredObject;
+var yMinSelectMenu = selectMenu.getBoundingClientRect().y;
 
 var ARCamera;
 
@@ -123,9 +125,9 @@ function loop (){
 	delta = (currentTime - lastTime) / 1000;
 	lastTime = currentTime;
 
-	updateSelectionBox()
 	mouthLocation = getScreenLocation(mouth);
 	updateSpeechBubble();
+	updateSelectionBox();
 
 	previousHoveredObject = hoveredObject;
 	hoveredObject = findSelectedObject();
@@ -184,7 +186,7 @@ function displayNone(){
 
 function updateSpeechBubble(){
 	speechBubble.style.top = mouthLocation.y +"px";
-	speechBubbleArrowTop.style.marginLeft = Math.min(Math.max(mouthLocation.x - (0.1*documentWidth), 0), speechBubble.clientWidth-speechBubbleArrowTop.clientWidth) +"px";
+	speechBubbleArrowTop.style.marginLeft = Math.min(Math.max(mouthLocation.x - (0.1*documentWidth), 0), speechBubbleText.clientWidth-speechBubbleArrowTop.clientWidth) +"px";
 }
 
 
@@ -253,6 +255,8 @@ function distance2D(pointA, pointB){
 }
 
 function updateSelectionBox(){
+	selectMenu.style.top = (mouthLocation.y+speechBubble.clientHeight) +"px";
+	
 	selectionBox = document.getElementById("selectBox").getBoundingClientRect();
 	boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
 	boxMiddle.y = selectionBox.y+(selectionBox.height)/2; 
