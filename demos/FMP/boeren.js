@@ -23,6 +23,8 @@ var newBoxMiddle = new THREE.Vector2();
 var oldSelectionBoxLog = "oldSelectionBox: X " + selectionBox.x + " , Y " + selectionBox.y + " , W " + selectionBox.width + " , H " + selectionBox.height + " , MiddleX " + boxMiddle.x + " , MiddleY" + boxMiddle.y;
 var newSelectionBoxLog = "newSelectionBox: X " + newSelectionBox.x + " , Y " + newSelectionBox.y + " , W " + newSelectionBox.width + " , H " + newSelectionBox.height + " , MiddleX " + newBoxMiddle.x + " , MiddleY" + newBoxMiddle.y;
 
+console.log(oldSelectionBoxLog);
+console.log(newSelectionBoxLog);
 
 	//deltatime variables
 	var lastTime = (new Date()).getTime(),
