@@ -129,7 +129,7 @@ function loop (){
 	previousHoveredObject = hoveredObject;
 	hoveredObject = findSelectedObject();
 	if (hoveredObject != previousHoveredObject){
-		if (previousHoveredObject != null{
+		if (previousHoveredObject != null){
 			previousHoveredObject.material = materialNormal;
 		}
 		if (hoveredObject != null){
