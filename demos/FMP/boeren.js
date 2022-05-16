@@ -8,11 +8,21 @@ var gameState = "start",
 	boxOffset = (((document.getElementById("myARcontainer").clientHeight)/95)*100)-documentHeight, //offset the selectionbox using this variable to make its location the same on every browser. 
 	widthHalf = documentWidth/2, 
     heightHalf = documentHeight/2, 
-	selectionBox = document.getElementById("selectBox").getBoundingClientRect(),
+	selectionBox = new createSelectionBox(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset),
     boxMiddle = new THREE.Vector2();
 
-    boxMiddle.x = selectionBox.x+selectionBox.width/2;
-    boxMiddle.y = selectionBox.y+selectionBox.height/2;
+    boxMiddle.x = selectionBox.x+(documentWidth*0.8)/2;
+    boxMiddle.y = selectionBox.y+(documentWidth*0.8-boxOffset)/2;
+
+var newSelectionBox = document.getElementById("selectBox").getBoundingClientRect();
+var newBoxMiddle = new THREE.Vector2();
+
+	newBoxMiddle.x = selectionBox.x+newSelectionBox.width/2;
+    newBoxMiddle.y = selectionBox.y+newSelectionBox.height/2;
+
+var oldSelectionBoxLog = "oldSelectionBox: X " + selectionBox.x + " , Y " + selectionBox.y + " , W " + selectionBox.width + " , H " + selectionBox.height + " , MiddleX " + boxMiddle.x + " , MiddleY" + boxMiddle.y;
+var newSelectionBoxLog = "newSelectionBox: X " + newSelectionBox.x + " , Y " + newSelectionBox.y + " , W " + newSelectionBox.width + " , H " + newSelectionBox.height + " , MiddleX " + newBoxMiddle.x + " , MiddleY" + newBoxMiddle.y;
+
 
 	//deltatime variables
 	var lastTime = (new Date()).getTime(),
@@ -207,7 +217,7 @@ function findSelectedObject(){
         ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
         ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
 		ObjectPos.z = 0;
-        if (selectionBoxContains(ObjectPos.x, ObjectPos.y)){
+        if (selectionBox.contains(ObjectPos.x, ObjectPos.y)){
 			//object is in box and is selected
 			return(closestObject);
         } else {
@@ -235,8 +245,17 @@ function distance2D(pointA, pointB){
 	return(Math.sqrt(distanceX*distanceX + distanceY*distanceY));
 }
 
-function selectionBoxContains(x,y){
-	return (selectionBox.x <= x && x <= selectionBox.x+selectionBox.width && selectionBox.y <= y && y <= selectionBox.y + selectionBox.height);
+//create the selectionbox. 
+function createSelectionBox(x,y,w,h){
+	this.x = x;
+    this.y = y;
+    this.width = w;
+    this.height = h;
+
+    this.contains = function (x, y) {
+        return this.x <= x && x <= this.x + this.width &&
+               this.y <= y && y <= this.y + this.height;
+    }
 }
 
 document.getElementById("btnStart").onclick = function(){
