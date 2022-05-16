@@ -235,7 +235,7 @@ function distance2D(pointA, pointB){
 	return(Math.sqrt(distanceX*distanceX + distanceY*distanceY));
 }
 
-selectionBoxContains(x,y){
+function selectionBoxContains(x,y){
 	return (selectionBox.x <= x && x <= selectionBox.x+selectionBox.width && selectionBox.y <= y && y <= selectionBox.y + selectionBox.height);
 }
 
