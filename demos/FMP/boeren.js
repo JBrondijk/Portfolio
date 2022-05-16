@@ -352,7 +352,7 @@ function distance2D(pointA, pointB){
 }
 
 function updateSelectionBox(){
-	selectMenu.style.top = (mouthLocation.y+speechBubble.clientHeight+) +"px";
+	selectMenu.style.top = (mouthLocation.y+speechBubble.clientHeight+25) +"px";
 	
 	selectionBox = document.getElementById("selectBox").getBoundingClientRect();
 	boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
