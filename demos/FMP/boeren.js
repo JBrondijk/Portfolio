@@ -183,7 +183,7 @@ function updateUI(){
 		selectbtn.style.display = "block";
 		selectMenu.style.display = "block";
 		speechBubble.style.display = "block";
-	} else if (gamestate == "menu") {
+	} else if (gameState == "menu") {
 		displayNone();
 		foundMenu.style.display = "block";
 	}
