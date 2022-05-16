@@ -8,11 +8,11 @@ var gameState = "start",
 	boxOffset = (((document.getElementById("myARcontainer").clientHeight)/95)*100)-documentHeight, //offset the selectionbox using this variable to make its location the same on every browser. 
 	widthHalf = documentWidth/2, 
     heightHalf = documentHeight/2, 
-	selectionBox = new createSelectionBox(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset),
+	selectionBox = document.getElementById("selectBox").getBoundingClientRect(),
     boxMiddle = new THREE.Vector2();
 
-    boxMiddle.x = selectionBox.x+(documentWidth*0.8)/2;
-    boxMiddle.y = selectionBox.y+(documentWidth*0.8-boxOffset)/2;
+    boxMiddle.x = selectionBox.x+selectionBox.width/2;
+    boxMiddle.y = selectionBox.y+selectionBox.height/2;
 
 	//deltatime variables
 	var lastTime = (new Date()).getTime(),
