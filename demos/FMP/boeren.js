@@ -184,7 +184,7 @@ function displayNone(){
 
 function updateSpeechBubble(){
 	speechBubble.style.top = mouthLocation.y +"px";
-	speechBubbleArrowTop.margin-left = Math.min(Math.max(mouthLocation.x - (0.1*documentWidth, 0), speechBubble.clientWidth-speechBubbleArrowTop.clientWidth) +"px";
+	speechBubbleArrowTop.style.margin-left = Math.min(Math.max(mouthLocation.x - (0.1*documentWidth, 0), speechBubble.clientWidth-speechBubbleArrowTop.clientWidth) +"px";
 }
 
 
