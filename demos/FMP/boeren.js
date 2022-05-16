@@ -31,9 +31,9 @@ const	scanner = document.getElementById("scanning"),
 		startMenu = document.getElementById("startMenu"),
 		selectMenu = document.getElementById("selectMenu"),
 		selectbtn = document.getElementById("btnSelect"),
-		speechbubble = document.getElementById("speechBubble");
+		speechbubble = document.getElementById("speechBubble"),
 		speechBubbleArrowTop = document.getElementById("speechBubbleArrowTop");
-		speechBubbleArrowBottom = document.getElementById("speechBubbleArrowBottom");
+		//speechBubbleArrowBottom = document.getElementById("speechBubbleArrowBottom");
 
 //game elements
 var mouthLocation;
