@@ -17,8 +17,8 @@ var gameState = "start",
 var newSelectionBox = document.getElementById("selectBox").getBoundingClientRect();
 var newBoxMiddle = new THREE.Vector2();
 
-	newBoxMiddle.x = selectionBox.x+newSelectionBox.width/2;
-    newBoxMiddle.y = selectionBox.y+newSelectionBox.height/2;
+	newBoxMiddle.x = newSelectionBox.x+newSelectionBox.width/2;
+    newBoxMiddle.y = newSelectionBox.y+newSelectionBox.height/2;
 
 var oldSelectionBoxLog = "oldSelectionBox: X " + selectionBox.x + " , Y " + selectionBox.y + " , W " + selectionBox.width + " , H " + selectionBox.height + " , MiddleX " + boxMiddle.x + " , MiddleY" + boxMiddle.y;
 var newSelectionBoxLog = "newSelectionBox: X " + newSelectionBox.x + " , Y " + newSelectionBox.y + " , W " + newSelectionBox.width + " , H " + newSelectionBox.height + " , MiddleX " + newBoxMiddle.x + " , MiddleY" + newBoxMiddle.y;
@@ -176,6 +176,8 @@ function updateUI(){
 	} else if (gameState == "play") {
 		selectbtn.style.display = "block";
 		selectMenu.style.display = "block";
+		newSelectionBox = document.getElementById("selectBox").getBoundingClientRect();
+		console.log(newSelectionBoxLog);
 		scanner.style.display = "none";
 		startMenu.style.display = "none";
 	} /* else if (gamestate == "menu") {
