@@ -48,7 +48,7 @@ let SIZE = {x:0,y:0,width:0,height:0};
 	const rotator = new THREE.Object3D();
 	const camera = new THREE.PerspectiveCamera();
 	const renderer = new THREE.WebGLRenderer({alpha:true});
-	const controls = new DeviceOrientationControls(camera);
+	
 
 	let cameraWorldPos = new THREE.Vector3();
 	let cameraWorldDir = new THREE.Vector3();
@@ -56,14 +56,15 @@ let SIZE = {x:0,y:0,width:0,height:0};
 
 //getting orientationcontrols to work on iOS.
 if (iOS()) {
-	controls.disconnect();
 	startMenu.style.display = "none";
 	iOSMenu.style.display = "block";
 	btniOS.addEventListener( "click", () => {
-		controls.connect();
-		document.body.removeChild( iOSMenu );
+		const controls = new DeviceOrientationControls(camera);
+		iOSMenu.style.display = "none";
 		startMenu.style.display = "block";
 	});
+} else {
+	const controls = new DeviceOrientationControls(camera);
 }
 
 //Game logic
