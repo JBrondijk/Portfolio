@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 		anchor.group.add(selectPlane2);
 		anchor.group.add(selectPlane3);
 		anchor.group.add(selectPlane4);
-		anchor.group.add(selectPlane5);
+		anchor.group.add(mouth);
 
 
 		//on target found
