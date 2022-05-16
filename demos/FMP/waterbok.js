@@ -54,16 +54,18 @@ let SIZE = {x:0,y:0,width:0,height:0};
 	let cameraWorldDir = new THREE.Vector3();
 	const raycaster = new THREE.Raycaster();
 
-//getting orientationcontrols to work on iOS.
+//getting orientationcontrols to work on iOS (it doesn't)
 if (iOS()) {
 	controls.disconnect();
 	startMenu.style.display = "none";
 	iOSMenu.style.display = "block";
+	/*
 	btniOS.addEventListener( "click", () => {
 		controls.connect();
 		document.body.removeChild( iOSMenu );
 		startMenu.style.display = "block";
 	});
+	*/
 }
 
 //Game logic
