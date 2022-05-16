@@ -48,16 +48,16 @@ const materialNormal = new THREE.MeshBasicMaterial({map: textureNormal, transpar
 const materialHover = new THREE.MeshBasicMaterial({map: textureHover, transparent:true, side:2,alphaTest: 0.1});
 
 const selectPlane1 = new THREE.Mesh(geometry, materialNormal);
-selectPlane1.position.set(-0.4,0.3,0);
+selectPlane1.position.set(-0.4,-0.3,0);
 selectableObjects[0]=selectPlane1;
 const selectPlane2 = new THREE.Mesh(geometry, materialNormal);
-selectPlane2.position.set(-0.2,0.3,0);
+selectPlane2.position.set(-0.2,-0.3,0);
 selectableObjects[1]=selectPlane2;
 const selectPlane3 = new THREE.Mesh(geometry, materialNormal);
-selectPlane3.position.set(0,0.3,0);
+selectPlane3.position.set(0,-0.3,0);
 selectableObjects[2]=selectPlane3;
 const selectPlane4 =  new THREE.Mesh(geometry, materialNormal);
-selectPlane4.position.set(0.2,0.3,0);
+selectPlane4.position.set(0.2,-0.3,0);
 selectableObjects[3]=selectPlane4;
 
 console.log (selectableObjects);
@@ -125,11 +125,15 @@ function loop (){
 	mouthLocation = getScreenLocation(mouth);
 	console.log(mouthLocation);
 
+
+	previousHoveredObject = hoveredObject;
 	hoveredObject = findSelectedObject();
 	if (hoveredObject != previousHoveredObject){
-		previousHoveredObject.material = materialNormal();
+		if (previousHoveredObject != null{
+			previousHoveredObject.material = materialNormal;
+		}
 		if (hoveredObject != null){
-			hoveredObject.material = materialHover();
+			hoveredObject.material = materialHover;
 			selectbtn.disabled = false;
 			if (hoveredObject==selectPlane1){
 				selectbtn.innerHTML = "Waakhonden";
@@ -145,6 +149,7 @@ function loop (){
 			selectbtn.innerHTML = "Selecteer een oplossing";
 		}
 	}
+
 
 	requestAnimationFrame(loop);
 }
