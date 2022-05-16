@@ -150,7 +150,7 @@ function animate(){
 		updateProgress();
 		moveLion();
 	}
-	if (controls!=null){
+	if (controls.enabled){
 		controls.update();
 		renderer.render(scene,camera);
 		requestAnimationFrame(animate);
