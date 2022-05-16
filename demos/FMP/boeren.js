@@ -65,7 +65,7 @@ mouth.position.set(-0.1,-0.2,0);
 
 const backgroundGeometry = new THREE.PlaneGeometry(1,1);
 const backgroundMaterial = new THREE.MeshBasicMaterial({opacity:0});
-const background new THREE.Mesh(backgroundGeometry,backgroundMaterial);
+const background = new THREE.Mesh(backgroundGeometry,backgroundMaterial);
 
 backgroundGeometry.add(selectPlane1);
 backgroundGeometry.add(selectPlane2);
