@@ -232,7 +232,7 @@ selectbtn.onclick = function(){
 			}
 		} else if (currentQuestion == 2){
 			if (hoveredObject==selectPlane1){
-				submitAnswer(false,"Waakhonden worden voornamelijk ingezet tegen kleinere roofdieren zoals jachtluipaarden. <br> Er moet een andere oplossing zijn...");
+				submitAnswer(false,"Waakhonden worden voornamelijk ingezet tegen kleinere roofdieren zoals cheeta's. <br> Er moet een andere oplossing zijn...");
 			}	else if (hoveredObject==selectPlane2){
 				submitAnswer(false,"Deze boer heeft al een veekraal, toch klimmen sommige roofdieren nog over de hekken heen om bij het vee te komen. <br> Zie jij een oplossing om ze verder af te schrikken?");
 			}	else if (hoveredObject==selectPlane3){
@@ -352,7 +352,7 @@ function distance2D(pointA, pointB){
 }
 
 function updateSelectionBox(){
-	selectMenu.style.top = (mouthLocation.y+speechBubble.clientHeight+25) +"px";
+	selectMenu.style.top = Math.max((mouthLocation.y+speechBubble.clientHeight*1.5),yMinSelectMenu) +"px";
 	
 	selectionBox = document.getElementById("selectBox").getBoundingClientRect();
 	boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
