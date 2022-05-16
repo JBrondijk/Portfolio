@@ -42,10 +42,10 @@ var ARCamera;
 //ThreeJS stuff:
 const loader = new THREE.TextureLoader();
 const geometry = new THREE.PlaneGeometry(0.19,0.19);
-const texture = loader.load("./textures/selectCircle.png");
+const textureNormal = loader.load("./textures/selectCircle.png");
 const textureHover = loader.load("./textures/selectCircleHover.png");
-const material = new THREE.MeshBasicMaterial({map: texture, transparent:true, side:2});
-const materialHover = new THREE.MeshBasicMaterial({map: textureHover, transparent:true, side:2});
+const material = new THREE.MeshBasicMaterial({map: textureNormal, transparent:true, side:2,alphaTest: 0.1});
+const materialHover = new THREE.MeshBasicMaterial({map: textureHover, transparent:true, side:2,alphaTest: 0.1});
 
 const selectPlane1 = new THREE.Mesh(geometry, texture);
 selectPlane1.position.set(-0.4,0.3,0);
@@ -59,6 +59,8 @@ selectableObjects[2]=selectPlane3;
 const selectPlane4 =  new THREE.Mesh(geometry, texture);
 selectPlane4.position.set(0.2,0.3,0);
 selectableObjects[3]=selectPlane4;
+
+console.log (selectableObjects);
 
 const mouth = new THREE.Object3D();
 mouth.position.set(-0.1,-0.2,0);
