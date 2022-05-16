@@ -409,7 +409,7 @@ function updateUI(){
 		displayNone();
 		selectbtn.style.display = "block";
 		selectMenu.style.display = "block";
-		selectionBox = document.getElementById("selectBox").getBoundingClientRect();
+		selectionBox = document.getElementById("xrayBox").getBoundingClientRect();
 		boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
 		boxMiddle.y = selectionBox.y+(selectionBox.height)/2; 
 	}  else if (gameState == "menu") {
