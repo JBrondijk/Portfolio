@@ -67,11 +67,11 @@ const backgroundGeometry = new THREE.PlaneGeometry(1,1);
 const backgroundMaterial = new THREE.MeshBasicMaterial({opacity:0});
 const background = new THREE.Mesh(backgroundGeometry,backgroundMaterial);
 
-backgroundGeometry.add(selectPlane1);
-backgroundGeometry.add(selectPlane2);
-backgroundGeometry.add(selectPlane3);
-backgroundGeometry.add(selectPlane4);
-backgroundGeometry.add(mouth);
+background.add(selectPlane1);
+background.add(selectPlane2);
+background.add(selectPlane3);
+background.add(selectPlane4);
+background.add(mouth);
 
 document.addEventListener("DOMContentLoaded",()=>{
 	const start = async () => {
