@@ -150,7 +150,7 @@ p{
 	margin-bottom: 3vh;
 }
 
-#souvenirsFound{
+.progressCounter{
 	float : right;
 	background: white;
 	border: 0.5vw solid black;
@@ -172,7 +172,7 @@ p{
 
 }
 
-#souvenirsFound::first-letter {
+.progressCounter::first-letter {
   font-size: 150%;
   color: #EA5B19;
 }

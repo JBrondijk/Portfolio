@@ -14,7 +14,7 @@
 			<div id="myARcontainer">
 				<div id = "speechBubble">
 					<div id = "speechBubbleArrowTop"> </div>
-					<p id = "speechBubbleText">Olifanten eten mijn gewassen op en trappen alles plat! Als ik ze probeer weg te jagen worden ze aggressief! </p>
+					<p id = "speechBubbleText" style = "display:none">Olifanten eten mijn gewassen op en trappen alles plat! Als ik ze probeer weg te jagen worden ze aggressief! </p>
 					<!-- <div id = "speechBubbleArrowBottom"> </div> -->
 				</div>
 			</div>
@@ -44,6 +44,19 @@
 			<h2> Wijs de juiste oplossing aan!</h2>
 			<div id="selectBox">
 				<div class="dot"></div>
+			</div>
+		</div>
+
+		<div class = "menu" id="foundMenu" style = "display:none; ">
+			<div>
+				<h2 id = "resultHeader"> ResultHeader </h2>
+				<p class= "menuText" id ="resultText"> ResultText </p>
+			</div>
+			<p class="souvenirText">
+				<span>Boeren Geholpen:</span> <span id="questionsAnswered" class = "progressCounter"> 0 /4 </span>
+			</p>
+			<div class = menuButtonContainer>
+				<button class = "btn-orange" id="btnContinue"> Ga Verder </button>
 			</div>
 		</div>
 

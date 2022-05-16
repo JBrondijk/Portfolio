@@ -31,9 +31,14 @@ const	scanner = document.getElementById("scanning"),
 		startMenu = document.getElementById("startMenu"),
 		selectMenu = document.getElementById("selectMenu"),
 		selectbtn = document.getElementById("btnSelect"),
+		continuebtn = document.getElementById("btnContinue"),
 		speechBubble = document.getElementById("speechBubble"),
 		speechBubbleText = document.getElementById("speechBubbleText"),
-		speechBubbleArrowTop = document.getElementById("speechBubbleArrowTop");
+		speechBubbleArrowTop = document.getElementById("speechBubbleArrowTop"),
+		foundMenu = document.getElementById("foundMenu"),
+		resultHeader = document.getElementById("resultHeader"),
+		resultText = document.getElementById("resultText"),
+		questionsAnsweredTxt = document.getElementById("questionsAnswered");
 		//speechBubbleArrowBottom = document.getElementById("speechBubbleArrowBottom");
 
 //game elements
@@ -41,6 +46,15 @@ var mouthLocation;
 var hoveredObject;
 var previousHoveredObject;
 var yMinSelectMenu = selectMenu.getBoundingClientRect().y;
+var currentQuestion = 0;
+var gameComplete = false;
+var questions = [];
+questions[0] = "Afrikaanse Wilde Honden jagen op mijn vee! Hoe kan ik ze nog los laten grazen?";
+questions[1] = "Olifante eten mijn gewassen op en trappen alles plat! Als ik ze probeer weg te jagen worden ze aggressief!";
+questions[2] = "Leeuwen klimmen 's nachts mijn veekraal in en vallen mijn vee aan!";
+questions[4] = "Een jachluipaard ging zomaar aan de haal met een van de schapen uit mijn veekraal!";
+
+updateSpeechBubbleText();
 
 var ARCamera;
 
@@ -168,13 +182,11 @@ function updateUI(){
 		displayNone();	
 		selectbtn.style.display = "block";
 		selectMenu.style.display = "block";
-		selectionBox = document.getElementById("selectBox").getBoundingClientRect();
-		boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
-		boxMiddle.y = selectionBox.y+(selectionBox.height)/2; 
-	} /* else if (gamestate == "menu") {
-		//add additional gamestates like this
-		//make sure to set new gameStates to "block" in other gamestates. 
-	} */
+		speechBubble.style.display = "block";
+	} else if (gamestate == "menu") {
+		displayNone();
+		foundMenu.style.display = "block";
+	}
 }
 
 function displayNone(){
@@ -182,6 +194,8 @@ function displayNone(){
 	scanner.style.display = "none";
 	selectbtn.style.display = "none";
 	selectMenu.style.display = "none";
+	speechBubble.style.display = "none";
+	foundMenu.style.display = "none";
 }
 
 function updateSpeechBubble(){
@@ -189,15 +203,98 @@ function updateSpeechBubble(){
 	speechBubbleArrowTop.style.marginLeft = Math.min(Math.max(mouthLocation.x - (0.1*documentWidth), 0), speechBubbleText.clientWidth-speechBubbleArrowTop.clientWidth) +"px";
 }
 
-
+function updateSpeechBubbleText(){
+	speechBubbleText.innerHTML = questions[currentQuestion];
+}
 
 //select button
 selectbtn.onclick = function(){
     if (hoveredObject != null){
-    	console.log("object selected");
-    } else {
-    	console.log("no object selected");
-    }	
+    	if (currentQuestion == 0){
+			if (hoveredObject==selectPlane1){
+				submitAnswer(false,"Waakhonden zouden wel ingezet kunnen worden tegen afrikaanse wilde honden, maar dan is er een risico dat de waakhonden ziektes overbrengen op de wilde honden. <br> Er moet een andere oplossing zijn...");
+			}	else if (hoveredObject==selectPlane2){
+				submitAnswer(true,"Veel boeren laten hun vee vrij rondlopen, wat ze kwetsbaar maakt voor roofdieren. <br> Hekken plaatsen, en deze onderhouden, helpt conflicten te vermijden.")
+			}	else if (hoveredObject==selectPlane3){
+				submitAnswer(false,"Bijenhekken hebben als doel om gewassen te beschermen tegen olifanten. <br> Er moet een andere oplossing zijn...");
+			}	else if (hoveredObject==selectPlane4){
+				submitAnswer(false,"De fakkel lampen moeten op een veekraal worden vastgemaakt, om deze 's nachts beter te beschermen. Deze boer laat zijn vee 's nachts nog vrij rondlopen. <br> Er moet een andere oplossing zijn...");
+			}
+		} else if (currentQuestion == 1){
+			if (hoveredObject==selectPlane1){
+				submitAnswer(false,"Olifanten laten zich niet zo snel afschrikken door een waakhond. <br> Er moet een andere oplossing zijn...");
+			}	else if (hoveredObject==selectPlane2){
+				submitAnswer(false,"Deze hekken zijn niet sterk genoeg om een olifant tegen te houden. Hekken die wel zo sterk zijn zouden te veel geld kosten. <br> Er moet een andere oplossing zijn...");
+			}	else if (hoveredObject==selectPlane3){
+				submitAnswer(true,"De bijen in bijenhekken houden olifanten weg, bestuiven gewassen en leveren boeren geld op door de verkoop van honing! <br> Allemaal voordelen, voor een goedkope oplossing!");
+			}	else if (hoveredObject==selectPlane4){
+				submitAnswer(false,"Olifanten laten zich minder snel afschrikken dan de roofdieren waar deze lampen voor bedoeld zijn. <br> Er moet een andere oplossing zijn...");
+			}
+		} else if (currentQuestion == 2){
+			if (hoveredObject==selectPlane1){
+				submitAnswer(false,"Waakhonden worden voornamelijk ingezet tegen kleinere roofdieren zoals jachtluipaarden. <br> Er moet een andere oplossing zijn...");
+			}	else if (hoveredObject==selectPlane2){
+				submitAnswer(false,"Deze boer heeft al een veekraal, toch klimmen sommige roofdieren nog over de hekken heen om bij het vee te komen. <br> Zie jij een oplossing om ze verder af te schrikken?");
+			}	else if (hoveredObject==selectPlane3){
+				submitAnswer(false,"Bijenhekken hebben als doel om gewassen te beschermen tegen olifanten. <br> Er moet een andere oplossing zijn...");
+			}	else if (hoveredObject==selectPlane4){
+				submitAnswer(true,"Door boeren dit soort lampen te geven helpen we ze nog meer met het afschrikken van roofdieren. <br> Roofdieren zijn heel voorzichtig met het uikiezen van hun prooi, hoe moeilijker we het voor ze maken, hoe veiliger het vee zal zijn.");
+			}
+		} else if (currentQuestion == 3){
+			if (hoveredObject==selectPlane1){
+				submitAnswer(true,"De meeste boeren zouden zelf geen waakhond kunnen betalen. <br> Door boeren honden te geven, en gratis dierenartsen te verzorgen maken we het een stuk betaalbaarder voor ze.");
+			}	else if (hoveredObject==selectPlane2){
+				submitAnswer(false,"Ook al heeft een boer al een hek of veekraal, proberen sommige roofdieren toch een prooi te bemachtigen. <br> Zie jij een oplossing om ze verder af te schrikken?");
+			}	else if (hoveredObject==selectPlane3){
+				submitAnswer(false,"Bijenhekken hebben als doel om gewassen te beschermen tegen olifanten. <br> Er moet een andere oplossing zijn...");
+			}	else if (hoveredObject==selectPlane4){
+				submitAnswer(false,"");
+			}
+		}
+    } 
+}
+
+function submitAnswer(correct, text){
+	resultText.innerHTML = text;
+	if (correct){
+		currentQuestion = currentQuestion+1;
+		updateQuestionsAnsweredTxt();
+		continuebtn.innerHTML = "Ga Verder"
+		resultHeader.innerHTML = "Goed Gedaan!"
+	} else {
+		continuebtn.innerHTML = "Probeer Opnieuw";
+		resultHeader.innerHTML = "Helaas..."
+	}
+	gameState = "menu";
+	updateUI();
+}
+
+function updateQuestionsAnsweredTxt(){
+	questionsAnsweredTxt.innerHTML = currentQuestion + " /" + questions.length;
+}
+
+continuebtn.onclick = function(){
+	foundMenu.scrollTop = 0;
+	if (!gameComplete){
+		if (currentQuestion < questions.length){
+			updateSpeechBubbleText();
+			gameState = "play";
+			updateUI();
+		} else {
+			//all farmers helped. 
+			resultHeader.innerHTML = "Alle boeren geholpen!";
+			resultText.innerHTML = "Fantastich gedaan! Alle boeren kunnen hun werk nu een stuk veiliger doen en hoeven zich minder zorgen te maken over wilde dieren. <br> Het is belangrijk goed met de boeren te overleggen, zodat een gepaste oplossing kan worden gekozen.<br><br>Naast de oplossingen die je hier zag, werken de verschillende organisaties aan allerlei andere oplossinge om conflicten tussen mens en dier te verhelpen. Ga eens langs bij Stchting Wildlife om meer hierover te leren!";
+			continuebtn.innerHTML = "Speel Opnieuw";
+			gameComplete = true;
+		}
+	} else {
+		gameComplete = false;
+		currentQuestion = 0;
+		updateSpeechBubbleText();
+		updateQuestionsAnsweredTxt();
+		gameState = "play";
+		updateUI();
+	}
 }
 
 function findSelectedObject(){
@@ -255,7 +352,7 @@ function distance2D(pointA, pointB){
 }
 
 function updateSelectionBox(){
-	selectMenu.style.top = (mouthLocation.y+speechBubble.clientHeight*2) +"px";
+	selectMenu.style.top = (mouthLocation.y+speechBubble.clientHeight+) +"px";
 	
 	selectionBox = document.getElementById("selectBox").getBoundingClientRect();
 	boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
