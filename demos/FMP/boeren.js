@@ -64,7 +64,7 @@ selectPlane4.position.set(0.2,-0.3,0.01);
 selectableObjects[3]=selectPlane4;
 
 const mouth = new THREE.Object3D();
-mouth.position.set(-0.1,-0.2,0);
+mouth.position.set(-0.1,0.2,0);
 
 const backgroundGeometry = new THREE.PlaneGeometry(1,1);
 const backgroundMaterial = new THREE.MeshBasicMaterial({opacity:0, transparent:true});
