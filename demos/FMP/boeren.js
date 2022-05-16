@@ -32,7 +32,7 @@ const	scanner = document.getElementById("scanning"),
 		selectMenu = document.getElementById("selectMenu"),
 		selectbtn = document.getElementById("btnSelect"),
 		speechBubble = document.getElementById("speechBubble"),
-		speechBubbleText = document.getElementById("speechBubbleText")
+		speechBubbleText = document.getElementById("speechBubbleText"),
 		speechBubbleArrowTop = document.getElementById("speechBubbleArrowTop");
 		//speechBubbleArrowBottom = document.getElementById("speechBubbleArrowBottom");
 
