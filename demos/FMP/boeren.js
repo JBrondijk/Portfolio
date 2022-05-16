@@ -30,7 +30,10 @@ const selectableObjects = []; //add selectable objects to this array
 const	scanner = document.getElementById("scanning"),
 		startMenu = document.getElementById("startMenu"),
 		selectMenu = document.getElementById("selectMenu"),
-		selectbtn = document.getElementById("btnSelect");
+		selectbtn = document.getElementById("btnSelect"),
+		speechbubble = document.getElementById("speechBubble");
+		speechBubbleArrowTop = document.getElementById("speechBubbleArrowTop");
+		speechBubbleArrowBottom = document.getElementById("speechBubbleArrowBottom");
 
 //game elements
 var mouthLocation;
@@ -122,6 +125,7 @@ function loop (){
 
 	updateSelectionBox()
 	mouthLocation = getScreenLocation(mouth);
+	updateSpeechBubble();
 
 	previousHoveredObject = hoveredObject;
 	hoveredObject = findSelectedObject();
@@ -177,6 +181,13 @@ function displayNone(){
 	selectbtn.style.display = "none";
 	selectMenu.style.display = "none";
 }
+
+function updateSpeechBubble(){
+	speechBubble.style.top = mouthLocation.y +"px";
+	speechBubbleArrowTop.margin-left = Math.min(Math.max(mouthLocation.x - (0.1*documentWidth, 0), speechBubble.clientWidth-speechBubbleArrowTop.clientWidth) +"px";
+}
+
+
 
 //select button
 selectbtn.onclick = function(){
