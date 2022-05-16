@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 		ARCamera = camera;
 
 		const anchor = mindarThree.addAnchor(0);
-		anchor.group.add(backgroundGeometry); //Build scene here.
+		anchor.group.add(background); //Build scene here.
 
 
 		//on target found
