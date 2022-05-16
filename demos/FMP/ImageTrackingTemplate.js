@@ -8,11 +8,11 @@ var gameState = "start",
 	boxOffset = (((document.getElementById("myARcontainer").clientHeight)/95)*100)-documentHeight, //offset the selectionbox using this variable to make its location the same on every browser. 
 	widthHalf = documentWidth/2, 
     heightHalf = documentHeight/2, 
-	selectionBox = new createSelectionBox(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset),
+	selectionBox = new DOMRect(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset),
     boxMiddle = new THREE.Vector2();
 
-    boxMiddle.x = selectionBox.x+(documentWidth*0.8)/2;
-    boxMiddle.y = selectionBox.y+(documentWidth*0.8-boxOffset)/2;
+    boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
+    boxMiddle.y = selectionBox.y+(selectionBox.height)/2;
 
 	//deltatime variables
 	var lastTime = (new Date()).getTime(),
@@ -93,24 +93,29 @@ function loop (){
 
 function updateUI(){
 	if (gameState == "play" && scanning){
+		displayNone();
 		scanner.style.display = "block";
-		startMenu.style.display = "none";	
-		selectbtn.style.display = "none";
-		selectMenu.style.display = "none";
 	} else if (gameState == "start"){
+		displayNone();
 		startMenu.style.display = "block";	
-		scanner.style.display = "none";
-		selectbtn.style.display = "none";
-		selectMenu.style.display = "none";
 	} else if (gameState == "play") {
+		displayNone();
 		selectbtn.style.display = "block";
 		selectMenu.style.display = "block";
-		scanner.style.display = "none";
-		startMenu.style.display = "none";
+		selectionBox = document.getElementById("selectBox").getBoundingClientRect();
+		boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
+		boxMiddle.y = selectionBox.y+(selectionBox.height)/2;
 	} /* else if (gamestate == "menu") {
 		//add additional gamestates like this
 		//make sure to set new gameStates to "block" in other gamestates. 
 	} */
+}
+
+function displayNone(){
+	startMenu.style.display = "none";	
+	scanner.style.display = "none";
+	selectbtn.style.display = "none";
+	selectMenu.style.display = "none";
 }
 
 //select button
@@ -149,7 +154,7 @@ function findSelectedObject(){
         ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
         ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
 		ObjectPos.z = 0;
-        if (selectionBox.contains(ObjectPos.x, ObjectPos.y)){
+        if (selectionBoxContains(ObjectPos.x, ObjectPos.y)){
 			//object is in box and is selected
 			return(closestObject);
         } else {
@@ -167,17 +172,8 @@ function distance2D(pointA, pointB){
 	return(Math.sqrt(distanceX*distanceX + distanceY*distanceY));
 }
 
-//create the selectionbox. 
-function createSelectionBox(x,y,w,h){
-	this.x = x;
-    this.y = y;
-    this.width = w;
-    this.height = h;
-
-    this.contains = function (x, y) {
-        return this.x <= x && x <= this.x + this.width &&
-               this.y <= y && y <= this.y + this.height;
-    }
+function selectionBoxContains(x,y){
+	return (selectionBox.x <= x && x <= selectionBox.x+selectionBox.width && selectionBox.y <= y && y <= selectionBox.y + selectionBox.height);
 }
 
 document.getElementById("btnStart").onclick = function(){

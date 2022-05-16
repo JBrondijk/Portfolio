@@ -5,14 +5,13 @@ var gameState = "start",
 	scanning = true,
 	documentWidth = window.innerWidth,
 	documentHeight = window.innerHeight,
-	boxOffset = (((document.getElementById("myARcontainer").clientHeight)/95)*100)-documentHeight, //offset the selectionbox using this variable to make its location the same on every browser. 
 	widthHalf = documentWidth/2, 
     heightHalf = documentHeight/2, 
-	selectionBox = new createSelectionBox(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset),
+	selectionBox = new DOMRect(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset),
     boxMiddle = new THREE.Vector2();
 
-    boxMiddle.x = selectionBox.x+(documentWidth*0.8)/2;
-    boxMiddle.y = selectionBox.y+(documentWidth*0.8-boxOffset)/2;
+    boxMiddle.x = selectionBox.x+selectionBox.width/2;
+    boxMiddle.y = selectionBox.y+selectionBox.height/2;
 
 	//deltatime variables
 	var lastTime = (new Date()).getTime(),
@@ -238,7 +237,7 @@ function checkXray (){
 				objectPos.x = (objectPos.x * widthHalf) + widthHalf;
 				objectPos.y = - (objectPos.y * heightHalf) + heightHalf;
 				objectPos.z = 0;
-				if (selectionBox.contains(objectPos.x, objectPos.y) && selectMenu.style.display == "block"){
+				if (selectionBoxContains(objectPos.x, objectPos.y) && selectMenu.style.display == "block"){
 					suitcases[i].children[0].visible = false;
 				} else {
 					suitcases[i].children[0].visible = true;
@@ -368,7 +367,7 @@ function findSelectedObject(arrayToSearch){
 			ObjectPos.project(ARCamera);
 			ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
 			ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
-			if (selectionBox.contains(ObjectPos.x, ObjectPos.y)){
+			if (selectionBoxContains(ObjectPos.x, ObjectPos.y)){
 				return(closestObject);
 			} else {
 				return (null); 
@@ -388,17 +387,8 @@ function distance2D(pointA, pointB){
 	return(Math.sqrt(distanceX*distanceX + distanceY*distanceY));
 }
 
-//create the selectionbox. 
-function createSelectionBox(x,y,w,h){
-	this.x = x;
-    this.y = y;
-    this.width = w;
-    this.height = h;
-
-    this.contains = function (x, y) {
-        return this.x <= x && x <= this.x + this.width &&
-               this.y <= y && y <= this.y + this.height;
-    }
+function selectionBoxContains(x,y){
+	return (selectionBox.x <= x && x <= selectionBox.x+selectionBox.width && selectionBox.y <= y && y <= selectionBox.y + selectionBox.height);
 }
 
 //generate random integer (for array selections)
@@ -418,6 +408,9 @@ function updateUI(){
 		displayNone();
 		selectbtn.style.display = "block";
 		selectMenu.style.display = "block";
+		selectionBox = document.getElementById("selectBox").getBoundingClientRect();
+		boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
+		boxMiddle.y = selectionBox.y+(selectionBox.height)/2; 
 	}  else if (gameState == "menu") {
 		displayNone();
 		foundMenu.style.display = "block";
