@@ -120,6 +120,7 @@ function loop (){
 	delta = (currentTime - lastTime) / 1000;
 	lastTime = currentTime;
 
+	updateSelectionBox()
 	mouthLocation = getScreenLocation(mouth);
 
 	previousHoveredObject = hoveredObject;
