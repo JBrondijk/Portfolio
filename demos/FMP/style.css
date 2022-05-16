@@ -58,8 +58,6 @@ p{
 	padding-bottom: 25px;
 	padding-left: 30px;
 	padding-right: 30px;
-	
-	
 }
 
 .center {
@@ -354,4 +352,47 @@ svg{
 #arrow.active {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
+}
+
+#speechBubble {
+	-webkit-filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
+	filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
+
+	position:relative;
+	top: 0px;
+	width: 80vw;
+	margin-left:10vw;
+	z-index:9;
+}
+
+#speechBubbleArrowTop{
+	width: 0; 
+	height: 0; 
+	border-left: 2rem solid transparent;
+	border-right: 2rem solid transparent;
+	border-bottom: 3.5rem solid white;
+	margin-bottom:-0.2rem;
+	margin-left:0px;
+}
+
+#speechBubbleArrowBottom{
+	width: 0; 
+	height: 0; 
+	border-left: 2rem solid transparent;
+	border-right: 2rem solid transparent;
+	border-top: 3.5rem solid white;
+	margin-top:-0.2rem;
+	margin-left:0px;
+}
+
+.speechBubbleText{
+	padding-left: 4.5vw;
+	padding-right: 4.5vw;
+	padding-top: 1rem;
+	padding-bottom: 2rem;
+	margin-left:-3vw;
+	border-radius:2.5rem;
+	margin-bottom:0;
+	font-size:2.5rem;
+
 }
