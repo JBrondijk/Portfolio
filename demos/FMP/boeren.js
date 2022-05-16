@@ -177,6 +177,8 @@ function updateUI(){
 		selectbtn.style.display = "block";
 		selectMenu.style.display = "block";
 		newSelectionBox = document.getElementById("selectBox").getBoundingClientRect();
+		var newSelectionBoxLog = "newSelectionBox: X " + newSelectionBox.x + " , Y " + newSelectionBox.y + " , W " + newSelectionBox.width + " , H " + newSelectionBox.height + " , MiddleX " + newBoxMiddle.x + " , MiddleY" + newBoxMiddle.y;
+
 		console.log(newSelectionBoxLog);
 		scanner.style.display = "none";
 		startMenu.style.display = "none";
