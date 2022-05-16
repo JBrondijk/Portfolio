@@ -290,6 +290,10 @@ padding-bottom: 0;
     background-color: #EF8357;
 }
 
+.btn-orange:disabled{
+	 background-color: #DBC79B;
+}
+
 #myARcontainer{
 	height : 95vh;
 	width : 100vw;

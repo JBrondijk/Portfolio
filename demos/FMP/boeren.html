@@ -1,17 +1,50 @@
+<!DOCTYPE html>
 <html>
+
 	<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="../libs/mindar/mindar-image-three.prod.js"></script>
-	<script src="./boeren.js" type ="module"></script>
-	<style>
-		html, body {
-			position:relative;
-			margin:0;
-			width: 100%;
-			height:100%;
-			overflow: hidden;
-		}
-	</style>
+		<title> Boeren Beschermen! </title>
+		<link href="style.css" rel="stylesheet"/> 
+		<meta name="google" content="notranslate">
 	</head>
-	<body></body>
+
+	<body style = "overflow:hidden;">
+		<h1> Boeren Beschermen </h1>
+		<div> 
+		
+		<div id="myARcontainer"></div>
+		<button disabled class = "btn-orange" id="btnSelect" style= "position: absolute; top: 80vh; width:80%; margin-left: 10vw; font-size: 45pt; display: none"> Selecteer </button>
+		</div>
+
+		<div id = "spacer"> </div>
+
+		</div>
+		
+		<div class = "menu" id="startMenu">
+			<h2> Boeren in problemen! </h2>
+			<p class= "menuText"> Voor veel Afrikaanse boeren is het leven niet altijd even makkelijk. Wilde dieren zorgen voor veel problemen bij mensen, en hierdoor mensen ook bij de dieren. 
+				<br> Door deze boeren te beschermen, helpen we niet alleen de boeren, maar ook de dieren!  
+				<br> <br> Kan jij de juiste oplossingen voor de problemen van deze boeren vinden? </p>
+			<div style = "margin:0; padding-left: 10%;">
+				<button class = "btn-orange" id="btnStart"> Start </button>
+			</div>
+		</div>
+
+		<div id = "scanning" class= "menu" style = "display:none">
+			<h2> Richt je telefoon naar het bord: </h2>
+			<div class="inner">
+				<div class ="scanline"></div>
+			</div>
+		</div>
+
+		<div class = "menu" id="selectMenu" style = "display:none">
+			<h2> Wijs de juiste oplossing aan!</h2>
+			<div id="selectBox">
+				<div class="dot"></div>
+			</div>
+		</div>
+
+	<script src="../libs/mindar/mindar-image-three.prod.js"></script>
+	<script src="./ImageTrackingTemplate.js" type ="module"></script> <!-- change name to proper JS file. -->
+
+	</body>
 </html>
