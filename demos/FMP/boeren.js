@@ -47,7 +47,6 @@ const textureHover = loader.load("./textures/selectCircleHover.png");
 const material = new THREE.MeshBasicMaterial({map: texture, transparent:true, side:2});
 const materialHover = new THREE.MeshBasicMaterial({map: textureHover, transparent:true, side:2});
 
-
 const selectPlane1 = new THREE.Mesh(geometry, texture);
 selectPlane1.position.set(-0.4,0.3,0);
 selectableObjects[0]=selectPlane1;
@@ -64,6 +63,16 @@ selectableObjects[3]=selectPlane4;
 const mouth = new THREE.Object3D();
 mouth.position.set(-0.1,-0.2,0);
 
+const backgroundGeometry = new THREE.PlaneGeometry(1,1);
+const backgroundMaterial = new THREE.MeshBasicMaterial({opacity:0});
+const background new THREE.Mesh(backgroundGeometry,backgroundMaterial);
+
+backgroundGeometry.add(selectPlane1);
+backgroundGeometry.add(selectPlane2);
+backgroundGeometry.add(selectPlane3);
+backgroundGeometry.add(selectPlane4);
+backgroundGeometry.add(mouth);
+
 document.addEventListener("DOMContentLoaded",()=>{
 	const start = async () => {
 		const mindarThree = new window.MINDAR.IMAGE.MindARThree({
@@ -79,11 +88,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 		ARCamera = camera;
 
 		const anchor = mindarThree.addAnchor(0);
-		anchor.group.add(selectPlane1); //Build scene here.
-		anchor.group.add(selectPlane2);
-		anchor.group.add(selectPlane3);
-		anchor.group.add(selectPlane4);
-		anchor.group.add(mouth);
+		anchor.group.add(backgroundGeometry); //Build scene here.
 
 
 		//on target found
