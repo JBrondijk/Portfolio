@@ -14,18 +14,6 @@ var gameState = "start",
     boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
     boxMiddle.y = selectionBox.y+(selectionBox.height)/2;
 
-var newSelectionBox = document.getElementById("selectBox").getBoundingClientRect();
-var newBoxMiddle = new THREE.Vector2();
-
-	newBoxMiddle.x = newSelectionBox.x+newSelectionBox.width/2;
-    newBoxMiddle.y = newSelectionBox.y+newSelectionBox.height/2;
-
-var oldSelectionBoxLog = "oldSelectionBox: X " + selectionBox.x + " , Y " + selectionBox.y + " , W " + selectionBox.width + " , H " + selectionBox.height + " , MiddleX " + boxMiddle.x + " , MiddleY" + boxMiddle.y;
-var newSelectionBoxLog = "newSelectionBox: X " + newSelectionBox.x + " , Y " + newSelectionBox.y + " , W " + newSelectionBox.width + " , H " + newSelectionBox.height + " , MiddleX " + newBoxMiddle.x + " , MiddleY" + newBoxMiddle.y;
-
-console.log(oldSelectionBoxLog);
-console.log(newSelectionBoxLog);
-
 	//deltatime variables
 	var lastTime = (new Date()).getTime(),
 		currentTime = 0,
