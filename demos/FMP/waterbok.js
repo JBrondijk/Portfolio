@@ -151,12 +151,11 @@ function animate(){
 		updateProgress();
 		moveLion();
 	}
-	if (controls.enabled){
+	if (typeof controls !== "undefined"){
 		controls.update();
-		renderer.render(scene,camera);
-		requestAnimationFrame(animate);
 	}
-	
+	renderer.render(scene,camera);
+	requestAnimationFrame(animate);
 }
 //end of animate function
 
