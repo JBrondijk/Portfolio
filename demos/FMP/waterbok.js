@@ -113,10 +113,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 	});
 
 //ready scene.
-	VIDEO.addEventListener("canplay", function(e){
-		renderer.setSize(VIDEO.clientWidth,VIDEO.clientHeight);
-	})
-	
+	renderer.setSize(VIDEO.clientWidth,VIDEO.clientHeight);
 	scene.add(rotator);
 	scene.add(waterbok);
 	waterbok.userData.iswaterbok = true;
