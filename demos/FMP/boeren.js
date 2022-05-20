@@ -7,12 +7,7 @@ var gameState = "start",
 	documentHeight = window.innerHeight,
 	boxOffset = (((document.getElementById("myARcontainer").clientHeight)/95)*100)-documentHeight, //offset the selectionbox using this variable to make its location the same on every browser. 
 	widthHalf = documentWidth/2, 
-    heightHalf = documentHeight/2, 
-	selectionBox = new DOMRect(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset),
-    boxMiddle = new THREE.Vector2();
-
-    boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
-    boxMiddle.y = selectionBox.y+(selectionBox.height)/2;
+    heightHalf = documentHeight/2;
 
 	//deltatime variables
 	var lastTime = (new Date()).getTime(),
@@ -29,7 +24,7 @@ const selectableObjects = []; //add selectable objects to this array
 //html elements:
 const	scanner = document.getElementById("scanning"),
 		startMenu = document.getElementById("startMenu"),
-		selectMenu = document.getElementById("selectMenu"),
+		selectDot = document.getElementById("selectDot"),
 		selectbtn = document.getElementById("btnSelect"),
 		continuebtn = document.getElementById("btnContinue"),
 		speechBubble = document.getElementById("speechBubble"),
@@ -41,11 +36,17 @@ const	scanner = document.getElementById("scanning"),
 		questionsAnsweredTxt = document.getElementById("questionsAnswered");
 		//speechBubbleArrowBottom = document.getElementById("speechBubbleArrowBottom");
 
+	var dotRect = getBoundingClientRect();
+
+	var dotPos = new THREE.Vector2();
+	
+    dotPos.x = dotRect.x+(dotRect.width/2);
+    dotPos.y = dotRect.y+(dotRect.height/2);
+
 //game elements
 var mouthLocation;
 var hoveredObject;
 var previousHoveredObject;
-var yMinSelectMenu = selectMenu.getBoundingClientRect().y;
 var currentQuestion = 0;
 var gameComplete = false;
 var questions = [];
@@ -141,7 +142,6 @@ function loop (){
 
 	mouthLocation = getScreenLocation(mouth);
 	updateSpeechBubble();
-	updateSelectionBox();
 
 	previousHoveredObject = hoveredObject;
 	hoveredObject = findSelectedObject();
@@ -181,7 +181,7 @@ function updateUI(){
 	} else if (gameState == "play") {
 		displayNone();	
 		selectbtn.style.display = "block";
-		selectMenu.style.display = "block";
+		selectDot.style.display = "block";
 		speechBubble.style.display = "block";
 	} else if (gameState == "menu") {
 		displayNone();
@@ -193,7 +193,7 @@ function displayNone(){
 	startMenu.style.display = "none";	
 	scanner.style.display = "none";
 	selectbtn.style.display = "none";
-	selectMenu.style.display = "none";
+	selectDot.style.display = "none";
 	speechBubble.style.display = "none";
 	foundMenu.style.display = "none";
 }
@@ -310,11 +310,11 @@ function findSelectedObject(){
 			ObjectPos.z = 0;
             if (p==0){
 				closestObject = selectableObjects[p];
-                shortestdistance = distance2D(ObjectPos,boxMiddle);
+                shortestdistance = distance2D(ObjectPos,dotPos);
 			}  else {
-				if (distance2D(ObjectPos,boxMiddle) < shortestdistance){
+				if (distance2D(ObjectPos,dotPos) < shortestdistance){
 					closestObject = selectableObjects[p];
-                    shortestdistance = distance2D(ObjectPos,boxMiddle);
+                    shortestdistance = distance2D(ObjectPos,dotPos);
 				}  
             } 
 		}	
@@ -323,12 +323,6 @@ function findSelectedObject(){
         ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
         ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
 		ObjectPos.z = 0;
-        if (selectionBoxContains(ObjectPos.x, ObjectPos.y)){
-			//object is in box and is selected
-			return(closestObject);
-        } else {
-			return (null); //no object in box, nothing selected. 
-	    }
   	} else {
 		return (null); //no objects to select, nothing selected.
 	}
@@ -349,17 +343,6 @@ function distance2D(pointA, pointB){
 	var distanceY = pointA.y-pointB.y;
 
 	return(Math.sqrt(distanceX*distanceX + distanceY*distanceY));
-}
-
-function updateSelectionBox(){
-	selectMenu.style.top = Math.max((mouthLocation.y+speechBubble.clientHeight*1.8),yMinSelectMenu) +"px";
-	
-	selectionBox = document.getElementById("selectBox").getBoundingClientRect();
-	boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
-	boxMiddle.y = selectionBox.y+(selectionBox.height)/2; 
-}
-function selectionBoxContains(x,y){
-	return (selectionBox.x <= x && x <= selectionBox.x+selectionBox.width && selectionBox.y <= y && y <= selectionBox.y + selectionBox.height);
 }
 
 document.getElementById("btnStart").onclick = function(){
