@@ -3,12 +3,14 @@ const THREE = window.MINDAR.IMAGE.THREE;
 document.addEventListener("click", onClick, false);
 
 function onClick (){
-	var coords = new THREE.Vector2();
-	coords.x = (event.clientX);
-	coords.y = (event.clientY);
+	if (gameState == "play"){
+		var coords = new THREE.Vector2();
+		coords.x = (event.clientX);
+		coords.y = (event.clientY);
 
-	let selectedObject = findSelectedObject(coords,true);
-	select(selectedObject);
+		let selectedObject = findSelectedObject(coords,true);
+		select(selectedObject);
+	}
 }
 
 //imagetracking template:

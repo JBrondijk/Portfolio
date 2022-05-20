@@ -36,7 +36,7 @@ const	scanner = document.getElementById("scanning"),
 		questionsAnsweredTxt = document.getElementById("questionsAnswered");
 		//speechBubbleArrowBottom = document.getElementById("speechBubbleArrowBottom");
 
-	var dotRect = getBoundingClientRect();
+	var dotRect = selectDot.getBoundingClientRect();
 
 	var dotPos = new THREE.Vector2();
 	
