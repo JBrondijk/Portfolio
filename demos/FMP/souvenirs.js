@@ -1,5 +1,16 @@
 const THREE = window.MINDAR.IMAGE.THREE;
 
+document.addEventListener("click", onClick, false);
+
+function onClick (){
+	var coords = new THREE.Vector2();
+	coords.x = (event.clientX);
+	coords.y = (event.clientY);
+
+	let selectedObject = findSelectedObject(coords,true);
+	select(selectedObject);
+}
+
 //imagetracking template:
 var gameState = "start",
 	scanning = true,
@@ -311,26 +322,30 @@ function checkSouvenirToSpawn (){
 }
 
 selectbtn.onclick = function(){
-	let selectedObject = findSelectedObject(suitcases);
-	if (selectedObject != null){
-		if (selectedObject.userData.isSouvenircase){
+	let selectedObject = findSelectedObject(boxMiddle,false);
+	select(selectedObject);
+}
+
+function select(objectToSelect){
+	if (objectToSelect != null){
+		if (objectToSelect.userData.isSouvenircase){
 			//selection is a souvenir
-			selectedObject.remove(selectedObject.children[0]);
-			selectedObject.remove(selectedObject.children[1]);
-			selectedObject.material = suitcaseOpenMaterials[selectedObject.userData.suitcaseNumber]
-			selectedObject.userData.isOpen = true;
-			if (!souvenirFound[selectedObject.userData.souvenirNumber]){
-				souvenirFound[selectedObject.userData.souvenirNumber] = true;
+			objectToSelect.remove(objectToSelect.children[0]);
+			objectToSelect.remove(objectToSelect.children[1]);
+			objectToSelect.material = suitcaseOpenMaterials[objectToSelect.userData.suitcaseNumber]
+			objectToSelect.userData.isOpen = true;
+			if (!souvenirFound[objectToSelect.userData.souvenirNumber]){
+				souvenirFound[objectToSelect.userData.souvenirNumber] = true;
 				souvenirsFound = souvenirsFound +1;
 				updateSouvenirsFoundTxt();
 			}
 			gameState = "menu";
-			souvenirPages[selectedObject.userData.souvenirNumber].style.display = "block"; //open correct menu
+			souvenirPages[objectToSelect.userData.souvenirNumber].style.display = "block"; //open correct menu
 			updateUI();
 		} else {
 			//selection is not a souvenir
-			selectedObject.material = suitcaseOpenMaterials[selectedObject.userData.suitcaseNumber]
-			selectedObject.userData.isOpen = true;
+			objectToSelect.material = suitcaseOpenMaterials[objectToSelect.userData.suitcaseNumber]
+			objectToSelect.userData.isOpen = true;
 			gameState = "menu";
 			nothingFound.style.display = "block";
 			updateUI();
@@ -339,39 +354,43 @@ selectbtn.onclick = function(){
 }
 
 
-function findSelectedObject(arrayToSearch){
+function findSelectedObject(point,touch){
 	var closestObject;
     var ObjectPos = new THREE.Vector3();
     var shortestdistance;    
-	if (arrayToSearch.length > 0){ //check which object is closest to the center.
-		for (var p = 0; p < arrayToSearch.length; p++) {
-			ObjectPos = ObjectPos.setFromMatrixPosition(arrayToSearch[p].matrixWorld);
+	if (suitcases.length > 0){ //check which object is closest to the center.
+		for (var p = 0; p < suitcases.length; p++) {
+			ObjectPos = ObjectPos.setFromMatrixPosition(suitcases[p].matrixWorld);
             ObjectPos.project(ARCamera);
             ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
             ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
 			ObjectPos.z = 0;
-			if (!arrayToSearch[p].userData.isOpen){
+			if (!suitcases[p].userData.isOpen){
 				if (closestObject == null){
-					closestObject = arrayToSearch[p];
-					shortestdistance = distance2D(ObjectPos,boxMiddle);
+					closestObject = suitcases[p];
+					shortestdistance = distance2D(ObjectPos,point);
 				} else {
-					if (distance2D(ObjectPos,boxMiddle) < shortestdistance){
-						closestObject = arrayToSearch[p];
-                		shortestdistance = distance2D(ObjectPos,boxMiddle);
+					if (distance2D(ObjectPos,point) < shortestdistance){
+						closestObject = suitcases[p];
+                		shortestdistance = distance2D(ObjectPos,point);
 					}
 				}
 			}
 		}	
 		if (closestObject != null){
-			//check if closest object is in the selectionbox.
-			ObjectPos = ObjectPos.setFromMatrixPosition(closestObject.matrixWorld);
-			ObjectPos.project(ARCamera);
-			ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
-			ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
-			if (selectionBoxContains(ObjectPos.x, ObjectPos.y)){
-				return(closestObject);
+			if (touch){
+				return (closestObject);
 			} else {
-				return (null); 
+				//check if closest object is in the selectionbox.
+				ObjectPos = ObjectPos.setFromMatrixPosition(closestObject.matrixWorld);
+				ObjectPos.project(ARCamera);
+				ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
+				ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
+				if (selectionBoxContains(ObjectPos.x, ObjectPos.y)){
+					return(closestObject);
+				} else {
+					return (null); 
+				}
 			}
 		} else {
 			return (null); 
