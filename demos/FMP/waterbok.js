@@ -333,6 +333,7 @@ function resetGame (){
 
 	updateProgress();
 	setWaterbokDistance (3.6);
+	currentRotation = camera.rotation.y/(Math.PI/180);
 }
 
 function iOS() {
