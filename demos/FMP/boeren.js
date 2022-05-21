@@ -24,7 +24,7 @@ const selectableObjects = []; //add selectable objects to this array
 //html elements:
 const	scanner = document.getElementById("scanning"),
 		startMenu = document.getElementById("startMenu"),
-		selectDot = document.getElementById("selectDot"),
+		selectDot = document.getElementById("selectDoty"),
 		selectbtn = document.getElementById("btnSelect"),
 		continuebtn = document.getElementById("btnContinue"),
 		speechBubble = document.getElementById("speechBubble"),
@@ -318,11 +318,7 @@ function findSelectedObject(){
 				}  
             } 
 		}	
-        ObjectPos = ObjectPos.setFromMatrixPosition(closestObject.matrixWorld);
-        ObjectPos.project(ARCamera);
-        ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
-        ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
-		ObjectPos.z = 0;
+        return(closestObject);
   	} else {
 		return (null); //no objects to select, nothing selected.
 	}

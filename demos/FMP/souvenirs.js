@@ -1,6 +1,6 @@
 const THREE = window.MINDAR.IMAGE.THREE;
 
-document.addEventListener("click", onClick, false);
+document.getElementById("myARcontainer").addEventListener("click", onClick, false);
 
 function onClick (){
 	if (gameState == "play"){
