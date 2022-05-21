@@ -24,7 +24,7 @@ const selectableObjects = []; //add selectable objects to this array
 //html elements:
 const	scanner = document.getElementById("scanning"),
 		startMenu = document.getElementById("startMenu"),
-		selectDot = document.getElementById("selectDoty"),
+		selectDot = document.getElementById("selectDot"),
 		selectbtn = document.getElementById("btnSelect"),
 		continuebtn = document.getElementById("btnContinue"),
 		speechBubble = document.getElementById("speechBubble"),
