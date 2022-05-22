@@ -42,6 +42,8 @@ const	scanner = document.getElementById("scanning"),
     dotPos.x = dotRect.x+(dotRect.width/2);
     dotPos.y = dotRect.y+(dotRect.height/2);
 
+	const arrowOffset = document.getElementById("arrowSpacer").clientWidth;
+
 //game elements
 var mouthLocation;
 var hoveredObject;
@@ -202,10 +204,7 @@ function displayNone(){
 
 function updateSpeechBubble(){
 	speechBubble.style.top = mouthLocation.y +"px";
-	speechBubbleArrowTop.style.marginLeft = Math.min(Math.max(mouthLocation.x - (0.1*documentWidth), 0), speechBubbleText.clientWidth-(speechBubbleArrowTop.style.borderLeftWidth*2)) +"px";
-	console.log("text width"+ speechBubbleText.clientWidth);
-	console.log("arrow width" + speechBubbleArrowTop.style.borderLeftWidth);
-	console.log(speechBubbleArrowTop.style.marginLeft);
+	speechBubbleArrowTop.style.marginLeft = Math.min(Math.max(mouthLocation.x - (0.1*documentWidth), 0), speechBubbleText.clientWidth-arrowOffset) +"px";
 }
 
 function updateSpeechBubbleText(){
