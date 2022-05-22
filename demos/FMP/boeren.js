@@ -33,7 +33,6 @@ const	scanner = document.getElementById("scanning"),
 		resultHeader = document.getElementById("resultHeader"),
 		resultText = document.getElementById("resultText"),
 		questionsAnsweredTxt = document.getElementById("questionsAnswered");
-		//speechBubbleArrowBottom = document.getElementById("speechBubbleArrowBottom");
 
 	var dotRect = selectDot.getBoundingClientRect();
 
@@ -201,6 +200,8 @@ function displayNone(){
 function updateSpeechBubble(){
 	speechBubble.style.top = mouthLocation.y +"px";
 	speechBubbleArrowTop.style.marginLeft = Math.min(Math.max(mouthLocation.x - (0.1*documentWidth), 0), speechBubbleText.clientWidth-speechBubbleArrowTop.clientWidth) +"px";
+	console.log(speechBubbleText.clientWidth);
+	console.log(speechBubbleArrowTop.clientWidth);
 }
 
 function updateSpeechBubbleText(){
