@@ -72,7 +72,7 @@ var PlayerProgress = 0,
 	LionProgress = -10,
 	playerDistance = 0,
 	lionDistance = -6,
-	currentRotation = 180,
+	currentRotation = 0,
 	speed = 12,
 	score = 0,
 	highScore1 = 0,
@@ -151,6 +151,10 @@ function animate(){
 	if (controls != null){
 		controls.update();
 	}
+
+	console.log(rotator.rotation.y);
+	console.log(camera.rotation.y);
+
 	renderer.render(scene,camera);
 	requestAnimationFrame(animate);
 }
@@ -333,7 +337,8 @@ function resetGame (){
 
 	updateProgress();
 	setWaterbokDistance (3.6);
-	currentRotation = camera.rotation.y/(Math.PI/180)+180;
+	currentRotation = camera.rotation.y/(Math.PI/180);
+	rotator.rotation.set(0, currentRotation*(Math.PI/180), 0);
 }
 
 function iOS() {
