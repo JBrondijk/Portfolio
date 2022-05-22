@@ -223,45 +223,49 @@ function updateSpeechBubbleText(){
 
 //select button
 selectbtn.onclick = function(){
-    if (hoveredObject != null){
+    select(hoveredObject);
+}
+
+function select(object){
+	if (object != null){
     	if (currentQuestion == 0){
-			if (hoveredObject==selectPlane1){
+			if (object==selectPlane1){
 				submitAnswer(false,"Waakhonden zouden wel ingezet kunnen worden tegen afrikaanse wilde honden, maar dan is er een risico dat de waakhonden ziektes overbrengen op de wilde honden. <br> Er moet een andere oplossing zijn...");
-			}	else if (hoveredObject==selectPlane2){
+			}	else if (object==selectPlane2){
 				submitAnswer(true,"Veel boeren laten hun vee vrij rondlopen, wat ze kwetsbaar maakt voor roofdieren. <br> Hekken plaatsen, en deze onderhouden, helpt conflicten te vermijden.")
-			}	else if (hoveredObject==selectPlane3){
+			}	else if (object==selectPlane3){
 				submitAnswer(false,"Bijenhekken hebben als doel om gewassen te beschermen tegen olifanten. <br> Er moet een andere oplossing zijn...");
-			}	else if (hoveredObject==selectPlane4){
+			}	else if (object==selectPlane4){
 				submitAnswer(false,"De fakkel lampen moeten op een veekraal worden vastgemaakt, om deze 's nachts beter te beschermen. Deze boer laat zijn vee 's nachts nog vrij rondlopen. <br> Er moet een andere oplossing zijn...");
 			}
 		} else if (currentQuestion == 1){
-			if (hoveredObject==selectPlane1){
+			if (object==selectPlane1){
 				submitAnswer(false,"Olifanten laten zich niet zo snel afschrikken door een waakhond. <br> Er moet een andere oplossing zijn...");
-			}	else if (hoveredObject==selectPlane2){
+			}	else if (object==selectPlane2){
 				submitAnswer(false,"Deze hekken zijn niet sterk genoeg om een olifant tegen te houden. Hekken die wel zo sterk zijn zouden te veel geld kosten. <br> Er moet een andere oplossing zijn...");
-			}	else if (hoveredObject==selectPlane3){
+			}	else if (object==selectPlane3){
 				submitAnswer(true,"De bijen in bijenhekken houden olifanten weg, bestuiven gewassen en leveren boeren geld op door de verkoop van honing! <br> Allemaal voordelen, voor een goedkope oplossing!");
-			}	else if (hoveredObject==selectPlane4){
+			}	else if (object==selectPlane4){
 				submitAnswer(false,"Olifanten laten zich minder snel afschrikken dan de roofdieren waar deze lampen voor bedoeld zijn. <br> Er moet een andere oplossing zijn...");
 			}
 		} else if (currentQuestion == 2){
-			if (hoveredObject==selectPlane1){
+			if (object==selectPlane1){
 				submitAnswer(false,"Waakhonden worden voornamelijk ingezet tegen kleinere roofdieren zoals cheeta's. <br> Er moet een andere oplossing zijn...");
-			}	else if (hoveredObject==selectPlane2){
+			}	else if (object==selectPlane2){
 				submitAnswer(false,"Deze boer heeft al een veekraal, toch klimmen sommige roofdieren nog over de hekken heen om bij het vee te komen. <br> Zie jij een oplossing om ze verder af te schrikken?");
-			}	else if (hoveredObject==selectPlane3){
+			}	else if (object==selectPlane3){
 				submitAnswer(false,"Bijenhekken hebben als doel om gewassen te beschermen tegen olifanten. <br> Er moet een andere oplossing zijn...");
-			}	else if (hoveredObject==selectPlane4){
+			}	else if (object==selectPlane4){
 				submitAnswer(true,"Door boeren dit soort lampen te geven helpen we ze nog meer met het afschrikken van roofdieren. <br> Roofdieren zijn heel voorzichtig met het uikiezen van hun prooi, hoe moeilijker we het voor ze maken, hoe veiliger het vee zal zijn.");
 			}
 		} else if (currentQuestion == 3){
-			if (hoveredObject==selectPlane1){
+			if (object==selectPlane1){
 				submitAnswer(true,"De meeste boeren zouden zelf geen waakhond kunnen betalen. <br> Door boeren honden te geven, en gratis dierenartsen te verzorgen maken we het een stuk betaalbaarder voor ze.");
-			}	else if (hoveredObject==selectPlane2){
+			}	else if (object==selectPlane2){
 				submitAnswer(false,"Ook al heeft een boer al een hek of veekraal, proberen sommige roofdieren toch een prooi te bemachtigen. <br> Zie jij een oplossing om ze verder af te schrikken?");
-			}	else if (hoveredObject==selectPlane3){
+			}	else if (object==selectPlane3){
 				submitAnswer(false,"Bijenhekken hebben als doel om gewassen te beschermen tegen olifanten. <br> Er moet een andere oplossing zijn...");
-			}	else if (hoveredObject==selectPlane4){
+			}	else if (object==selectPlane4){
 				submitAnswer(false,"");
 			}
 		}
