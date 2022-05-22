@@ -153,7 +153,7 @@ function animate(){
 	}
 
 	console.log(rotator.rotation.y);
-	console.log(camera.rotation.y);
+	console.log(camera.rotation.y+1.5708);
 
 	renderer.render(scene,camera);
 	requestAnimationFrame(animate);
@@ -337,7 +337,7 @@ function resetGame (){
 
 	updateProgress();
 	setWaterbokDistance (3.6);
-	currentRotation = camera.rotation.y/(Math.PI/180);
+	currentRotation = (camera.rotation.y+1.5708)*(180/Math.PI);
 	rotator.rotation.set(0, currentRotation*(Math.PI/180), 0);
 }
 
