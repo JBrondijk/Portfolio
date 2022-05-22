@@ -32,7 +32,8 @@ const	scanner = document.getElementById("scanning"),
 		foundMenu = document.getElementById("foundMenu"),
 		resultHeader = document.getElementById("resultHeader"),
 		resultText = document.getElementById("resultText"),
-		questionsAnsweredTxt = document.getElementById("questionsAnswered");
+		questionsAnsweredTxt = document.getElementById("questionsAnswered"),
+		selectMenu = document.getElementById("selectMenu");
 
 	var dotRect = selectDot.getBoundingClientRect();
 
@@ -182,6 +183,7 @@ function updateUI(){
 		selectbtn.style.display = "block";
 		selectDot.style.display = "block";
 		speechBubble.style.display = "block";
+		selectMenu.style.display = "block";
 	} else if (gameState == "menu") {
 		displayNone();
 		foundMenu.style.display = "block";
@@ -195,6 +197,7 @@ function displayNone(){
 	selectDot.style.display = "none";
 	speechBubble.style.display = "none";
 	foundMenu.style.display = "none";
+	selectMenu.style.display = "none"
 }
 
 function updateSpeechBubble(){
