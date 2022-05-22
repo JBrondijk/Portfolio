@@ -1,5 +1,18 @@
 const THREE = window.MINDAR.IMAGE.THREE;
 
+document.getElementById("myARcontainer").addEventListener("click", onClickScreen, false);
+
+function onClickScreen (){
+	if (gameState == "play"){
+		var coords = new THREE.Vector2();
+		coords.x = (event.clientX);
+		coords.y = (event.clientY);
+
+		let selectedObject = findSelectedObject(coords);
+		select(selectedObject);
+	}
+}
+
 //imagetracking template:
 var gameState = "start",
 	scanning = true,
@@ -36,11 +49,8 @@ const	scanner = document.getElementById("scanning"),
 		selectMenu = document.getElementById("selectMenu");
 
 	var dotRect = selectDot.getBoundingClientRect();
-
 	var dotPos = new THREE.Vector2();
-	
-    dotPos.x = dotRect.x+(dotRect.width/2);
-    dotPos.y = dotRect.y+(dotRect.height/2);
+    updateDotPos();
 
 	const arrowOffset = document.getElementById("arrowSpacer").clientWidth;
 
@@ -146,7 +156,7 @@ function loop (){
 	updateDotPos();
 
 	previousHoveredObject = hoveredObject;
-	hoveredObject = findSelectedObject();
+	hoveredObject = findSelectedObject(dotPos);
 	if (hoveredObject != previousHoveredObject){
 		if (previousHoveredObject != null){
 			previousHoveredObject.material = materialNormal;
@@ -301,7 +311,7 @@ continuebtn.onclick = function(){
 	}
 }
 
-function findSelectedObject(){
+function findSelectedObject(point){
 	var closestObject;
     var ObjectPos = new THREE.Vector3();
     var shortestdistance;         
@@ -314,11 +324,11 @@ function findSelectedObject(){
 			ObjectPos.z = 0;
             if (p==0){
 				closestObject = selectableObjects[p];
-                shortestdistance = distance2D(ObjectPos,dotPos);
+                shortestdistance = distance2D(ObjectPos,point);
 			}  else {
-				if (distance2D(ObjectPos,dotPos) < shortestdistance){
+				if (distance2D(ObjectPos,point) < shortestdistance){
 					closestObject = selectableObjects[p];
-                    shortestdistance = distance2D(ObjectPos,dotPos);
+                    shortestdistance = distance2D(ObjectPos,point);
 				}  
             } 
 		}	
