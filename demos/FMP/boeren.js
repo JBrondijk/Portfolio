@@ -200,8 +200,9 @@ function displayNone(){
 function updateSpeechBubble(){
 	speechBubble.style.top = mouthLocation.y +"px";
 	speechBubbleArrowTop.style.marginLeft = Math.min(Math.max(mouthLocation.x - (0.1*documentWidth), 0), speechBubbleText.clientWidth-speechBubbleArrowTop.clientWidth) +"px";
-	console.log(speechBubbleText.clientWidth);
-	console.log(speechBubbleArrowTop.clientWidth);
+	console.log("text width"+ speechBubbleText.clientWidth);
+	console.log("arrow width" + speechBubbleArrowTop.clientWidth);
+	console.log(speechBubbleArrowTop.style.marginLeft);
 }
 
 function updateSpeechBubbleText(){
