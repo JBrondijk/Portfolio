@@ -5,7 +5,6 @@ var gameState = "start",
 	scanning = true,
 	documentWidth = window.innerWidth,
 	documentHeight = window.innerHeight,
-	boxOffset = (((document.getElementById("myARcontainer").clientHeight)/95)*100)-documentHeight, //offset the selectionbox using this variable to make its location the same on every browser. 
 	widthHalf = documentWidth/2, 
     heightHalf = documentHeight/2;
 
@@ -142,6 +141,7 @@ function loop (){
 
 	mouthLocation = getScreenLocation(mouth);
 	updateSpeechBubble();
+	updateDotPos();
 
 	previousHoveredObject = hoveredObject;
 	hoveredObject = findSelectedObject();
@@ -339,6 +339,13 @@ function distance2D(pointA, pointB){
 	var distanceY = pointA.y-pointB.y;
 
 	return(Math.sqrt(distanceX*distanceX + distanceY*distanceY));
+}
+
+function updateDotPos(){
+	dotRect = selectDot.getBoundingClientRect();
+	
+    dotPos.x = dotRect.x+(dotRect.width/2);
+    dotPos.y = dotRect.y+(dotRect.height/2);
 }
 
 document.getElementById("btnStart").onclick = function(){
