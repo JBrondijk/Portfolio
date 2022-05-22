@@ -199,9 +199,9 @@ function displayNone(){
 
 function updateSpeechBubble(){
 	speechBubble.style.top = mouthLocation.y +"px";
-	speechBubbleArrowTop.style.marginLeft = Math.min(Math.max(mouthLocation.x - (0.1*documentWidth), 0), speechBubbleText.clientWidth-(speechBubbleArrowTop.style.borderLeftWidth+speechBubbleArrowTop.style.borderRightWidth)) +"px";
+	speechBubbleArrowTop.style.marginLeft = Math.min(Math.max(mouthLocation.x - (0.1*documentWidth), 0), speechBubbleText.clientWidth-(speechBubbleArrowTop.style.borderLeftWidth*2)) +"px";
 	console.log("text width"+ speechBubbleText.clientWidth);
-	console.log("arrow width" + (speechBubbleArrowTop.style.borderLeftWidth+speechBubbleArrowTop.style.borderRightWidth));
+	console.log("arrow width" + speechBubbleArrowTop.style.borderLeftWidth);
 	console.log(speechBubbleArrowTop.style.marginLeft);
 }
 
