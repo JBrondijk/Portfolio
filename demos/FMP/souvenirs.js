@@ -1,9 +1,20 @@
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.getElementById("myARcontainer").addEventListener("click", onClickScreen, false);
-document.getElementById("xrayBox").addEventListener("click", onClickScreen, false);
+document.getElementById("xrayBox").addEventListener("click", onClickXray, false);
 
 function onClickScreen (){
+	if (gameState == "play"){
+		var coords = new THREE.Vector2();
+		coords.x = (event.clientX);
+		coords.y = (event.clientY);
+
+		let selectedObject = findSelectedObject(coords,true);
+		select(selectedObject);
+	}
+}
+
+function onClickXray (){
 	if (gameState == "play"){
 		var coords = new THREE.Vector2();
 		coords.x = (event.clientX);
