@@ -1,17 +1,25 @@
 const THREE = window.MINDAR.IMAGE.THREE;
 
-document.getElementById("myARcontainer").addEventListener("click", onClickScreen, false);
+document.getElementById("myARcontainer").addEventListener("mousedown", onPressScreen, false);
+document.getElementById("myARcontainer").addEventListener("mouseup", onReleaseScreen, false);
 
-function onClickScreen (){
+function onPressScreen (){
 	if (gameState == "play"){
 		var coords = new THREE.Vector2();
 		coords.x = (event.clientX);
 		coords.y = (event.clientY);
 
-		let selectedObject = findSelectedObject(coords);
-		select(selectedObject);
+		clickedObject = findSelectedObject(coords);
+		clickedObject.material = materialHover;
 	}
 }
+function onReleaseScreen (){
+	if (gameState == "play"){
+		select(clickedObject);
+		clickedObject.material = materialNormal;
+	}
+}
+
 
 //imagetracking template:
 var gameState = "start",
@@ -52,6 +60,7 @@ const	scanner = document.getElementById("scanning"),
 var mouthLocation;
 var currentQuestion = 0;
 var gameComplete = false;
+var clickedObject;
 var questions = [];
 questions[0] = "Afrikaanse Wilde Honden jagen op mijn vee! Hoe kan ik ze nog los laten grazen?";
 questions[1] = "Olifanten eten mijn gewassen op en trappen alles plat! Als ik ze probeer weg te jagen worden ze aggressief!";
