@@ -34,10 +34,6 @@ var gameState = "start",
 	widthHalf = documentWidth/2, 
     heightHalf = documentHeight/2, 
 	selectionBox = new DOMRect(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset),
-    boxMiddle = new THREE.Vector2();
-
-    boxMiddle.x = selectionBox.x+selectionBox.width/2;
-    boxMiddle.y = selectionBox.y+selectionBox.height/2;
 
 	//deltatime variables
 	var lastTime = (new Date()).getTime(),
@@ -49,7 +45,7 @@ var gameState = "start",
 		conveyorSpeed = 0.2,
 		spawnTimer = 0,
 		spawnTime = 1,
-		souvenirCount = getRandomInt(9,15), //after spawning this many items a souvenir is spawned instead.
+		souvenirCount = getRandomInt(3,4), //after spawning this many items a souvenir is spawned instead.
 		souvenirToSpawn,
 		lastSpawnX = 0,
 		ARCamera,
@@ -60,7 +56,6 @@ var gameState = "start",
 	const	scanner = document.getElementById("scanning"),
 			startMenu = document.getElementById("startMenu"),
 			selectMenu = document.getElementById("selectMenu"),
-			selectbtn = document.getElementById("btnSelect"),
 			foundMenu = document.getElementById("foundMenu"),
 			nothingFound = document.getElementById("nothingFound"),
 			allFound = document.getElementById("allFound"),
@@ -256,7 +251,7 @@ function moveObjects(arrayToMove){
 function checkXray (){
 	if (suitcases.length > 0) {
 		for(var i = suitcases.length-1; i >= 0; i--){
-			if (suitcases[i].userData.isSouvenircase){
+			if (suitcases[i].userData.isSouvenircase && !suitcases[i].userData.isOpen){
 				var objectPos = new THREE.Vector3;
 				objectPos = objectPos.setFromMatrixPosition(suitcases[i].matrixWorld);
 				objectPos.project(ARCamera);
@@ -286,7 +281,7 @@ function spawn(){
 	souvenirCount = souvenirCount -1;
 
     if (souvenirCount <= 0){
-		souvenirCount = getRandomInt(9,15)
+		souvenirCount = getRandomInt(6,10)
 		spawnSouvenir(spawnX);
     } else {
 		var suitcaseNumber = getRandomInt(0,suitcaseMaterials.length-1);
@@ -333,11 +328,6 @@ function checkSouvenirToSpawn (){
 	} else {
 		return;
 	}
-}
-
-selectbtn.onclick = function(){
-	let selectedObject = findSelectedObject(boxMiddle,false);
-	select(selectedObject);
 }
 
 function select(objectToSelect){
@@ -422,9 +412,7 @@ function distance2D(pointA, pointB){
 }
 
 function updateSelectionBox(){
-	selectionBox = document.getElementById("xrayBox").getBoundingClientRect();
-	boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
-	boxMiddle.y = selectionBox.y+(selectionBox.height)/2; 
+	selectionBox = document.getElementById("xrayBox").getBoundingClientRect(); 
 }
 function selectionBoxContains(x,y){
 	return (selectionBox.x <= x && x <= selectionBox.x+selectionBox.width && selectionBox.y <= y && y <= selectionBox.y + selectionBox.height);
@@ -445,7 +433,6 @@ function updateUI(){
 		startMenu.style.display = "block";	
 	} else if (gameState == "play") {
 		displayNone();
-		selectbtn.style.display = "block";
 		selectMenu.style.display = "block";
 	}  else if (gameState == "menu") {
 		displayNone();
@@ -456,7 +443,6 @@ function updateUI(){
 function displayNone(){
 		scanner.style.display = "none";
 		startMenu.style.display = "none";	
-		selectbtn.style.display = "none";
 		selectMenu.style.display = "none";
 		foundMenu.style.display = "none";
 }
