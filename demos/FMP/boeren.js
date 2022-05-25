@@ -44,7 +44,7 @@ const	scanner = document.getElementById("scanning"),
 		resultHeader = document.getElementById("resultHeader"),
 		resultText = document.getElementById("resultText"),
 		questionsAnsweredTxt = document.getElementById("questionsAnswered"),
-		selectMenu = document.getElementById("selectMenu");
+		selectPrompt = document.getElementById("selectPrompt");
 
 	const arrowOffset = document.getElementById("arrowSpacer").clientWidth;
 
@@ -158,7 +158,7 @@ function updateUI(){
 	} else if (gameState == "play") {
 		displayNone();	
 		speechBubble.style.display = "block";
-		selectMenu.style.display = "block";
+		selectPrompt.style.display = "block";
 	} else if (gameState == "menu") {
 		displayNone();
 		foundMenu.style.display = "block";
@@ -170,7 +170,7 @@ function displayNone(){
 	scanner.style.display = "none";
 	speechBubble.style.display = "none";
 	foundMenu.style.display = "none";
-	selectMenu.style.display = "none"
+	selectPrompt.style.display = "none"
 }
 
 function updateSpeechBubble(){
