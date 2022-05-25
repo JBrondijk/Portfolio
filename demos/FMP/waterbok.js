@@ -81,7 +81,7 @@ var PlayerProgress = 0,
 	delta = 0,
 	gameState = "start",
 	gameTime = 0,
-	fastestTime = 0;
+	fastestTime = 99999;
 
 const	totalDistance = 30,
 		streakGainTime = 5,
