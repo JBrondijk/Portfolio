@@ -36,9 +36,7 @@ const selectableObjects = []; //add selectable objects to this array
 //html elements:
 const	scanner = document.getElementById("scanning"),
 		startMenu = document.getElementById("startMenu"),
-		selectDot = document.getElementById("selectDot"),
-		selectbtn = document.getElementById("btnSelect"),
-		continuebtn = document.getElementById("btnContinue"),
+s		continuebtn = document.getElementById("btnContinue"),
 		speechBubble = document.getElementById("speechBubble"),
 		speechBubbleText = document.getElementById("speechBubbleText"),
 		speechBubbleArrowTop = document.getElementById("speechBubbleArrowTop"),
@@ -48,16 +46,10 @@ const	scanner = document.getElementById("scanning"),
 		questionsAnsweredTxt = document.getElementById("questionsAnswered"),
 		selectMenu = document.getElementById("selectMenu");
 
-	var dotRect = selectDot.getBoundingClientRect();
-	var dotPos = new THREE.Vector2();
-    updateDotPos();
-
 	const arrowOffset = document.getElementById("arrowSpacer").clientWidth;
 
 //game elements
 var mouthLocation;
-var hoveredObject;
-var previousHoveredObject;
 var currentQuestion = 0;
 var gameComplete = false;
 var questions = [];
@@ -153,33 +145,6 @@ function loop (){
 
 	mouthLocation = getScreenLocation(mouth);
 	updateSpeechBubble();
-	updateDotPos();
-
-	previousHoveredObject = hoveredObject;
-	hoveredObject = findSelectedObject(dotPos);
-	if (hoveredObject != previousHoveredObject){
-		if (previousHoveredObject != null){
-			previousHoveredObject.material = materialNormal;
-		}
-		if (hoveredObject != null){
-			hoveredObject.material = materialHover;
-			selectbtn.disabled = false;
-			if (hoveredObject==selectPlane1){
-				selectbtn.innerHTML = "Waakhonden";
-			}	else if (hoveredObject==selectPlane2){
-				selectbtn.innerHTML = "Hekken & Veekralen";
-			}	else if (hoveredObject==selectPlane3){
-				selectbtn.innerHTML = "BijenHekken";
-			}	else if (hoveredObject==selectPlane4){
-				selectbtn.innerHTML = "Fakkel Lampen";
-			}
-		} else {
-			selectbtn.disabled = true;
-			selectbtn.innerHTML = "Selecteer een oplossing";
-		}
-	}
-
-
 	requestAnimationFrame(loop);
 }
 
@@ -192,7 +157,6 @@ function updateUI(){
 		startMenu.style.display = "block";
 	} else if (gameState == "play") {
 		displayNone();	
-		selectbtn.style.display = "block";
 		selectDot.style.display = "block";
 		speechBubble.style.display = "block";
 		selectMenu.style.display = "block";
@@ -205,7 +169,6 @@ function updateUI(){
 function displayNone(){
 	startMenu.style.display = "none";	
 	scanner.style.display = "none";
-	selectbtn.style.display = "none";
 	selectDot.style.display = "none";
 	speechBubble.style.display = "none";
 	foundMenu.style.display = "none";
@@ -221,10 +184,6 @@ function updateSpeechBubbleText(){
 	speechBubbleText.innerHTML = questions[currentQuestion];
 }
 
-//select button
-selectbtn.onclick = function(){
-    select(hoveredObject);
-}
 
 function select(object){
 	if (object != null){
@@ -301,7 +260,7 @@ continuebtn.onclick = function(){
 		} else {
 			//all farmers helped. 
 			resultHeader.innerHTML = "Alle boeren geholpen!";
-			resultText.innerHTML = "Fantastich gedaan! Alle boeren kunnen hun werk nu een stuk veiliger doen en hoeven zich minder zorgen te maken over wilde dieren. <br> Het is belangrijk goed met de boeren te overleggen, zodat een gepaste oplossing kan worden gekozen.<br><br>Naast de oplossingen die je hier zag, werken de verschillende organisaties aan allerlei andere oplossinge om conflicten tussen mens en dier te verhelpen. Ga eens langs bij Stchting Wildlife om meer hierover te leren!";
+			resultText.innerHTML = "Fantastich gedaan! Alle boeren kunnen hun werk nu een stuk veiliger doen en hoeven zich minder zorgen te maken over wilde dieren. <br> Het is belangrijk goed met de boeren te overleggen, zodat een gepaste oplossing kan worden gekozen.<br><br>Naast de oplossingen die je hier zag, werken de verschillende organisaties aan allerlei andere oplossinge om conflicten tussen mens en dier te verhelpen. Kom eens langs bij Stichting Wildlife om meer hierover te leren!";
 			continuebtn.innerHTML = "Speel Opnieuw";
 			gameComplete = true;
 		}
@@ -357,13 +316,6 @@ function distance2D(pointA, pointB){
 	var distanceY = pointA.y-pointB.y;
 
 	return(Math.sqrt(distanceX*distanceX + distanceY*distanceY));
-}
-
-function updateDotPos(){
-	dotRect = selectDot.getBoundingClientRect();
-	
-    dotPos.x = dotRect.x+(dotRect.width/2);
-    dotPos.y = dotRect.y+(dotRect.height/2);
 }
 
 document.getElementById("btnStart").onclick = function(){
