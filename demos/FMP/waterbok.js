@@ -143,7 +143,7 @@ function animate(){
 		moveWaterbok();	
 		updateProgress();
 		moveLion();
-		gameTime = gameTime + deltatime;
+		gameTime = gameTime + delta;
 	}
 	if (controls != null){
 		controls.update();
