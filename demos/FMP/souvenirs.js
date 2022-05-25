@@ -33,7 +33,7 @@ var gameState = "start",
 	boxOffset = (((document.getElementById("myARcontainer").clientHeight)/95)*100)-documentHeight, //offset the selectionbox using this variable to make its location the same on every browser. 
 	widthHalf = documentWidth/2, 
     heightHalf = documentHeight/2, 
-	selectionBox = new DOMRect(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset),
+	selectionBox = new DOMRect(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset);
 
 	//deltatime variables
 	var lastTime = (new Date()).getTime(),
