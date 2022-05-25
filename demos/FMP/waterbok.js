@@ -88,8 +88,8 @@ const	totalDistance = 30,
 		streakLoseTime = 2.5,
 		playerSpeed = 1,
 		lionSpeed = 0.8,
-		minSpeed = 24,
-		maxSpeed = 34,
+		minSpeed = 30,
+		maxSpeed = 36,
 		switchTimeC = 2,
 		grassSpeed = 0.06;
 
