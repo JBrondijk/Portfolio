@@ -2,41 +2,24 @@
 <html>
 
 	<head>
-		<title> Waterbok Achtervolging! </title>
+		<title> Waterbok Ontsnapping! </title>
 		<link href="style.css" rel="stylesheet"/>
 		<meta name="google" content="notranslate">
 	</head>
 
-	<body>
-		<h1> Waterbok Achtervolging</h1>
+	<body style = "overflow:hidden;">
+		<h1> Waterbok Ontsnapping</h1>
 		
-		<div id="videoContainer" style="height:80vh">
-			<video id="VIDEO" style = "height: 80vh; width: 100vw; object-fit: cover;>Geef de website toestemming om de camera te gebruiken om verder te kunnen.</video> 
-			
+		<div id="videoContainer" style="height:95vh">
+			<video id="VIDEO" style = "height: 95vh; width: 100vw; object-fit: cover;">Geef de website toestemming om de camera te gebruiken om verder te kunnen.</video>
 		</div>
-		<div id = "spacer"> </div>
 
 		<div class="progress-container">
-			<img src="./textures/finish.png" class="finish"></img>
-			<div class="progress"> <img src="./textures/playerIcon.png" class="playerIcon"></img> </div>
-			<div class="progressLion"> <img src="./textures/lionIcon.png" class="lionIcon"></img> </div>
+			<img src="./textures/finish.png" class="finish" style = "position:relative; width:5vw; height: 3vw; left: 95vw;"></img>
+			<div class="progress"> <img src="./textures/playerIcon.png" class="playerIcon" style = "position:relative; width: 10vw; height: 10vw; top: -3.5vw; left: -5vw;"></img> </div>
+			<div class="progressLion"> <img src="./textures/lionIcon.png" class="lionIcon" style = "position:relative; width: 10vw; height: 10vw; top: -3.5vw; left: -14vw;"></img> </div>
 		</div>
-		<div style="margin:auto;"> 
-			<p class="scoreText" style = "padding-top : 4vh;">
-			<span>Score:</span> <span class="waterbokScore" id="score0"> -- </span>
-			</p>
-		</div>
-		<div style="margin:auto;"> 
-			<p class="scoreText" style = "padding-top : 4vh;">
-			<span>Hoogste Score (met ellips):</span> <span class="waterbokScore" id="score1"> -- </span>
-			</p>
-		</div>
-		<div style="margin:auto;"> 
-			<p class="scoreText" style = "padding-top : 4vh;">
-			<span>Hoogste Score (zonder ellips):</span> <span class="waterbokScore" id="score2"> -- </span>
-			</p>
-		</div>
-
+		
 		<div class = "menu" id="startMenu">
 			<h2> Volg je mede-waterbok! </h2>
 			<p class= "menuText"> Wanneer een groep waterbokken moet ontsnappen aan de klauwen van een leeuw, of ander roofdier, helpt de witte cirkel achterop de waterbok met het bij elkaar blijven, deze valt namelijk goed op tussen het hoge gras. <br> Volgens mij komt er een leeuw aan! Volg je mede-waterbok en let goed op de circel!  </p>
@@ -72,25 +55,21 @@
 				<button class = "btn-orange" id="btnGameOver"> Probeer opnieuw </button>
 			</div>
 		</div>
-		<div class = "menu" id="win1Menu" style = "display:none">
+		<div class = "menu" id="winMenu" style = "display:none">
 			<h2> Ontsnapt! </h2>
-			<p class= "menuText"> Je bent ontsnapt van de leeuw, goed gedaan! <br> <br> Hielp de cirkel een beetje? <br> Zonder die circel zou het een stuk moeilijker zijn, probeer het maar eens! </p>
+			<p class= "menuText"> 
+				Je bent ontsnapt van de leeuw, goed gedaan! <br> <br> Hielp de cirkel een beetje? 
+				<br>
+				<br> Je bent in <span class = "waterbokScore" id = "score">x</span> seconden ontsnapt!
+				<br>
+				<br> Je snelste tijd is <span class = "waterbokScore" id = "highScore">x</span> seconden.
+				<br>
+				<br> denk je dat je dat sneller kan? Probeer het nog eens!</p>
 			<div class = menuButtonContainer>
-				<button class = "btn-orange" id="btnWin1"> Probeer zonder cirkel </button>
+				<button class = "btn-orange" id="btnWin"> Probeer opnieuw </button>
 			</div>
 		</div>
-		<div class = "menu" id="win2Menu" style = "display:none">
-			<h2> Ontsnapt! </h2>
-			<p class= "menuText">Je bent weer ontsnapt van de leeuw, goed gedaan! <br> <br> Dat was een stukje lastiger of niet? <br> Toch wel handig zo'n cirkel! <br> Als je wil kan je je score nog verbeteren, of zoek een andere ARvaring! </p>
-			<div class = menuButtonContainer>
-				<button class = "btn-orange"> Probeer met cirkel </button>
-				<button class = "btn-orange"> Probeer zonder cirkel </button>
-				<button class = "btn-orange"> Ga naar ARvaringen </button>
-			</div>
-		</div>
-		
-
-
+	
 	<script src="./waterbok.js" type ="module"></script>
 	</body>
 </html>

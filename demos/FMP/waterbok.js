@@ -10,16 +10,14 @@ const	playerProgressBar = document.querySelector(".progress"),
 		lionProgressBar = document.querySelector(".progressLion"),
 		playerIcon = document.querySelector(".playerIcon"),
 		lionIcon = document.querySelector(".lionIcon"),
-		score0 = document.getElementById("score0"),
-		score1 = document.getElementById("score1"),
-		score2 = document.getElementById("score2"),
 		startMenu = document.getElementById("startMenu"),
 		warningMessage = document.getElementById("warningMessage"),
 		gameOverMenu = document.getElementById("gameOverMenu"),
-		win1Menu = document.getElementById("win1Menu"),
-		win2Menu = document.getElementById("win2Menu"),
+		winMenu = document.getElementById("winMenu"),
 		iOSMenu = document.getElementById("iOSMenu"),
-		btniOS = document.getElementById("btniOS");
+		btniOS = document.getElementById("btniOS"),
+		timeText = document.getElementById("score"),
+		fastestTimeText = document.getElementById("highScore");
 
 let SIZE = {x:0,y:0,width:0,height:0};
 //3D stuff. 
@@ -74,9 +72,6 @@ var PlayerProgress = 0,
 	lionDistance = -6,
 	currentRotation = 0,
 	speed = 12,
-	score = 0,
-	highScore1 = 0,
-	highScore2 = 0,
 	streak = 0,
 	goingLeft = true,
 	switchTime = 2,
@@ -84,12 +79,13 @@ var PlayerProgress = 0,
 	lastTime = (new Date()).getTime(),
 	currentTime = 0,
 	delta = 0,
-	gameState = "start";
+	gameState = "start",
+	gameTime = 0,
+	fastestTime = 0;
 
 const	totalDistance = 30,
 		streakGainTime = 5,
 		streakLoseTime = 2.5,
-		scoreModifier = 1,
 		playerSpeed = 1,
 		lionSpeed = 0.8,
 		minSpeed = 24,
@@ -142,11 +138,12 @@ function animate(){
 	delta = (currentTime - lastTime) / 1000;
 	lastTime = currentTime;
 
-	if (gameState == "play1" || gameState == "play2"){
+	if (gameState == "play"){
 		detectLookDirection();
 		moveWaterbok();	
 		updateProgress();
 		moveLion();
+		gameTime = gameTime + deltatime;
 	}
 	if (controls != null){
 		controls.update();
@@ -219,7 +216,6 @@ function lookAt (){
 	} else {
 		streak = 1;
 	}
-	score = score+(scoreModifier+streak)*delta;
 	playerDistance = playerDistance + playerSpeed*delta;
 	moveGrass(grass1);
     moveGrass(grass2);
@@ -243,33 +239,24 @@ function updateProgress (){
 	lionIcon.style.left = `${getIconPosition(LionProgress)}vw`;
 
 	if (PlayerProgress > 100){
-		if (gameState == "play1"){
+		if (gameState == "play"){
 			gameState = "win";
-			win1Menu.style.display = "block";
-		}
-		if (gameState == "play2"){
-			gameState = "finished";
-			win2Menu.style.display = "block";
+			if (gameTime < fastestTime){
+				fastestTime = gameTime;
+			}
+			timeText.innerHTML = Math.round(gameTime);
+			fastestTimeText.innerHTML = Math.round(fastestTime);
+			winMenu.style.display = "block";
 		}		
 	}
 
-	score0.innerHTML = Math.round(score).toString()
-
-	if (gameState == "play1" && score > highScore1){
-		score1.innerHTML = Math.round(score).toString();
-	}
-	if (gameState == "play2" && score > highScore2){
-		score2.innerHTML = Math.round(score).toString();
-	}
-}
 function getIconPosition (iconPosition){
 	return ((iconPosition/100)*95-5);
 }
 function moveLion(){
 	lionDistance = lionDistance+0.7*delta;
 	if (lionDistance>playerDistance){
-		if (gameState == "play1"){ gameState = "gameOver1"}
-		if (gameState == "play2"){ gameState = "gameOver2"}
+		if (gameState == "play"){ gameState = "gameOver"}
 		gameOverMenu.style.display = "block";
 	}
 }
@@ -331,9 +318,9 @@ function addGrass(){
 function resetGame (){
 	playerDistance = 0;
 	lionDistance = -6;
-	score = 0;
 	streak = 0;
 	elapsedSwitchTime= 0;
+	gameTime = 0;
 
 	updateProgress();
 	setWaterbokDistance (3.6);
@@ -362,15 +349,14 @@ document.getElementById("btnStart").onclick = function(){
 document.getElementById("btnWarn").onclick = function(){
 	resetGame();
 	warningMessage.style.display = "none";
-	if (gameState == "start" || gameState == "gameOver1"){gameState = "play1"}
-	if (gameState == "win" || gameState == "gameOver2"){gameState = "play2"}
+	gameState = "play"
 }
 document.getElementById("btnGameOver").onclick = function(){
 	gameOverMenu.style.display = "none";
 	warningMessage.style.display = "block";
 }
-document.getElementById("btnWin1").onclick = function(){
-	win1Menu.style.display = "none";
+document.getElementById("btnWin").onclick = function(){
+	winMenu.style.display = "none";
 	warningMessage.style.display = "block";
 	wbmaterial.map = wbNEtexture;
 }
