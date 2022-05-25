@@ -339,7 +339,7 @@ svg{
 	-webkit-filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
 	filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
 
-	position:absolute;
+	position:relative;
 	top: 0px;
 	width: 80vw;
 	margin-left:10vw;
