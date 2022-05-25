@@ -249,6 +249,7 @@ function updateProgress (){
 			winMenu.style.display = "block";
 		}		
 	}
+}
 
 function getIconPosition (iconPosition){
 	return ((iconPosition/100)*95-5);
