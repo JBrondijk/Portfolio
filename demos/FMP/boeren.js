@@ -157,7 +157,6 @@ function updateUI(){
 		startMenu.style.display = "block";
 	} else if (gameState == "play") {
 		displayNone();	
-		selectDot.style.display = "block";
 		speechBubble.style.display = "block";
 		selectMenu.style.display = "block";
 	} else if (gameState == "menu") {
@@ -169,7 +168,6 @@ function updateUI(){
 function displayNone(){
 	startMenu.style.display = "none";	
 	scanner.style.display = "none";
-	selectDot.style.display = "none";
 	speechBubble.style.display = "none";
 	foundMenu.style.display = "none";
 	selectMenu.style.display = "none"
