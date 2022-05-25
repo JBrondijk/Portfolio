@@ -335,7 +335,7 @@ function select(objectToSelect){
 		if (objectToSelect.userData.isSouvenircase){
 			//selection is a souvenir
 			objectToSelect.remove(objectToSelect.children[0]);
-			objectToSelect.remove(objectToSelect.children[1]);
+			objectToSelect.remove(objectToSelect.children[0]);
 			objectToSelect.material = suitcaseOpenMaterials[objectToSelect.userData.suitcaseNumber]
 			objectToSelect.userData.isOpen = true;
 			if (!souvenirFound[objectToSelect.userData.souvenirNumber]){
