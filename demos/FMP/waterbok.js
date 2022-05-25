@@ -149,9 +149,6 @@ function animate(){
 		controls.update();
 	}
 
-	console.log(rotator.rotation.y);
-	console.log(camera.rotation.y+1.5708);
-
 	renderer.render(scene,camera);
 	requestAnimationFrame(animate);
 }
