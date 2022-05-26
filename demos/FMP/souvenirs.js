@@ -1,8 +1,8 @@
 const THREE = window.MINDAR.IMAGE.THREE;
 
-document.getElementById("myARcontainer").addEventListener("click", onClickScreen, false);
+//document.getElementById("myARcontainer").addEventListener("click", onClickScreen, false);
 document.getElementById("xrayBox").addEventListener("click", onClickXray, false);
-
+/*
 function onClickScreen (){
 	if (gameState == "play"){
 		var coords = new THREE.Vector2();
@@ -13,6 +13,7 @@ function onClickScreen (){
 		select(selectedObject);
 	}
 }
+*/
 
 function onClickXray (){
 	if (gameState == "play"){
@@ -164,7 +165,7 @@ const hidePlaneBottom = new THREE.Mesh(geometry, hidePlaneMaterial);
 document.addEventListener("DOMContentLoaded",()=>{
 	const start = async () => {
 		const mindarThree = new window.MINDAR.IMAGE.MindARThree({
-			container: document.querySelector("#myARcontainer"),
+			container: document.body,
 			imageTargetSrc: "./files/souvenirs.mind",
 			uiLoading: "no",
 			uiScanning: "no"//,
