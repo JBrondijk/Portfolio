@@ -80,16 +80,16 @@ const materialNormal = new THREE.MeshBasicMaterial({map: textureNormal, transpar
 const materialHover = new THREE.MeshBasicMaterial({map: textureHover, transparent:true, side:2,alphaTest: 0.1});
 
 const selectPlane1 = new THREE.Mesh(geometry, materialNormal);
-selectPlane1.position.set(-0.4,-0.3,0.01);
+selectPlane1.position.set(-0.4,-0.5,0.01);
 selectableObjects[0]=selectPlane1;
 const selectPlane2 = new THREE.Mesh(geometry, materialNormal);
-selectPlane2.position.set(-0.2,-0.3,0.01);
+selectPlane2.position.set(-0.2,-0.5,0.01);
 selectableObjects[1]=selectPlane2;
 const selectPlane3 = new THREE.Mesh(geometry, materialNormal);
-selectPlane3.position.set(0,-0.3,0.01);
+selectPlane3.position.set(0,-0.5,0.01);
 selectableObjects[2]=selectPlane3;
 const selectPlane4 =  new THREE.Mesh(geometry, materialNormal);
-selectPlane4.position.set(0.2,-0.3,0.01);
+selectPlane4.position.set(0.2,-0.5,0.01);
 selectableObjects[3]=selectPlane4;
 
 const mouth = new THREE.Object3D();
