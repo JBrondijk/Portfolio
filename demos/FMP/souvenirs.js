@@ -1,8 +1,8 @@
 const THREE = window.MINDAR.IMAGE.THREE;
 
-//document.getElementById("myARcontainer").addEventListener("click", onClickScreen, false);
+document.getElementById("myARcontainer").addEventListener("click", onClickScreen, false);
 document.getElementById("xrayBox").addEventListener("click", onClickXray, false);
-/*
+
 function onClickScreen (){
 	if (gameState == "play"){
 		var coords = new THREE.Vector2();
@@ -13,7 +13,7 @@ function onClickScreen (){
 		select(selectedObject);
 	}
 }
-*/
+
 
 function onClickXray (){
 	if (gameState == "play"){
@@ -31,7 +31,7 @@ var gameState = "start",
 	scanning = true,
 	documentWidth = window.innerWidth,
 	documentHeight = window.innerHeight,
-	boxOffset = (document.body.clientHeight)-documentHeight, //offset the selectionbox using this variable to make its location the same on every browser. 
+	boxOffset = (document.getElementById("myARcontainer").clientHeight)-documentHeight, //offset the selectionbox using this variable to make its location the same on every browser. 
 	widthHalf = documentWidth/2, 
     heightHalf = documentHeight/2, 
 	selectionBox = new DOMRect(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset);
@@ -165,7 +165,7 @@ const hidePlaneBottom = new THREE.Mesh(geometry, hidePlaneMaterial);
 document.addEventListener("DOMContentLoaded",()=>{
 	const start = async () => {
 		const mindarThree = new window.MINDAR.IMAGE.MindARThree({
-			container: document.body,
+			container: document.querySelector("#myARcontainer"),
 			imageTargetSrc: "./files/souvenirs.mind",
 			uiLoading: "no",
 			uiScanning: "no"//,
