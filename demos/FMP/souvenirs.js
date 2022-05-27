@@ -414,7 +414,7 @@ function distance2D(pointA, pointB){
 }
 
 function updateSelectionBox(){
-	selectionBox = document.getElementById("xrayBox").getBoundingClientRect(); 
+	selectionBox = selectMenu.getBoundingClientRect(); 
 }
 function selectionBoxContains(x,y){
 	return (selectionBox.x <= x && x <= selectionBox.x+selectionBox.width && selectionBox.y <= y && y <= selectionBox.y + selectionBox.height);
