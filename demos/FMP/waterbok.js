@@ -356,5 +356,4 @@ document.getElementById("btnGameOver").onclick = function(){
 document.getElementById("btnWin").onclick = function(){
 	winMenu.style.display = "none";
 	warningMessage.style.display = "block";
-	wbmaterial.map = wbNEtexture;
 }
