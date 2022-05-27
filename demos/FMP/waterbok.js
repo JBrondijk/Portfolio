@@ -163,7 +163,7 @@ function moveWaterbok(){
 	}
 	rotator.rotation.set(0, currentRotation*(Math.PI/180), 0);
 
-	setWaterbokDistance(3.6+8*(PlayerProgress/100));
+	setWaterbokDistance(3.6+6*(PlayerProgress/100));
 
 	//pick new direction & speed when it's time
 	elapsedSwitchTime = elapsedSwitchTime + delta;
@@ -356,5 +356,4 @@ document.getElementById("btnGameOver").onclick = function(){
 document.getElementById("btnWin").onclick = function(){
 	winMenu.style.display = "none";
 	warningMessage.style.display = "block";
-	wbmaterial.map = wbNEtexture;
 }
