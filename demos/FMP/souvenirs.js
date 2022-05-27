@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 		})
 		const {renderer, scene, camera} = mindarThree;
 		ARCamera = camera;
-		renderer.domElement.style.top = boxOffset+"px";
+		//renderer.domElement.style.top = boxOffset+"px";
 		
 		const anchor = mindarThree.addAnchor(0);
 		anchor.group.add(conveyor); //Build scene here.
