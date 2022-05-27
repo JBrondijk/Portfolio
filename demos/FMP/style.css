@@ -76,14 +76,14 @@ p{
 .progress-container {
 	position: absolute;
 	bottom: 5vh;
-	height: 3vw;
+	height: 0.8rem;
 	width: 95vw;
 
 	background: rgba(210, 210, 210, 0.8)
 }
 
 .progress-container .progress {
-  margin-top: -3.5vw;
+  margin-top: -1.2rem;
   height: 100%;
   width: 0;
   border-radius: 0.16rem;
@@ -91,7 +91,7 @@ p{
   background: #EA5B19;
 }
 .progress-container .progressLion {
-  margin-top: -3vw;
+  margin-top: -0.8rem;
   height: 100%;
   width: 0;
   border-radius: 0.16rem;

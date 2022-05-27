@@ -231,9 +231,9 @@ function updateProgress (){
 	LionProgress = (lionDistance/totalDistance)*100;
 
 	playerProgressBar.style.width = `${Math.max(PlayerProgress,0)}%`;
-	playerIcon.style.left = `${getIconPosition(PlayerProgress)}vw`;
+	playerIcon.style.left = `${getIconPosition(PlayerProgress, playerIcon)}vw`;
 	lionProgressBar.style.width = `${Math.max(LionProgress,0)}%`;
-	lionIcon.style.left = `${getIconPosition(LionProgress)}vw`;
+	lionIcon.style.left = `${getIconPosition(LionProgress, lionIcon)}vw`;
 
 	if (PlayerProgress > 100){
 		if (gameState == "play"){
@@ -248,8 +248,8 @@ function updateProgress (){
 	}
 }
 
-function getIconPosition (iconPosition){
-	return ((iconPosition/100)*95-5);
+function getIconPosition (iconPosition, icon){
+	return ((iconPosition/100)*95-(icon.clientWidth/document.body.clientWidth);
 }
 function moveLion(){
 	lionDistance = lionDistance+0.7*delta;
