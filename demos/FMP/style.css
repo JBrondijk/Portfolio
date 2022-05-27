@@ -47,7 +47,7 @@ p{
 	font-family: sofia-pro,Century Gothic,sans-serif;
 	letter-spacing: -.17px;
     word-spacing: -0.1px;
-	font-size: 1vh;
+	font-size: 1.5vh;
 	line-height: 1.5!important;
     font-weight: 300;
 	
@@ -184,7 +184,7 @@ p{
 	font-family: sofia-pro,Century Gothic,sans-serif;
 	letter-spacing: -.25px;
     word-spacing: -0.1px;
-	font-size: 1.5vh;
+	font-size: 2vh;
 	line-height: 1.5;
     font-weight: 300;
 	margin-top:10px;
@@ -252,7 +252,7 @@ padding-bottom: 0;
     border: 0;
     color: white;
     font-family: sofia-pro,Century Gothic,sans-serif;
-	font-size: 300%;
+	font-size: 3vh;
     font-weight: 700;
     line-height: 5vh;
 	text-align: center;
