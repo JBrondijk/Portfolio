@@ -26,7 +26,7 @@ h2{
 	margin-top: 0;
 	margin-bottom: 0;
     font-family: sofia-pro,Century Gothic,sans-serif;
-	font-size: 2.5rem;
+	font-size: 2vh;
     font-weight: 700;
     line-height: 1.3;
 	text-align: left;
@@ -48,7 +48,7 @@ p{
 	font-family: sofia-pro,Century Gothic,sans-serif;
 	letter-spacing: -.17px;
     word-spacing: -0.1px;
-	font-size: 1.3rem;
+	font-size: 1vh;
 	line-height: 1.5!important;
     font-weight: 300;
 	
@@ -100,7 +100,7 @@ p{
 
 .waterbokScore{
 	background: #FCCF4D;
-	font-size: 1.75rem;
+	font-size: 1.75vh;
 	font-weight: 600;
 	padding-top: 20px;
 	padding-right: 20px;
@@ -110,7 +110,7 @@ p{
 }
 
 .scoreText{
-	font-size: 1.75rem;
+	font-size: 1.75vh;
 	font-weight: 600;
 
 }
@@ -118,7 +118,7 @@ p{
 .souvenirText{
 	margin-left: 5%;
 	width: 80%;
-	font-size: 1.75rem;
+	font-size: 1.75vh;
 	font-weight: 600;
 	background: #FCCF4D;
 
@@ -148,7 +148,7 @@ p{
 	font-family: 'Anton';
 	color: #757575;
 	word-spacing: -5pt;
-	font-size: 2.5rem;
+	font-size: 2vh;
 
 }
 
@@ -185,7 +185,7 @@ p{
 	font-family: sofia-pro,Century Gothic,sans-serif;
 	letter-spacing: -.25px;
     word-spacing: -0.1px;
-	font-size: 2rem;
+	font-size: 1.5vh;
 	line-height: 1.5;
     font-weight: 300;
 	margin-top:10px;
@@ -363,6 +363,5 @@ svg{
 	margin-left:-3vw;
 	border-radius:2.5rem;
 	margin-bottom:0;
-	font-size:2.5rem;
-
+	font-size: 2vh;
 }
