@@ -318,11 +318,11 @@ svg{
 
 #arrow {
   border: solid white;
-  border-width: 0 0.6rem 0.6rem 0;
-  padding: 1rem;
+  border-width: 0 0.4rem 0.4rem 0;
+  padding: 0.4rem;
 
   float : right;
-  margin-top: 1.5vh;
+  margin-top: 0.8vh;
   margin-right: 5vw;
   transform: rotate(-135deg);
   -webkit-transform: rotate(-135deg);
