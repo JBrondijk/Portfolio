@@ -17,9 +17,9 @@ h1{
 	background-color: #596831;
 	
 	padding-top: 1.5vh;
-	padding-right: 30px;
+	padding-right: 15px;
 	padding-bottom: 0.5vh;
-	padding-left: 30px;
+	padding-left: 15px;
 }
 
 h2{
@@ -55,13 +55,13 @@ p{
 	
 	margin-top: 0;
 	padding-top: 0px;
-	padding-bottom: 10px;
-	padding-left: 12px;
-	padding-right: 12px;
+	padding-bottom: 5px;
+	padding-left: 6px;
+	padding-right: 6px;
 }
 
 .center {
-	padding-top: 50px;
+	padding-top: 25px;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -123,10 +123,10 @@ p{
 	font-weight: 600;
 	background: #FCCF4D;
 
-	padding-top: 20px;
-	padding-right: 20px;
-	padding-bottom: 20px;
-	padding-left: 20px;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
 
 	margin-bottom: 3vh;
 }
@@ -148,7 +148,7 @@ p{
 
 	font-family: 'Anton';
 	color: #757575;
-	word-spacing: -5pt;
+	word-spacing: -0.2rem;
 	font-size: 1rem;
 
 }
@@ -162,8 +162,8 @@ p{
 	height: 20vh;
 	display:block;
 	margin: 0 auto;
-	-webkit-filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
-	filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
+	-webkit-filter: drop-shadow(2.5px 2.5px 2.5px rgba(0,0,0,0.4));
+	filter: drop-shadow(2.5px 2.5px 2.5px rgba(0,0,0,0.4));
 }
 
 .menu{
@@ -174,7 +174,7 @@ p{
 	left:10vw;
 
 	width : 80vw;
-	padding-bottom: 30px;
+	padding-bottom: 15px;
 
 	background-color: white;
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -263,7 +263,7 @@ padding-bottom: 0;
 	padding-bottom: 0.2vh;
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
-	margin-bottom: 30px;
+	margin-bottom: 15px;
 }
 .btn-orange:active {
     background-color: #EF8357;
@@ -318,8 +318,8 @@ svg{
 
 #arrow {
   border: solid white;
-  border-width: 0 6pt 6pt 0;
-  padding: 10pt;
+  border-width: 0 0.6rem 0.6rem 0;
+  padding: 1rem;
 
   float : right;
   margin-top: 1.5vh;
@@ -336,8 +336,8 @@ svg{
 }
 
 #speechBubble {
-	-webkit-filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
-	filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
+	-webkit-filter: drop-shadow(2.5px 2.5px 2.5px rgba(0,0,0,0.4));
+	filter: drop-shadow(2.5px 2.5px 2.5px rgba(0,0,0,0.4));
 
 	position:relative;
 	top: 0px;
