@@ -1,169 +1,170 @@
 const THREE = window.MINDAR.IMAGE.THREE;
 
-document.getElementById("myARcontainer").addEventListener("click", onClickScreen, false);
-document.getElementById("xrayBox").addEventListener("click", onClickXray, false);
-
-function onClickScreen (){
-	if (gameState == "play"){
-		var coords = new THREE.Vector2();
-		coords.x = (event.clientX);
-		coords.y = (event.clientY);
-
-		let selectedObject = findSelectedObject(coords,true);
-		select(selectedObject);
-	}
-}
-
-
-function onClickXray (){
-	if (gameState == "play"){
-		var coords = new THREE.Vector2();
-		coords.x = (event.clientX);
-		coords.y = (event.clientY);
-
-		let selectedObject = findSelectedObject(coords,true);
-		select(selectedObject);
-	}
-}
-
-//imagetracking template:
-var gameState = "start",
-	scanning = true,
-	documentWidth = window.innerWidth,
-	documentHeight = window.innerHeight,
-	boxOffset = (document.getElementById("myARcontainer").clientHeight)-documentHeight, //offset the selectionbox using this variable to make its location the same on every browser. 
-	widthHalf = documentWidth/2, 
-    heightHalf = documentHeight/2, 
-	selectionBox = new DOMRect(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset);
-
-	//deltatime variables
-	var lastTime = (new Date()).getTime(),
-		currentTime = 0,
-		delta = 0;
-
-	//game variables:
-	var conveyorOffset = 0.5,
-		conveyorSpeed = 0.2,
-		spawnTimer = 0,
-		spawnTime = 1,
-		souvenirCount = getRandomInt(3,4), //after spawning this many items a souvenir is spawned instead.
-		souvenirToSpawn,
-		lastSpawnX = 0,
-		ARCamera,
-		souvenirsFound = 0,
-		postGame = false;
-
-	//html elements:
-	const	scanner = document.getElementById("scanning"),
-			startMenu = document.getElementById("startMenu"),
-			selectMenu = document.getElementById("selectMenu"),
-			foundMenu = document.getElementById("foundMenu"),
-			nothingFound = document.getElementById("nothingFound"),
-			allFound = document.getElementById("allFound"),
-			souvenirPages = [],
-			souvenirsFoundTxt = document.getElementById("souvenirsFound");
-
-	souvenirPages[0] = document.getElementById("souvenir0");
-	souvenirPages[1] = document.getElementById("souvenir1");
-	souvenirPages[2] = document.getElementById("souvenir2");
-	souvenirPages[3] = document.getElementById("souvenir3");
-	souvenirPages[4] = document.getElementById("souvenir4");
-
-
-	updateSouvenirsFoundTxt ();
-
-//ThreeJS stuff:
-const loader = new THREE.TextureLoader();
-	//geometries
-	const geometry = new THREE.PlaneGeometry(1,1);
-	const suitcaseGeometry = new THREE.PlaneGeometry(0.3,0.3);
-	const souvenirGeometry = new THREE.PlaneGeometry(0.1,0.1);
-	const xrayGeometry = new THREE.PlaneGeometry(0.03,0.03);
-
-	//textures
-	const conveyorTexture = loader.load("./textures/souvenirs/conveyor.png");
-		conveyorTexture.wrapS=THREE.RepeatWrapping;
-		conveyorTexture.wrapT = THREE.RepeatWrapping;
-	const souvenirTextures = [];
-		souvenirTextures[0] = loader.load("./textures/souvenirs/souvenir1_bracelet_xray.png");
-		souvenirTextures[1] = loader.load("./textures/souvenirs/souvenir2_feather_xray.png");
-		souvenirTextures[2] = loader.load("./textures/souvenirs/souvenir3_ivory_xray.png");
-		souvenirTextures[3] = loader.load("./textures/souvenirs/souvenir4_turtles_xray.png");
-		souvenirTextures[4] = loader.load("./textures/souvenirs/souvenir5_medicine_xray.png");
-	const suitcaseOpenTextures = [];
-		suitcaseOpenTextures[0] = loader.load("./textures/souvenirs/suitcase1.1_open.png");
-		suitcaseOpenTextures[1] = loader.load("./textures/souvenirs/suitcase1.2_open.png");
-		suitcaseOpenTextures[2] = loader.load("./textures/souvenirs/suitcase2.1_open.png");
-		suitcaseOpenTextures[3] = loader.load("./textures/souvenirs/suitcase2.2_open.png");
-		suitcaseOpenTextures[4] = loader.load("./textures/souvenirs/suitcase3.1_open.png");
-		suitcaseOpenTextures[5] = loader.load("./textures/souvenirs/suitcase3.2_open.png");
-		suitcaseOpenTextures[6] = loader.load("./textures/souvenirs/suitcase4.1_open.png");
-		suitcaseOpenTextures[7] = loader.load("./textures/souvenirs/suitcase4.2_open.png");
-		suitcaseOpenTextures[8] = loader.load("./textures/souvenirs/suitcase4.3_open.png");
-		suitcaseOpenTextures[9] = loader.load("./textures/souvenirs/suitcase4.4_open.png");
-	const suitcaseClosedTextures = [];
-		suitcaseClosedTextures[0] = loader.load("./textures/souvenirs/suitcase1.1_closed.png");
-		suitcaseClosedTextures[1] = loader.load("./textures/souvenirs/suitcase1.2_closed.png");
-		suitcaseClosedTextures[2] = loader.load("./textures/souvenirs/suitcase2.1_closed.png");
-		suitcaseClosedTextures[3] = loader.load("./textures/souvenirs/suitcase2.2_closed.png");
-		suitcaseClosedTextures[4] = loader.load("./textures/souvenirs/suitcase3.1_closed.png");
-		suitcaseClosedTextures[5] = loader.load("./textures/souvenirs/suitcase3.2_closed.png");
-		suitcaseClosedTextures[6] = loader.load("./textures/souvenirs/suitcase4.1_closed.png");
-		suitcaseClosedTextures[7] = loader.load("./textures/souvenirs/suitcase4.2_closed.png");
-		suitcaseClosedTextures[8] = loader.load("./textures/souvenirs/suitcase4.3_closed.png");
-		suitcaseClosedTextures[9] = loader.load("./textures/souvenirs/suitcase4.4_closed.png");
-	//materials
-	const conveyorMaterial = new THREE.MeshBasicMaterial({map:conveyorTexture,side:3});
-	//const xrayMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, transparent : !0, opacity : 0, side:2 } );
-	//const xrayMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, transparent : !0, opacity : 0.5, side:2 } );
-	const hidePlaneMaterial = new THREE.MeshBasicMaterial({color: 0x0000ff, colorWrite: false});
-	const souvenirMaterials = [];
-		souvenirMaterials[0] = new THREE.MeshBasicMaterial({map: souvenirTextures[0], transparent:true, side:3, alphaTest: 0.1});
-		souvenirMaterials[1] = new THREE.MeshBasicMaterial({map: souvenirTextures[1], transparent:true, side:3, alphaTest: 0.1});
-		souvenirMaterials[2] = new THREE.MeshBasicMaterial({map: souvenirTextures[2], transparent:true, side:3, alphaTest: 0.1});
-		souvenirMaterials[3] = new THREE.MeshBasicMaterial({map: souvenirTextures[3], transparent:true, side:3, alphaTest: 0.1});
-		souvenirMaterials[4] = new THREE.MeshBasicMaterial({map: souvenirTextures[4], transparent:true, side:3, alphaTest: 0.1});
-	const suitcaseMaterials = [];
-		suitcaseMaterials[0] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[0], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseMaterials[1] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[1], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseMaterials[2] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[2], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseMaterials[3] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[3], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseMaterials[4] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[4], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseMaterials[5] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[5], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseMaterials[6] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[6], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseMaterials[7] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[7], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseMaterials[8] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[8], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseMaterials[9] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[9], transparent:true, side:3, alphaTest: 0.1});
-	const suitcaseOpenMaterials = [];
-		suitcaseOpenMaterials[0] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[0], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseOpenMaterials[1] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[1], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseOpenMaterials[2] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[2], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseOpenMaterials[3] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[3], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseOpenMaterials[4] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[4], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseOpenMaterials[5] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[5], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseOpenMaterials[6] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[6], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseOpenMaterials[7] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[7], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseOpenMaterials[8] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[8], transparent:true, side:3, alphaTest: 0.1});
-		suitcaseOpenMaterials[9] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[9], transparent:true, side:3, alphaTest: 0.1});
-
-	const suitcases = [];
-	
-	const souvenirFound = [];
-	//set all of souvenirFound's values to false. 
-	for (var i = 0; i < souvenirTextures.length; i++){
-		souvenirFound [i] = false;
-	}	
-
-const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
-const hidePlaneTop = new THREE.Mesh(geometry, hidePlaneMaterial);
-	hidePlaneTop.position.set(0,1,0.02);
-	conveyor.add(hidePlaneTop);
-const hidePlaneBottom = new THREE.Mesh(geometry, hidePlaneMaterial);
-	hidePlaneBottom.position.set(0,-1,0.02);
-	conveyor.add(hidePlaneBottom);
-
 document.addEventListener("DOMContentLoaded",()=>{
 	const start = async () => {
+		document.getElementById("myARcontainer").addEventListener("click", onClickScreen, false);
+		document.getElementById("xrayBox").addEventListener("click", onClickXray, false);
+
+		function onClickScreen (){
+			if (gameState == "play"){
+				var coords = new THREE.Vector2();
+				coords.x = (event.clientX);
+				coords.y = (event.clientY);
+
+				let selectedObject = findSelectedObject(coords,true);
+				select(selectedObject);
+			}
+		}
+
+
+		function onClickXray (){
+			if (gameState == "play"){
+				var coords = new THREE.Vector2();
+				coords.x = (event.clientX);
+				coords.y = (event.clientY);
+
+				let selectedObject = findSelectedObject(coords,true);
+				select(selectedObject);
+			}
+		}
+
+		//imagetracking template:
+		var gameState = "start",
+			scanning = true,
+			documentWidth = window.innerWidth,
+			documentHeight = window.innerHeight,
+			boxOffset = (document.getElementById("myARcontainer").clientHeight)-documentHeight, //offset the selectionbox using this variable to make its location the same on every browser. 
+			widthHalf = documentWidth/2, 
+			heightHalf = documentHeight/2, 
+			selectionBox = new DOMRect(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset);
+
+			//deltatime variables
+			var lastTime = (new Date()).getTime(),
+				currentTime = 0,
+				delta = 0;
+
+			//game variables:
+			var conveyorOffset = 0.5,
+				conveyorSpeed = 0.2,
+				spawnTimer = 0,
+				spawnTime = 1,
+				souvenirCount = getRandomInt(3,4), //after spawning this many items a souvenir is spawned instead.
+				souvenirToSpawn,
+				lastSpawnX = 0,
+				ARCamera,
+				souvenirsFound = 0,
+				postGame = false;
+
+			//html elements:
+			const	scanner = document.getElementById("scanning"),
+					startMenu = document.getElementById("startMenu"),
+					selectMenu = document.getElementById("selectMenu"),
+					foundMenu = document.getElementById("foundMenu"),
+					nothingFound = document.getElementById("nothingFound"),
+					allFound = document.getElementById("allFound"),
+					souvenirPages = [],
+					souvenirsFoundTxt = document.getElementById("souvenirsFound");
+
+			souvenirPages[0] = document.getElementById("souvenir0");
+			souvenirPages[1] = document.getElementById("souvenir1");
+			souvenirPages[2] = document.getElementById("souvenir2");
+			souvenirPages[3] = document.getElementById("souvenir3");
+			souvenirPages[4] = document.getElementById("souvenir4");
+
+
+			updateSouvenirsFoundTxt ();
+
+		//ThreeJS stuff:
+		const loader = new THREE.TextureLoader();
+			//geometries
+			const geometry = new THREE.PlaneGeometry(1,1);
+			const suitcaseGeometry = new THREE.PlaneGeometry(0.3,0.3);
+			const souvenirGeometry = new THREE.PlaneGeometry(0.1,0.1);
+			const xrayGeometry = new THREE.PlaneGeometry(0.03,0.03);
+
+			//textures
+			const conveyorTexture = loader.load("./textures/souvenirs/conveyor.png");
+				conveyorTexture.wrapS=THREE.RepeatWrapping;
+				conveyorTexture.wrapT = THREE.RepeatWrapping;
+			const souvenirTextures = [];
+				souvenirTextures[0] = loader.load("./textures/souvenirs/souvenir1_bracelet_xray.png");
+				souvenirTextures[1] = loader.load("./textures/souvenirs/souvenir2_feather_xray.png");
+				souvenirTextures[2] = loader.load("./textures/souvenirs/souvenir3_ivory_xray.png");
+				souvenirTextures[3] = loader.load("./textures/souvenirs/souvenir4_turtles_xray.png");
+				souvenirTextures[4] = loader.load("./textures/souvenirs/souvenir5_medicine_xray.png");
+			const suitcaseOpenTextures = [];
+				suitcaseOpenTextures[0] = loader.load("./textures/souvenirs/suitcase1.1_open.png");
+				suitcaseOpenTextures[1] = loader.load("./textures/souvenirs/suitcase1.2_open.png");
+				suitcaseOpenTextures[2] = loader.load("./textures/souvenirs/suitcase2.1_open.png");
+				suitcaseOpenTextures[3] = loader.load("./textures/souvenirs/suitcase2.2_open.png");
+				suitcaseOpenTextures[4] = loader.load("./textures/souvenirs/suitcase3.1_open.png");
+				suitcaseOpenTextures[5] = loader.load("./textures/souvenirs/suitcase3.2_open.png");
+				suitcaseOpenTextures[6] = loader.load("./textures/souvenirs/suitcase4.1_open.png");
+				suitcaseOpenTextures[7] = loader.load("./textures/souvenirs/suitcase4.2_open.png");
+				suitcaseOpenTextures[8] = loader.load("./textures/souvenirs/suitcase4.3_open.png");
+				suitcaseOpenTextures[9] = loader.load("./textures/souvenirs/suitcase4.4_open.png");
+			const suitcaseClosedTextures = [];
+				suitcaseClosedTextures[0] = loader.load("./textures/souvenirs/suitcase1.1_closed.png");
+				suitcaseClosedTextures[1] = loader.load("./textures/souvenirs/suitcase1.2_closed.png");
+				suitcaseClosedTextures[2] = loader.load("./textures/souvenirs/suitcase2.1_closed.png");
+				suitcaseClosedTextures[3] = loader.load("./textures/souvenirs/suitcase2.2_closed.png");
+				suitcaseClosedTextures[4] = loader.load("./textures/souvenirs/suitcase3.1_closed.png");
+				suitcaseClosedTextures[5] = loader.load("./textures/souvenirs/suitcase3.2_closed.png");
+				suitcaseClosedTextures[6] = loader.load("./textures/souvenirs/suitcase4.1_closed.png");
+				suitcaseClosedTextures[7] = loader.load("./textures/souvenirs/suitcase4.2_closed.png");
+				suitcaseClosedTextures[8] = loader.load("./textures/souvenirs/suitcase4.3_closed.png");
+				suitcaseClosedTextures[9] = loader.load("./textures/souvenirs/suitcase4.4_closed.png");
+			//materials
+			const conveyorMaterial = new THREE.MeshBasicMaterial({map:conveyorTexture,side:3});
+			//const xrayMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, transparent : !0, opacity : 0, side:2 } );
+			//const xrayMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, transparent : !0, opacity : 0.5, side:2 } );
+			const hidePlaneMaterial = new THREE.MeshBasicMaterial({color: 0x0000ff, colorWrite: false});
+			const souvenirMaterials = [];
+				souvenirMaterials[0] = new THREE.MeshBasicMaterial({map: souvenirTextures[0], transparent:true, side:3, alphaTest: 0.1});
+				souvenirMaterials[1] = new THREE.MeshBasicMaterial({map: souvenirTextures[1], transparent:true, side:3, alphaTest: 0.1});
+				souvenirMaterials[2] = new THREE.MeshBasicMaterial({map: souvenirTextures[2], transparent:true, side:3, alphaTest: 0.1});
+				souvenirMaterials[3] = new THREE.MeshBasicMaterial({map: souvenirTextures[3], transparent:true, side:3, alphaTest: 0.1});
+				souvenirMaterials[4] = new THREE.MeshBasicMaterial({map: souvenirTextures[4], transparent:true, side:3, alphaTest: 0.1});
+			const suitcaseMaterials = [];
+				suitcaseMaterials[0] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[0], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseMaterials[1] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[1], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseMaterials[2] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[2], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseMaterials[3] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[3], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseMaterials[4] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[4], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseMaterials[5] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[5], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseMaterials[6] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[6], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseMaterials[7] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[7], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseMaterials[8] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[8], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseMaterials[9] = new THREE.MeshBasicMaterial({map: suitcaseClosedTextures[9], transparent:true, side:3, alphaTest: 0.1});
+			const suitcaseOpenMaterials = [];
+				suitcaseOpenMaterials[0] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[0], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseOpenMaterials[1] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[1], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseOpenMaterials[2] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[2], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseOpenMaterials[3] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[3], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseOpenMaterials[4] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[4], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseOpenMaterials[5] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[5], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseOpenMaterials[6] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[6], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseOpenMaterials[7] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[7], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseOpenMaterials[8] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[8], transparent:true, side:3, alphaTest: 0.1});
+				suitcaseOpenMaterials[9] = new THREE.MeshBasicMaterial({map: suitcaseOpenTextures[9], transparent:true, side:3, alphaTest: 0.1});
+
+			const suitcases = [];
+	
+			const souvenirFound = [];
+			//set all of souvenirFound's values to false. 
+			for (var i = 0; i < souvenirTextures.length; i++){
+				souvenirFound [i] = false;
+			}	
+
+		const conveyor = new THREE.Mesh(geometry, conveyorMaterial);
+		const hidePlaneTop = new THREE.Mesh(geometry, hidePlaneMaterial);
+			hidePlaneTop.position.set(0,1,0.02);
+			conveyor.add(hidePlaneTop);
+		const hidePlaneBottom = new THREE.Mesh(geometry, hidePlaneMaterial);
+			hidePlaneBottom.position.set(0,-1,0.02);
+			conveyor.add(hidePlaneBottom);
+
+
 		const mindarThree = new window.MINDAR.IMAGE.MindARThree({
 			container: document.querySelector("#myARcontainer"),
 			imageTargetSrc: "./files/souvenirs.mind",
