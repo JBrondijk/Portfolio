@@ -83,7 +83,7 @@ p{
 }
 
 .progress-container .progress {
-  margin-top: -1.2rem;
+  margin-top: -1.18rem;
   height: 100%;
   width: 0;
   border-radius: 0.16rem;
@@ -103,10 +103,10 @@ p{
 	background: #FCCF4D;
 	font-size: 0.8rem;
 	font-weight: 600;
-	padding-top: 20px;
-	padding-right: 20px;
-	padding-bottom: 20px;
-	padding-left: 20px;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
 
 }
 
