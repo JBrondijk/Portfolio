@@ -8,8 +8,8 @@ import {DeviceOrientationControls} from "../libs/three.js-r132/examples/jsm/cont
 //html elements
 const	playerProgressBar = document.querySelector(".progress"),
 		lionProgressBar = document.querySelector(".progressLion"),
-		playerIcon = document.querySelector(".playerIcon"),
-		lionIcon = document.querySelector(".lionIcon"),
+		playerIcon = document.getElementById("playerIcon"),
+		lionIcon = document.getElementById("lionIcon"),
 		startMenu = document.getElementById("startMenu"),
 		warningMessage = document.getElementById("warningMessage"),
 		gameOverMenu = document.getElementById("gameOverMenu"),
@@ -249,7 +249,7 @@ function updateProgress (){
 }
 
 function getIconPosition (iconPosition, icon){
-	return ((iconPosition/100)*95-((icon.clientWidth/document.body.clientWidth)*100));
+	return ((iconPosition/100)*95-((icon.offsetWidth/document.body.clientWidth)*100));
 }
 function moveLion(){
 	lionDistance = lionDistance+0.7*delta;
