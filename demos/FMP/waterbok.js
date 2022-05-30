@@ -249,7 +249,7 @@ function updateProgress (){
 }
 
 function getIconPosition (iconPosition, icon){
-	return ((iconPosition/100)*95-((icon.offsetWidth/document.body.clientWidth)*100));
+	return ((iconPosition/100)*95-(((icon.offsetWidth/2)/document.body.clientWidth)*100));
 }
 function moveLion(){
 	lionDistance = lionDistance+0.7*delta;
