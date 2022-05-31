@@ -18,6 +18,7 @@ function onReleaseScreen (){
 		select(clickedObject);
 		clickedObject.material = materialNormal;
 		console.log(clickedObject);
+		gameState = "menu";
 	}
 }
 
@@ -38,13 +39,23 @@ var gameState = "start",
 const selectableObjects = []; //add selectable objects to this array
 /*
 	//add objects like this:
-	selectableOjects[0] = new THREE.Mesh(geometry, material);
+	selectableObjects[0] = new THREE.Mesh(geometry, material);
 	plane.add(selectableObjects[0]); //do this later where geometry, materials and plane are defined. 
 */
 
 //html elements:
 const	scanner = document.getElementById("scanning"),
-		startMenu = document.getElementById("startMenu");
+		startMenu = document.getElementById("startMenu"),
+		enclMenu = document.getElementById("enclMenu"),
+		enclInfo = document.getElementById("enclInfo");
+
+const infoMenus = [];
+	infoMenus[0] = document.getElementById ("encl0");
+	infoMenus[1] = document.getElementById ("encl1");
+	infoMenus[2] = document.getElementById ("encl2");
+	infoMenus[3] = document.getElementById ("encl3");
+	infoMenus[4] = document.getElementById ("encl4");
+
 var ARCamera;
 
 //ThreeJS stuff:
@@ -129,7 +140,18 @@ function loop (){
 	delta = (currentTime - lastTime) / 1000;
 	lastTime = currentTime;
 
+	updateInfoMenuLocations();
+
+
 	requestAnimationFrame(loop);
+}
+
+function updateInfoMenuLocations (){
+	for (var i = 0; i < infoMenus.length; i++) {
+		let coords = getScreenLocation(selectableObjects[i])
+		infoMenus[i].style.top = coords.y+"px";
+		infoMenus[i].style.left= coords.x+"px";
+	}
 }
 
 function updateUI(){
@@ -141,15 +163,21 @@ function updateUI(){
 		startMenu.style.display = "block";	
 	} else if (gameState == "play") {
 		displayNone();
-	} /* else if (gamestate == "menu") {
+		enclInfo.style.display = "block";
+	}  else if (gamestate == "menu") {
+		displayNone();
+		enclMenu.style.display = "block";
 		//add additional gamestates like this
 		//make sure to set new gameStates to "block" in other gamestates. 
-	} */
+	} 
 }
 
 function displayNone(){
 	startMenu.style.display = "none";	
 	scanner.style.display = "none";
+	enclMenu.style.display= "none";
+	enclInfo.style.display = "none";
+
 }
 
 function findSelectedObject(point){
@@ -200,5 +228,14 @@ document.getElementById("btnStart").onclick = function(){
 	startMenu.style.display = "none";
 	gameState = "play";
 	updateUI();
+}
 
+function selectRhino(element){
+	console.log(element);
+}
+
+function closeEnclosureMenu(){
+	//Put rhinos in selection backinto enclosure
+	gameState = "play";
+	updateUI();
 }
