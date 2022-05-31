@@ -190,22 +190,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 		const anchor = mindarThree.addAnchor(0);
 		anchor.group.add(background); 
 
-		document.getElementById("encl0").onclick = function(){
-			openEnclosureMenu(0);
-		}
-		document.getElementById("encl1").onclick = function(){
-			openEnclosureMenu(1);
-		}
-		document.getElementById("encl2").onclick = function(){
-			openEnclosureMenu(2);
-		}
-		document.getElementById("encl3").onclick = function(){
-			openEnclosureMenu(3);
-		}
-		document.getElementById("encl4").onclick = function(){
-			openEnclosureMenu(4);
-}
-
 		//on target found
 		anchor.onTargetFound = () => {
 			scanning = false;
@@ -332,6 +316,23 @@ document.getElementById("btnStart").onclick = function(){
 function selectRhino(element){
 	console.log(element);
 }
+
+document.getElementById("encl0").onclick = function(){
+	openEnclosureMenu(0);
+}
+document.getElementById("encl1").onclick = function(){
+	openEnclosureMenu(1);
+}
+document.getElementById("encl2").onclick = function(){
+	openEnclosureMenu(2);
+}
+document.getElementById("encl3").onclick = function(){
+	openEnclosureMenu(3);
+}
+document.getElementById("encl4").onclick = function(){
+	openEnclosureMenu(4);
+}
+
 
 function openEnclosureMenu(menuToOpen){
 	console.log("click");

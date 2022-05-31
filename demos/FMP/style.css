@@ -383,7 +383,8 @@ svg{
 
 .rhinoMenu{
 	position:absolute;
-	
+	border: 0;
+	padding:0;
 	width: 40vw;
 	padding-bottom: 3px;
 
