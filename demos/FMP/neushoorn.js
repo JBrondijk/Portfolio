@@ -319,16 +319,15 @@ function selectRhino(element){
 }
 
 function openEnclosureMenu(menuToOpen){
-	if (gameState == "play"){
-		//set the correct menu to open
-		if (openMenu!= null){
-			enclosures[openMenu].enclosureMenu.style.display = "none";
-		}
-		openMenu = menuToOpen;
-		enclosures[openMenu].enclosureMenu.style.display = "block";
-		gameState = "menu";
-		updateUI();
+	console.log("click");
+	//set the correct menu to open
+	if (openMenu!= null){
+		enclosures[openMenu].enclosureMenu.style.display = "none";
 	}
+	openMenu = menuToOpen;
+	enclosures[openMenu].enclosureMenu.style.display = "block";
+	gameState = "menu";
+	updateUI();
 }
 
 function closeEnclosureMenu(){
