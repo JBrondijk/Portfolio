@@ -15,7 +15,7 @@ function onPressScreen (){
 }
 function onReleaseScreen (){
 	if (gameState == "play"){
-		select(clickedObject);
+
 		clickedObject.material = materialNormal;
 
 		//set the correct menu to open
