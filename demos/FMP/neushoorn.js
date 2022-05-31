@@ -17,8 +17,19 @@ function onReleaseScreen (){
 	if (gameState == "play"){
 		select(clickedObject);
 		clickedObject.material = materialNormal;
+
+		//set the correct menu to open
+		if (openMenu!= null || openMenu != -1){
+			enclosureMenus[openMenu].style.display = "none";
+		}
+		openMenu = selectableObjects.findIndex(x => x == clickedObject);
+		if (openMenu!= null || openMenu != -1){
+			enclosureMenus[openMenu].style.display = "block";
+		}
+
 		console.log(clickedObject);
 		gameState = "menu";
+		updateUI();
 	}
 }
 
@@ -55,6 +66,18 @@ const infoMenus = [];
 	infoMenus[2] = document.getElementById ("encl2");
 	infoMenus[3] = document.getElementById ("encl3");
 	infoMenus[4] = document.getElementById ("encl4");
+
+const enclosureMenus = [];
+enclosureMenus[0] = document.getElementById("encl0Menu");
+enclosureMenus[1] = document.getElementById("encl1Menu");
+enclosureMenus[2] = document.getElementById("encl2Menu");
+enclosureMenus[3] = document.getElementById("encl3Menu");
+enclosureMenus[4] = document.getElementById("encl4Menu");
+
+//game variables
+var	openMenu;
+
+
 
 var ARCamera;
 
