@@ -90,19 +90,19 @@ const materialNormal = new THREE.MeshBasicMaterial({map: textureNormal, transpar
 const materialHover = new THREE.MeshBasicMaterial({map: textureHover, transparent:true, side:2,alphaTest: 0.1});
 
 const selectPlane0 = new THREE.Mesh(geometry, materialNormal);
-selectPlane0.position.set(-0.4,-0.3,0.01);
+selectPlane0.position.set(-0.3,0.25,0.01);
 selectableObjects[0]=selectPlane0;
 const selectPlane1 = new THREE.Mesh(geometry, materialNormal);
-selectPlane1.position.set(-0.4,-0.3,0.01);
+selectPlane1.position.set(0.12,0.27,0.01);
 selectableObjects[1]=selectPlane1;
 const selectPlane2 = new THREE.Mesh(geometry, materialNormal);
-selectPlane2.position.set(-0.2,-0.3,0.01);
+selectPlane2.position.set(-0.17,0,0.01);
 selectableObjects[2]=selectPlane2;
 const selectPlane3 = new THREE.Mesh(geometry, materialNormal);
-selectPlane3.position.set(0,-0.3,0.01);
+selectPlane3.position.set(-0.27,-0.3,0.01);
 selectableObjects[3]=selectPlane3;
 const selectPlane4 =  new THREE.Mesh(geometry, materialNormal);
-selectPlane4.position.set(0.2,-0.3,0.01);
+selectPlane4.position.set(0.13,-0.18,0.01);
 selectableObjects[4]=selectPlane4;
 
 const backgroundGeometry = new THREE.PlaneGeometry(1,1);
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 	const start = async () => {
 		const mindarThree = new window.MINDAR.IMAGE.MindARThree({
 			container: document.querySelector("#myARcontainer"),
-			imageTargetSrc: "./files/cheetah.mind", //change to correct imagetarget.
+			imageTargetSrc: "./files/neushoorn.mind", //change to correct imagetarget.
 			uiLoading: "no",
 			uiScanning: "no"//,
 			//filterMinCF: 0.001,
