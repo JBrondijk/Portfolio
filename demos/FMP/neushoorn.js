@@ -47,11 +47,11 @@ var ARCamera;
 //ThreeJS stuff:
  
 const enclosureTrackers = [];
-enclosureTrackers[0]= = new THREE.Object3D();
-enclosureTrackers[1]= = new THREE.Object3D();
-enclosureTrackers[2]= = new THREE.Object3D();
-enclosureTrackers[3]= = new THREE.Object3D();
-enclosureTrackers[4]= = new THREE.Object3D();
+enclosureTrackers[0]= new THREE.Object3D();
+enclosureTrackers[1]= new THREE.Object3D();
+enclosureTrackers[2]= new THREE.Object3D();
+enclosureTrackers[3]= new THREE.Object3D();
+enclosureTrackers[4]= new THREE.Object3D();
 
 enclosureTrackers[0].position.set(-0.3,0.25,0.01);
 enclosureTrackers[1].position.set(0.12,0.27,0.01);
