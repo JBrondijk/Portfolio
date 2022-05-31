@@ -1,38 +1,5 @@
 const THREE = window.MINDAR.IMAGE.THREE;
 
-document.getElementById("myARcontainer").addEventListener("mousedown", onPressScreen, false);
-document.getElementById("myARcontainer").addEventListener("mouseup", onReleaseScreen, false);
-
-function onPressScreen (){
-	if (gameState == "play"){
-		var coords = new THREE.Vector2();
-		coords.x = (event.clientX);
-		coords.y = (event.clientY);
-
-		clickedObject = findSelectedObject(coords);
-		clickedObject.material = materialHover;
-	}
-}
-function onReleaseScreen (){
-	if (gameState == "play"){
-
-		clickedObject.material = materialNormal;
-
-		//set the correct menu to open
-		if (openMenu!= null || openMenu != -1){
-			enclosureMenus[openMenu].style.display = "none";
-		}
-		openMenu = selectableObjects.findIndex(x => x == clickedObject);
-		if (openMenu!= null || openMenu != -1){
-			enclosureMenus[openMenu].style.display = "block";
-		}
-
-		console.log(clickedObject);
-		gameState = "menu";
-		updateUI();
-	}
-}
-
 //imagetracking template:
 var gameState = "start",
 	scanning = true,
@@ -46,13 +13,6 @@ var gameState = "start",
 	var lastTime = (new Date()).getTime(),
 		currentTime = 0,
 		delta = 0;
-
-const selectableObjects = []; //add selectable objects to this array
-/*
-	//add objects like this:
-	selectableObjects[0] = new THREE.Mesh(geometry, material);
-	plane.add(selectableObjects[0]); //do this later where geometry, materials and plane are defined. 
-*/
 
 //html elements:
 const	scanner = document.getElementById("scanning"),
@@ -74,6 +34,9 @@ enclosureMenus[2] = document.getElementById("encl2Menu");
 enclosureMenus[3] = document.getElementById("encl3Menu");
 enclosureMenus[4] = document.getElementById("encl4Menu");
 
+//MAKING ALL THE RHINOS
+document.getElementById("encl0Males")
+
 //game variables
 var	openMenu;
 
@@ -82,38 +45,29 @@ var	openMenu;
 var ARCamera;
 
 //ThreeJS stuff:
-const loader = new THREE.TextureLoader();
-const geometry = new THREE.PlaneGeometry(0.3,0.3);
-const textureNormal = loader.load("./textures/selectCircle.png");
-const textureHover = loader.load("./textures/selectCircleHover.png");
-const materialNormal = new THREE.MeshBasicMaterial({map: textureNormal, transparent:true, side:2,alphaTest: 0.1});
-const materialHover = new THREE.MeshBasicMaterial({map: textureHover, transparent:true, side:2,alphaTest: 0.1});
+ 
+const enclosureTrackers = [];
+enclosureTrackers[0]= = new THREE.Object3D();
+enclosureTrackers[1]= = new THREE.Object3D();
+enclosureTrackers[2]= = new THREE.Object3D();
+enclosureTrackers[3]= = new THREE.Object3D();
+enclosureTrackers[4]= = new THREE.Object3D();
 
-const selectPlane0 = new THREE.Mesh(geometry, materialNormal);
-selectPlane0.position.set(-0.3,0.25,0.01);
-selectableObjects[0]=selectPlane0;
-const selectPlane1 = new THREE.Mesh(geometry, materialNormal);
-selectPlane1.position.set(0.12,0.27,0.01);
-selectableObjects[1]=selectPlane1;
-const selectPlane2 = new THREE.Mesh(geometry, materialNormal);
-selectPlane2.position.set(-0.17,0,0.01);
-selectableObjects[2]=selectPlane2;
-const selectPlane3 = new THREE.Mesh(geometry, materialNormal);
-selectPlane3.position.set(-0.27,-0.3,0.01);
-selectableObjects[3]=selectPlane3;
-const selectPlane4 =  new THREE.Mesh(geometry, materialNormal);
-selectPlane4.position.set(0.13,-0.18,0.01);
-selectableObjects[4]=selectPlane4;
+enclosureTrackers[0].position.set(-0.3,0.25,0.01);
+enclosureTrackers[1].position.set(0.12,0.27,0.01);
+enclosureTrackers[2].position.set(-0.17,0,0.01);
+enclosureTrackers[3].position.set(-0.27,-0.3,0.01);
+enclosureTrackers[4].position.set(0.13,-0.18,0.01);
 
 const backgroundGeometry = new THREE.PlaneGeometry(1,1);
 const backgroundMaterial = new THREE.MeshBasicMaterial({opacity:0, transparent:true});
 const background = new THREE.Mesh(backgroundGeometry,backgroundMaterial);
 
-background.add(selectPlane0);
-background.add(selectPlane1);
-background.add(selectPlane2);
-background.add(selectPlane3);
-background.add(selectPlane4);
+background.add(enclosureTrackers[0]);
+background.add(enclosureTrackers[1]);
+background.add(enclosureTrackers[2]);
+background.add(enclosureTrackers[3]);
+background.add(enclosureTrackers[4]);
 
 
 
@@ -171,7 +125,7 @@ function loop (){
 
 function updateInfoMenuLocations (){
 	for (var i = 0; i < infoMenus.length; i++) {
-		let coords = getScreenLocation(selectableObjects[i])
+		let coords = getScreenLocation(enclosureTrackers[i])
 		infoMenus[i].style.top = coords.y+"px";
 		infoMenus[i].style.left= coords.x+"px";
 	}
@@ -203,33 +157,6 @@ function displayNone(){
 
 }
 
-function findSelectedObject(point){
-	var closestObject;
-    var ObjectPos = new THREE.Vector3();
-    var shortestdistance;         
-	if (selectableObjects.length > 0){ //check which object is closest to the center.
-		for (var p = 0; p < selectableObjects.length; p++) {
-			ObjectPos = ObjectPos.setFromMatrixPosition(selectableObjects[p].matrixWorld);
-            ObjectPos.project(ARCamera);
-            ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
-            ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
-			ObjectPos.z = 0;
-            if (p==0){
-				closestObject = selectableObjects[p];
-                shortestdistance = distance2D(ObjectPos,point);
-			}  else {
-				if (distance2D(ObjectPos,point) < shortestdistance){
-					closestObject = selectableObjects[p];
-                    shortestdistance = distance2D(ObjectPos,point);
-				}  
-            } 
-		}	
-        return(closestObject);
-  	} else {
-		return (null); //no objects to select, nothing selected.
-	}
-}
-
 function getScreenLocation(object){
 	var ObjectPos = new THREE.Vector3();
 	ObjectPos = ObjectPos.setFromMatrixPosition(object.matrixWorld);
@@ -247,6 +174,20 @@ function distance2D(pointA, pointB){
 	return(Math.sqrt(distanceX*distanceX + distanceY*distanceY));
 }
 
+function rhino(div, male, gene1, gene2){
+	this.div = div;
+	this.male = male;
+	this.gene1 = gene1;
+	this.gene2 = gene2;
+}
+
+function enclosure(rhinos, males, females, inbreeding){
+	this.rhinos = rhinos;
+	this.males = males;
+	this.females = females;
+	this.inbreeding = inbreeding;
+}
+
 document.getElementById("btnStart").onclick = function(){
 	startMenu.style.display = "none";
 	gameState = "play";
@@ -255,6 +196,19 @@ document.getElementById("btnStart").onclick = function(){
 
 function selectRhino(element){
 	console.log(element);
+}
+
+function openEnclosureMenu(menuToOpen){
+	if (gameState == "play"){
+		//set the correct menu to open
+		if (openMenu!= null){
+			enclosureMenus[openMenu].style.display = "none";
+		}
+		openMenu = menuToOpen;
+		enclosureMenus[openMenu].style.display = "block";
+		gameState = "menu";
+		updateUI();
+	}
 }
 
 function closeEnclosureMenu(){
