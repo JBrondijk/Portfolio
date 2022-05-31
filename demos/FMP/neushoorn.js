@@ -317,7 +317,25 @@ function selectRhino(element){
 	console.log(element);
 }
 
+document.getElementById("encl0").onclick = function(){
+	openEnclosureMenu(0);
+}
+document.getElementById("encl1").onclick = function(){
+	openEnclosureMenu(1);
+}
+document.getElementById("encl2").onclick = function(){
+	openEnclosureMenu(2);
+}
+document.getElementById("encl3").onclick = function(){
+	openEnclosureMenu(3);
+}
+document.getElementById("encl4").onclick = function(){
+	openEnclosureMenu(4);
+}
+
+
 function openEnclosureMenu(menuToOpen){
+	console.log("click");
 	//set the correct menu to open
 	if (openMenu!= null){
 		enclosures[openMenu].enclosureMenu.style.display = "none";
