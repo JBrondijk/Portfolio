@@ -318,19 +318,19 @@ function selectRhino(element){
 	console.log(element);
 }
 
-enclosures[0].infoMenu.onclick = function(){
+document.getElementById("encl0").onclick = function(){
 	openEnclosureMenu(0);
 }
-enclosures[1].infoMenu.onclick = function(){
+document.getElementById("encl1").onclick = function(){
 	openEnclosureMenu(1);
 }
-enclosures[2].infoMenu.onclick = function(){
+document.getElementById("encl2").onclick = function(){
 	openEnclosureMenu(2);
 }
-enclosures[3].infoMenu.onclick = function(){
+document.getElementById("encl3").onclick = function(){
 	openEnclosureMenu(3);
 }
-enclosures[4].infoMenu.onclick = function(){
+document.getElementById("encl4").onclick = function(){
 	openEnclosureMenu(4);
 }
 
