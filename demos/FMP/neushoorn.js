@@ -126,6 +126,8 @@ function loop (){
 function updateInfoMenuLocations (){
 	for (var i = 0; i < infoMenus.length; i++) {
 		let coords = getScreenLocation(enclosureTrackers[i])
+		coords.y= coords.y-(infoMenus[i].offsetWidth/2);
+		coords.x=coords.x- (infoMenus[i].offsetHeight/2);
 		infoMenus[i].style.top = coords.y+"px";
 		infoMenus[i].style.left= coords.x+"px";
 	}
