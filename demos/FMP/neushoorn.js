@@ -245,7 +245,7 @@ function updateUI(){
 	} else if (gameState == "play") {
 		displayNone();
 		enclInfo.style.display = "block";
-	}  else if (gamestate == "menu") {
+	}  else if (gameState == "menu") {
 		displayNone();
 		enclMenu.style.display = "block";
 		//add additional gamestates like this
