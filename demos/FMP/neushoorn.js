@@ -68,7 +68,7 @@ const materialHover = new THREE.MeshBasicMaterial({map: textureHover, transparen
 
 const selectPlane0 = new THREE.Mesh(geometry, materialNormal);
 selectPlane0.position.set(-0.4,-0.3,0.01);
-selectableObjects[0]=selectPlane1;
+selectableObjects[0]=selectPlane0;
 const selectPlane1 = new THREE.Mesh(geometry, materialNormal);
 selectPlane1.position.set(-0.4,-0.3,0.01);
 selectableObjects[1]=selectPlane1;
