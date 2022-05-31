@@ -29,7 +29,7 @@ var gameState = "start",
 	documentWidth = window.innerWidth,
 	documentHeight = window.innerHeight,
 	widthHalf = documentWidth/2, 
-    heightHalf = documentHeight/2, 
+    heightHalf = documentHeight/2;
 
 	//deltatime variables
 	var lastTime = (new Date()).getTime(),
