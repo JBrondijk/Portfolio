@@ -1,18 +1,33 @@
 const THREE = window.MINDAR.IMAGE.THREE;
 
+document.getElementById("myARcontainer").addEventListener("mousedown", onPressScreen, false);
+document.getElementById("myARcontainer").addEventListener("mouseup", onReleaseScreen, false);
+
+function onPressScreen (){
+	if (gameState == "play"){
+		var coords = new THREE.Vector2();
+		coords.x = (event.clientX);
+		coords.y = (event.clientY);
+
+		clickedObject = findSelectedObject(coords);
+		clickedObject.material = materialHover;
+	}
+}
+function onReleaseScreen (){
+	if (gameState == "play"){
+		select(clickedObject);
+		clickedObject.material = materialNormal;
+	}
+}
+
 //imagetracking template:
 var gameState = "start",
 	scanning = true,
+	clickedObject,
 	documentWidth = window.innerWidth,
 	documentHeight = window.innerHeight,
-	boxOffset = (((document.getElementById("myARcontainer").clientHeight)/95)*100)-documentHeight, //offset the selectionbox using this variable to make its location the same on every browser. 
 	widthHalf = documentWidth/2, 
     heightHalf = documentHeight/2, 
-	selectionBox = new DOMRect(documentWidth*0.1, documentHeight*0.25+boxOffset, documentWidth*0.8, documentWidth*0.8-boxOffset),
-    boxMiddle = new THREE.Vector2();
-
-    boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
-    boxMiddle.y = selectionBox.y+(selectionBox.height)/2;
 
 	//deltatime variables
 	var lastTime = (new Date()).getTime(),
@@ -28,10 +43,7 @@ const selectableObjects = []; //add selectable objects to this array
 
 //html elements:
 const	scanner = document.getElementById("scanning"),
-		startMenu = document.getElementById("startMenu"),
-		selectMenu = document.getElementById("selectMenu"),
-		selectbtn = document.getElementById("btnSelect");
-
+		startMenu = document.getElementById("startMenu");
 var ARCamera;
 
 //ThreeJS stuff:
@@ -88,8 +100,6 @@ function loop (){
 	delta = (currentTime - lastTime) / 1000;
 	lastTime = currentTime;
 
-	updateSelectionBox()
-
 	requestAnimationFrame(loop);
 }
 
@@ -102,11 +112,6 @@ function updateUI(){
 		startMenu.style.display = "block";	
 	} else if (gameState == "play") {
 		displayNone();
-		selectbtn.style.display = "block";
-		selectMenu.style.display = "block";
-		selectionBox = document.getElementById("selectBox").getBoundingClientRect();
-		boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
-		boxMiddle.y = selectionBox.y+(selectionBox.height)/2;
 	} /* else if (gamestate == "menu") {
 		//add additional gamestates like this
 		//make sure to set new gameStates to "block" in other gamestates. 
@@ -116,21 +121,9 @@ function updateUI(){
 function displayNone(){
 	startMenu.style.display = "none";	
 	scanner.style.display = "none";
-	selectbtn.style.display = "none";
-	selectMenu.style.display = "none";
 }
 
-//select button
-selectbtn.onclick = function(){
-	let selectedObject = findSelectedObject();
-    if (selectedObject != null){
-    	console.log("object selected");
-    } else {
-    	console.log("no object selected");
-    }	
-}
-
-function findSelectedObject(){
+function findSelectedObject(point){
 	var closestObject;
     var ObjectPos = new THREE.Vector3();
     var shortestdistance;         
@@ -143,25 +136,15 @@ function findSelectedObject(){
 			ObjectPos.z = 0;
             if (p==0){
 				closestObject = selectableObjects[p];
-                shortestdistance = distance2D(ObjectPos,boxMiddle);
+                shortestdistance = distance2D(ObjectPos,point);
 			}  else {
-				if (distance2D(ObjectPos,boxMiddle) < shortestdistance){
+				if (distance2D(ObjectPos,point) < shortestdistance){
 					closestObject = selectableObjects[p];
-                    shortestdistance = distance2D(ObjectPos,boxMiddle);
+                    shortestdistance = distance2D(ObjectPos,point);
 				}  
             } 
 		}	
-        ObjectPos = ObjectPos.setFromMatrixPosition(closestObject.matrixWorld);
-        ObjectPos.project(ARCamera);
-        ObjectPos.x = (ObjectPos.x * widthHalf) + widthHalf;
-        ObjectPos.y = - (ObjectPos.y * heightHalf) + heightHalf;
-		ObjectPos.z = 0;
-        if (selectionBoxContains(ObjectPos.x, ObjectPos.y)){
-			//object is in box and is selected
-			return(closestObject);
-        } else {
-			return (null); //no object in box, nothing selected. 
-	    }
+        return(closestObject);
   	} else {
 		return (null); //no objects to select, nothing selected.
 	}
@@ -172,15 +155,6 @@ function distance2D(pointA, pointB){
 	var distanceY = pointA.y-pointB.y;
 
 	return(Math.sqrt(distanceX*distanceX + distanceY*distanceY));
-}
-
-function updateSelectionBox(){
-	selectionBox = document.getElementById("selectBox").getBoundingClientRect();
-	boxMiddle.x = selectionBox.x+(selectionBox.width)/2;
-	boxMiddle.y = selectionBox.y+(selectionBox.height)/2; 
-}
-function selectionBoxContains(x,y){
-	return (selectionBox.x <= x && x <= selectionBox.x+selectionBox.width && selectionBox.y <= y && y <= selectionBox.y + selectionBox.height);
 }
 
 document.getElementById("btnStart").onclick = function(){

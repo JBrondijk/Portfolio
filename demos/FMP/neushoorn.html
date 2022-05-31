@@ -1,17 +1,42 @@
+<!DOCTYPE html>
 <html>
+
 	<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="../libs/mindar/mindar-image-three.prod.js"></script>
-	<script src="./neushoorns.js" type ="module"></script>
-	<style>
-		html, body {
-			position:relative;
-			margin:0;
-			width: 100%;
-			height:100%;
-			overflow: hidden;
-		}
-	</style>
+		<title> Neushoorn Beheer </title>
+		<link href="style.css" rel="stylesheet"/> 
+		<meta name="google" content="notranslate">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
-	<body></body>
+
+	<body style = "overflow:hidden;">
+		<h1> Pagina Titel</h1>
+		<div> 
+		
+		<div id="myARcontainer"></div>
+		</div>
+
+		<div id = "spacer"> </div>
+
+		
+		</div>
+		
+		<div class = "menu" id="startMenu">
+			<h2> Titel text! </h2>
+			<p class= "menuText"> Text voor startmenu. <br> Uitleg spel. </p>
+			<div style = "margin:0; padding-left: 10%;">
+				<button class = "btn-orange" id="btnStart"> Start </button>
+			</div>
+		</div>
+
+		<div id = "scanning" class= "menu" style = "display:none">
+			<h2> Richt je telefoon naar het bord: </h2>
+			<div class="inner">
+				<div class ="scanline"></div>
+			</div>
+		</div>
+
+	<script src="../libs/mindar/mindar-image-three.prod.js"></script>
+	<script src="./neushoorns.js" type ="module"></script> 
+
+	</body>
 </html>
