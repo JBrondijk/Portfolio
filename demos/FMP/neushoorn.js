@@ -23,7 +23,8 @@ const	scanner = document.getElementById("scanning"),
 		selectionMales = document.getElementById("selectionMales"),
 		selectionFemales = document.getElementById("selectionFemales"),
 		selectPrompt = document.getElementById("selectPrompt"),
-		selectionMenu = document.getElementById("selectionMenu");
+		selectionMenu = document.getElementById("selectionMenu"),
+		winMenu = document.getElementById("winMenu");
 
 //MAKING ALL THE ENCLOSURES/RHINOS
 const enclosures = [];
@@ -36,11 +37,13 @@ const enclosures = [];
 							document.getElementById("menu0Fight"), 
 							document.getElementById("menu0Breed"), 
 							document.getElementById("menu0Man"), 
+							document.getElementById("menu0Crowd"), 
 							document.getElementById("menu0Done"), 
 							document.getElementById("encl0Contents"), 
 							document.getElementById("encl0Fight"), 
 							document.getElementById("encl0Breed"), 
 							document.getElementById("encl0Man"), 
+							document.getElementById("encl0Crowd"), 
 							document.getElementById("encl0Done"),
 							[new rhino (true, "#308DFF", "#308DFF"),
 							new rhino (false, "#308DFF", "#308DFF"),
@@ -56,11 +59,13 @@ const enclosures = [];
 							document.getElementById("menu1Fight"), 
 							document.getElementById("menu1Breed"), 
 							document.getElementById("menu1Man"), 
+							document.getElementById("menu1Crowd"), 
 							document.getElementById("menu1Done"), 
 							document.getElementById("encl1Contents"), 
 							document.getElementById("encl1Fight"), 
 							document.getElementById("encl1Breed"), 
 							document.getElementById("encl1Man"), 
+							document.getElementById("encl1Crowd"), 
 							document.getElementById("encl1Done"),
 							[new rhino (true, "#3030FF", "#3030FF"),
 							new rhino (true, "#308DFF", "#9030FF"),
@@ -76,11 +81,13 @@ const enclosures = [];
 							document.getElementById("menu2Fight"), 
 							document.getElementById("menu0Breed"), 
 							document.getElementById("menu2Man"), 
+							document.getElementById("menu2Crowd"), 
 							document.getElementById("menu2Done"), 
 							document.getElementById("encl2Contents"), 
 							document.getElementById("encl2Fight"), 
 							document.getElementById("encl2Breed"), 
 							document.getElementById("encl2Man"), 
+							document.getElementById("encl2Crowd"), 
 							document.getElementById("encl2Done"),
 							[new rhino (true, "#FF3030", "#FF3030"),
 							new rhino (false, "#FFED30", "#FFED30"),
@@ -95,11 +102,13 @@ const enclosures = [];
 							document.getElementById("menu3Fight"), 
 							document.getElementById("menu3Breed"), 
 							document.getElementById("menu3Man"), 
+							document.getElementById("menu3Crowd"), 
 							document.getElementById("menu3Done"), 
 							document.getElementById("encl3Contents"), 
 							document.getElementById("encl3Fight"), 
 							document.getElementById("encl3Breed"), 
 							document.getElementById("encl3Man"), 
+							document.getElementById("encl3Crowd"), 
 							document.getElementById("encl3Done"), 
 							[new rhino (true, "#30FF41", "#30FF41"),
 							new rhino (true, "#FFED30", "#30FF41"),
@@ -115,11 +124,13 @@ const enclosures = [];
 							document.getElementById("menu4Fight"), 
 							document.getElementById("menu4Breed"), 
 							document.getElementById("menu4Man"), 
+							document.getElementById("menu4Crowd"), 
 							document.getElementById("menu4Done"), 
 							document.getElementById("encl4Contents"), 
 							document.getElementById("encl4Fight"), 
 							document.getElementById("encl4Breed"), 
 							document.getElementById("encl4Man"), 
+							document.getElementById("encl4Crowd"), 
 							document.getElementById("encl4Done"), 
 							[new rhino (true, "#FF3030", "#FF3030"),
 							new rhino (true, "#FF3030", "#FF9030"),
@@ -129,7 +140,7 @@ const enclosures = [];
 							]);
 const selection = [];
 
-//Setting all the border colors + appending elements
+//Setting all the border colors + appending elements + updating all enclosures
 for (var i = 0; i < enclosures.length; i++) {
 	for (var p = 0; p < enclosures[i].rhinos.length; p++) {
 		enclosures[i].rhinos[p].div.style.borderTopColor = enclosures[i].rhinos[p].gene1;
@@ -143,7 +154,10 @@ for (var i = 0; i < enclosures.length; i++) {
 			enclosures[i].females.appendChild(enclosures[i].rhinos[p].div);
 		}
 	}
+	enclosure[i].update();
 }
+
+
 
 //game variables
 var	openMenu;
@@ -255,9 +269,9 @@ function updateUI(){
 	}  else if (gameState == "menu") {
 		displayNone();
 		enclMenu.style.display = "block";
-		//add additional gamestates like this
-		//make sure to set new gameStates to "block" in other gamestates. 
-	} 
+	} else if (gameState == "win") {
+		winMenu.style.display = "block";
+	}
 }
 
 function displayNone(){
@@ -266,6 +280,7 @@ function displayNone(){
 	enclMenu.style.display= "none";
 	enclInfo.style.display = "none";
 	selectPrompt.style.display = "none";
+	winMenu.style.display = "none";
 }
 
 function getScreenLocation(object){
@@ -292,7 +307,7 @@ function rhino(male, gene1, gene2){
 	this.gene2 = gene2;
 }
 
-function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFight, menuBreed, menuMan, menuDone, infoContents, infoFight, infoBreed, infoMan, infoDone, rhinos){
+function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFight, menuBreed, menuMan, menuCrowd, menuDone, infoContents, infoFight, infoBreed, infoMan, infoCrowd, infoDone, rhinos){
 	this.infoMenu = infoMenu;
 	this.enclosureMenu = enclosureMenu;
 	this.males = males;
@@ -301,22 +316,102 @@ function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFi
 	this.menuFight = menuFight;
 	this.menuBreed = menuBreed;
 	this.menuMan = menuMan;
+	this.menuCrowd = menuCrowd;
 	this.menuDone = menuDone;
 	this.infoContents = infoContents;
 	this.infoFight = infoFight;
 	this.infoBreed = infoBreed;
 	this.infoMan = infoMan;
+	this.infoCrowd = infoCrowd;
 	this.infoDone = infoDone;
 	this.rhinos = rhinos;
 
 	this.maleCount = 0;
 	this.femaleCount = 0;
+	this.problemAmount = 0;
 	this.inbreeding = false;
+	this.breedingError = false;
+	this.fighting = false;
+	this.overCrowded = false;
+
+	//UPDATE FUNCTION
+	this.update = function () {
+		//reset  variables
+		this.maleCount = 0;
+		this.femaleCount = 0;
+		this.problemAmount = 0;
+		this.inbreeding = false;
+		this.breedingError = false;
+		this.fighting = false;
+		this.overCrowded = false;
+
+		//count males/females
+		for( var i = 0; i < this.rhinos.length; i++){  
+			if (this.rhinos[i].male){
+				this.maleCount++;
+			} else {
+				this.femaleCount++;
+			}
+			for( var p = 0; p < this.rhinos.length; p++){  
+				if ((this.rhinos[i].gene1 == this.rhinos[p].gene1 || this.rhinos[i].gene2 == this.rhinos[p].gene1 || this.rhinos[i].gene1 == this.rhinos[p].gene2 || this.rhinos[i].gene2 == this.rhinos[p].gene2) && this.rhinos[i].male != this.rhinos[p].male){
+					this.inbreeding = true;
+					break;
+				}
+			}
+		}
+		this.fighting = (this.maleCount > 1 && this.femaleCount > 0);
+		this.breedingError = (this.maleCount = 0 && this.femaleCount > 0);
+		this.overCrowded = (this.maleCount + this.femaleCount > 5);
+		this.problemAmount = this.inbreeding + this.breedingError + this.fighting + this.overCrowded;
+		//set all UI elements.
+		this.problemcount.innerHTML = "("+this.problemAmount+")";
+		this.infoContents.innerHTML = "("+this.maleCount+"m - "+this.femaleCount+"v)";
+
+		if (this.fighting){
+			this.menuFight.style.display = "block";
+			this.infoFight.style.display = "block";
+		} else {
+			this.menuFight.style.display = "none";
+			this.infoFight.style.display = "none";
+		}
+		if (this.inbreeding){
+			this.menuBreed.style.display = "block";
+			this.infoBreed.style.display = "block";
+		} else {
+			this.menuBreed.style.display = "none";
+			this.infoBreed.style.display = "none";
+		}
+		if (this.breedingError){
+			this.menuMan.style.display = "block";
+			this.infoMan.style.display = "block";
+		} else {
+			this.menuMan.style.display = "none";
+			this.infoMan.style.display = "none";
+		}
+		if (this.overCrowded){
+			this.menuCrowd.style.display = "block";
+			this.infoCrowd.style.display = "block";
+		} else {
+			this.menuCrowd.style.display = "none";
+			this.infoCrowd.style.display = "none";
+		}
+		if (problemAmount == 0){
+			this.menuDone.style.display = "block";
+			this.infoDone.style.display = "block";
+		} else {
+			this.menuDone.style.display = "none";
+			this.infoDone.style.display = "none";
+		}
+	}
 }
 
 document.getElementById("btnStart").onclick = function(){
 	gameState = "play";
 	updateUI();
+}
+
+document.getElementById("btnWin").onclick = function(){
+	window.close();
 }
 
 document.getElementById("movebtn").onclick = function(){
@@ -354,42 +449,6 @@ function openEnclosureMenu(menuToOpen){
 	updateUI();
 }
 
-document.getElementById("closeEnclosureMenu0").onclick = function(){
-	closeEnclosureMenu();
-}
-document.getElementById("closeEnclosureMenu1").onclick = function(){
-	closeEnclosureMenu();
-}
-document.getElementById("closeEnclosureMenu2").onclick = function(){
-	closeEnclosureMenu();
-}
-document.getElementById("closeEnclosureMenu3").onclick = function(){
-	closeEnclosureMenu();
-}
-document.getElementById("closeEnclosureMenu4").onclick = function(){
-	closeEnclosureMenu();
-}
-
-function closeEnclosureMenu(){
-	//Put rhinos in selection backinto enclosure
-	if (selection.length > 0){
-		for( var i = 0; i < selection.length; i++){  
-			enclosures[openMenu].rhinos.push(Object.assign({},selection[i]));
-			if (selection[i].male){
-				enclosures[openMenu].males.appendChild(selection[i].div);
-			} else {
-				enclosures[openMenu].females.appendChild(selection[i].div);
-			}
-			selection.splice(i, 1); 
-			i--;
-		}
-		updateSelection();
-		//update (open) enclosure	
-	}	
-	gameState = "play";
-	updateUI();
-}
-
 function selectRhino(element){
 	let isSelected = false;
 	for( var i = 0; i < selection.length; i++){ 
@@ -411,7 +470,8 @@ function selectRhino(element){
 				selection.splice(i, 1); 
 				
 				updateSelection();
-				//update (open)enclosure.
+				enclosures[openMenu].update();
+				checkWin();
 				break; 
 			}
 		}
@@ -428,7 +488,7 @@ function selectRhino(element){
 				enclosures[openMenu].rhinos.splice(i, 1); 
 
 				updateSelection();
-				//update (open) enclosure
+				enclosures[openMenu].update();
 			}
 		}
 
@@ -448,4 +508,17 @@ function updateSelection(){
 		}
 	}
 	selectionMenu.innerHTML = maleCount+"m - "+ femaleCount + "v geselecteerd";
+	document.getElementById("movebtn").innerHTML =  "Verplaats Neushoorns ("+(maleCount+femaleCount)+")";
+}
+
+function checkWin(){
+	let totalProblems = 0;
+	for( var i = 0; i < enclosures.length; i++){ 
+		totalProblems = totalProblems + enclosures[i].problemAmount;
+	}
+	if (selection.length == 0 && totalProblems == 0){
+		//WIN 
+		gameState = "win";
+		updateUI();
+	}
 }
