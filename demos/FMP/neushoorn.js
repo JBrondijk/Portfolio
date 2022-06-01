@@ -383,6 +383,10 @@ function closeEnclosureMenu(){
 function selectRhino(element){
 	let isSelected = false;
 	for( var i = 0; i < selection.length; i++){ 
+		console.log("DIV");
+		console.log(selection.div);
+		console.log("ELEMENT");
+		console.log(element);
 		if (selection.div == element){
 			isSelected = true;
 			break;
