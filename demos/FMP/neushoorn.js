@@ -322,7 +322,7 @@ function selectRhino(element){
 	if (selection.includes(element)){
 		//move from selection to enclosure
 		for( var i = 0; i < selection.length; i++){ 
-			if ( selection[i].div === element) { 
+			if (selection[i].div === element) { 
 				enclosures[openMenu].rhinos.push(selection[i]);
 				if (selection[i].male){
 					enclosures[openMenu].males.appendChild(selection[i].div);
@@ -337,6 +337,7 @@ function selectRhino(element){
 		for( var i = 0; i < enclosures[openMenu].rhinos.length; i++){ 
 			if ( enclosures[openMenu].rhinos[i].div === element) { 
 				selection.push(enclosures[openMenu].rhinos[i]);
+				console.log(selection.length);
 				if (enclosures[openMenu].rhinos[i].male){
 					selectionMales.appendChild(enclosures[openMenu].rhinos[i].div);
 				} else {
