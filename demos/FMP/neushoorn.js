@@ -131,6 +131,7 @@ for (var i = 0; i < enclosures.length; i++) {
 		enclosures[i].rhinos[p].div.borderLeftColor = enclosures[i].rhinos[p].gene1;
 		enclosures[i].rhinos[p].div.borderRightColor = enclosures[i].rhinos[p].gene2;
 		enclosures[i].rhinos[p].div.borderBottomColor = enclosures[i].rhinos[p].gene2;
+		enclosures[i].rhinos[p].div.addEventListener("click", function (){selectRhino(this)},false);
 		if (enclosures[i].rhinos[p].male){
 			enclosures[i].males.appendChild(enclosures[i].rhinos[p].div);
 		} else {
@@ -317,6 +318,24 @@ function selectRhino(element){
 	console.log(element);
 }
 
+document.getElementById("encl0").onclick = function(){
+	openEnclosureMenu(0);
+}
+document.getElementById("encl1").onclick = function(){
+	openEnclosureMenu(1);
+}
+document.getElementById("encl2").onclick = function(){
+	openEnclosureMenu(2);
+}
+document.getElementById("encl3").onclick = function(){
+	openEnclosureMenu(3);
+}
+document.getElementById("encl4").onclick = function(){
+	openEnclosureMenu(4);
+}
+
+
+
 function openEnclosureMenu(menuToOpen){
 	console.log("click");
 	//set the correct menu to open
@@ -327,6 +346,22 @@ function openEnclosureMenu(menuToOpen){
 	enclosures[openMenu].enclosureMenu.style.display = "block";
 	gameState = "menu";
 	updateUI();
+}
+
+document.getElementById("closeEnclosureMenu0").onclick = function(){
+	closeEnclosureMenu();
+}
+document.getElementById("closeEnclosureMenu1").onclick = function(){
+	closeEnclosureMenu();
+}
+document.getElementById("closeEnclosureMenu2").onclick = function(){
+	closeEnclosureMenu();
+}
+document.getElementById("closeEnclosureMenu3").onclick = function(){
+	closeEnclosureMenu();
+}
+document.getElementById("closeEnclosureMenu4").onclick = function(){
+	closeEnclosureMenu();
 }
 
 function closeEnclosureMenu(){

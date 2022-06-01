@@ -18,35 +18,35 @@
 		</div>
 
 		<div id = "enclInfo" style = "display:none"> 
-			<div class = "rhinoMenu" id = "encl0" onclick="openEnclosureMenu(0)">
+			<div class = "rhinoMenu" id = "encl0">
 				<h3>Verblijf 1: <span id encl0Contents style="float:right"> (1m - 3v)</span></h3>
 				<img class = "rhinoProblem" id= "encl0Fight" src="textures/RhinoIconFight.png"> </img>
 				<img class = "rhinoProblem" id= "encl0Breed" src="textures/RhinoIconInbreeding.png"> </img>
 				<img class = "rhinoProblem" id= "encl0Man" style="display:none" src="textures/RhinoIconMan.png"> </img>
 				<img class = "rhinoProblem" id= "encl0Done" style="display:none" src="textures/RhinoIconDone.png"> </img>
 			</div>
-			<div class = "rhinoMenu" id = "encl1" onclick="openEnclosureMenu(1)">
+			<div class = "rhinoMenu" id = "encl1">
 				<h3>Verblijf 2: <span id encl1Contents style="float:right"> (1m - 3v)</span></h3>
 				<img class = "rhinoProblem" id= "encl1Fight" src="textures/RhinoIconFight.png"> </img>
 				<img class = "rhinoProblem" id= "encl1Breed" src="textures/RhinoIconInbreeding.png"> </img>
 				<img class = "rhinoProblem" id= "encl1Man" style="display:none" src="textures/RhinoIconMan.png"> </img>
 				<img class = "rhinoProblem" id= "encl1Done" style="display:none" src="textures/RhinoIconDone.png"> </img>
 			</div>
-			<div class = "rhinoMenu" id = "encl2" onclick="openEnclosureMenu(2)">
+			<div class = "rhinoMenu" id = "encl2">
 				<h3>Verblijf 3: <span id encl2Contents style="float:right"> (1m - 3v)</span></h3>
 				<img class = "rhinoProblem" id= "encl2Fight" src="textures/RhinoIconFight.png"> </img>
 				<img class = "rhinoProblem" id= "encl2Breed" src="textures/RhinoIconInbreeding.png"> </img>
 				<img class = "rhinoProblem" id= "encl2Man" style="display:none" src="textures/RhinoIconMan.png"> </img>
 				<img class = "rhinoProblem" id= "encl2Done" style="display:none" src="textures/RhinoIconDone.png"> </img>
 			</div>
-			<div class = "rhinoMenu" id = "encl3" onclick="openEnclosureMenu(3)">
+			<div class = "rhinoMenu" id = "encl3">
 				<h3>Verblijf 4: <span id encl3Contents style="float:right"> (1m - 3v)</span></h3>
 				<img class = "rhinoProblem" id= "encl3Fight" src="textures/RhinoIconFight.png"> </img>
 				<img class = "rhinoProblem" id= "encl3Breed" src="textures/RhinoIconInbreeding.png"> </img>
 				<img class = "rhinoProblem" id= "encl3Man" style="display:none" src="textures/RhinoIconMan.png"> </img>
 				<img class = "rhinoProblem" id= "encl3Done" style="display:none" src="textures/RhinoIconDone.png"> </img>
 			</div>
-			<div class = "rhinoMenu" id = "encl4" onclick="openEnclosureMenu(4)">
+			<div class = "rhinoMenu" id = "encl4">
 				<h3>Verblijf 5: <span id encl4Contents style="float:right"> (1m - 3v)</span></h3>
 				<img class = "rhinoProblem" id= "encl4Fight" src="textures/RhinoIconFight.png"> </img>
 				<img class = "rhinoProblem" id= "encl4Breed" src="textures/RhinoIconInbreeding.png"> </img>
@@ -73,7 +73,7 @@
 		<div class = "menu" id="enclMenu" style="display:none; overflow:hidden; top: 8vh; max-height: 87vh;">
 
 			<div id = "encl0Menu" style = "display:none">
-				<h2> <span>Verblijf 1:</span> <span class="cross" onclick="closeEnclosureMenu()">X</span> </h2>
+				<h2> <span>Verblijf 1:</span> <span class="cross" id="closeEnclosureMenu0">X</span> </h2>
 				<div style = "max-height: 60vh; overflow:auto;">
 					<h3 style = "margin-right:1rem; margin-left:1rem; margin-top:0.3rem; margin-bottom:0.3rem; background-color:#ADD2FF; border-radius: 0.4rem;"> mannetjes: </h3>
 						<div id = "encl0Males" style = "margin-left:1rem;"></div>
@@ -100,7 +100,7 @@
 			</div>
 
 			<div id = "encl1Menu" style = "display:none">
-				<h2> <span>Verblijf 2:</span> <span class="cross" onclick="closeEnclosureMenu()">X</span> </h2>
+				<h2> <span>Verblijf 2:</span> <span class="cross" id="closeEnclosureMenu1">X</span> </h2>
 				<div style = "max-height: 60vh; overflow:auto;">
 					<h3 style = "margin-right:1rem; margin-left:1rem; margin-top:0.3rem; margin-bottom:0.3rem; background-color:#ADD2FF; border-radius: 0.4rem;"> mannetjes: </h3>
 						<div id = "encl1Males" style = "margin-left:1rem;"></div>
@@ -127,7 +127,7 @@
 			</div>
 
 			<div id = "encl2Menu" style = "display:none">
-				<h2> <span>Verblijf 3:</span> <span class="cross" onclick="closeEnclosureMenu()">X</span> </h2>
+				<h2> <span>Verblijf 3:</span> <span class="cross" id="closeEnclosureMenu2">X</span> </h2>
 				<div style = "max-height: 60vh; overflow:auto;">
 					<h3 style = "margin-right:1rem; margin-left:1rem; margin-top:0.3rem; margin-bottom:0.3rem; background-color:#ADD2FF; border-radius: 0.4rem;"> mannetjes: </h3>
 						<div id = "encl2Males" style = "margin-left:1rem;"></div>
@@ -154,7 +154,7 @@
 			</div>
 
 			<div id = "encl3Menu" style = "display:none">
-				<h2> <span>Verblijf 4:</span> <span class="cross" onclick="closeEnclosureMenu()">X</span> </h2>
+				<h2> <span>Verblijf 4:</span> <span class="cross" id="closeEnclosureMenu3">X</span> </h2>
 				<div style = "max-height: 60vh; overflow:auto;">
 					<h3 style = "margin-right:1rem; margin-left:1rem; margin-top:0.3rem; margin-bottom:0.3rem; background-color:#ADD2FF; border-radius: 0.4rem;"> mannetjes: </h3>
 						<div id = "encl3Males" style = "margin-left:1rem;"></div>
@@ -181,7 +181,7 @@
 			</div>
 			
 			<div id = "encl4Menu" style = "display:none">
-				<h2> <span>Verblijf 5:</span> <span class="cross" onclick="closeEnclosureMenu()">X</span> </h2>
+				<h2> <span>Verblijf 5:</span> <span class="cross" id="closeEnclosureMenu4">X</span> </h2>
 				<div style = "max-height: 60vh; overflow:auto;">
 					<h3 style = "margin-right:1rem; margin-left:1rem; margin-top:0.3rem; margin-bottom:0.3rem; background-color:#ADD2FF; border-radius: 0.4rem;"> mannetjes: </h3>
 						<div id = "encl4Males" style = "margin-left:1rem;"></div>
@@ -216,6 +216,6 @@
 			</div>
 		</div>
 
-		<div style = "display:none"> <img class= "rhinoIcon" id="iconMaster" src="textures/RhinoIcon.png" onclick="selectRhino(this)"></img></div>
+		<div style = "display:none"> <img class= "rhinoIcon" id="iconMaster" src="textures/RhinoIcon.png"></img></div>
 	</body>
 </html>
