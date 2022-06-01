@@ -413,7 +413,7 @@ document.getElementById("btnStart").onclick = function(){
 }
 
 document.getElementById("btnWin").onclick = function(){
-	window.close();
+	location.reload();
 }
 
 document.getElementById("movebtn").onclick = function(){
@@ -529,9 +529,7 @@ function checkWin(){
 	if (selection.length == 0 && totalProblems == 0){
 		//WIN 
 		gameState = "win";
-
-		//set win screen (amount of moves);
-
+		document.getElementById("score").innerHTML = moves;
 		updateUI();
 	}
 }
