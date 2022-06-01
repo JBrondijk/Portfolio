@@ -139,7 +139,7 @@ const enclosures = [];
 							new rhino (false, "#FF9030", "#FF3030")
 							]);
 const selection = [];
-const roundselection = [];
+var roundselection = [];
 
 //Setting all the border colors + appending elements + updating all enclosures
 for (var i = 0; i < enclosures.length; i++) {
