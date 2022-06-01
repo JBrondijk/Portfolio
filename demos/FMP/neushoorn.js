@@ -162,6 +162,7 @@ for (var i = 0; i < enclosures.length; i++) {
 
 //game variables
 var	openMenu;
+var moves = 0;
 
 var ARCamera;
 
@@ -440,6 +441,7 @@ document.getElementById("encl4").onclick = function(){
 
 
 function openEnclosureMenu(menuToOpen){
+	roundselection = []; //reset roundselection so selection can be tracked. 
 	//set the correct menu to open
 	if (openMenu!= null){
 		enclosures[openMenu].enclosureMenu.style.display = "none";
@@ -463,6 +465,12 @@ function selectRhino(element){
 		for( var i = 0; i < selection.length; i++){ 
 			if (selection[i].div === element) { 
 				enclosures[openMenu].rhinos.push(Object.assign({},selection[i]));
+				if (!roundselection.includes(selection[i].div)){
+					//this rhino comes from another enclosure
+					moves++;
+				}
+
+
 				if (selection[i].male){
 					enclosures[openMenu].males.appendChild(selection[i].div);
 				} else {
@@ -481,6 +489,7 @@ function selectRhino(element){
 		for( var i = 0; i < enclosures[openMenu].rhinos.length; i++){ 
 			if ( enclosures[openMenu].rhinos[i].div === element) { 
 				selection.push(Object.assign({},enclosures[openMenu].rhinos[i]));
+				roundselection.push(selection[selection.length-1].div);
 				if (enclosures[openMenu].rhinos[i].male){
 					selectionMales.appendChild(enclosures[openMenu].rhinos[i].div);
 				} else {
@@ -520,6 +529,9 @@ function checkWin(){
 	if (selection.length == 0 && totalProblems == 0){
 		//WIN 
 		gameState = "win";
+
+		//set win screen (amount of moves);
+
 		updateUI();
 	}
 }
