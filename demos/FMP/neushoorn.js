@@ -21,7 +21,9 @@ const	scanner = document.getElementById("scanning"),
 		enclInfo = document.getElementById("enclInfo"),
 		dummyrhino = document.getElementById("iconMaster"),
 		selectionMales = document.getElementById("selectionMales"),
-		selectionFemales = document.getElementById("selectionFemales");
+		selectionFemales = document.getElementById("selectionFemales"),
+		selectPrompt = document.getElementById("selectPrompt"),
+		selectionMenu = document.getElementById("selectionMenu");
 
 //MAKING ALL THE ENCLOSURES/RHINOS
 const enclosures = [];
@@ -146,8 +148,6 @@ for (var i = 0; i < enclosures.length; i++) {
 //game variables
 var	openMenu;
 
-
-
 var ARCamera;
 
 //ThreeJS stuff:
@@ -249,6 +249,9 @@ function updateUI(){
 	} else if (gameState == "play") {
 		displayNone();
 		enclInfo.style.display = "block";
+		if (selection.length > 0){
+			selectPrompt.style.display = "block";
+		}
 	}  else if (gameState == "menu") {
 		displayNone();
 		enclMenu.style.display = "block";
@@ -262,7 +265,7 @@ function displayNone(){
 	scanner.style.display = "none";
 	enclMenu.style.display= "none";
 	enclInfo.style.display = "none";
-
+	selectPrompt.style.display = "none";
 }
 
 function getScreenLocation(object){
@@ -312,10 +315,15 @@ function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFi
 }
 
 document.getElementById("btnStart").onclick = function(){
-	startMenu.style.display = "none";
 	gameState = "play";
 	updateUI();
 }
+
+document.getElementById("movebtn").onclick = function(){
+	gameState = "play";
+	updateUI();
+}
+
 
 document.getElementById("encl0").onclick = function(){
 	openEnclosureMenu(0);
@@ -375,6 +383,8 @@ function closeEnclosureMenu(){
 			selection.splice(i, 1); 
 			i--;
 		}
+		updateSelection();
+		//update (open) enclosure	
 	}	
 	gameState = "play";
 	updateUI();
@@ -399,6 +409,9 @@ function selectRhino(element){
 					enclosures[openMenu].females.appendChild(selection[i].div);
 				}
 				selection.splice(i, 1); 
+				
+				updateSelection();
+				//update (open)enclosure.
 				break; 
 			}
 		}
@@ -413,8 +426,26 @@ function selectRhino(element){
 					selectionFemales.appendChild(enclosures[openMenu].rhinos[i].div);
 				}
 				enclosures[openMenu].rhinos.splice(i, 1); 
+
+				updateSelection();
+				//update (open) enclosure
 			}
 		}
 
 	}
+}
+
+function updateSelection(){
+	let maleCount = 0;
+	let femaleCount = 0;
+	if (selection.length > 0){
+		for( var i = 0; i < selection.length; i++){  
+			if (selection[i].male){
+				maleCount++;
+			} else {
+				femaleCount++;
+			}
+		}
+	}
+	selectionMenu.innerHTML = maleCount+"m - "+ femaleCount + "v geselecteerd";
 }
