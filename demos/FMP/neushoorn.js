@@ -19,7 +19,9 @@ const	scanner = document.getElementById("scanning"),
 		startMenu = document.getElementById("startMenu"),
 		enclMenu = document.getElementById("enclMenu"),
 		enclInfo = document.getElementById("enclInfo"),
-		dummyrhino = document.getElementById("iconMaster");
+		dummyrhino = document.getElementById("iconMaster"),
+		selectionMales = document.getElementById("selectionMales"),
+		selectionFemales = document.getElementById("selectionFemales");
 
 //MAKING ALL THE ENCLOSURES/RHINOS
 const enclosures = [];
@@ -123,6 +125,7 @@ const enclosures = [];
 							new rhino (false, "#FF9030", "#FF9030"),
 							new rhino (false, "#FF9030", "#FF3030")
 							]);
+const selection = [];
 
 //Setting all the border colors + appending elements
 for (var i = 0; i < enclosures.length; i++) {
@@ -316,6 +319,34 @@ document.getElementById("btnStart").onclick = function(){
 
 function selectRhino(element){
 	console.log(element);
+	if (selection.includes(element)){
+		//move from selection to enclosure
+		for( var i = 0; i < selection.length; i++){ 
+			if ( selection[i].div === element) { 
+				enclosures[openMenu].rhinos.push(selection[i]);
+				if (selection[i].male){
+					enclosures[openMenu].males.appendChild(selection[i].div);
+				} else {
+					enclosures[openMenu].females.appendChild(selection[i].div);
+				}
+				selection.splice(i, 1); 
+			}
+		}
+	} else {
+		//move from enclosure to selection
+		for( var i = 0; i < enclosures[openMenu].rhinos.length; i++){ 
+			if ( enclosures[openMenu].rhinos[i].div === element) { 
+				selection.push(selection[i]);
+				if (selection[i].male){
+					selectionMales.appendChild(selection[i].div);
+				} else {
+					selectionFemales.appendChild(selection[i].div);
+				}
+				enclosures[openMenu].rhinos.splice(i, 1); 
+			}
+		}
+
+	}
 }
 
 document.getElementById("encl0").onclick = function(){
@@ -366,6 +397,20 @@ document.getElementById("closeEnclosureMenu4").onclick = function(){
 
 function closeEnclosureMenu(){
 	//Put rhinos in selection backinto enclosure
+	if (selection.length > 0){
+		for( var i = 0; i < selection.length; i++){  
+				enclosures[openMenu].rhinos.push(selection[i]);
+				if (selection[i].male){
+					enclosures[openMenu].males.appendChild(selection[i].div);
+				} else {
+					enclosures[openMenu].females.appendChild(selection[i].div);
+				}
+				selection.splice(i, 1); 
+				i--;
+			}
+		}
+	}
+	
 	gameState = "play";
 	updateUI();
 }
