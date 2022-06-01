@@ -397,7 +397,7 @@ function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFi
 			this.menuCrowd.style.display = "none";
 			this.infoCrowd.style.display = "none";
 		}
-		if (problemAmount == 0){
+		if (this.problemAmount == 0){
 			this.menuDone.style.display = "block";
 			this.infoDone.style.display = "block";
 		} else {
