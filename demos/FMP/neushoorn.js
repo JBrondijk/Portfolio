@@ -175,11 +175,11 @@ enclosureTrackers[2]= new THREE.Object3D();
 enclosureTrackers[3]= new THREE.Object3D();
 enclosureTrackers[4]= new THREE.Object3D();
 
-enclosureTrackers[0].position.set(-0.3,0.25,0.01);
-enclosureTrackers[1].position.set(0.12,0.27,0.01);
-enclosureTrackers[2].position.set(-0.17,0,0.01);
-enclosureTrackers[3].position.set(-0.27,-0.3,0.01);
-enclosureTrackers[4].position.set(0.13,-0.18,0.01);
+enclosureTrackers[0].position.set(-0.35,0.20,0.01);
+enclosureTrackers[1].position.set(0.12,0.22,0.01);
+enclosureTrackers[2].position.set(-0.22,-0.05,0.01);
+enclosureTrackers[3].position.set(-0.30,-0.35,0.01);
+enclosureTrackers[4].position.set(0.13,-0.23,0.01);
 
 const backgroundGeometry = new THREE.PlaneGeometry(1,1);
 const backgroundMaterial = new THREE.MeshBasicMaterial({opacity:0.3, transparent:true});
