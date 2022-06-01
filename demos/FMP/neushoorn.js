@@ -155,7 +155,7 @@ for (var i = 0; i < enclosures.length; i++) {
 			enclosures[i].females.appendChild(enclosures[i].rhinos[p].div);
 		}
 	}
-	enclosure[i].updateEncl();
+	enclosures[i].updateEncl();
 }
 
 
