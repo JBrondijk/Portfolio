@@ -318,7 +318,6 @@ document.getElementById("btnStart").onclick = function(){
 }
 
 function selectRhino(element){
-	console.log(element);
 	if (selection.includes(element)){
 		//move from selection to enclosure
 		for( var i = 0; i < selection.length; i++){ 
@@ -369,7 +368,6 @@ document.getElementById("encl4").onclick = function(){
 
 
 function openEnclosureMenu(menuToOpen){
-	console.log("click");
 	//set the correct menu to open
 	if (openMenu!= null){
 		enclosures[openMenu].enclosureMenu.style.display = "none";
