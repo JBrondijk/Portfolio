@@ -399,18 +399,16 @@ function closeEnclosureMenu(){
 	//Put rhinos in selection backinto enclosure
 	if (selection.length > 0){
 		for( var i = 0; i < selection.length; i++){  
-				enclosures[openMenu].rhinos.push(selection[i]);
-				if (selection[i].male){
-					enclosures[openMenu].males.appendChild(selection[i].div);
-				} else {
-					enclosures[openMenu].females.appendChild(selection[i].div);
-				}
-				selection.splice(i, 1); 
-				i--;
+			enclosures[openMenu].rhinos.push(selection[i]);
+			if (selection[i].male){
+				enclosures[openMenu].males.appendChild(selection[i].div);
+			} else {
+				enclosures[openMenu].females.appendChild(selection[i].div);
 			}
+			selection.splice(i, 1); 
+			i--;
 		}
-	}
-	
+	}	
 	gameState = "play";
 	updateUI();
 }
