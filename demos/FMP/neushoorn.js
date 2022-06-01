@@ -383,11 +383,7 @@ function closeEnclosureMenu(){
 function selectRhino(element){
 	let isSelected = false;
 	for( var i = 0; i < selection.length; i++){ 
-		console.log("DIV");
-		console.log(selection.div);
-		console.log("ELEMENT");
-		console.log(element);
-		if (selection.div == element){
+		if (selection[i].div === element){
 			isSelected = true;
 			break;
 		}
@@ -395,7 +391,7 @@ function selectRhino(element){
 	if (isSelected){
 		//move from selection to enclosure
 		for( var i = 0; i < selection.length; i++){ 
-			if (selection[i].div == element) { 
+			if (selection[i].div === element) { 
 				enclosures[openMenu].rhinos.push(Object.assign({},selection[i]));
 				if (selection[i].male){
 					enclosures[openMenu].males.appendChild(selection[i].div);
