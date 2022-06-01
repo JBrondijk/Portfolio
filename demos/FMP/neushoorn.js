@@ -127,10 +127,10 @@ const enclosures = [];
 //Setting all the border colors + appending elements
 for (var i = 0; i < enclosures.length; i++) {
 	for (var p = 0; p < enclosures[i].rhinos.length; p++) {
-		enclosures[i].rhinos[p].div.borderTopColor = enclosures[i].rhinos[p].gene1;
-		enclosures[i].rhinos[p].div.borderLeftColor = enclosures[i].rhinos[p].gene1;
-		enclosures[i].rhinos[p].div.borderRightColor = enclosures[i].rhinos[p].gene2;
-		enclosures[i].rhinos[p].div.borderBottomColor = enclosures[i].rhinos[p].gene2;
+		enclosures[i].rhinos[p].div.style.borderTopColor = enclosures[i].rhinos[p].gene1;
+		enclosures[i].rhinos[p].div.style.borderLeftColor = enclosures[i].rhinos[p].gene1;
+		enclosures[i].rhinos[p].div.style.borderRightColor = enclosures[i].rhinos[p].gene2;
+		enclosures[i].rhinos[p].div.style.borderBottomColor = enclosures[i].rhinos[p].gene2;
 		enclosures[i].rhinos[p].div.addEventListener("click", function (){selectRhino(this)},false);
 		if (enclosures[i].rhinos[p].male){
 			enclosures[i].males.appendChild(enclosures[i].rhinos[p].div);
