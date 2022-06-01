@@ -381,7 +381,14 @@ function closeEnclosureMenu(){
 }
 
 function selectRhino(element){
-	if (selection.includes(element)){
+	let isSelected = false;
+	for( var i = 0; i < selection.length; i++){ 
+		if (selection.div == element){
+			isSelected = true;
+			break;
+		}
+	}
+	if (isSelected){
 		//move from selection to enclosure
 		for( var i = 0; i < selection.length; i++){ 
 			if (selection[i].div == element) { 
@@ -400,7 +407,6 @@ function selectRhino(element){
 		for( var i = 0; i < enclosures[openMenu].rhinos.length; i++){ 
 			if ( enclosures[openMenu].rhinos[i].div === element) { 
 				selection.push(Object.assign({},enclosures[openMenu].rhinos[i]));
-				console.log(selection.length);
 				if (enclosures[openMenu].rhinos[i].male){
 					selectionMales.appendChild(enclosures[openMenu].rhinos[i].div);
 				} else {
