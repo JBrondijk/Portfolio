@@ -139,6 +139,7 @@ const enclosures = [];
 							new rhino (false, "#FF9030", "#FF3030")
 							]);
 const selection = [];
+const roundselection = [];
 
 //Setting all the border colors + appending elements + updating all enclosures
 for (var i = 0; i < enclosures.length; i++) {
@@ -154,7 +155,7 @@ for (var i = 0; i < enclosures.length; i++) {
 			enclosures[i].females.appendChild(enclosures[i].rhinos[p].div);
 		}
 	}
-	enclosure[i].update();
+	enclosure[i].updateEncl();
 }
 
 
@@ -335,7 +336,7 @@ function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFi
 	this.overCrowded = false;
 
 	//UPDATE FUNCTION
-	this.update = function () {
+	this.updateEncl = function () {
 		//reset  variables
 		this.maleCount = 0;
 		this.femaleCount = 0;
@@ -470,7 +471,7 @@ function selectRhino(element){
 				selection.splice(i, 1); 
 				
 				updateSelection();
-				enclosures[openMenu].update();
+				enclosures[openMenu].updateEncl();
 				checkWin();
 				break; 
 			}
@@ -488,7 +489,7 @@ function selectRhino(element){
 				enclosures[openMenu].rhinos.splice(i, 1); 
 
 				updateSelection();
-				enclosures[openMenu].update();
+				enclosures[openMenu].updateEncl();
 			}
 		}
 
