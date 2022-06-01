@@ -317,38 +317,6 @@ document.getElementById("btnStart").onclick = function(){
 	updateUI();
 }
 
-function selectRhino(element){
-	if (selection.includes(element)){
-		//move from selection to enclosure
-		for( var i = 0; i < selection.length; i++){ 
-			if (selection[i].div === element) { 
-				enclosures[openMenu].rhinos.push(Object.assign({},selection[i]));
-				if (selection[i].male){
-					enclosures[openMenu].males.appendChild(selection[i].div);
-				} else {
-					enclosures[openMenu].females.appendChild(selection[i].div);
-				}
-				selection.splice(i, 1); 
-			}
-		}
-	} else {
-		//move from enclosure to selection
-		for( var i = 0; i < enclosures[openMenu].rhinos.length; i++){ 
-			if ( enclosures[openMenu].rhinos[i].div === element) { 
-				selection.push(Object.assign({},enclosures[openMenu].rhinos[i]));
-				console.log(selection.length);
-				if (enclosures[openMenu].rhinos[i].male){
-					selectionMales.appendChild(enclosures[openMenu].rhinos[i].div);
-				} else {
-					selectionFemales.appendChild(enclosures[openMenu].rhinos[i].div);
-				}
-				enclosures[openMenu].rhinos.splice(i, 1); 
-			}
-		}
-
-	}
-}
-
 document.getElementById("encl0").onclick = function(){
 	openEnclosureMenu(0);
 }
@@ -410,4 +378,37 @@ function closeEnclosureMenu(){
 	}	
 	gameState = "play";
 	updateUI();
+}
+
+function selectRhino(element){
+	if (selection.includes(element)){
+		//move from selection to enclosure
+		for( var i = 0; i < selection.length; i++){ 
+			if (selection[i].div == element) { 
+				enclosures[openMenu].rhinos.push(Object.assign({},selection[i]));
+				if (selection[i].male){
+					enclosures[openMenu].males.appendChild(selection[i].div);
+				} else {
+					enclosures[openMenu].females.appendChild(selection[i].div);
+				}
+				selection.splice(i, 1); 
+				break; 
+			}
+		}
+	} else {
+		//move from enclosure to selection
+		for( var i = 0; i < enclosures[openMenu].rhinos.length; i++){ 
+			if ( enclosures[openMenu].rhinos[i].div === element) { 
+				selection.push(Object.assign({},enclosures[openMenu].rhinos[i]));
+				console.log(selection.length);
+				if (enclosures[openMenu].rhinos[i].male){
+					selectionMales.appendChild(enclosures[openMenu].rhinos[i].div);
+				} else {
+					selectionFemales.appendChild(enclosures[openMenu].rhinos[i].div);
+				}
+				enclosures[openMenu].rhinos.splice(i, 1); 
+			}
+		}
+
+	}
 }
