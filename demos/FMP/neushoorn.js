@@ -338,9 +338,9 @@ function selectRhino(element){
 			if ( enclosures[openMenu].rhinos[i].div === element) { 
 				selection.push(selection[i]);
 				if (enclosures[openMenu].rhinos[i].male){
-					selectionMales.appendChild(selection[i].div);
+					selectionMales.appendChild(enclosures[openMenu].rhinos[i].div);
 				} else {
-					selectionFemales.appendChild(selection[i].div);
+					selectionFemales.appendChild(enclosures[openMenu].rhinos[i].div);
 				}
 				enclosures[openMenu].rhinos.splice(i, 1); 
 			}
