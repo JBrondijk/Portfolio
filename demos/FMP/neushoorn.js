@@ -350,9 +350,9 @@ function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFi
 		//count males/females
 		for( var i = 0; i < this.rhinos.length; i++){  
 			if (this.rhinos[i].male){
-				this.maleCount++;
+				this.maleCount = this.maleCount + 1;
 			} else {
-				this.femaleCount++;
+				this.femaleCount = this.femaleCount+1;
 			}
 			for( var p = 0; p < this.rhinos.length; p++){  
 				if ((this.rhinos[i].gene1 == this.rhinos[p].gene1 || this.rhinos[i].gene2 == this.rhinos[p].gene1 || this.rhinos[i].gene1 == this.rhinos[p].gene2 || this.rhinos[i].gene2 == this.rhinos[p].gene2) && this.rhinos[i].male != this.rhinos[p].male){
@@ -404,6 +404,7 @@ function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFi
 			this.menuDone.style.display = "none";
 			this.infoDone.style.display = "none";
 		}
+		console.log(this.enclosure);
 	}
 }
 
