@@ -182,7 +182,7 @@ enclosureTrackers[3].position.set(-0.30,-0.35,0.01);
 enclosureTrackers[4].position.set(0.13,-0.23,0.01);
 
 const backgroundGeometry = new THREE.PlaneGeometry(1,1);
-const backgroundMaterial = new THREE.MeshBasicMaterial({opacity:0.3, transparent:true});
+const backgroundMaterial = new THREE.MeshBasicMaterial({opacity:0, transparent:true});
 const background = new THREE.Mesh(backgroundGeometry,backgroundMaterial);
 
 background.add(enclosureTrackers[0]);
