@@ -357,7 +357,7 @@ function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFi
 				this.femaleCount++;
 			}
 			//idk why this is the only thing that works
-			this.maleCount = this.rhinos.length - femaleCount;
+			this.maleCount = this.rhinos.length - this.femaleCount;
 
 			for( var p = 0; p < this.rhinos.length; p++){  
 				if ((this.rhinos[i].gene1 == this.rhinos[p].gene1 || this.rhinos[i].gene2 == this.rhinos[p].gene1 || this.rhinos[i].gene1 == this.rhinos[p].gene2 || this.rhinos[i].gene2 == this.rhinos[p].gene2) && this.rhinos[i].male != this.rhinos[p].male){
