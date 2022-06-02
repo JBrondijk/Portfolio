@@ -376,35 +376,35 @@ function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFi
 
 		if (this.fighting){
 			this.menuFight.style.display = "block";
-			this.infoFight.style.display = "block";
+			this.infoFight.style.display = "inline-block";
 		} else {
 			this.menuFight.style.display = "none";
 			this.infoFight.style.display = "none";
 		}
 		if (this.inbreeding){
 			this.menuBreed.style.display = "block";
-			this.infoBreed.style.display = "block";
+			this.infoBreed.style.display = "inline-block";
 		} else {
 			this.menuBreed.style.display = "none";
 			this.infoBreed.style.display = "none";
 		}
 		if (this.breedingError){
 			this.menuMan.style.display = "block";
-			this.infoMan.style.display = "block";
+			this.infoMan.style.display = "inline-block";
 		} else {
 			this.menuMan.style.display = "none";
 			this.infoMan.style.display = "none";
 		}
 		if (this.overCrowded){
 			this.menuCrowd.style.display = "block";
-			this.infoCrowd.style.display = "block";
+			this.infoCrowd.style.display = "inline-block";
 		} else {
 			this.menuCrowd.style.display = "none";
 			this.infoCrowd.style.display = "none";
 		}
 		if (this.problemAmount == 0){
 			this.menuDone.style.display = "block";
-			this.infoDone.style.display = "block";
+			this.infoDone.style.display = "inline-block";
 		} else {
 			this.menuDone.style.display = "none";
 			this.infoDone.style.display = "none";
