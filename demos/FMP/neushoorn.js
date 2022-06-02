@@ -338,6 +338,8 @@ function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFi
 
 	//UPDATE FUNCTION
 	this.updateEncl = function () {
+		console.log("BEFORE");
+		console.log(this);
 		//reset  variables
 		this.maleCount = 0;
 		this.femaleCount = 0;
@@ -354,6 +356,9 @@ function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFi
 			} else {
 				this.femaleCount++;
 			}
+			//idk why this is the only thing that works
+			this.maleCount = this.rhinos.length - femaleCount;
+
 			for( var p = 0; p < this.rhinos.length; p++){  
 				if ((this.rhinos[i].gene1 == this.rhinos[p].gene1 || this.rhinos[i].gene2 == this.rhinos[p].gene1 || this.rhinos[i].gene1 == this.rhinos[p].gene2 || this.rhinos[i].gene2 == this.rhinos[p].gene2) && this.rhinos[i].male != this.rhinos[p].male){
 					this.inbreeding = true;
@@ -404,6 +409,7 @@ function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFi
 			this.menuDone.style.display = "none";
 			this.infoDone.style.display = "none";
 		}
+		console.log("AFTER");
 		console.log(this);
 	}
 }
