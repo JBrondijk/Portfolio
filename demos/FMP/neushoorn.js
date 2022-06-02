@@ -272,6 +272,7 @@ function updateUI(){
 		displayNone();
 		enclMenu.style.display = "block";
 	} else if (gameState == "win") {
+		displayNone();
 		winMenu.style.display = "block";
 	}
 }
