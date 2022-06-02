@@ -404,7 +404,7 @@ function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFi
 			this.menuDone.style.display = "none";
 			this.infoDone.style.display = "none";
 		}
-		console.log(this.enclosure);
+		console.log(this);
 	}
 }
 
