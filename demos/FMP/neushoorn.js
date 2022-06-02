@@ -350,9 +350,9 @@ function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFi
 		//count males/females
 		for( var i = 0; i < this.rhinos.length; i++){  
 			if (this.rhinos[i].male){
-				this.maleCount = this.maleCount + 1;
+				this.maleCount++;
 			} else {
-				this.femaleCount = this.femaleCount+1;
+				this.femaleCount++;
 			}
 			for( var p = 0; p < this.rhinos.length; p++){  
 				if ((this.rhinos[i].gene1 == this.rhinos[p].gene1 || this.rhinos[i].gene2 == this.rhinos[p].gene1 || this.rhinos[i].gene1 == this.rhinos[p].gene2 || this.rhinos[i].gene2 == this.rhinos[p].gene2) && this.rhinos[i].male != this.rhinos[p].male){
