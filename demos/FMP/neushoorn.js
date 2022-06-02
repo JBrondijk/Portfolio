@@ -357,8 +357,6 @@ function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFi
 			} else {
 				this.femaleCount++;
 			}
-			//idk why this is the only thing that works
-			this.maleCount = this.rhinos.length - this.femaleCount;
 
 			for( var p = 0; p < this.rhinos.length; p++){  
 				if ((this.rhinos[i].gene1 == this.rhinos[p].gene1 || this.rhinos[i].gene2 == this.rhinos[p].gene1 || this.rhinos[i].gene1 == this.rhinos[p].gene2 || this.rhinos[i].gene2 == this.rhinos[p].gene2) && this.rhinos[i].male != this.rhinos[p].male){
@@ -368,7 +366,7 @@ function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFi
 			}
 		}
 		this.fighting = (this.maleCount > 1 && this.femaleCount > 0);
-		this.breedingError = (this.maleCount = 0 && this.femaleCount > 0);
+		this.breedingError = (this.maleCount == 0 && this.femaleCount > 0);
 		this.overCrowded = (this.maleCount + this.femaleCount > 5);
 		this.problemAmount = this.inbreeding + this.breedingError + this.fighting + this.overCrowded;
 		//set all UI elements.
