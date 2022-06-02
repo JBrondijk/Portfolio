@@ -353,6 +353,7 @@ function enclosure(infoMenu, enclosureMenu, males, females, problemcount, menuFi
 		for( var i = 0; i < this.rhinos.length; i++){  
 			if (this.rhinos[i].male){
 				this.maleCount++;
+				console.log(this.maleCount);
 			} else {
 				this.femaleCount++;
 			}
