@@ -479,6 +479,7 @@ function selectRhino(element){
 				
 				updateSelection();
 				enclosures[openMenu].updateEncl();
+				enclosures[openMenu].displayMenu();
 				checkWin();
 				break; 
 			}
@@ -498,6 +499,7 @@ function selectRhino(element){
 
 				updateSelection();
 				enclosures[openMenu].updateEncl();
+				enclosures[openMenu].displayMenu();
 			}
 		}
 
