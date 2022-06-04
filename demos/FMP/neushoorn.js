@@ -281,7 +281,7 @@ function rhino(male, gene1, gene2){
 	}
 }
 
-function enclosure(enclName, infoMenu, infoContents, infoFight, infoBreed, infoMan, infoCrowd, infoDone, rhinos){
+function enclosure(enclName, infoMenu, infoContents, infoFight, infoBreed, infoMan, infoCrowd, rhinos){
 	this.enclName = enclName;
 	this.infoMenu = infoMenu;
 	this.infoContents = infoContents;
@@ -289,7 +289,6 @@ function enclosure(enclName, infoMenu, infoContents, infoFight, infoBreed, infoM
 	this.infoBreed = infoBreed;
 	this.infoMan = infoMan;
 	this.infoCrowd = infoCrowd;
-	this.infoDone = infoDone;
 	this.rhinos = rhinos;
 
 	this.maleCount = 0;
