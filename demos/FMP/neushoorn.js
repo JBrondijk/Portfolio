@@ -110,6 +110,7 @@ var roundselection = [];
 for (var i = 0; i < enclosures.length; i++) {
 	for (var p = 0; p < enclosures[i].rhinos.length; p++) {
 		enclosures[i].rhinos[p].setupRhino();
+		enclosures[i].rhinos[p].displayNoRhinos();
 	}
 	enclosures[i].updateEncl();
 }
@@ -515,7 +516,7 @@ function updateSelection(){
 			}
 		}
 		selectionMenu.innerHTML = "Voeg neushoorns toe aan een verblijf ("+ maleCount+"m - "+ femaleCount + "v)";
-		document.getElementById("movebtn").innerHTML =  "Verplaats Neushoorns ("+ maleCount+"m - "+ femaleCount + "v)";
+		document.getElementById("movebtn").innerHTML =  "Verplaats Neushoorns ("+(maleCount+femaleCount)+")";
 	} else {
 		selectionMenu.innerHTML = "Open een verblijf om Neushoorns te selecteren";
 		document.getElementById("movebtn").innerHTML =  "Keer terug naar overzicht";
