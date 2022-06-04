@@ -40,7 +40,7 @@ const	scanner = document.getElementById("scanning"),
 const enclosures = [];
 	enclosures[0] = new enclosure(
 							"Verblijf 1",
-							document.getElementById("encl0Menu"), 
+							document.getElementById("encl0"), 
 							document.getElementById("encl0Contents"), 
 							document.getElementById("encl0Fight"), 
 							document.getElementById("encl0Breed"), 
@@ -109,7 +109,7 @@ var roundselection = [];
 //Setting all the border colors + appending elements + updating all enclosures
 for (var i = 0; i < enclosures.length; i++) {
 	for (var p = 0; p < enclosures[i].rhinos.length; p++) {
-		enclosures[i].rhinos[p].setupRhino;
+		enclosures[i].rhinos[p].setupRhino();
 	}
 	enclosures[i].updateEncl();
 }
@@ -514,9 +514,13 @@ function updateSelection(){
 				femaleCount++;
 			}
 		}
+		selectionMenu.innerHTML = "Voeg neushoorns toe aan een verblijf ("+ maleCount+"m - "+ femaleCount + "v)";
+		document.getElementById("movebtn").innerHTML =  "Verplaats Neushoorns ("+ maleCount+"m - "+ femaleCount + "v)";
+	} else {
+		selectionMenu.innerHTML = "Open een verblijf om Neushoorns te selecteren";
+		document.getElementById("movebtn").innerHTML =  "Keer terug naar overzicht";
 	}
-	selectionMenu.innerHTML = maleCount+"m - "+ femaleCount + "v geselecteerd";
-	document.getElementById("movebtn").innerHTML =  "Verplaats Neushoorns ("+(maleCount+femaleCount)+")";
+	
 }
 
 function checkWin(){
