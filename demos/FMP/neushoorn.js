@@ -229,6 +229,7 @@ function updateUI(){
 	}  else if (gameState == "menu") {
 		displayNone();
 		enclMenu.style.display = "block";
+		enclMenu.scrollTop = 0;
 	} else if (gameState == "win") {
 		displayNone();
 		winMenu.style.display = "block";
