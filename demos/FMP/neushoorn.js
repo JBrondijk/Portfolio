@@ -114,7 +114,7 @@ for (var i = 0; i < enclosures.length; i++) {
 	enclosures[i].updateEncl();
 	enclosures[i].displayNoRhinos();
 }
-
+updateSelection();
 
 
 //game variables
