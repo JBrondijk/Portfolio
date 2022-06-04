@@ -110,9 +110,9 @@ var roundselection = [];
 for (var i = 0; i < enclosures.length; i++) {
 	for (var p = 0; p < enclosures[i].rhinos.length; p++) {
 		enclosures[i].rhinos[p].setupRhino();
-		enclosures[i].rhinos[p].displayNoRhinos();
 	}
 	enclosures[i].updateEncl();
+	enclosures[i].displayNoRhinos();
 }
 
 
