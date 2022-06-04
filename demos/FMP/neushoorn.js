@@ -17,6 +17,7 @@ var gameState = "start",
 //html elements:
 const	scanner = document.getElementById("scanning"),
 		startMenu = document.getElementById("startMenu"),
+		controlsMenu = document.getElementById("controlsMenu"),
 		enclMenu = document.getElementById("enclMenu"),
 		menuTitle = document.getElementById("menuTitle"),
 		enclMales = document.getElementById("enclMales"),
@@ -218,8 +219,8 @@ function updateUI(){
 		displayNone();
 		startMenu.style.display = "block";	
 	} else if (gameState == "controls"){
-		displayNone();
-		startMenu.style.display = "block";	
+		displayNone(); 
+		controlsMenu.style.display = "block";	
 	}else if (gameState == "play") {
 		displayNone();
 		enclInfo.style.display = "block";
@@ -237,6 +238,7 @@ function updateUI(){
 
 function displayNone(){
 	startMenu.style.display = "none";	
+	controlsMenu.style.display = "none";
 	scanner.style.display = "none";
 	enclMenu.style.display= "none";
 	enclInfo.style.display = "none";
