@@ -24,7 +24,6 @@
 				<img class = "rhinoProblem" id= "encl0Breed" src="textures/RhinoIconInbreeding.png"> </img>
 				<img class = "rhinoProblem" id= "encl0Man" style="display:none" src="textures/RhinoIconMan.png"> </img>
 				<img class = "rhinoProblem" id= "encl0Crowd" style="display:none" src="textures/RhinoIconOvercrowding.png"> </img>
-				<img class = "rhinoProblem" id= "encl0Done" style="display:none" src="textures/RhinoIconDone.png"> </img>
 			</div>
 			<div class = "rhinoMenu" id = "encl1">
 				<h3>Verblijf 2: <span id = "encl1Contents" style="float:right"> (1m - 3v)</span></h3>
@@ -32,7 +31,6 @@
 				<img class = "rhinoProblem" id= "encl1Breed" src="textures/RhinoIconInbreeding.png"> </img>
 				<img class = "rhinoProblem" id= "encl1Man" style="display:none" src="textures/RhinoIconMan.png"> </img>
 				<img class = "rhinoProblem" id= "encl1Crowd" style="display:none" src="textures/RhinoIconOvercrowding.png"> </img>
-				<img class = "rhinoProblem" id= "encl1Done" style="display:none" src="textures/RhinoIconDone.png"> </img>
 			</div>
 			<div class = "rhinoMenu" id = "encl2">
 				<h3>Verblijf 3: <span id = "encl2Contents" style="float:right"> (1m - 3v)</span></h3>
@@ -40,7 +38,6 @@
 				<img class = "rhinoProblem" id= "encl2Breed" src="textures/RhinoIconInbreeding.png"> </img>
 				<img class = "rhinoProblem" id= "encl2Man" style="display:none" src="textures/RhinoIconMan.png"> </img>
 				<img class = "rhinoProblem" id= "encl2Crowd" style="display:none" src="textures/RhinoIconOvercrowding.png"> </img>
-				<img class = "rhinoProblem" id= "encl2Done" style="display:none" src="textures/RhinoIconDone.png"> </img>
 			</div>
 			<div class = "rhinoMenu" id = "encl3">
 				<h3>Verblijf 4: <span id = "encl3Contents" style="float:right"> (1m - 3v)</span></h3>
@@ -48,7 +45,6 @@
 				<img class = "rhinoProblem" id= "encl3Breed" src="textures/RhinoIconInbreeding.png"> </img>
 				<img class = "rhinoProblem" id= "encl3Man" style="display:none" src="textures/RhinoIconMan.png"> </img>
 				<img class = "rhinoProblem" id= "encl3Crowd" style="display:none" src="textures/RhinoIconOvercrowding.png"> </img>
-				<img class = "rhinoProblem" id= "encl3Done" style="display:none" src="textures/RhinoIconDone.png"> </img>
 			</div>
 			<div class = "rhinoMenu" id = "encl4">
 				<h3>Verblijf 5: <span id = "encl4Contents" style="float:right"> (1m - 3v)</span></h3>
@@ -56,7 +52,6 @@
 				<img class = "rhinoProblem" id= "encl4Breed" src="textures/RhinoIconInbreeding.png"> </img>
 				<img class = "rhinoProblem" id= "encl4Man" style="display:none" src="textures/RhinoIconMan.png"> </img>
 				<img class = "rhinoProblem" id= "encl4Crowd" style="display:none" src="textures/RhinoIconOvercrowding.png"> </img>
-				<img class = "rhinoProblem" id= "encl4Done" style="display:none" src="textures/RhinoIconDone.png"> </img>
 			</div>
 		</div>
 		
@@ -69,6 +64,23 @@
 				<button class = "btn-orange" id="btnStart"> Start </button>
 			</div>
 		</div>
+		<div class = "menu" id="controlsMenu" style="display:none">
+			<h2> Spel uitleg: </h2>
+			<p class= "menuText"> Los de problemen in de verblijven op door neushoorn te verplaatsen. 
+				<br>
+				<br> Open de verblijven door op de menu's te klikken.
+				<br>
+				<br> Voeg neushoorns toe aan je selectie door op ze te klikken.
+				<br>
+				<br> Verplaats neushoorns door ze in een ander verblijf uit je selectie te halen.
+				<br>
+				<br>Het spel eindigt wanneer alle problemen zijn opgelost <span class="bold"> en </span> er geen neushoorns meer in je selectie zitten. 
+					</p>
+			<div class = "menuButtonContainer">
+				<button class = "btn-orange" id="btnControls"> Start </button>
+			</div>
+		</div>
+
 
 		<div id = "scanning" class= "menu" style = "display:none">
 			<h2> Richt je telefoon naar het bord: </h2>
@@ -77,167 +89,39 @@
 			</div>
 		</div>
 
-		<div class = "menu" id="enclMenu" style="display:none; overflow:hidden; top: 8vh; max-height: 87vh;"> <!-- sorry for the mess future me -->
+		<div class = "menu" id="enclMenu" style="display:none; overflow:hidden; top: 8vh; max-height: 87vh;">
 
-			<div id = "encl0Menu" style = "display:none">
-				<h2> <span>Verblijf 1:</span> </h2>
-				<div style = "max-height: 60vh; overflow:auto;">
+			<div id = "encl0Menu" style = "display:block">
+				<h2> <span id = "menuTitle">Verblijf 1:</span> <span class="cross" id="closeMenu">X</span> </h2>
+				<div style = "max-height: 55vh; overflow:hidden; overflow:auto;">
 					<h3 style = "margin-right:1rem; margin-left:1rem; margin-top:0.3rem; margin-bottom:0.3rem; background-color:#ADD2FF; border-radius: 0.4rem;"> mannetjes: </h3>
-						<div id = "encl0Males" style = "margin-left:1rem;min-height:3.5rem;"></div>
+						<div id = "enclMales" style = "margin-left:1rem;min-height:3rem;"></div>
 					<h3 style = "margin-right:1rem; margin-left:1rem; margin-top:0.3rem; margin-bottom:0.3rem; background-color:#FFADB0; border-radius: 0.4rem;"> vrouwtjes: </h3>
-						<div id = "encl0Females" style = "margin-left:1rem;min-height:3.5rem;"></div>
-					<h3 style="background-color:#E15A5D; margin-left:1rem;margin-right:1rem; margin-top:1rem;"> Problemen <span id="encl0ProblemCount">(3)</span>:</h3>
-						<div id = "menu0Fight" >
+						<div id = "enclFemales" style = "margin-left:1rem;min-height:3rem;"></div>
+					<h3 id = "problemHeader" style="background-color:#CC282E; margin-left:1rem;margin-right:1rem; margin-top:1rem;"> Problemen <span id="enclProblemCount">(3)</span>:</h3>
+						<div id = "menuFight" >
 							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconFight.png"> </img> Vechtende mannen! </h3>
 							<p style="margin-left:1rem;"> Wanneer meerdere mannetjes samen zitten met vrouwtjes, maken ze veel ruzie. Om dit te voorkomen kunnen we het beste maar 1 man in een familie groep zetten.</p>
 						</div>
-						<div id = "menu0Breed" >
+						<div id = "menuBreed" >
 							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconInbreeding.png"> </img> Inteelt! </h3>
 							<p style="margin-left:1rem;"> Inteelt vind plaats wanneer er 2 dieren voortplanten die nauw verwant zijn, zoals een mannetje met zijn zus, moeder, tante of nicht. Dit verhoogt de kans op erfelijke ziektes in de nakomelingen. Om dit te voorkomen wordt er dus goed bijgehouden welke dieren familie van elkaar zijn, zodat ze apart gehouden kunnen worden. Let goed op de kleuren rondom de dieren, dit geeft het familie verband aan!</p>
 						</div>
-						<div id = "menu0Man" >
+						<div id = "menuMan" >
 							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconMan.png"> </img> Man ontbreekt! </h3>
 							<p style="margin-left:1rem;"> Zonder mannetjes kunnen er niet voor nakomelingen worden gezorgd. Soms willen we dat niet, bijvoorbeeld als een dier al veel nakomelingen heeft gehad. Hier is dat niet het geval, dus daar mag best een man bij! </p>
 						</div>
-						<div id = "menu0Crowd" >
+						<div id = "menuCrowd" >
 							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconOvercrowding.png"> </img> Verblijf te vol!</h3>
 							<p style="margin-left:1rem;"> Dit verblijf heeft niet genoeg plek voor de hoeveelheid neushoorns die er in zitten, er is maar plek voor 5 neushoorns!  </p>
-						</div>
-						<div id = "menu0Done" >
-							<h3 class = "problemHeader" style = "background-color:#8A946F"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconDone.png"> </img> Geen problemen! </h3>
-							<p style="margin-left:1rem;"> Je hebt alle problemen in dit verblijf opgelost, goed gedaan!</p>
-						</div>
-				</div>
-			</div>
-
-			<div id = "encl1Menu" style = "display:none">
-				<h2> <span>Verblijf 2:</span> </h2>
-				<div style = "max-height: 60vh; overflow:auto;">
-					<h3 style = "margin-right:1rem; margin-left:1rem; margin-top:0.3rem; margin-bottom:0.3rem; background-color:#ADD2FF; border-radius: 0.4rem;"> mannetjes: </h3>
-						<div id = "encl1Males" style = "margin-left:1rem;min-height:3.5rem;"></div>
-					<h3 style = "margin-right:1rem; margin-left:1rem; margin-top:0.3rem; margin-bottom:0.3rem; background-color:#FFADB0; border-radius: 0.4rem;"> vrouwtjes: </h3>
-						<div id = "encl1Females" style = "margin-left:1rem;min-height:3.5rem;"></div>
-					<h3 style="background-color:#E15A5D; margin-left:1rem;margin-right:1rem; margin-top:1rem;"> Problemen <span id="encl1ProblemCount">(3)</span>:</h3>
-						<div id = "menu1Fight" >
-							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconFight.png"> </img> Vechtende mannen! </h3>
-							<p style="margin-left:1rem;"> Wanneer meerdere mannetjes samen zitten met vrouwtjes, maken ze veel ruzie. Om dit te voorkomen kunnen we het beste maar 1 man in een familie groep zetten.</p>
-						</div>
-						<div id = "menu1Breed" >
-							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconInbreeding.png"> </img> Inteelt! </h3>
-							<p style="margin-left:1rem;"> Inteelt vind plaats wanneer er 2 dieren voortplanten die nauw verwant zijn, zoals een mannetje met zijn zus, moeder, tante of nicht. Dit verhoogt de kans op erfelijke ziektes in de nakomelingen. Om dit te voorkomen wordt er dus goed bijgehouden welke dieren familie van elkaar zijn, zodat ze apart gehouden kunnen worden. Let goed op de kleuren rondom de dieren, dit geeft het familie verband aan!</p>
-						</div>
-						<div id = "menu1Man" >
-							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconMan.png"> </img> Man ontbreekt! </h3>
-							<p style="margin-left:1rem;"> Zonder mannetjes kunnen er niet voor nakomelingen worden gezorgd. Soms willen we dat niet, bijvoorbeeld als een dier al veel nakomelingen heeft gehad. Hier is dat niet het geval, dus daar mag best een man bij! </p>
-						</div>
-						<div id = "menu1Crowd" >
-							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconOvercrowding.png"> </img> Verblijf te vol!</h3>
-							<p style="margin-left:1rem;"> Dit verblijf heeft niet genoeg plek voor de hoeveelheid neushoorns die er in zitten, er is maar plek voor 5 neushoorns!  </p>
-						</div>
-						<div id = "menu1Done" >
-							<h3 class = "problemHeader" style = "background-color:#8A946F"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconDone.png"> </img> Geen problemen! </h3>
-							<p style="margin-left:1rem;"> Je hebt alle problemen in dit verblijf opgelost, goed gedaan!</p>
-						</div>
-				</div>
-			</div>
-
-			<div id = "encl2Menu" style = "display:none">
-				<h2> <span>Verblijf 3:</span> </h2>
-				<div style = "max-height: 60vh; overflow:auto;">
-					<h3 style = "margin-right:1rem; margin-left:1rem; margin-top:0.3rem; margin-bottom:0.3rem; background-color:#ADD2FF; border-radius: 0.4rem;"> mannetjes: </h3>
-						<div id = "encl2Males" style = "margin-left:1rem;min-height:3.5rem;"></div>
-					<h3 style = "margin-right:1rem; margin-left:1rem; margin-top:0.3rem; margin-bottom:0.3rem; background-color:#FFADB0; border-radius: 0.4rem;"> vrouwtjes: </h3>
-						<div id = "encl2Females" style = "margin-left:1rem;min-height:3.5rem;"></div>
-					<h3 style="background-color:#E15A5D; margin-left:1rem;margin-right:1rem; margin-top:1rem;"> Problemen <span id="encl2ProblemCount">(3)</span>:</h3>
-						<div id = "menu2Fight" >
-							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconFight.png"> </img> Vechtende mannen! </h3>
-							<p style="margin-left:1rem;"> Wanneer meerdere mannetjes samen zitten met vrouwtjes, maken ze veel ruzie. Om dit te voorkomen kunnen we het beste maar 1 man in een familie groep zetten.</p>
-						</div>
-						<div id = "menu2Breed" >
-							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconInbreeding.png"> </img> Inteelt! </h3>
-							<p style="margin-left:1rem;"> Inteelt vind plaats wanneer er 2 dieren voortplanten die nauw verwant zijn, zoals een mannetje met zijn zus, moeder, tante of nicht. Dit verhoogt de kans op erfelijke ziektes in de nakomelingen. Om dit te voorkomen wordt er dus goed bijgehouden welke dieren familie van elkaar zijn, zodat ze apart gehouden kunnen worden. Let goed op de kleuren rondom de dieren, dit geeft het familie verband aan!</p>
-						</div>
-						<div id = "menu2Man" >
-							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconMan.png"> </img> Man ontbreekt! </h3>
-							<p style="margin-left:1rem;"> Zonder mannetjes kunnen er niet voor nakomelingen worden gezorgd. Soms willen we dat niet, bijvoorbeeld als een dier al veel nakomelingen heeft gehad. Hier is dat niet het geval, dus daar mag best een man bij! </p>
-						</div>
-						<div id = "menu2Crowd" >
-							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconOvercrowding.png"> </img> Verblijf te vol!</h3>
-							<p style="margin-left:1rem;"> Dit verblijf heeft niet genoeg plek voor de hoeveelheid neushoorns die er in zitten, er is maar plek voor 5 neushoorns!  </p>
-						</div>
-						<div id = "menu2Done" >
-							<h3 class = "problemHeader" style = "background-color:#8A946F"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconDone.png"> </img> Geen problemen! </h3>
-							<p style="margin-left:1rem;"> Je hebt alle problemen in dit verblijf opgelost, goed gedaan!</p>
-						</div>
-				</div>
-			</div>
-
-			<div id = "encl3Menu" style = "display:none">
-				<h2> <span>Verblijf 4:</span> </h2>
-				<div style = "max-height: 60vh; overflow:auto;">
-					<h3 style = "margin-right:1rem; margin-left:1rem; margin-top:0.3rem; margin-bottom:0.3rem; background-color:#ADD2FF; border-radius: 0.4rem;"> mannetjes: </h3>
-						<div id = "encl3Males" style = "margin-left:1rem;min-height:3.5rem;"></div>
-					<h3 style = "margin-right:1rem; margin-left:1rem; margin-top:0.3rem; margin-bottom:0.3rem; background-color:#FFADB3; border-radius: 0.4rem;"> vrouwtjes: </h3>
-						<div id = "encl3Females" style = "margin-left:1rem;min-height:3.5rem;"></div>
-					<h3 style="background-color:#E15A5D; margin-left:1rem;margin-right:1rem; margin-top:1rem;"> Problemen <span id="encl3ProblemCount">(3)</span>:</h3>
-						<div id = "menu3Fight" >
-							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconFight.png"> </img> Vechtende mannen! </h3>
-							<p style="margin-left:1rem;"> Wanneer meerdere mannetjes samen zitten met vrouwtjes, maken ze veel ruzie. Om dit te voorkomen kunnen we het beste maar 1 man in een familie groep zetten.</p>
-						</div>
-						<div id = "menu3Breed" >
-							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconInbreeding.png"> </img> Inteelt! </h3>
-							<p style="margin-left:1rem;"> Inteelt vind plaats wanneer er 2 dieren voortplanten die nauw verwant zijn, zoals een mannetje met zijn zus, moeder, tante of nicht. Dit verhoogt de kans op erfelijke ziektes in de nakomelingen. Om dit te voorkomen wordt er dus goed bijgehouden welke dieren familie van elkaar zijn, zodat ze apart gehouden kunnen worden. Let goed op de kleuren rondom de dieren, dit geeft het familie verband aan!</p>
-						</div>
-						<div id = "menu3Man" >
-							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconMan.png"> </img> Man ontbreekt! </h3>
-							<p style="margin-left:1rem;"> Zonder mannetjes kunnen er niet voor nakomelingen worden gezorgd. Soms willen we dat niet, bijvoorbeeld als een dier al veel nakomelingen heeft gehad. Hier is dat niet het geval, dus daar mag best een man bij! </p>
-						</div>
-						<div id = "menu3Crowd" >
-							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconOvercrowding.png"> </img> Verblijf te vol!</h3>
-							<p style="margin-left:1rem;"> Dit verblijf heeft niet genoeg plek voor de hoeveelheid neushoorns die er in zitten, er is maar plek voor 5 neushoorns!  </p>
-						</div>
-						<div id = "menu3Done" >
-							<h3 class = "problemHeader" style = "background-color:#8A946F"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconDone.png"> </img> Geen problemen! </h3>
-							<p style="margin-left:1rem;"> Je hebt alle problemen in dit verblijf opgelost, goed gedaan!</p>
-						</div>
-				</div>
-			</div>
-			
-			<div id = "encl4Menu" style = "display:none">
-				<h2> <span>Verblijf 5:</span> </h2>
-				<div style = "max-height: 60vh; overflow:auto;">
-					<h3 style = "margin-right:1rem; margin-left:1rem; margin-top:0.3rem; margin-bottom:0.3rem; background-color:#ADD2FF; border-radius: 0.4rem;"> mannetjes: </h3>
-						<div id = "encl4Males" style = "margin-left:1rem; min-height:3.5rem;"></div>
-					<h3 style = "margin-right:1rem; margin-left:1rem; margin-top:0.3rem; margin-bottom:0.3rem; background-color:#FFADB0; border-radius: 0.4rem;"> vrouwtjes: </h3>
-						<div id = "encl4Females" style = "margin-left:1rem;min-height:3.5rem;"></div>
-					<h3 style="background-color:#E15A5D; margin-left:1rem;margin-right:1rem; margin-top:1rem;"> Problemen <span id="encl4ProblemCount">(3)</span>:</h3>
-						<div id = "menu4Fight" >
-							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconFight.png"> </img> Vechtende mannen! </h3>
-							<p style="margin-left:1rem;"> Wanneer meerdere mannetjes samen zitten met vrouwtjes, maken ze veel ruzie. Om dit te voorkomen kunnen we het beste maar 1 man in een familie groep zetten.</p>
-						</div>
-						<div id = "menu4Breed" >
-							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconInbreeding.png"> </img> Inteelt! </h3>
-							<p style="margin-left:1rem;"> Inteelt vind plaats wanneer er 2 dieren voortplanten die nauw verwant zijn, zoals een mannetje met zijn zus, moeder, tante of nicht. Dit verhoogt de kans op erfelijke ziektes in de nakomelingen. Om dit te voorkomen wordt er dus goed bijgehouden welke dieren familie van elkaar zijn, zodat ze apart gehouden kunnen worden. Let goed op de kleuren rondom de dieren, dit geeft het familie verband aan!</p>
-						</div>
-						<div id = "menu4Man" >
-							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconMan.png"> </img> Man ontbreekt! </h3>
-							<p style="margin-left:1rem;"> Zonder mannetjes kunnen er niet voor nakomelingen worden gezorgd. Soms willen we dat niet, bijvoorbeeld als een dier al veel nakomelingen heeft gehad. Hier is dat niet het geval, dus daar mag best een man bij! </p>
-						</div>
-						<div id = "menu4Crowd" >
-							<h3 class = "problemHeader"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconOvercrowding.png"> </img> Verblijf te vol!</h3>
-							<p style="margin-left:1rem;"> Dit verblijf heeft niet genoeg plek voor de hoeveelheid neushoorns die er in zitten, er is maar plek voor 5 neushoorns!  </p>
-						</div>
-						<div id = "menu4Done" >
-							<h3 class = "problemHeader" style = "background-color:#8A946F"> <img class = "rhinoProblem" style = "width:3.5rem; float:left; margin-left:-1rem; margin-top:-1rem; margin-right:0.5rem;" src="textures/RhinoIconDone.png"> </img> Geen problemen! </h3>
-							<p style="margin-left:1rem;"> Je hebt alle problemen in dit verblijf opgelost, goed gedaan!</p>
 						</div>
 				</div>
 			</div>
 
 			<h3 style="background-color:#FCCF4D; margin-bottom: 0.5rem; color:black"> Selectie:</h3>
-			<div style = "max-height: 12vh; width:80vw; overflow:auto;">
-				<div id = "selectionMales" style = "width:45%; min-height: 4rem; border:0.2rem solid #ADD2FF; float:left; margin-left:0.2rem; border-radius: 0.4rem;"> </div> 
-				<div id = "selectionFemales" style = "width:45%; min-height: 4rem; border:0.2rem solid #FFADB0; float:right; margin-right:0.2rem;border-radius: 0.4rem;"> </div>
+			<div style = "max-height: 11vh; width:80vw; overflow:auto;">
+				<div id = "selectionMales" style = "width:45%; min-height: 3rem; border:0.2rem solid #ADD2FF; float:left; margin-left:0.2rem; border-radius: 0.4rem;"> </div> 
+				<div id = "selectionFemales" style = "width:45%; min-height: 3rem; border:0.2rem solid #FFADB0; float:right; margin-right:0.2rem;border-radius: 0.4rem;"> </div>
 			</div>
 
 			<div class = "menuButtonContainer" style = "padding-top:0.5rem;">

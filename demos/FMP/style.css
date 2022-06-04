@@ -402,13 +402,13 @@ svg{
 }
 
 .rhinoIcon{
-	height:3rem;
+	height:2.4rem;
 	border-radius:50%;
 	
-	border-right: 0.5rem solid purple;
-	border-bottom: 0.5rem solid purple;
-	border-left: 0.5rem solid blue;
-	border-top: 0.5rem solid blue;
+	border-right: 0.3rem solid purple;
+	border-bottom: 0.3rem solid purple;
+	border-left: 0.3rem solid blue;
+	border-top: 0.3rem solid blue;
 }
 
 h3{
@@ -433,4 +433,8 @@ h3{
 	margin-top:1rem; 
 	background-color:#E15A5D; 
 	border-radius: 0.4rem;
+}
+
+.bold{
+	font-weight: 700;
 }
