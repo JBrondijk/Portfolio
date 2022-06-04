@@ -225,9 +225,7 @@ function updateUI(){
 	}else if (gameState == "play") {
 		displayNone();
 		enclInfo.style.display = "block";
-		if (selection.length > 0){
-			selectPrompt.style.display = "block";
-		}
+		selectPrompt.style.display = "block";
 	}  else if (gameState == "menu") {
 		displayNone();
 		enclMenu.style.display = "block";
@@ -509,6 +507,8 @@ function selectRhino(element){
 function updateSelection(){
 	let maleCount = 0;
 	let femaleCount = 0;
+	selectionMenu.style.background = "#FCCF4D";
+	selectionMenu.style.color = "black";
 	if (selection.length > 0){
 		for( var i = 0; i < selection.length; i++){  
 			if (selection[i].male){
@@ -517,10 +517,22 @@ function updateSelection(){
 				femaleCount++;
 			}
 		}
-		selectionMenu.innerHTML = "Voeg neushoorns toe aan een verblijf ("+ maleCount+"m - "+ femaleCount + "v)";
+		selectionMenu.innerHTML = "Klik op een verblijf om er neushoorns aan toe te voegen ("+ maleCount+"m - "+ femaleCount + "v geselecteerd)";
 		document.getElementById("movebtn").innerHTML =  "Verplaats Neushoorns ("+(maleCount+femaleCount)+")";
+		
+		let totalProblems = 0;
+		for( var i = 0; i < enclosures.length; i++){ 
+			totalProblems = totalProblems + enclosures[i].problemAmount;
+		} 
+		if (totalProblems == 0) {
+			selectionMenu.innerHTML = "Je hebt nog "+ maleCount+"m - "+ femaleCount + "v geselecteerd, voeg deze toe aan een verblijf om het spel te voltooien!";
+			selectionMenu.style.background = "#CC282E";
+			selectionMenu.style.color = "white";
+		}
+
+
 	} else {
-		selectionMenu.innerHTML = "Open een verblijf om Neushoorns te selecteren";
+		selectionMenu.innerHTML = "Klik op een verblijf om het te openen";
 		document.getElementById("movebtn").innerHTML =  "Keer terug naar overzicht";
 	}
 	
