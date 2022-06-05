@@ -273,6 +273,32 @@ padding-bottom: 0;
 	 background-color: #DBC79B;
 }
 
+.infoBtn{
+	max-height:3rem;
+	max-width:3rem;
+	height:15vw;
+	width:15vw;
+	float : right;
+	background: white;
+	border: 0.2rem solid black;
+	border-radius: 50%;
+
+	margin-right: 4vw;
+	margin-top: -0.3rem;
+
+	text-align: center;
+	line-height:2rem;
+
+	font-family: 'Anton';
+	color: black;
+	font-size: 1.8rem;
+}
+
+.infoBtn:active{
+	border: 0.3rem solid grey;
+	color: grey;
+}
+
 .cross{
 	display: inline-block;
 	float:right;

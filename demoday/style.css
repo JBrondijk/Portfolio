@@ -49,7 +49,7 @@ p{
 	font-family: sofia-pro,Century Gothic,sans-serif;
 	letter-spacing: -.17px;
     word-spacing: -0.1px;
-	font-size: 0.7rem;
+	font-size: 0.95rem;
 	line-height: 1.5!important;
     font-weight: 300;
 	
@@ -254,7 +254,7 @@ padding-bottom: 0;
     border: 0;
     color: white;
     font-family: sofia-pro,Century Gothic,sans-serif;
-	font-size: 1.5rem;
+	font-size: 1.1rem;
     font-weight: 700;
     line-height: 2rem;
 	text-align: center;
@@ -405,5 +405,63 @@ svg{
 	border-radius:1rem;
 	margin-bottom:0;
 	font-size:1rem;
+}
 
+.rhinoMenu{
+	position:absolute;
+	border: 0;
+	padding:0;
+	width: 40vw;
+	padding-bottom: 1px;
+	min-height: 2.8rem;
+
+	background-color: white;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+	text-align: center;
+}
+
+.rhinoProblem{
+	margin-top:1px;
+	width:31%;
+	-webkit-filter: drop-shadow(2.5px 2.5px 2.5px rgba(0,0,0,0.4));
+	filter: drop-shadow(2.5px 2.5px 2.5px rgba(0,0,0,0.4));
+}
+
+.rhinoIcon{
+	height:2.4rem;
+	border-radius:50%;
+	
+	border-right: 0.3rem solid purple;
+	border-bottom: 0.3rem solid purple;
+	border-left: 0.3rem solid blue;
+	border-top: 0.3rem solid blue;
+}
+
+h3{
+	color: white;
+	margin-top: 0;
+	margin-bottom: 0;
+    font-family: sofia-pro,Century Gothic,sans-serif;
+	font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1rem;
+	text-align: left;
+	background-color: #8A946F;
+
+	padding:0.1rem;
+	padding-left:0.5rem;
+	padding-right:0.5rem;
+}
+
+.problemHeader{
+	margin-right:4rem; 
+	margin-left:1rem; 
+	margin-top:1rem; 
+	background-color:#E15A5D; 
+	border-radius: 0.4rem;
+}
+
+.bold{
+	font-weight: 700;
 }
