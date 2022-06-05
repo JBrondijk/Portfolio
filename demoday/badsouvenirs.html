@@ -2,7 +2,7 @@
 <html style="position:relative; margin:0; width:100%; height:100%; overflow:hidden;">
 
 	<head>
-		<title> Foute Souvenirs! </title>
+		<title> Bad Souvenirs! </title>
 		<link href="style.css" rel="stylesheet"/> 
 		<link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet'>
 		<meta name="google" content="notranslate">
@@ -10,17 +10,17 @@
 	</head>
 
 	<body style = "position:relative; margin:0; width:100%; height:100%; overflow:hidden;">
-		<h1 style = "position:absolute; width:100%; top:0; z-index:9;padding-left:3rem"> <img src="./textures/arrow.png" onclick =location.href="/demoday.html" style = "height:1.5rem; position:absolute; margin-left: -2.5rem;"></img>  Foute Souvenirs</h1>
+		<h1 style = "position:absolute; width:100%; top:0; z-index:9;padding-left:3rem"> <img src="./textures/arrow.png" onclick =location.href="/demoday.html" style = "height:1.5rem; position:absolute; margin-left: -2.5rem;"></img>  Bad Souvenirs</h1>
 		
 		<div id="myARcontainer" style = "position:relative; margin:0; width:100%; height:100%; overflow:hidden;"></div>
 
 		<div class = "menu" id="startMenu" style = "display:block;" >
 			<h2> Vind de foute souvenirs! </h2>
 			<p class= "menuText" id="startMenuText"> 
-			Hier bij de douane komen we allerlei "foute souvenirs" tegen. <br> 
-			Souvenirs die op het eerste oog heel leuk lijken, maar eigenlijk heel schadelijk zijn voor dier en natuur. <br>
+			Here at customs we encounter all sorts of "bad souvenirs". <br> 
+			Souvenirs which, at first sight, might seem really fun, but in fact are very harmful to animal and nature alike. <br>
 			<br>
-			Kan jij alle foute souvenirs uit de bagage onderscheppen?
+			Can you intercept all bad souvenirs from the luggage?
 			</p>
 			<div class = menuButtonContainer>
 				<button class = "btn-orange" id="btnStart"> Start </button>
@@ -28,68 +28,68 @@
 		</div>
 
 		<div id = "scanning" class= "menu" style = "display:none">
-			<h2> Richt je telefoon naar het bord: </h2>
+			<h2> Aim your phone at the sign: </h2>
 			<div class="inner">
 				<div class ="scanline"></div>
 			</div>
 		</div>
 
 		<div class = "menu" id="selectMenu" style = "display:none">
-			<h2> Zoek de foute souvenirs!</h2>
+			<h2> Find the bad souvenirs!</h2>
 			<div id="xrayBox"></div>
 		</div>
 
 		<div class = "menu" id="foundMenu" style = "display:none; ">
 			<div id="nothingFound" style = "display:none">
-				<h2> Niks gevonden... </h2>
-				<p class= "menuText"> Hier zaten geen foute souvenirs in... <br><br> Let goed op of je in andere tassen of koffers iets verdachts ziet!</p>
+				<h2> Nothing found... </h2>
+				<p class= "menuText"> There weren't any bad souvenirs in here... <br><br> Click on a suitcase if you see something suspicious! </p>
 			</div>
 			<div id="souvenir0" style = "display:none">
-				<h2> Armbandje van Giraffenhaar</h2>
+				<h2> Giraffe-hair bracelet</h2>
 				<img class= "souvenirImg" src="./textures/souvenirs/souvenir1_bracelet.png"></img>
-				<p class= "menuText"> Deze traditionele geluksarmbandjes worden in Afrika veel verkocht. Vroeger werden ze gemaakt van afgevallen haren van olifantenstaarten, maar er werden steeds meer olifanten voor gedood dus werd dit verboden. Nu worden de armbandjes gemaakt van giraffenharen, en stappen stropers over op giraffen. 
-					<br>Als mensen stoppen met het kopen van deze armbandjes, hoeven er geen dieren meer voor te lijden. 
+				<p class= "menuText"> These traditional good-luck bracelets are being sold around Africa. In the past, they were made from elephant-hairs. When too many elephants were being killed, using elephant parts became prohibited. Now the bracelets are made from giraffe-hair, and poachers switched to hunting giraffe.
+					<br>If people stop buying these kinds of bracelets, no more animals will have to suffer for them.  
 				</p>
 			</div>
 			<div id="souvenir1" style = "display:none">
-				<h2> Exotische Veren</h2>
+				<h2> Exotic feathers</h2>
 				<img class= "souvenirImg" src="./textures/souvenirs/souvenir2_feather.png"></img>
-				<p class= "menuText"> Exotische vogels kunnen prachtige kleuren hebben. Hun veren worden hierdoor veel gebruikt voor sierraden, pennen, maskers of hoofdtooien. Helaas kunnen de vogels waar deze veren vandaan komen beschermd zijn, en worden ze voor hun mooie veren gedood.
-					<br>Koop dus niets met deze veren om de vogels te beschermen!  
+				<p class= "menuText"> Exotic birds can have beautiful colours. Because of this, their feathers are being used for jewellery, pens, masks and other attires. Sadly, the birds these feathers belong to are often endangered, and they are being killed for their pretty feathers. 
+					<br>So, don't buy anything with these kinds of feathers to protect the birds!  
 				</p>
 			</div>
 			<div id="souvenir2" style = "display:none">
-				<h2>Ivoren Beeldje</h2>
+				<h2>Ivory Statue<h2>
 				<img class= "souvenirImg" src="./textures/souvenirs/souvenir3_ivory.png"></img>
-				<p class= "menuText"> De stoottanden van een olifant zijn van ivoor. Het is veel geld waard, en dus worden er veel olifanten voor gedood. De handel in ivoor is verboden, behalve voor oud ivoor. Dit maakt het naleven van deze regels moeilijk. Vooral in Azie worden er nog veel beeldjes, sierraden en eetstokjes van ivoor verkocht. 
-				<br> Als mensen stoppen met het kopen van deze souvenirs, zullen er minder olifanten gestroopt worden.   
+				<p class= "menuText"> Ivory comes from the tusk of elephants. It's worth a lot of money, and as a result many elephants are killed to obtain it. The trade in ivory is prohibited, with the exception of antique ivory. This created a loophole poachers use to continue trading fresh ivory. Especially in Asia, ivory statues, jewellery and chopsticks continue to be sold. 
+				<br> If people stop buying souvenirs out of ivory, less and less elephants will be poached.    
 				</p>
 			</div>
 			<div id="souvenir3" style = "display:none">
-				<h2>Reptielen</h2>
+				<h2>Reptiles</h2>
 				<img class= "souvenirImg" src="./textures/souvenirs/souvenir4_turtles.png"></img>
-				<p class= "menuText"> Er is veel vraag naar exotische huisdieren. Mensen willen de  vreemdste dieren in huis halen. Vooral reptielen zijn erg populair, en worden vaak niet beschermd door de wet. Deze dieren worden uit het wild geplukt, ingepakt met ducktape, of in veel te kleine doosjes gepropt om vervolgens meegesmokkeld te worden. Deze dieren belanden dan in dierenwinkels of online webshops.
-					<br>Als mensen stoppen met het houden van deze dieren als huisdieren, zal ook de illegale handel er in stoppen. 
+				<p class= "menuText"> There's a high demand for exotic pets. People want to keep the strangest animals. Reptiles are especially popular, and often aren't protected by the law. These animals are picked out of the wild, packed with duct-tape, or stuffed in way too small container. All to be smuggled across borders and sold in pet shops or online. 
+					<br>If people stop keeping these animals as pets, the illegal trade in them will also cease to exist.  
 				</p>
 			</div>
 			<div id="souvenir4" style = "display:none">
-				<h2>Traditionele Medicijnen</h2>
+				<h2>Traditional Medicine </h2>
 				<img class= "souvenirImg" src="./textures/souvenirs/souvenir5_medicine.png"></img>
-				<p class= "menuText"> In veel culturen denkt men dat dierlijke onderdelen speciale krachten hebben. De botten van tijgers zouden brandwonden of reuma genezen. De snorharen tandpijn verhelpen. Dus worden ze verwerkt in allerlei "medicijnen". In China leven al meer dan 6000 tijgers op boerderijen, waar ze gefokt worden voor dit soort medicijnen. 
-					<br> Als mensen deze medicijnen blijven kopen komen er alleen maar meer van deze tijgerboerderijen. 
+				<p class= "menuText"> Many cultures think animal parts contain special powers. The bones of a tiger  would cure burns or rheumatism. The whiskers help toothaches. And thus, these parts are mixed into all sorts of "medicine". In China alone, more than 6000 tigers love on farms, where they're being bread for to be used in medicine. 
+					<br> If people keep buying these medicines, only more tigers will end up on these kinds of farms.  
 				</p>
 			</div>
 			<div id="allFound" style = "display:none">
-				<h2> Alles gevonden! </h2>
-				<p class= "menuText"> Je hebt alle foute souvenirs ontdekt, goed gedaan! <br> Nu weet je welke souvenirs je maar beter kunt laten liggen. 
-					<br><br> Als je de foute souvenirs nog eens wil bekijken kan je door blijven spelen!</p>
+				<h2> Every found! </h2>
+				<p class= "menuText"> You discoverd all the bad souvenirs, well done! <br> Now you know which souvenirs are better left on the shelf. 
+					<br><br> If you want to look at the souvenirs again, you can keep playing, otherwise, you can return to the demo overview. !</p>
 			</div>
 
 			<p class="souvenirText">
-				<span>Souvenirs gevonden:</span> <span id="souvenirsFound" class = "progressCounter"> 0 /5 </span>
+				<span>Souvenirs found:</span> <span id="souvenirsFound" class = "progressCounter"> 0 /5 </span>
 			</p>
 			<div class = menuButtonContainer>
-				<button class = "btn-orange" id="btnContinue"> Ga Verder </button>
+				<button class = "btn-orange" id="btnContinue"> Continue </button>
 				<button class = "btn-orange" id="btnRet" onclick =location.href="/demoday.html" style = "display:none"> Return to demo overview </button>
 			</div>
 		</div>
@@ -100,3 +100,4 @@
 
 	</body>
 </html>
+
