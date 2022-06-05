@@ -39,7 +39,7 @@ const	scanner = document.getElementById("scanning"),
 //MAKING ALL THE ENCLOSURES/RHINOS
 const enclosures = [];
 	enclosures[0] = new enclosure(
-							"Verblijf 1",
+							"Enclosure 1",
 							document.getElementById("encl0"), 
 							document.getElementById("encl0Contents"), 
 							document.getElementById("encl0Fight"), 
@@ -52,7 +52,7 @@ const enclosures = [];
 							new rhino (false, "#3030FF", "#3030FF")
 							]);
 	enclosures[1] = new enclosure(
-							"Verblijf 2",
+							"Enclosure 2",
 							document.getElementById("encl1"), 
 							document.getElementById("encl1Contents"), 
 							document.getElementById("encl1Fight"), 
@@ -65,7 +65,7 @@ const enclosures = [];
 							new rhino (false, "#FF3030", "#308DFF")
 							]);
 	enclosures[2] = new enclosure(
-							"Verblijf 3",
+							"Enclosure 3",
 							document.getElementById("encl2"), 
 							document.getElementById("encl2Contents"), 
 							document.getElementById("encl2Fight"), 
@@ -77,7 +77,7 @@ const enclosures = [];
 							new rhino (false, "#9030FF", "#9030FF")
 							]);
 	enclosures[3] = new enclosure(
-							"Verblijf 4",
+							"Enclosure 4",
 							document.getElementById("encl3"), 
 							document.getElementById("encl3Contents"), 
 							document.getElementById("encl3Fight"), 
@@ -90,7 +90,7 @@ const enclosures = [];
 							new rhino (false, "#30FFED", "#30FFED")
 							]);
 	enclosures[4] = new enclosure(
-							"Verblijf 5",
+							"Enclosure 5",
 							document.getElementById("encl4"), 
 							document.getElementById("encl4Contents"), 
 							document.getElementById("encl4Fight"), 
@@ -332,7 +332,7 @@ function enclosure(enclName, infoMenu, infoContents, infoFight, infoBreed, infoM
 		this.overCrowded = (this.maleCount + this.femaleCount > 5);
 		this.problemAmount = this.inbreeding + this.breedingError + this.fighting + this.overCrowded;
 		//set all UI elements.
-		this.infoContents.innerHTML = "("+this.maleCount+"m - "+this.femaleCount+"v)";
+		this.infoContents.innerHTML = "("+this.maleCount+"m - "+this.femaleCount+"f)";
 
 		if (this.fighting){
 			this.infoFight.style.display = "inline-block";
@@ -518,23 +518,23 @@ function updateSelection(){
 				femaleCount++;
 			}
 		}
-		selectionMenu.innerHTML = "Klik op een verblijf om er neushoorns aan toe te voegen ("+ maleCount+"m - "+ femaleCount + "v geselecteerd)";
-		document.getElementById("movebtn").innerHTML =  "Verplaats Neushoorns ("+(maleCount+femaleCount)+")";
+		selectionMenu.innerHTML = "Tap an enclosure to add rhinos to it ("+ maleCount+"m - "+ femaleCount + "f selected)";
+		document.getElementById("movebtn").innerHTML =  "Move Rhinos ("+(maleCount+femaleCount)+")";
 		
 		let totalProblems = 0;
 		for( var i = 0; i < enclosures.length; i++){ 
 			totalProblems = totalProblems + enclosures[i].problemAmount;
 		} 
 		if (totalProblems == 0) {
-			selectionMenu.innerHTML = "Je hebt nog "+ maleCount+"m - "+ femaleCount + "v geselecteerd, voeg deze toe aan een verblijf om het spel te voltooien!";
+			selectionMenu.innerHTML = "You still have "+ maleCount+"m - "+ femaleCount + "f selected, add them to an enclosure to complete the game!";
 			selectionMenu.style.background = "#CC282E";
 			selectionMenu.style.color = "white";
 		}
 
 
 	} else {
-		selectionMenu.innerHTML = "Klik op een verblijf om het te openen";
-		document.getElementById("movebtn").innerHTML =  "Keer terug naar overzicht";
+		selectionMenu.innerHTML = "Tap an enclosure to open it";
+		document.getElementById("movebtn").innerHTML =  "Return to the overview";
 	}
 	
 }

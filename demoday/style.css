@@ -432,10 +432,10 @@ svg{
 	height:2.4rem;
 	border-radius:50%;
 	
-	border-right: 0.3rem solid purple;
-	border-bottom: 0.3rem solid purple;
-	border-left: 0.3rem solid blue;
-	border-top: 0.3rem solid blue;
+	border-right: 0.5rem solid purple;
+	border-bottom: 0.5rem solid purple;
+	border-left: 0.5rem solid blue;
+	border-top: 0.5rem solid blue;
 }
 
 h3{
