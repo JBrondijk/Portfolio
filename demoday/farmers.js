@@ -196,43 +196,43 @@ function select(object){
 	if (object != null){
     	if (currentQuestion == 0){
 			if (object==selectPlane1){
-				submitAnswer(false,"Waakhonden zouden wel ingezet kunnen worden tegen afrikaanse wilde honden, maar dan is er een risico dat de waakhonden ziektes overbrengen op de wilde honden. <br> Er moet een andere oplossing zijn...");
+				submitAnswer(false, "Guard dogs could be deployed against african wild dogs, but this creates a risk that the guard dogs transfer diseases to the wild dogs. <br> There has to be another solution...");
 			}	else if (object==selectPlane2){
-				submitAnswer(true,"Veel boeren laten hun vee vrij rondlopen, wat ze kwetsbaar maakt voor roofdieren. <br> Hekken plaatsen, en deze onderhouden, helpt conflicten te vermijden.")
+				submitAnswer(true,"Many farmers still let their livestock roam freely, which makes them vulnurable to predators. <br> Placing fences, and maintaining them, helps avoid conflicts!");
 			}	else if (object==selectPlane3){
-				submitAnswer(false,"Bijenhekken hebben als doel om gewassen te beschermen tegen olifanten. <br> Er moet een andere oplossing zijn...");
+				submitAnswer(false,"Bee fences are designed to protect crops against elephants. <br> There has to be another solution...");
 			}	else if (object==selectPlane4){
-				submitAnswer(false,"De fakkel lampen moeten op een veekraal worden vastgemaakt, om deze 's nachts beter te beschermen. Deze boer laat zijn vee 's nachts nog vrij rondlopen. <br> Er moet een andere oplossing zijn...");
+				submitAnswer(false,"The torch light needs to be applied to a boma, to protect them better at night. This farmers still lets their livestock roam freely. <br> There has to be another solution...");
 			}
 		} else if (currentQuestion == 1){
 			if (object==selectPlane1){
-				submitAnswer(false,"Olifanten laten zich niet zo snel afschrikken door een waakhond. <br> Er moet een andere oplossing zijn...");
+				submitAnswer(false,"Elephants don't let themselves get scared off so easily. <br> There has to be another solution...");
 			}	else if (object==selectPlane2){
-				submitAnswer(false,"Deze hekken zijn niet sterk genoeg om een olifant tegen te houden. Hekken die wel zo sterk zijn zouden te veel geld kosten. <br> Er moet een andere oplossing zijn...");
+				submitAnswer(false,"These fences aren't strong enough to stop an elephant. Fences that are strong enough would cost far too much money. <br> There has to be another solution...");
 			}	else if (object==selectPlane3){
-				submitAnswer(true,"De bijen in bijenhekken houden olifanten weg, bestuiven gewassen en leveren boeren geld op door de verkoop van honing! <br> Allemaal voordelen, voor een goedkope oplossing!");
+				submitAnswer(true,"The bees in bee fences keep the elephants away, pollinate crops and earn farmers money through the selling of honey! <br> All these benifits, for such a cheap solution!");
 			}	else if (object==selectPlane4){
-				submitAnswer(false,"Olifanten laten zich minder snel afschrikken dan de roofdieren waar deze lampen voor bedoeld zijn. <br> Er moet een andere oplossing zijn...");
+				submitAnswer(false,"Elephants aren't scared as easily as the predators these lamps are designed for. <br> There has to be another solution...");
 			}
 		} else if (currentQuestion == 2){
 			if (object==selectPlane1){
-				submitAnswer(false,"Waakhonden worden voornamelijk ingezet tegen kleinere roofdieren zoals cheeta's. <br> Er moet een andere oplossing zijn...");
+				submitAnswer(false,"Guard dogs are better suited agaisnt smaller predators, like cheetahs. <br> There has to be another solution...");
 			}	else if (object==selectPlane2){
-				submitAnswer(false,"Deze boer heeft al een veekraal, toch klimmen sommige roofdieren nog over de hekken heen om bij het vee te komen. <br> Zie jij een oplossing om ze verder af te schrikken?");
+				submitAnswer(false,"This farmer already has a boma, but yet some predators climb over the fences to reach their livestock. <br> Can you find a solution to further scare off predators?");
 			}	else if (object==selectPlane3){
-				submitAnswer(false,"Bijenhekken hebben als doel om gewassen te beschermen tegen olifanten. <br> Er moet een andere oplossing zijn...");
+				submitAnswer(false,"Bee fences are designed to protect crops against elephants. <br> There has to be another solution...");
 			}	else if (object==selectPlane4){
-				submitAnswer(true,"Door boeren dit soort lampen te geven helpen we ze nog meer met het afschrikken van roofdieren. <br> Roofdieren zijn heel voorzichtig met het uikiezen van hun prooi, hoe moeilijker we het voor ze maken, hoe veiliger het vee zal zijn.");
+				submitAnswer(true,"By giving farmers these kinds of lights, we help them even further in scaring off predators. <br> Predators are very careful in choosing their prey. The more difficult we make it for them, the safe farmers' livestock will be.");
 			}
 		} else if (currentQuestion == 3){
 			if (object==selectPlane1){
-				submitAnswer(true,"De meeste boeren zouden zelf geen waakhond kunnen betalen. <br> Door boeren honden te geven, en gratis dierenartsen te verzorgen maken we het een stuk betaalbaarder voor ze.");
+				submitAnswer(true,"Most famers wouldn't be able to afford a guard dog on their own. <br> By giving farmers dogs, and providing free vetrenary care, we make it a lot more affordable for them.");
 			}	else if (object==selectPlane2){
-				submitAnswer(false,"Ook al heeft een boer al een hek of veekraal, proberen sommige roofdieren toch een prooi te bemachtigen. <br> Zie jij een oplossing om ze verder af te schrikken?");
+				submitAnswer(false,"Alltough this farmers already has a fence or boma, cheetahs continue to try to capture a prey. <br> Do you see a solution to further scare them off cheetahs?");
 			}	else if (object==selectPlane3){
-				submitAnswer(false,"Bijenhekken hebben als doel om gewassen te beschermen tegen olifanten. <br> Er moet een andere oplossing zijn...");
+				submitAnswer(false,"Bee fences are designed to protect crops against elephants. <br> There has to be another solution...");
 			}	else if (object==selectPlane4){
-				submitAnswer(false,"");
+				submitAnswer(false,"While most predators hunt at night, cheetahs tend to do this around dusk and dawn. The torch-lights work best at night. <br> There has to be another solution...");
 			}
 		}
     } 
@@ -243,11 +243,11 @@ function submitAnswer(correct, text){
 	if (correct){
 		currentQuestion = currentQuestion+1;
 		updateQuestionsAnsweredTxt();
-		continuebtn.innerHTML = "Ga Verder"
-		resultHeader.innerHTML = "Goed Gedaan!"
+		continuebtn.innerHTML = "Continue"
+		resultHeader.innerHTML = "Well Done!"
 	} else {
-		continuebtn.innerHTML = "Probeer Opnieuw";
-		resultHeader.innerHTML = "Helaas..."
+		continuebtn.innerHTML = "Try Again";
+		resultHeader.innerHTML = "Too Bad..."
 	}
 	gameState = "menu";
 	updateUI();
@@ -266,9 +266,9 @@ continuebtn.onclick = function(){
 			updateUI();
 		} else {
 			//all farmers helped. 
-			resultHeader.innerHTML = "Alle boeren geholpen!";
-			resultText.innerHTML = "Fantastich gedaan! Alle boeren kunnen hun werk nu een stuk veiliger doen en hoeven zich minder zorgen te maken over wilde dieren. <br> Het is belangrijk goed met de boeren te overleggen, zodat een gepaste oplossing kan worden gekozen.<br><br>Naast de oplossingen die je hier zag, werken de verschillende organisaties aan allerlei andere oplossinge om conflicten tussen mens en dier te verhelpen. Kom eens langs bij Stichting Wildlife om meer hierover te leren!";
-			continuebtn.innerHTML = "Speel Opnieuw";
+			resultHeader.innerHTML = "All farmers helped!";
+			resultText.innerHTML = "Fantastic job! Now all farmers can do their job safely, without having to worry about wild animals. <br> It's important to consult the farmers, so we can find a fitting solution to these problems. <br><br> Besides the solutions you saw here, various organizations are working on other solution to solve human-wildlife conflict around the globe. Come by the Wildlife Foundation at the entrance area to learn more!";
+			continuebtn.innerHTML = "Play Again";
 			document.getElementById("btnRet").style.display = "block";
 			gameComplete = true;
 		}
