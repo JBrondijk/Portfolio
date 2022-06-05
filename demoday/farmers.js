@@ -62,10 +62,10 @@ var currentQuestion = 0;
 var gameComplete = false;
 var clickedObject;
 var questions = [];
-questions[0] = "Afrikaanse Wilde Honden jagen op mijn vee! Hoe kan ik ze nog los laten grazen?";
-questions[1] = "Olifanten eten mijn gewassen op en trappen alles plat! Als ik ze probeer weg te jagen worden ze aggressief!";
-questions[2] = "Leeuwen klimmen 's nachts mijn veekraal in en vallen mijn vee aan!";
-questions[3] = "Een jachluipaard ging zomaar aan de haal met een van de schapen uit mijn veekraal!";
+questions[0] = "African wild dogs hunt my livestock! How can I let them graze freely liky this?";
+questions[1] = "Elephants are eating and trampling all my crops! When I try to scare them off, they become aggressive!";
+questions[2] = "Lions climb into my boma at night, and attack my livestock!";
+questions[3] = "A cheetah got a hold of one of the sheep from my boma!";
 
 updateSpeechBubbleText();
 
