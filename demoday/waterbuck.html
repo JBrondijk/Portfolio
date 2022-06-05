@@ -2,17 +2,17 @@
 <html>
 
 	<head>
-		<title> Waterbok Ontsnapping! </title>
+		<title> Waterbuck Escape! </title>
 		<link href="style.css" rel="stylesheet"/>
 		<meta name="google" content="notranslate">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 
 	<body style = "overflow:hidden; max-width:100%">
-		<h1 style = "padding-left:3rem"> <img src="./textures/arrow.png" onclick =location.href="/demoday.html" style = "height:1.5rem; position:absolute; margin-left: -2.5rem;"></img> Waterbok Ontsnapping</h1>
+		<h1 style = "padding-left:3rem"> <img src="./textures/arrow.png" onclick =location.href="/demoday.html" style = "height:1.5rem; position:absolute; margin-left: -2.5rem;"></img> Waterbuck Escape</h1>
 		
 		<div id="videoContainer" style="height:95vh">
-			<video id="VIDEO" style = "height: 95vh; width: 100vw; object-fit: cover;">Geef de website toestemming om de camera te gebruiken om verder te kunnen.</video>
+			<video id="VIDEO" style = "height: 95vh; width: 100vw; object-fit: cover;">Give the website access to your camera to play.</video>
 		</div>
 
 		<div class="progress-container">
@@ -23,51 +23,51 @@
 		
 		<div class = "menu" id="startMenu">
 			<h2> Volg je mede-waterbok! </h2>
-			<p class= "menuText"> Wanneer een groep waterbokken moet ontsnappen aan de klauwen van een leeuw, of ander roofdier, helpt de witte cirkel achterop de waterbok met het bij elkaar blijven, deze valt namelijk goed op tussen het hoge gras. <br> Volgens mij komt er een leeuw aan! Volg je mede-waterbok en let goed op de cirkel!  </p>
+			<p class= "menuText"> When a group of waterbuck has to escape from the claws of a lion, or any other predator, the white circle helps the waterbuck stay together, as the circle stands out in the tall grass. <br> I think there’s a lion coming! Follow your fellow waterbuck, and pay close attention to the circle! </p>
 			<div class = menuButtonContainer>
 				<button class = "btn-orange" id="btnStart"> Start </button>
 			</div>
 		</div>
 
 		<div class = "menu" id="iOSMenu" style = "display:none">
-			<h2> Geeft toestemming om te kunnen spelen </h2>
+			<h2> Give access to play </h2>
 			<!-- <p class= "menuText"> Deze ARvaring werkt momenteel alleen op Android telefoons. Sorry voor het ongemak.  </p> -->
-			<p class= "menuText"> Geeft toestemming de camera en orientatie te gebruiken om het spel te kunnen spelen.  </p>
+			<p class= "menuText"> Give access to use the camera and orientation to play.  </p>
 			<div class = menuButtonContainer>
-				<button class = "btn-orange" id="btniOS"> Sta toe </button>
+				<button class = "btn-orange" id="btniOS"> Allow </button>
 			</div>
 		</div>
 
 		<div class = "menu" id="warningMessage" style = "display:none">
-			<h2> Let op! </h2>
-			<p class= "menuText" style = "margin-bottom:0;"> Pas tijdens het spelen op je omgeving. Blijf op een plek staan en zorg dat er voldoende ruimte om je heen is.</p>
+			<h2> Attention! </h2>
+			<p class= "menuText" style = "margin-bottom:0;"> Be mindful of your surroundings during play. Stay in one spot and assure there is enough room around you.</p>
 			
 			<div class = menuButtonContainer>
 				<img src="./textures/bewareSurroundings.png" style = "width: 95%; margin-bottom:30px;"></img>
 
-				<button class = "btn-orange" id="btnWarn"> Oke </button>
+				<button class = "btn-orange" id="btnWarn"> OK </button>
 			</div>
 		</div>
 
 		<div class = "menu" id="gameOverMenu" style = "display:none">
 			<h2> Gepakt! </h2>
-			<p class= "menuText"> Helaas, de leeuw heeft je te pakken genomen... <br> Zorg dat je je mede-waterbok blijft volgen! </p>
+			<p class= "menuText"> Too bad, the lion caught up to you... <br>Keep looking at your fellow waterbuck! </p>
 			<div class = menuButtonContainer>
-				<button class = "btn-orange" id="btnGameOver"> Probeer opnieuw </button>
+				<button class = "btn-orange" id="btnGameOver"> Try again </button>
 			</div>
 		</div>
 		<div class = "menu" id="winMenu" style = "display:none">
-			<h2> Ontsnapt! </h2>
+			<h2> Escaped! </h2>
 			<p class= "menuText"> 
-				Je bent ontsnapt van de leeuw, goed gedaan! Hielp de cirkel een beetje? 
+				You’ve escaped from the lion, well done! Did the circle help at all?
 				<br>
-				<br> Je bent in <span class = "waterbokScore" id = "score">x</span> seconden ontsnapt!
+				<br> You’ve escaped in <span class = "waterbokScore" id = "score">x</span> seconds!
 				<br>
-				<br> Je snelste tijd is <span class = "waterbokScore" id = "highScore">x</span> seconden.
+				<br> Your fastest time is <span class = "waterbokScore" id = "highScore">x</span> seconds.
 				<br>
-				<br> denk je dat je dat sneller kan? Probeer het nog eens!</p>
+				<br> Think you can do it faster? Try again, or return to the demo overview page!</p>
 			<div class = menuButtonContainer>
-				<button class = "btn-orange" id="btnWin"> Probeer opnieuw </button>
+				<button class = "btn-orange" id="btnWin"> Try again </button>
 				<button class = "btn-orange" id="btnRet" onclick =location.href="/demoday.html"> Return to demo overview </button>
 			</div>
 		</div>
