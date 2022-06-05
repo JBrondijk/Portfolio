@@ -470,6 +470,7 @@ document.getElementById("btnContinue").onclick = function(){
 	if (souvenirsFound >= souvenirPages.length && !postGame){ //if the game is completed for the first time
 		postGame = true; //set the game to be completed before
 		allFound.style.display = "block" //open the completion menu.
+		document.getElementById("btnRet").style.display = "block";
 	} else {
 		gameState = "play";
 		updateUI();

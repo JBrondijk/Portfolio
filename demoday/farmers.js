@@ -269,6 +269,7 @@ continuebtn.onclick = function(){
 			resultHeader.innerHTML = "Alle boeren geholpen!";
 			resultText.innerHTML = "Fantastich gedaan! Alle boeren kunnen hun werk nu een stuk veiliger doen en hoeven zich minder zorgen te maken over wilde dieren. <br> Het is belangrijk goed met de boeren te overleggen, zodat een gepaste oplossing kan worden gekozen.<br><br>Naast de oplossingen die je hier zag, werken de verschillende organisaties aan allerlei andere oplossinge om conflicten tussen mens en dier te verhelpen. Kom eens langs bij Stichting Wildlife om meer hierover te leren!";
 			continuebtn.innerHTML = "Speel Opnieuw";
+			document.getElementById("btnRet").style.display = "block";
 			gameComplete = true;
 		}
 	} else {

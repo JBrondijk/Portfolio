@@ -8,17 +8,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 
-	<body style = "overflow:hidden;">
-		<h1> Waterbok Ontsnapping</h1>
+	<body style = "overflow:hidden; max-width:100%">
+		<h1 style = "padding-left:3rem"> <img src="./textures/arrow.png" onclick =location.href="/demoday.html" style = "height:1.5rem; position:absolute; margin-left: -2.5rem;"></img> Waterbok Ontsnapping</h1>
 		
 		<div id="videoContainer" style="height:95vh">
 			<video id="VIDEO" style = "height: 95vh; width: 100vw; object-fit: cover;">Geef de website toestemming om de camera te gebruiken om verder te kunnen.</video>
 		</div>
 
 		<div class="progress-container">
-			<img src="./textures/finish.png" class="finish" style = "position:relative; width:5vw; height: 0.8rem; left: 95vw; top: -0.5vh;"></img>
-			<div class="progress"> <img src="./textures/playerIcon.png" class="playerIcon" style = "position:relative; width: 2.5rem; height: 2.5rem; top: -0.8rem; left: -5vw;"></img> </div>
-			<div class="progressLion"> <img src="./textures/lionIcon.png" class="lionIcon" style = "position:relative; width: 2.5rem; height: 2.5rem; top: -0.8rem; left: -14vw;"></img> </div>
+			<img src="./textures/finish.png" class="finish" style = "position:relative; width:5vw; height: 0.8rem; left: 95vw; top: -0.1rem;"></img>
+			<div class="progress"> <img src="./textures/playerIcon.png" id="playerIcon" style = "position:relative; width: 2.5rem; height: 2.5rem; top: -0.8rem; left: -5vw;"></img> </div>
+			<div class="progressLion"> <img src="./textures/lionIcon.png" id="lionIcon" style = "position:relative; width: 2.5rem; height: 2.5rem; top: -0.8rem; left: -14vw;"></img> </div>
 		</div>
 		
 		<div class = "menu" id="startMenu">
@@ -68,6 +68,7 @@
 				<br> denk je dat je dat sneller kan? Probeer het nog eens!</p>
 			<div class = menuButtonContainer>
 				<button class = "btn-orange" id="btnWin"> Probeer opnieuw </button>
+				<button class = "btn-orange" id="btnRet" onclick =location.href="/demoday.html"> Return to demo overview </button>
 			</div>
 		</div>
 	
