@@ -232,7 +232,7 @@ function select(object){
 			}	else if (object==selectPlane3){
 				submitAnswer(false,"Bijenhekken hebben als doel om gewassen te beschermen tegen olifanten. <br> Er moet een andere oplossing zijn...");
 			}	else if (object==selectPlane4){
-				submitAnswer(false,"");
+				submitAnswer(false,"Terwijl de meeste roofdieren nachts jagen, doen cheetah's dit vaker rond zonsopgang en zonsondergang. De fakkels werken het beste 's nachts. Er moet een andere oplossing zijn...");
 			}
 		}
     } 
