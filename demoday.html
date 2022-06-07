@@ -34,8 +34,8 @@
 		</div>
 
 		<div class = "menu" id="waterbuckMenu" style="display:none; overflow:hidden;">
-			<h2 style="position:sticky;"> <span>Waterbuck Escape</span> <span class="cross" onclick="showHide(waterbuckMenu,false)">X</span> </h2>
-			<div style = "max-height: 77vh; overflow:auto;">
+			<h2 style="position:sticky;"> <span>Waterbuck Escape</span> <span class="cross" onclick="showHide(waterbuckMenu,false,waterbuckMenuScroll)">X</span> </h2>
+			<div id="waterbuckMenuScroll" style = "max-height: 77vh; overflow:auto;">
 				<p class= "menuText" style="margin-bottom:2rem;"> This is one of the less serious experiences, being the most game-like by far.  
 				<br><br>It came from a desire to have more varied interaction types, wanting to do something with the phone's gyro-sensor. This was a perfect fit for a game about chasing an animal, which the waterbuck was a fun fit for, and perhaps slightly more original than a predator chasing its prey. 
 				<br><br>This experience took some balancing to get right. Originally it had the player play the game twice, once with and once without the circle on the waterbuck's behind. 
@@ -46,8 +46,8 @@
 		</div>
 
 		<div class = "menu" id="farmersMenu" style="display:none; overflow:hidden;">
-			<h2> <span>Protecting Farmers</span> <span class="cross" onclick="showHide(farmersMenu,false)">X</span> </h2>
-			<div style = "max-height: 77vh; overflow:auto;">
+			<h2> <span>Protecting Farmers</span> <span class="cross" onclick="showHide(farmersMenu,false,farmersMenuScroll)">X</span> </h2>
+			<div id="farmersMenuScroll" style = "max-height: 77vh; overflow:auto;">
 				<p class= "menuText"> This experience is about human-wildlife conflict. In the experience, you do a kind of quiz on your phone, letting you help the farmer on the sign. </p>
 				<img src="demoday/sitepics/boeren_sign.jpg" style="width:100%; margin:0;">
 				<p class= "menuText"> encourages people to read all the information on the sign, and did so successfully during user tests.
@@ -59,35 +59,34 @@
 		</div>
 
 		<div class = "menu" id="rhinosMenu" style="display:none; overflow:hidden;">
-			<h2> <span>Rhino Management</span> <span class="cross" onclick="showHide(rhinosMenu,false)">X</span> </h2>
-			<div style = "max-height: 77vh; overflow:auto;">
+			<h2> <span>Rhino Management</span> <span class="cross" onclick="showHide(rhinosMenu,false,rhinosMenuScroll)">X</span> </h2>
+			<div id="rhinosMenuScroll" style = "max-height: 77vh; overflow:auto;">
 				<p class= "menuText"> In this experience, players take the role of species coordinator for the white rhino. This is essentially a management puzzle, to solve it the player needs to create a bachelor group (a single-gendered group) of rhinos, as there's too many males for each to be placed within a family group. 
-				<br><br>Originally, this experiences was designed for gorillas, as with this species it is easy to tell the males from the females, and the zoo actually houses a bachelor group of gorillas in the middle of the park. </p> 
-				<img src="demoday/sitepics/rhinos.jpg" style="width:100%; margin:0;">
-				<p class = "menuText"> However, the zoo preferred to make the it about the white rhino, as that is one of the species the zoo is actually the species coordinator of in real life. 
+				<br><br>Originally, this experiences was designed for gorillas, as with this species it is easy to tell the males from the females, and the zoo actually houses a bachelor group of gorillas in the middle of the park.
+				<br><br>However, the zoo preferred to make the it about the white rhino, as that is one of the species the zoo is actually the species coordinator of in real life. 
 				<br><br> Luckily, white rhino management also makes use of bachelor groups, so the game did not have to be altered in that regard. 
 				</p>
-				<!-- <img src="demoday/sitepics/waterbok.jpg" style="width:100%; margin:0;"> -->
+				<img src="demoday/sitepics/rhinos.jpg" style="width:100%; margin:0;">
 			</div>
 		</div>
 
 		<div class = "menu" id="tigersMenu" style="display:none; overflow:hidden;">
-			<h2> <span>Tiger Camouflage</span> <span class="cross" onclick="showHide(tigersMenu,false)">X</span> </h2>
-			<div style = "max-height: 77vh; overflow:auto;">
+			<h2> <span>Tiger Camouflage</span> <span class="cross" onclick="showHide(tigersMenu,false,tigersMenuScroll)">X</span> </h2>
+			<div id="tigersMenuScroll" style = "max-height: 77vh; overflow:auto;">
 				<p class= "menuText"> This was the first experience created, back in my M2.1 project, in which I explored the possibilities for augmented, and virtual reality at the zoo. </p>
 				<img src="demoday/sitepics/tigers_old.jpg" style="width:100%; margin:0;">
 
 				<p class= "menuText"> It was well received by visitors, but also showed areas for improvement
 				<br><br>People thought they were looking through the eyes of a tiger, they didn't recognize the purpose of the sign on first glance, and people not wanting to use their phone felt left out. 
-				<br><br> All these issues became the foundation of how these sign were designed during the FMP iteration. Signs were given enough info to understand the topic without the phone, and now feature an image showing what the experience looks like. 
+				<br><br> All these issues became the foundation of how these signs were designed during the FMP iteration. Signs were given enough info to understand the topic without the phone, and now feature an image showing what the experience looks like. 
 				</p>
 				<img src="demoday/sitepics/tijgers.jpg" style="width:100%; margin:0;">
 			</div>
 		</div>
 
 		<div class = "menu" id="souvenirsMenu" style="display:none; overflow:hidden;">
-			<h2> <span>Bad Souvenirs</span> <span class="cross" onclick="showHide(souvenirsMenu,false)">X</span> </h2>
-			<div style = "max-height: 77vh; overflow:auto;">
+			<h2> <span>Bad Souvenirs</span> <span class="cross" onclick="showHide(souvenirsMenu,false,souvenirsMenuScroll)">X</span> </h2>
+			<div id="souvenirsMenuScroll" style = "max-height: 77vh; overflow:auto;">
 				<p class= "menuText"> The idea for this experience came from an existing sign at Beekse Bergen, which talks about the ivory trade, mentioning ivory as  "bad souvenirs". </p>
 				<img src="demoday/sitepics/ivoor.jpg" style="width:100%; margin:0;">
 
@@ -106,11 +105,17 @@
 			let tigersMenu = document.getElementById("tigersMenu");
 			let souvenirsMenu = document.getElementById("souvenirsMenu");
 
-			function showHide(menu,show){
+			let waterbuckMenuScroll = document.getElementById("waterbuckMenuScroll");
+			let farmersMenuScroll = document.getElementById("farmersMenuScroll");
+			let rhinosMenuScroll = document.getElementById("rhinosMenuScroll");
+			let tigersMenuScroll = document.getElementById("tigersMenuScroll");
+			let souvenirsMenuScroll = document.getElementById("souvenirsMenuScroll");
+
+			function showHide(menu,show,scrollmenu){
 				if (show){
 					menu.style.display = "block";
 				} else {
-					menu.scrollTop = 0;	
+					scrollmenu.scrollTop = 0;	
 					menu.style.display = "none";
 				}
 			}
