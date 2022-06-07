@@ -65,7 +65,7 @@ var questions = [];
 questions[0] = "Afrikaanse Wilde Honden jagen op mijn vee! Hoe kan ik ze nog los laten grazen?";
 questions[1] = "Olifanten eten mijn gewassen op en trappen alles plat! Als ik ze probeer weg te jagen worden ze aggressief!";
 questions[2] = "Leeuwen klimmen 's nachts mijn veekraal in en vallen mijn vee aan!";
-questions[3] = "Een jachluipaard ging zomaar aan de haal met een van de schapen uit mijn veekraal!";
+questions[3] = "Een cheeta ging zomaar aan de haal met een van de schapen uit mijn veekraal!";
 
 updateSpeechBubbleText();
 
@@ -232,7 +232,7 @@ function select(object){
 			}	else if (object==selectPlane3){
 				submitAnswer(false,"Bijenhekken hebben als doel om gewassen te beschermen tegen olifanten. <br> Er moet een andere oplossing zijn...");
 			}	else if (object==selectPlane4){
-				submitAnswer(false,"Terwijl de meeste roofdieren nachts jagen, doen cheetah's dit vaker rond zonsopgang en zonsondergang. De fakkels werken het beste 's nachts. Er moet een andere oplossing zijn...");
+				submitAnswer(false,"Terwijl de meeste roofdieren nachts jagen, doen cheeta's dit vaker rond zonsopgang en zonsondergang. De fakkels werken het beste 's nachts. Er moet een andere oplossing zijn...");
 			}
 		}
     } 
