@@ -19,6 +19,7 @@ const	scanner = document.getElementById("scanning"),
 		startMenu = document.getElementById("startMenu"),
 		controlsMenu = document.getElementById("controlsMenu"),
 		enclMenu = document.getElementById("enclMenu"),
+		enclMenuScroll = document.getElementById("enclMenuScroll"),
 		menuTitle = document.getElementById("menuTitle"),
 		enclMales = document.getElementById("enclMales"),
 		enclFemales = document.getElementById("enclFemales"),
@@ -229,7 +230,7 @@ function updateUI(){
 	}  else if (gameState == "menu") {
 		displayNone();
 		enclMenu.style.display = "block";
-		enclMenu.scrollTop = 0;
+		enclMenuScroll.scrollTop = 0;
 	} else if (gameState == "win") {
 		displayNone();
 		winMenu.style.display = "block";
