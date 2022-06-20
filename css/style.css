@@ -66,6 +66,10 @@ a { font-family: 'Rubik', sans-serif;
      background: linear-gradient(180deg, rgba(227,228,219,0) 85%, rgba(227,228,219,1) 100%);
 }
 
+.site-main .site-banner{
+    height: 100vh;
+}
+
 .site-main .site-banner .site-title h3{
     padding-top: 35%;
     font-weight: 500;
@@ -84,10 +88,12 @@ a { font-family: 'Rubik', sans-serif;
 
 .site-main .site-banner .site-title h1{
     font-size: 3.5rem;
+    text-align: center;
 }
 
 .site-main .site-banner .site-title h4{
     font-size: 1.5rem;
+    text-align: center;
 }
 
 .site-main .site-banner .site-title{
