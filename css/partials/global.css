@@ -1,0 +1,23 @@
+/*GLOBAL CLASSES*/
+.title-text{
+    font:normal bold 50px/ 72px var(--workSans)
+}
+
+.text-uppercase{
+    text-transform: uppercase;
+}
+
+/* buttons */
+.button{
+    padding:.8rem 2.2rem;
+    font: normal 500 16px/20px var(--workSans);
+    
+    text-align: center;
+    background-color: var(--buttonColor);
+    border-radius: 4px;
+    box-shadow: var(--box-shadow);
+}
+
+.button:hover{
+    background-color: var(--buttonColorActive);
+}

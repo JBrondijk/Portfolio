@@ -1,0 +1,24 @@
+html, body{
+    margin:0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+/*CSS Variables*/
+
+:root{
+    --headerText:#FF8427;
+    --headerTextActive: #FFD2AD;
+    --headerBackground:rgba(1,1,10,0.8); 
+    --shadowColor: rgba(0,0,0,0.1);
+    --buttonColor:#FF8427;
+    --buttonColorActive:#FFD2AD;
+    --bannerBackground: rgba(255,255,255,0.4);
+
+    --box-shadow: 0 0.2rem 0.5rem 0 var(--shadowColor), 0 0.5rem 0.5rem 0 var(--shadowColor);
+
+    /*fonts*/
+    --rubik:'Rubik', sans-serif;
+    --workSans: 'Work Sans', sans-serif;
+}

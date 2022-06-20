@@ -1,0 +1,135 @@
+/* css variables */
+@import url(./partials/variables.css);
+
+/* css variables */
+@import url(./partials/global.css);
+
+body{
+    margin:0;
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(227,228,219,1) 0%, rgba(255,255,255,1) 100%);
+    max-width: 100%;
+    overflow-x: hidden;
+}
+a { font-family: 'Rubik', sans-serif;
+    font-size : 30pt}
+
+/*HEADER/NAVBAR*/
+.header_area .main-menu{
+    background: var(--headerBackground);
+}
+.header_area .main-menu .navbar .navbar-brand{
+    padding: 0 2rem 0;
+}
+
+.header_area .main-menu .navbar{
+    padding: 0rem 2rem;
+}
+
+.header_area .main-menu .nav-link{
+    font-family: var(--rubik);
+    text-transform: uppercase;
+    color:var(--headerText);
+    margin:0;   
+    padding:1rem;
+    padding-left:2rem;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.header_area .main-menu .navbar-nav .active{
+    color:var(--headerTextActive);
+}
+
+.header_area .main-menu .navbar-nav a:hover{
+    color:var(--headerTextActive);
+}
+
+/*END HEADER/NAVBAR*/
+
+/* banner */
+.videoBanner{
+    position: absolute;
+    top:0;
+    left: 0;
+    object-fit: cover;
+    width: 100vw;
+     height: 100vh;
+     z-index: -1;
+}
+
+.site-main .site-banner .site-title h3{
+    padding-top: 35%;
+    font-weight: 500;
+}
+
+.site-main .site-banner .site-title h3::after{
+    content: "";
+    height: 2px;
+    width: 18vw;
+    background-color: black;
+    display: inline-block;
+    margin-left: 5%;
+    transform: translateY(-10px);
+}
+
+.site-main .site-banner .site-title h1{
+    font-size: 5rem;
+}
+
+.site-main .site-banner .site-title h4{
+    font-size: 1.5rem;
+}
+
+.site-main .site-banner .site-title{
+    background: var(--bannerBackground);
+    -webkit-backdrop-filter: blur(.5rem);
+	backdrop-filter: blur(.5rem);
+}
+
+.site-main .site-banner .site-buttons{
+    margin-bottom: 2rem;
+}
+
+.site-main .site-banner .banner-image > img{
+    border-radius: 50%;
+    width:20rem;
+    border: 0.5rem solid #FF8427;
+    display: block;
+    margin: auto;
+    margin-top: 4rem;
+}
+
+/* end of banner */
+
+
+
+/*
+font-family: 'Rubik', sans-serif;
+    background: black;
+    color:#FF8427;
+    margin:0;
+    padding:0.5rem;
+    padding-left:2rem;
+    font-size: 4rem;
+*/
+.btn-orange {
+    background-color: #FF8427;
+    border: 0;
+    color: white;
+    
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 5rem;
+    
+    width: 50rem;
+    padding-top: 0.2vh;
+    padding-bottom: 0.2vh;
+    
+
+    display:block;
+    margin:auto;
+}
+.btn-orange:active {
+     background-color: #FF925E;
+}
