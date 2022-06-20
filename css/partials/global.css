@@ -21,3 +21,8 @@
 .button:hover{
     background-color: var(--buttonColorActive);
 }
+
+p.para{
+    color:var(--textColor);
+    font:normal 400 15px/25px var(--workSans);
+}

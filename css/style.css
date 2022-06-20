@@ -4,6 +4,10 @@
 /* css variables */
 @import url(./partials/global.css);
 
+:target {
+    scroll-margin-top: 5rem;
+}
+
 body{
     margin:0;
     background: rgba(227,228,219,1) 100%;
@@ -14,8 +18,27 @@ a { font-family: 'Rubik', sans-serif;
     font-size : 30pt}
 
 /*HEADER/NAVBAR*/
+@media all and (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu{ display: none; }
+	.navbar .nav-item:hover .nav-link{   }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+}
+
+.navbar .nav-item .dropdown-menu{
+    border-radius: 0px 0px 1rem 1rem;
+}
+
+.navbar .nav-item .dropdown-menu .dropdown-item{
+    font-family: var(--workSans);
+    font-size: 1.5rem;
+}
+
 .header_area .main-menu{
     background: var(--headerBackground);
+    position: fixed;
+    z-index: 999;
+    width: 100%;
 }
 .header_area .main-menu .navbar .navbar-brand{
     padding: 0 2rem 0;
@@ -63,7 +86,7 @@ a { font-family: 'Rubik', sans-serif;
     width: 100vw;
      height: 100vh;
      z-index: -1;
-     background: linear-gradient(180deg, rgba(227,228,219,0) 85%, rgba(227,228,219,1) 100%);
+     background: linear-gradient(180deg, rgba(227,228,219,0) 80%, rgba(227,228,219,1) 100%);
 }
 
 .site-main .site-banner{
@@ -89,6 +112,8 @@ a { font-family: 'Rubik', sans-serif;
 .site-main .site-banner .site-title h1{
     font-size: 3.5rem;
     text-align: center;
+    color:var(--headerText);
+    text-shadow: 0.05rem .05rem .2rem rgba(0,0,0,0.8);;
 }
 
 .site-main .site-banner .site-title h4{
@@ -101,6 +126,7 @@ a { font-family: 'Rubik', sans-serif;
     -webkit-backdrop-filter: blur(.5rem);
 	backdrop-filter: blur(.5rem);
     box-shadow: var(--box-shadow);
+    border-radius: 0px 0px 1rem 1rem;
 }
 
 .site-main .site-banner .site-buttons{
@@ -113,23 +139,67 @@ a { font-family: 'Rubik', sans-serif;
     border: 1rem solid var(--headerText);
     display: block;
     margin: auto;
-    margin-top: 4rem;
+    margin-top: 8rem;
 }
 
 /* end of banner */
 
 /* start Identity Area */
-.site-main .identity{
-    padding: 4rem 5rem;
+.site-main .identityVision{
+    padding: 0.5rem 5rem;
 }
 
-.site-main .identity .about-title h2{
+.about-title h2{
     display: block;
     font:normal 49px/60px var(--rubik);
+    padding-top: 0;
+    margin-top:0;
+}
+
+.about-title .paragraph > p{
+    padding: .2rem 0;
 }
 
 /* end idenitty area */
 
+/*Projects Area*/
+thumbnail-wrap{
+    position: relative;
+    display:inline-block;
+}
+
+.project-thumbnail{
+    position:relative;
+    display: flex;
+    justify-content: center;
+    width:100%;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    vertical-align: bottom;
+    transition: .4s;
+}
+
+.thumbnail-wrap:hover .project-thumbnail{
+    display: none;
+}
+
+.project-thumbnail-hover{
+    position:relative;
+    top:0;
+    display: flex;
+    justify-content: center;
+    width:100%;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    vertical-align: bottom;
+    display:none;
+    transition:.4s;
+
+}
+.thumbnail-wrap:hover .project-thumbnail-hover{
+    box-shadow: var(--box-shadow);
+    display:block;
+}
 
 
 
@@ -162,3 +232,4 @@ font-family: 'Rubik', sans-serif;
 .btn-orange:active {
      background-color: #FF925E;
 }
+
