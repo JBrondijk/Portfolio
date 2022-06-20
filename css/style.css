@@ -6,8 +6,7 @@
 
 body{
     margin:0;
-    background: rgb(2,0,36);
-    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(227,228,219,1) 0%, rgba(255,255,255,1) 100%);
+    background: rgba(227,228,219,1) 100%;
     max-width: 100%;
     overflow-x: hidden;
 }
@@ -57,10 +56,20 @@ a { font-family: 'Rubik', sans-serif;
      height: 100vh;
      z-index: -1;
 }
+.videoGradient{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100vw;
+     height: 100vh;
+     z-index: -1;
+     background: linear-gradient(180deg, rgba(227,228,219,0) 85%, rgba(227,228,219,1) 100%);
+}
 
 .site-main .site-banner .site-title h3{
     padding-top: 35%;
     font-weight: 500;
+    font-size: 2rem;
 }
 
 .site-main .site-banner .site-title h3::after{
@@ -74,7 +83,7 @@ a { font-family: 'Rubik', sans-serif;
 }
 
 .site-main .site-banner .site-title h1{
-    font-size: 5rem;
+    font-size: 3.5rem;
 }
 
 .site-main .site-banner .site-title h4{
@@ -85,6 +94,7 @@ a { font-family: 'Rubik', sans-serif;
     background: var(--bannerBackground);
     -webkit-backdrop-filter: blur(.5rem);
 	backdrop-filter: blur(.5rem);
+    box-shadow: var(--box-shadow);
 }
 
 .site-main .site-banner .site-buttons{
@@ -94,13 +104,26 @@ a { font-family: 'Rubik', sans-serif;
 .site-main .site-banner .banner-image > img{
     border-radius: 50%;
     width:20rem;
-    border: 0.5rem solid #FF8427;
+    border: 1rem solid var(--headerText);
     display: block;
     margin: auto;
     margin-top: 4rem;
 }
 
 /* end of banner */
+
+/* start Identity Area */
+.site-main .identity{
+    padding: 4rem 5rem;
+}
+
+.site-main .identity .about-title h2{
+    display: block;
+    font:normal 49px/60px var(--rubik);
+}
+
+/* end idenitty area */
+
 
 
 
