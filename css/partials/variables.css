@@ -11,13 +11,15 @@ html, body{
     --headerText:#FF8427;
     --headerTextActive: #FFD2AD;
     --headerBackground:rgba(1,1,10,0.8); 
-    --shadowColor: rgba(0,0,0,0.2);
+    --shadowColor: rgba(0,0,0,0.4);
     --buttonColor:#FF8427;
     --buttonColorActive:#FFD2AD;
     --bannerBackground: rgba(255,255,255,0.4);
     --textColor: rgb(16, 15, 17);
+    --footerColor: #41524c;
+    --expertiseAreaColor: #a72525;
 
-    --box-shadow: 0 0.2rem 0.5rem 0 var(--shadowColor), 0 0.5rem 0.5rem 0 var(--shadowColor);
+    --box-shadow: 0.2 0.2rem 0.5rem 0 var(--shadowColor), 0 0.5rem 0.5rem 0 var(--shadowColor);
 
     /*fonts*/
     --rubik:'Rubik', sans-serif;

@@ -7,6 +7,42 @@
     text-transform: uppercase;
 }
 
+.shadow{
+    box-shadow: var(--box-shadow);
+}
+
+.expertise-area{
+    -webkit-filter: drop-shadow(.05rem .05rem .5rem var(--shadowColor));
+    filter: drop-shadow(.05rem .05rem .5rem var(--shadowColor));
+
+    display: inline-block;
+}
+
+.expertise-area-top{
+    width: 0;
+    border-bottom: 1rem solid var(--expertiseAreaColor);
+    border-left: 2rem solid transparent;
+    border-right: 2rem solid transparent;
+}
+
+.expertise-area-middle{
+    width: 4rem;
+    height: 2.5rem;
+    background-color: var(--expertiseAreaColor);
+    text-align: center;
+    color:white;
+    font:normal 1.5rem/2.5rem var(--rubik);
+}
+
+.expertise-area-bottom{
+    width: 0;
+    border-top: 1rem solid var(--expertiseAreaColor);
+    border-left: 2rem solid transparent;
+    border-right: 2rem solid transparent;
+}
+
+
+
 /* buttons */
 .button{
     padding:.8rem 2.2rem;
