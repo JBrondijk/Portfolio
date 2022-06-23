@@ -17,7 +17,7 @@ html, body{
     --bannerBackground: rgba(255,255,255,0.4);
     --textColor: rgb(16, 15, 17);
     --footerColor: #41524c;
-    --expertiseAreaColor: #a72525;
+    --expertiseAreaColor: rgb(1,1,10);
 
     --box-shadow: 0.2 0.2rem 0.5rem 0 var(--shadowColor), 0 0.5rem 0.5rem 0 var(--shadowColor);
 

@@ -12,10 +12,12 @@
 }
 
 .expertise-area{
-    -webkit-filter: drop-shadow(.05rem .05rem .5rem var(--shadowColor));
-    filter: drop-shadow(.05rem .05rem .5rem var(--shadowColor));
-
     display: inline-block;
+}
+
+.expertise-area-NS{
+    display: inline-block;
+    z-index: 3;
 }
 
 .expertise-area-top{
@@ -41,6 +43,23 @@
     border-right: 2rem solid transparent;
 }
 
+.expertise-area-title{
+    background-color: var(--expertiseAreaColor);
+    font:normal 1.5rem/2.5rem var(--rubik);
+    color:white;
+    padding: .5rem;
+    padding-left: 2rem;
+    margin-left: -0.5rem;
+    padding-right: 3rem;
+    border-radius: 0px .8rem 0.8rem 0rem;
+    
+    z-index: 0;
+}
+
+.expertise-area-para{
+    margin-left:5rem;
+}
+
 
 
 /* buttons */
@@ -52,13 +71,37 @@
     background-color: var(--buttonColor);
     border-radius: 4px;
     box-shadow: var(--box-shadow);
+    border:none;
+    
 }
 
 .button:hover{
     background-color: var(--buttonColorActive);
+    border:none;
+}
+
+.project-button-wrap{
+    margin: 2rem;
 }
 
 p.para{
     color:var(--textColor);
     font:normal 400 15px/25px var(--workSans);
+}
+
+.video-container{
+    position:   relative;
+    width:      100%;
+    height: 0;
+    padding-top:   56.25%; /* This is your aspect ratio */ 
+}
+
+.YT-video{
+    position: absolute;
+  top:      0;
+  left:     0;
+  bottom:   0;
+  right:    0;
+  width:    100%;
+  height:   100%
 }
